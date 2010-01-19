@@ -1,0 +1,12 @@
+<% title "Symptom" %>
+
+<p>
+  <strong>Name:</strong>
+  <%=h @symptom.name %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_symptom_path(@symptom) %> |
+  <%= link_to "Destroy", @symptom, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", symptoms_path %>
+</p>

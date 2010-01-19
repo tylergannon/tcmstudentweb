@@ -1,0 +1,64 @@
+<p>
+  <b>Pinyin:</b>
+  <%=h @formula.pinyin %>
+</p>
+
+<p>
+  <b>English:</b>
+  <%=h @formula.english %>
+</p>
+
+<p>
+  <b>Preparation:</b>
+  <%=h @formula.preparation %>
+</p>
+
+<p>
+  <b>Commentary:</b>
+  <%=h @formula.commentary %>
+</p>
+
+<% @formula.formula_contraindications.each do |formula_contraindication| %>
+  <div class="child">
+  </div>
+<% end %>
+
+<% @formula.formula_herbs.each do |formula_herb| %>
+  <div class="child">
+    <p>
+      <b>FormulaHerb Dose:</b>
+      <%=h formula_herb.dose %>
+    </p>
+    <p>
+      <b>FormulaHerb Commentary:</b>
+      <%=h formula_herb.commentary %>
+    </p>
+  </div>
+<% end %>
+
+<% @formula.formula_patterns.each do |formula_pattern| %>
+  <div class="child">
+    <p>
+      <b>FormulaPattern Commentary:</b>
+      <%=h formula_pattern.commentary %>
+    </p>
+  </div>
+<% end %>
+
+<% @formula.formula_pulse_qualities.each do |formula_pulse_quality| %>
+  <div class="child">
+  </div>
+<% end %>
+
+<% @formula.formula_symptoms.each do |formula_symptom| %>
+  <div class="child">
+  </div>
+<% end %>
+
+<% @formula.formula_therapeutic_functions.each do |formula_therapeutic_function| %>
+  <div class="child">
+  </div>
+<% end %>
+
+<%= link_to 'Edit', edit_formula_path(@formula) %> |
+<%= link_to 'Back', formulas_path %>

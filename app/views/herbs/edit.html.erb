@@ -1,0 +1,11 @@
+<% title "Editing #{@herb.pinyin}" %>
+
+<% form_for(@herb) do |f| %>
+  <%= render :partial => 'form', :locals => { :f => f } %>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @herb %> |
+<%= link_to 'Back', herbs_path %>

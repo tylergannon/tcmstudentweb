@@ -1,0 +1,11 @@
+<% @formula_herbs.each do |formula_herb| %>
+	<tr>
+		<td>
+			<%=formula_herb.formula_role.pinyin %>
+		</td>
+		<td><%= formula_herb.herb.pinyin %></td>
+		<td><%= formula_herb.herb.category_name %></td>
+		<td><%= formula_herb.dose %></td>
+		<td><%= formula_herb.commentary %></td>
+	</tr>
+<% end %>

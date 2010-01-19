@@ -1,0 +1,1516 @@
+  [4;36;1mSQL (0.5ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mselect sqlite_version(*)[0m
+  [4;36;1mSQL (115.4ms)[0m   [0;1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (119.2ms)[0m   [0mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [4;36;1mSQL (0.7ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateTherapeuticFunctions (20100118204411)
+  [4;36;1mSQL (1.0ms)[0m   [0;1mCREATE TABLE "therapeutic_functions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (0.3ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20100118204411')[0m
+Migrating to CreateHerbCategories (20100118204600)
+  [4;36;1mSQL (0.9ms)[0m   [0;1mCREATE TABLE "herb_categories" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (0.3ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20100118204600')[0m
+Migrating to CreateFlavors (20100118204720)
+  [4;36;1mSQL (0.9ms)[0m   [0;1mCREATE TABLE "flavors" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (0.3ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20100118204720')[0m
+Migrating to CreateChannels (20100118204747)
+  [4;36;1mSQL (0.9ms)[0m   [0;1mCREATE TABLE "channels" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (0.3ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20100118204747')[0m
+Migrating to CreateHerbs (20100118204907)
+  [4;36;1mSQL (0.9ms)[0m   [0;1mCREATE TABLE "herbs" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "category_id" integer, "channel_id" integer, "pinyin" varchar(255), "english" varchar(255), "latin" varchar(255), "commentary" text, "contraindications" text, "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (0.3ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20100118204907')[0m
+Migrating to CreateHerbTherapeuticFunctions (20100118205005)
+  [4;36;1mSQL (0.9ms)[0m   [0;1mCREATE TABLE "herb_therapeutic_functions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "herb_id" integer, "therapeutic_function_id" integer, "commentary" text, "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (0.4ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20100118205005')[0m
+Migrating to CreateHerbChannels (20100118205114)
+  [4;36;1mSQL (0.9ms)[0m   [0;1mCREATE TABLE "herb_channels" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "herb_id" integer, "channel_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (0.3ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20100118205114')[0m
+Migrating to CreateHerbFlavors (20100118205147)
+  [4;36;1mSQL (0.9ms)[0m   [0;1mCREATE TABLE "herb_flavors" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "herb_id" integer, "flavor_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (0.3ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20100118205147')[0m
+  [4;36;1mSQL (1.4ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (1.1ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (1.1ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("channels")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("flavors")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("herb_categories")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("herb_channels")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("herb_flavors")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("herb_therapeutic_functions")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("herbs")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("therapeutic_functions")[0m
+
+
+Processing HerbsController#new (for 127.0.0.1 at 2010-01-18 13:58:16) [GET]
+Rendering template within layouts/herbs
+Rendering herbs/new
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+Rendered herbs/_herb_channel (5.4ms)
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+Rendered herbs/_herb_flavor (5.2ms)
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+Rendered herbs/_herb_therapeutic_function (7.4ms)
+Rendered herbs/_form (146.6ms)
+Completed in 225ms (View: 196, DB: 0) | 200 OK [http://localhost/herbs/new]
+
+
+Processing HerbsController#new (for 127.0.0.1 at 2010-01-18 13:58:28) [GET]
+Rendering template within layouts/application
+Rendering herbs/new
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+Rendered herbs/_herb_channel (4.2ms)
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+Rendered herbs/_herb_flavor (4.2ms)
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+Rendered herbs/_herb_therapeutic_function (6.3ms)
+Rendered herbs/_form (59.3ms)
+
+ActionView::TemplateError (undefined local variable or method `case_studies_path' for #<ActionView::Base:0xb601127c>) on line #33 of app/views/layouts/application.html.erb:
+30: 	<div class="headRight"></div>
+31: 	<div id="navigation">
+32: 		<div class="naviLeft"></div>
+33: 		<div class="link"><%= link_to 'Case Studies', case_studies_path %></div>
+34: 		<div class="link"><%= link_to 'Patients', patients_path %></div>
+35: 		
+36: 		<div class="link"><%= link_to 'Acu Points', acu_points_path %></div>
+
+    app/views/layouts/application.html.erb:33
+    app/controllers/herbs_controller.rb:29:in `new'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (143.9ms)
+Rendered rescues/_request_and_response (2.0ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing HerbsController#new (for 127.0.0.1 at 2010-01-18 13:59:27) [GET]
+Rendering template within layouts/application
+Rendering herbs/new
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+Rendered herbs/_herb_channel (4.3ms)
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+Rendered herbs/_herb_flavor (4.1ms)
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+Rendered herbs/_herb_therapeutic_function (6.5ms)
+Rendered herbs/_form (108.3ms)
+Completed in 143ms (View: 126, DB: 0) | 200 OK [http://localhost/herbs/new]
+  [4;36;1mSQL (0.5ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mselect sqlite_version(*)[0m
+  [4;36;1mSQL (160.6ms)[0m   [0;1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (94.6ms)[0m   [0mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateTherapeuticFunctions (20100118204411)
+  [4;36;1mSQL (1.0ms)[0m   [0;1mCREATE TABLE "therapeutic_functions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (0.3ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20100118204411')[0m
+Migrating to CreateHerbCategories (20100118204600)
+  [4;36;1mSQL (0.8ms)[0m   [0;1mCREATE TABLE "herb_categories" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (10.8ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20100118204600')[0m
+Migrating to CreateFlavors (20100118204720)
+  [4;36;1mSQL (0.9ms)[0m   [0;1mCREATE TABLE "flavors" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (0.3ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20100118204720')[0m
+Migrating to CreateChannels (20100118204747)
+  [4;36;1mSQL (0.5ms)[0m   [0;1mCREATE TABLE "channels" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (0.2ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20100118204747')[0m
+Migrating to CreateHerbs (20100118204907)
+  [4;36;1mSQL (1.0ms)[0m   [0;1mCREATE TABLE "herbs" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "category_id" integer, "pinyin" varchar(255), "english" varchar(255), "latin" varchar(255), "commentary" text, "contraindications" text, "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (0.3ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20100118204907')[0m
+Migrating to CreateHerbTherapeuticFunctions (20100118205005)
+  [4;36;1mSQL (1.0ms)[0m   [0;1mCREATE TABLE "herb_therapeutic_functions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "herb_id" integer, "therapeutic_function_id" integer, "commentary" text, "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (0.4ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20100118205005')[0m
+Migrating to CreateHerbChannels (20100118205114)
+  [4;36;1mSQL (0.9ms)[0m   [0;1mCREATE TABLE "herb_channels" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "herb_id" integer, "channel_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (0.4ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20100118205114')[0m
+Migrating to CreateHerbFlavors (20100118205147)
+  [4;36;1mSQL (1.0ms)[0m   [0;1mCREATE TABLE "herb_flavors" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "herb_id" integer, "flavor_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (0.3ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20100118205147')[0m
+  [4;36;1mSQL (1.5ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (1.1ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (1.3ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("channels")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("flavors")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("herb_categories")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("herb_channels")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("herb_flavors")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("herb_therapeutic_functions")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("herbs")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("therapeutic_functions")[0m
+
+
+Processing HerbsController#new (for 127.0.0.1 at 2010-01-18 14:02:03) [GET]
+Rendering template within layouts/application
+Rendering herbs/new
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+Rendered herbs/_herb_channel (5.3ms)
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+Rendered herbs/_herb_flavor (70.1ms)
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+Rendered herbs/_herb_therapeutic_function (7.6ms)
+Rendered herbs/_form (147.8ms)
+Completed in 241ms (View: 210, DB: 0) | 200 OK [http://localhost/herbs/new]
+
+
+Processing HerbsController#new (for 127.0.0.1 at 2010-01-18 14:06:31) [GET]
+Rendering template within layouts/application
+Rendering herbs/new
+DEPRECATION WARNING: formatted_channels_path() has been deprecated. Please pass format to the standard channels_path method instead.. (called from _run_erb_app47views47herbs47_herb_channel46html46erb_locals_f_herb_channel_object at /home/tyler/Projects/herbs/app/views/herbs/_herb_channel.html.erb:4)
+
+ActionView::TemplateError (undefined method `text_field_with_auto_complete' for #<ActionView::Helpers::FormBuilder:0xb5db4dd0>) on line #3 of app/views/herbs/_herb_channel.html.erb:
+1: <div class="child">
+2:   <p>
+3: 	Channel: <%= f.text_field_with_auto_complete :channel_name, {}, 
+4: 		{ :url => formatted_channels_path(:js), :method => :get, :skip_style => true,
+5: 		:with => "'search='+element.value" } %>
+6: 		
+
+    app/views/herbs/_herb_channel.html.erb:3
+    app/helpers/herbs_helper.rb:14:in `new_child_fields'
+    app/helpers/herbs_helper.rb:13:in `new_child_fields'
+    app/helpers/herbs_helper.rb:8:in `add_child_link'
+    app/views/herbs/_form.html.erb:40
+    app/views/herbs/new.html.erb:4
+    app/views/herbs/new.html.erb:3
+    app/controllers/herbs_controller.rb:29:in `new'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (104.4ms)
+Rendered rescues/_request_and_response (1.9ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing HerbsController#new (for 127.0.0.1 at 2010-01-18 14:08:19) [GET]
+Rendering template within layouts/application
+Rendering herbs/new
+DEPRECATION WARNING: formatted_channels_path() has been deprecated. Please pass format to the standard channels_path method instead.. (called from _run_erb_app47views47herbs47_herb_channel46html46erb_locals_f_herb_channel_object at /home/tyler/Projects/herbs/app/views/herbs/_herb_channel.html.erb:4)
+
+ActionView::TemplateError (undefined method `text_field_with_auto_complete' for #<ActionView::Helpers::FormBuilder:0xb73d82b0>) on line #3 of app/views/herbs/_herb_channel.html.erb:
+1: <div class="child">
+2:   <p>
+3: 	Channel: <%= f.text_field_with_auto_complete :channel_name, {}, 
+4: 		{ :url => formatted_channels_path(:js), :method => :get, :skip_style => true,
+5: 		:with => "'search='+element.value" } %>
+6: 		
+
+    app/views/herbs/_herb_channel.html.erb:3
+    app/helpers/herbs_helper.rb:14:in `new_child_fields'
+    app/helpers/herbs_helper.rb:13:in `new_child_fields'
+    app/helpers/herbs_helper.rb:8:in `add_child_link'
+    app/views/herbs/_form.html.erb:40
+    app/views/herbs/new.html.erb:4
+    app/views/herbs/new.html.erb:3
+    app/controllers/herbs_controller.rb:29:in `new'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (99.7ms)
+Rendered rescues/_request_and_response (2.0ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing HerbsController#new (for 127.0.0.1 at 2010-01-18 14:08:21) [GET]
+Rendering template within layouts/application
+Rendering herbs/new
+DEPRECATION WARNING: formatted_channels_path() has been deprecated. Please pass format to the standard channels_path method instead.. (called from _run_erb_app47views47herbs47_herb_channel46html46erb_locals_f_herb_channel_object at /home/tyler/Projects/herbs/app/views/herbs/_herb_channel.html.erb:4)
+
+ActionView::TemplateError (undefined method `text_field_with_auto_complete' for #<ActionView::Helpers::FormBuilder:0xb5df74c8>) on line #3 of app/views/herbs/_herb_channel.html.erb:
+1: <div class="child">
+2:   <p>
+3: 	Channel: <%= f.text_field_with_auto_complete :channel_name, {}, 
+4: 		{ :url => formatted_channels_path(:js), :method => :get, :skip_style => true,
+5: 		:with => "'search='+element.value" } %>
+6: 		
+
+    app/views/herbs/_herb_channel.html.erb:3
+    app/helpers/herbs_helper.rb:14:in `new_child_fields'
+    app/helpers/herbs_helper.rb:13:in `new_child_fields'
+    app/helpers/herbs_helper.rb:8:in `add_child_link'
+    app/views/herbs/_form.html.erb:40
+    app/views/herbs/new.html.erb:4
+    app/views/herbs/new.html.erb:3
+    app/controllers/herbs_controller.rb:29:in `new'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (104.2ms)
+Rendered rescues/_request_and_response (0.4ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing HerbsController#new (for 127.0.0.1 at 2010-01-18 14:09:59) [GET]
+Rendering template within layouts/application
+Rendering herbs/new
+DEPRECATION WARNING: formatted_channels_path() has been deprecated. Please pass format to the standard channels_path method instead.. (called from _run_erb_app47views47herbs47_herb_channel46html46erb_locals_f_herb_channel_object at /home/tyler/Projects/herbs/app/views/herbs/_herb_channel.html.erb:4)
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+Rendered herbs/_herb_channel (72.8ms)
+DEPRECATION WARNING: formatted_flavors_path() has been deprecated. Please pass format to the standard flavors_path method instead.. (called from _run_erb_app47views47herbs47_herb_flavor46html46erb_locals_f_herb_flavor_object at /home/tyler/Projects/herbs/app/views/herbs/_herb_flavor.html.erb:4)
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+Rendered herbs/_herb_flavor (7.8ms)
+DEPRECATION WARNING: formatted_therapeutic_functions_path() has been deprecated. Please pass format to the standard therapeutic_functions_path method instead.. (called from _run_erb_app47views47herbs47_herb_therapeutic_function46html46erb_locals_f_herb_therapeutic_function_object at /home/tyler/Projects/herbs/app/views/herbs/_herb_therapeutic_function.html.erb:4)
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+Rendered herbs/_herb_therapeutic_function (9.6ms)
+Rendered herbs/_form (177.3ms)
+Completed in 254ms (View: 226, DB: 0) | 200 OK [http://localhost/herbs/new]
+
+
+Processing ApplicationController#index to js (for 127.0.0.1 at 2010-01-18 14:13:45) [GET]
+  Parameters: {"search"=>"Heart"}
+
+LoadError (Expected /home/tyler/Projects/herbs/app/controllers/channels_controller.rb to define ChannelsController):
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (117.7ms)
+Rendered rescues/_request_and_response (2.1ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing ApplicationController#index to js (for 127.0.0.1 at 2010-01-18 14:13:51) [GET]
+  Parameters: {"search"=>"Lung"}
+
+LoadError (Expected /home/tyler/Projects/herbs/app/controllers/channels_controller.rb to define ChannelsController):
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (40.6ms)
+Rendered rescues/_request_and_response (0.5ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing ApplicationController#index to js (for 127.0.0.1 at 2010-01-18 14:13:54) [GET]
+  Parameters: {"search"=>"Bladd"}
+
+LoadError (Expected /home/tyler/Projects/herbs/app/controllers/channels_controller.rb to define ChannelsController):
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (40.1ms)
+Rendered rescues/_request_and_response (0.5ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing ApplicationController#index to js (for 127.0.0.1 at 2010-01-18 14:13:54) [GET]
+  Parameters: {"search"=>"Bladder"}
+
+LoadError (Expected /home/tyler/Projects/herbs/app/controllers/channels_controller.rb to define ChannelsController):
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (38.1ms)
+Rendered rescues/_request_and_response (0.5ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing ApplicationController#index to js (for 127.0.0.1 at 2010-01-18 14:14:05) [GET]
+  Parameters: {"search"=>"Acrid"}
+
+LoadError (Expected /home/tyler/Projects/herbs/app/controllers/flavors_controller.rb to define FlavorsController):
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (41.3ms)
+Rendered rescues/_request_and_response (0.5ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing ApplicationController#index to js (for 127.0.0.1 at 2010-01-18 14:14:08) [GET]
+  Parameters: {"search"=>"Sweet"}
+
+LoadError (Expected /home/tyler/Projects/herbs/app/controllers/flavors_controller.rb to define FlavorsController):
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (38.7ms)
+Rendered rescues/_request_and_response (0.5ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing ApplicationController#index to js (for 127.0.0.1 at 2010-01-18 14:14:11) [GET]
+  Parameters: {"search"=>"Warm"}
+
+LoadError (Expected /home/tyler/Projects/herbs/app/controllers/flavors_controller.rb to define FlavorsController):
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (39.0ms)
+Rendered rescues/_request_and_response (0.5ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing TherapeuticFunctionsController#index to js (for 127.0.0.1 at 2010-01-18 14:14:23) [GET]
+  Parameters: {"search"=>"Releases the"}
+  [4;36;1mTherapeuticFunction Load (0.7ms)[0m   [0;1mSELECT * FROM "therapeutic_functions" [0m
+Rendering therapeutic_functions/index
+Completed in 99ms (View: 11, DB: 1) | 200 OK [http://localhost/therapeutic_functions.js?search=Releases%20the]
+
+
+Processing TherapeuticFunctionsController#index to js (for 127.0.0.1 at 2010-01-18 14:14:27) [GET]
+  Parameters: {"search"=>"Releases the exterior and assists the"}
+  [4;35;1mTherapeuticFunction Load (0.7ms)[0m   [0mSELECT * FROM "therapeutic_functions" [0m
+Rendering therapeutic_functions/index
+Completed in 11ms (View: 1, DB: 1) | 200 OK [http://localhost/therapeutic_functions.js?search=Releases%20the%20exterior%20and%20assists%20the]
+
+
+Processing TherapeuticFunctionsController#index to js (for 127.0.0.1 at 2010-01-18 14:14:28) [GET]
+  Parameters: {"search"=>"Releases the exterior and assists the"}
+  [4;36;1mTherapeuticFunction Load (0.7ms)[0m   [0;1mSELECT * FROM "therapeutic_functions" [0m
+Rendering therapeutic_functions/index
+Completed in 11ms (View: 1, DB: 1) | 200 OK [http://localhost/therapeutic_functions.js?search=Releases%20the%20exterior%20and%20assists%20the]
+
+
+Processing TherapeuticFunctionsController#index to js (for 127.0.0.1 at 2010-01-18 14:14:29) [GET]
+  Parameters: {"search"=>"Releases the exterior and assists the Yang"}
+  [4;35;1mTherapeuticFunction Load (0.6ms)[0m   [0mSELECT * FROM "therapeutic_functions" [0m
+Rendering therapeutic_functions/index
+Completed in 11ms (View: 1, DB: 1) | 200 OK [http://localhost/therapeutic_functions.js?search=Releases%20the%20exterior%20and%20assists%20the%20Yang]
+
+
+Processing TherapeuticFunctionsController#index to js (for 127.0.0.1 at 2010-01-18 14:14:35) [GET]
+  Parameters: {"search"=>"Warms and"}
+  [4;36;1mTherapeuticFunction Load (0.6ms)[0m   [0;1mSELECT * FROM "therapeutic_functions" [0m
+Rendering therapeutic_functions/index
+Completed in 11ms (View: 1, DB: 1) | 200 OK [http://localhost/therapeutic_functions.js?search=Warms%20and]
+
+
+Processing TherapeuticFunctionsController#index to js (for 127.0.0.1 at 2010-01-18 14:14:37) [GET]
+  Parameters: {"search"=>"Warms and Unblocks the"}
+  [4;35;1mTherapeuticFunction Load (0.6ms)[0m   [0mSELECT * FROM "therapeutic_functions" [0m
+Rendering therapeutic_functions/index
+Completed in 10ms (View: 1, DB: 1) | 200 OK [http://localhost/therapeutic_functions.js?search=Warms%20and%20Unblocks%20the]
+
+
+Processing TherapeuticFunctionsController#index to js (for 127.0.0.1 at 2010-01-18 14:14:38) [GET]
+  Parameters: {"search"=>"Warms and Unblocks the"}
+  [4;36;1mTherapeuticFunction Load (0.6ms)[0m   [0;1mSELECT * FROM "therapeutic_functions" [0m
+Rendering therapeutic_functions/index
+Completed in 10ms (View: 1, DB: 1) | 200 OK [http://localhost/therapeutic_functions.js?search=Warms%20and%20Unblocks%20the]
+
+
+Processing TherapeuticFunctionsController#index to js (for 127.0.0.1 at 2010-01-18 14:14:40) [GET]
+  Parameters: {"search"=>"Warms and unblo"}
+  [4;35;1mTherapeuticFunction Load (0.6ms)[0m   [0mSELECT * FROM "therapeutic_functions" [0m
+Rendering therapeutic_functions/index
+Completed in 11ms (View: 1, DB: 1) | 200 OK [http://localhost/therapeutic_functions.js?search=Warms%20and%20unblo]
+
+
+Processing TherapeuticFunctionsController#index to js (for 127.0.0.1 at 2010-01-18 14:14:41) [GET]
+  Parameters: {"search"=>"Warms and unbloc"}
+  [4;36;1mTherapeuticFunction Load (0.7ms)[0m   [0;1mSELECT * FROM "therapeutic_functions" [0m
+Rendering therapeutic_functions/index
+Completed in 12ms (View: 1, DB: 1) | 200 OK [http://localhost/therapeutic_functions.js?search=Warms%20and%20unbloc]
+
+
+Processing TherapeuticFunctionsController#index to js (for 127.0.0.1 at 2010-01-18 14:14:45) [GET]
+  Parameters: {"search"=>"Warms and unblocks the channels and collaterals"}
+  [4;35;1mTherapeuticFunction Load (0.7ms)[0m   [0mSELECT * FROM "therapeutic_functions" [0m
+Rendering therapeutic_functions/index
+Completed in 11ms (View: 1, DB: 1) | 200 OK [http://localhost/therapeutic_functions.js?search=Warms%20and%20unblocks%20the%20channels%20and%20collaterals]
+
+
+Processing TherapeuticFunctionsController#index to js (for 127.0.0.1 at 2010-01-18 14:14:57) [GET]
+  Parameters: {"search"=>"Wars"}
+  [4;36;1mTherapeuticFunction Load (0.7ms)[0m   [0;1mSELECT * FROM "therapeutic_functions" [0m
+Rendering therapeutic_functions/index
+Completed in 11ms (View: 1, DB: 1) | 200 OK [http://localhost/therapeutic_functions.js?search=Wars]
+
+
+Processing TherapeuticFunctionsController#index to js (for 127.0.0.1 at 2010-01-18 14:14:58) [GET]
+  Parameters: {"search"=>"War"}
+  [4;35;1mTherapeuticFunction Load (0.6ms)[0m   [0mSELECT * FROM "therapeutic_functions" [0m
+Rendering therapeutic_functions/index
+Completed in 13ms (View: 1, DB: 1) | 200 OK [http://localhost/therapeutic_functions.js?search=War]
+
+
+Processing TherapeuticFunctionsController#index to js (for 127.0.0.1 at 2010-01-18 14:14:59) [GET]
+  Parameters: {"search"=>"Warms the Yang"}
+  [4;36;1mTherapeuticFunction Load (0.6ms)[0m   [0;1mSELECT * FROM "therapeutic_functions" [0m
+Rendering therapeutic_functions/index
+Completed in 11ms (View: 1, DB: 1) | 200 OK [http://localhost/therapeutic_functions.js?search=Warms%20the%20Yang]
+
+
+Processing TherapeuticFunctionsController#index to js (for 127.0.0.1 at 2010-01-18 14:15:00) [GET]
+  Parameters: {"search"=>"Warms the Yang and"}
+  [4;35;1mTherapeuticFunction Load (0.6ms)[0m   [0mSELECT * FROM "therapeutic_functions" [0m
+Rendering therapeutic_functions/index
+Completed in 10ms (View: 1, DB: 1) | 200 OK [http://localhost/therapeutic_functions.js?search=Warms%20the%20Yang%20and]
+
+
+Processing TherapeuticFunctionsController#index to js (for 127.0.0.1 at 2010-01-18 14:15:03) [GET]
+  Parameters: {"search"=>"Warms the Yang and transforms thin mucus"}
+  [4;36;1mTherapeuticFunction Load (0.6ms)[0m   [0;1mSELECT * FROM "therapeutic_functions" [0m
+Rendering therapeutic_functions/index
+Completed in 11ms (View: 1, DB: 1) | 200 OK [http://localhost/therapeutic_functions.js?search=Warms%20the%20Yang%20and%20transforms%20thin%20mucus]
+
+
+Processing TherapeuticFunctionsController#index to js (for 127.0.0.1 at 2010-01-18 14:15:11) [GET]
+  Parameters: {"search"=>"Assists the Heart YHang"}
+  [4;35;1mTherapeuticFunction Load (0.6ms)[0m   [0mSELECT * FROM "therapeutic_functions" [0m
+Rendering therapeutic_functions/index
+Completed in 11ms (View: 1, DB: 1) | 200 OK [http://localhost/therapeutic_functions.js?search=Assists%20the%20Heart%20YHang]
+
+
+Processing TherapeuticFunctionsController#index to js (for 127.0.0.1 at 2010-01-18 14:15:13) [GET]
+  Parameters: {"search"=>"Assists the Heart Yang and"}
+  [4;36;1mTherapeuticFunction Load (0.7ms)[0m   [0;1mSELECT * FROM "therapeutic_functions" [0m
+Rendering therapeutic_functions/index
+Completed in 11ms (View: 1, DB: 1) | 200 OK [http://localhost/therapeutic_functions.js?search=Assists%20the%20Heart%20Yang%20and]
+
+
+Processing TherapeuticFunctionsController#index to js (for 127.0.0.1 at 2010-01-18 14:15:19) [GET]
+  Parameters: {"search"=>"Assists the Heart Yang and unblocks the Yang"}
+  [4;35;1mTherapeuticFunction Load (0.6ms)[0m   [0mSELECT * FROM "therapeutic_functions" [0m
+Rendering therapeutic_functions/index
+Completed in 11ms (View: 2, DB: 1) | 200 OK [http://localhost/therapeutic_functions.js?search=Assists%20the%20Heart%20Yang%20and%20unblocks%20the%20Yang]
+
+
+Processing TherapeuticFunctionsController#index to js (for 127.0.0.1 at 2010-01-18 14:15:23) [GET]
+  Parameters: {"search"=>"Assists the Heart Yang and unblocks the Yang Qi of the"}
+  [4;36;1mTherapeuticFunction Load (0.6ms)[0m   [0;1mSELECT * FROM "therapeutic_functions" [0m
+Rendering therapeutic_functions/index
+Completed in 11ms (View: 1, DB: 1) | 200 OK [http://localhost/therapeutic_functions.js?search=Assists%20the%20Heart%20Yang%20and%20unblocks%20the%20Yang%20Qi%20of%20the]
+
+
+Processing TherapeuticFunctionsController#index to js (for 127.0.0.1 at 2010-01-18 14:15:24) [GET]
+  Parameters: {"search"=>"Assists the Heart Yang and unblocks the Yang Qi of the chest"}
+  [4;35;1mTherapeuticFunction Load (0.6ms)[0m   [0mSELECT * FROM "therapeutic_functions" [0m
+Rendering therapeutic_functions/index
+Completed in 11ms (View: 1, DB: 1) | 200 OK [http://localhost/therapeutic_functions.js?search=Assists%20the%20Heart%20Yang%20and%20unblocks%20the%20Yang%20Qi%20of%20the%20chest]
+
+
+Processing TherapeuticFunctionsController#index to js (for 127.0.0.1 at 2010-01-18 14:15:34) [GET]
+  Parameters: {"search"=>"Warms the channels,"}
+  [4;36;1mTherapeuticFunction Load (0.6ms)[0m   [0;1mSELECT * FROM "therapeutic_functions" [0m
+Rendering therapeutic_functions/index
+Completed in 11ms (View: 1, DB: 1) | 200 OK [http://localhost/therapeutic_functions.js?search=Warms%20the%20channels%2C]
+
+
+Processing TherapeuticFunctionsController#index to js (for 127.0.0.1 at 2010-01-18 14:15:38) [GET]
+  Parameters: {"search"=>"Warms the channels, vessels and collaterals"}
+  [4;35;1mTherapeuticFunction Load (0.6ms)[0m   [0mSELECT * FROM "therapeutic_functions" [0m
+Rendering therapeutic_functions/index
+Completed in 10ms (View: 1, DB: 1) | 200 OK [http://localhost/therapeutic_functions.js?search=Warms%20the%20channels%2C%20vessels%20and%20collaterals]
+
+
+Processing TherapeuticFunctionsController#index to js (for 127.0.0.1 at 2010-01-18 14:15:49) [GET]
+  Parameters: {"search"=>"Warms the middle and directs"}
+  [4;36;1mTherapeuticFunction Load (0.6ms)[0m   [0;1mSELECT * FROM "therapeutic_functions" [0m
+Rendering therapeutic_functions/index
+Completed in 11ms (View: 1, DB: 1) | 200 OK [http://localhost/therapeutic_functions.js?search=Warms%20the%20middle%20and%20directs]
+
+
+Processing TherapeuticFunctionsController#index to js (for 127.0.0.1 at 2010-01-18 14:15:55) [GET]
+  Parameters: {"search"=>"Warms the middle and directs turbid Yin downward"}
+  [4;35;1mTherapeuticFunction Load (0.8ms)[0m   [0mSELECT * FROM "therapeutic_functions" [0m
+Rendering therapeutic_functions/index
+Completed in 12ms (View: 1, DB: 1) | 200 OK [http://localhost/therapeutic_functions.js?search=Warms%20the%20middle%20and%20directs%20turbid%20Yin%20downward]
+
+
+Processing HerbsController#create (for 127.0.0.1 at 2010-01-18 14:15:58) [POST]
+  Parameters: {"commit"=>"Create", "herb"=>{"herb_channels_attributes"=>{"1263852828682"=>{"channel_name"=>"Bladder", "_destroy"=>""}, "1263852603687"=>{"channel_name"=>"Heart", "_destroy"=>""}, "1263852827106"=>{"channel_name"=>"Lung", "_destroy"=>""}}, "contraindications"=>"", "commentary"=>"", "pinyin"=>"Gui Zhi", "english"=>"Cinnamon Twig", "category_id"=>"Acrid, Warm, Exterior-Releasing Herbs", "herb_therapeutic_functions_attributes"=>{"1263852904857"=>{"_destroy"=>"", "therapeutic_function_name"=>"Assists the Heart Yang and unblocks the Yang Qi of the chest"}, "1263852857932"=>{"_destroy"=>"", "therapeutic_function_name"=>"Releases the exterior and assists the Yang"}, "1263852872577"=>{"_destroy"=>"", "therapeutic_function_name"=>"Warms and unblocks the channels and collaterals"}, "1263852940811"=>{"_destroy"=>"", "therapeutic_function_name"=>"Warms the middle and directs turbid Yin downward"}, "1263852887021"=>{"_destroy"=>"", "therapeutic_function_name"=>"Warms the Yang and transforms thin mucus"}, "1263852929674"=>{"_destroy"=>"", "therapeutic_function_name"=>"Warms the channels, vessels and collaterals"}}, "herb_flavors_attributes"=>{"1263852846207"=>{"_destroy"=>"", "flavor_name"=>"Sweet"}, "1263852849598"=>{"_destroy"=>"", "flavor_name"=>"Warm"}, "1263852840249"=>{"_destroy"=>"", "flavor_name"=>"Acrid"}}, "latin"=>"Cinnamomi Ramulus"}, "authenticity_token"=>"EkdmYnOjUUm7mdWqcy4c5g4lbLMJyVp/3rEWc4Y9iaU="}
+  [4;36;1mChannel Load (0.3ms)[0m   [0;1mSELECT * FROM "channels" WHERE ("channels"."name" = 'Heart') LIMIT 1[0m
+  [4;35;1mChannel Create (0.5ms)[0m   [0mINSERT INTO "channels" ("name", "created_at", "updated_at") VALUES('Heart', '2010-01-18 22:15:58', '2010-01-18 22:15:58')[0m
+  [4;36;1mChannel Load (0.5ms)[0m   [0;1mSELECT * FROM "channels" WHERE ("channels"."name" = 'Lung') LIMIT 1[0m
+  [4;35;1mChannel Create (0.7ms)[0m   [0mINSERT INTO "channels" ("name", "created_at", "updated_at") VALUES('Lung', '2010-01-18 22:15:58', '2010-01-18 22:15:58')[0m
+  [4;36;1mChannel Load (0.4ms)[0m   [0;1mSELECT * FROM "channels" WHERE ("channels"."name" = 'Bladder') LIMIT 1[0m
+  [4;35;1mChannel Create (0.5ms)[0m   [0mINSERT INTO "channels" ("name", "created_at", "updated_at") VALUES('Bladder', '2010-01-18 22:15:58', '2010-01-18 22:15:58')[0m
+  [4;36;1mTherapeuticFunction Load (0.3ms)[0m   [0;1mSELECT * FROM "therapeutic_functions" WHERE ("therapeutic_functions"."name" = 'Releases the exterior and assists the Yang') LIMIT 1[0m
+  [4;35;1mTherapeuticFunction Create (0.3ms)[0m   [0mINSERT INTO "therapeutic_functions" ("name", "created_at", "updated_at") VALUES('Releases the exterior and assists the Yang', '2010-01-18 22:15:58', '2010-01-18 22:15:58')[0m
+  [4;36;1mTherapeuticFunction Load (0.5ms)[0m   [0;1mSELECT * FROM "therapeutic_functions" WHERE ("therapeutic_functions"."name" = 'Warms and unblocks the channels and collaterals') LIMIT 1[0m
+  [4;35;1mTherapeuticFunction Create (0.5ms)[0m   [0mINSERT INTO "therapeutic_functions" ("name", "created_at", "updated_at") VALUES('Warms and unblocks the channels and collaterals', '2010-01-18 22:15:59', '2010-01-18 22:15:59')[0m
+  [4;36;1mTherapeuticFunction Load (0.5ms)[0m   [0;1mSELECT * FROM "therapeutic_functions" WHERE ("therapeutic_functions"."name" = 'Warms the Yang and transforms thin mucus') LIMIT 1[0m
+  [4;35;1mTherapeuticFunction Create (0.5ms)[0m   [0mINSERT INTO "therapeutic_functions" ("name", "created_at", "updated_at") VALUES('Warms the Yang and transforms thin mucus', '2010-01-18 22:15:59', '2010-01-18 22:15:59')[0m
+  [4;36;1mTherapeuticFunction Load (0.3ms)[0m   [0;1mSELECT * FROM "therapeutic_functions" WHERE ("therapeutic_functions"."name" = 'Assists the Heart Yang and unblocks the Yang Qi of the chest') LIMIT 1[0m
+  [4;35;1mTherapeuticFunction Create (0.3ms)[0m   [0mINSERT INTO "therapeutic_functions" ("name", "created_at", "updated_at") VALUES('Assists the Heart Yang and unblocks the Yang Qi of the chest', '2010-01-18 22:15:59', '2010-01-18 22:15:59')[0m
+  [4;36;1mTherapeuticFunction Load (0.4ms)[0m   [0;1mSELECT * FROM "therapeutic_functions" WHERE ("therapeutic_functions"."name" = 'Warms the channels, vessels and collaterals') LIMIT 1[0m
+  [4;35;1mTherapeuticFunction Create (0.5ms)[0m   [0mINSERT INTO "therapeutic_functions" ("name", "created_at", "updated_at") VALUES('Warms the channels, vessels and collaterals', '2010-01-18 22:15:59', '2010-01-18 22:15:59')[0m
+  [4;36;1mTherapeuticFunction Load (0.4ms)[0m   [0;1mSELECT * FROM "therapeutic_functions" WHERE ("therapeutic_functions"."name" = 'Warms the middle and directs turbid Yin downward') LIMIT 1[0m
+  [4;35;1mTherapeuticFunction Create (0.5ms)[0m   [0mINSERT INTO "therapeutic_functions" ("name", "created_at", "updated_at") VALUES('Warms the middle and directs turbid Yin downward', '2010-01-18 22:15:59', '2010-01-18 22:15:59')[0m
+  [4;36;1mFlavor Load (0.2ms)[0m   [0;1mSELECT * FROM "flavors" WHERE ("flavors"."name" = 'Acrid') LIMIT 1[0m
+  [4;35;1mFlavor Create (0.3ms)[0m   [0mINSERT INTO "flavors" ("name", "created_at", "updated_at") VALUES('Acrid', '2010-01-18 22:15:59', '2010-01-18 22:15:59')[0m
+  [4;36;1mFlavor Load (0.4ms)[0m   [0;1mSELECT * FROM "flavors" WHERE ("flavors"."name" = 'Sweet') LIMIT 1[0m
+  [4;35;1mFlavor Create (0.5ms)[0m   [0mINSERT INTO "flavors" ("name", "created_at", "updated_at") VALUES('Sweet', '2010-01-18 22:15:59', '2010-01-18 22:15:59')[0m
+  [4;36;1mFlavor Load (0.4ms)[0m   [0;1mSELECT * FROM "flavors" WHERE ("flavors"."name" = 'Warm') LIMIT 1[0m
+  [4;35;1mFlavor Create (3.1ms)[0m   [0mINSERT INTO "flavors" ("name", "created_at", "updated_at") VALUES('Warm', '2010-01-18 22:15:59', '2010-01-18 22:15:59')[0m
+  [4;36;1mHerb Create (0.4ms)[0m   [0;1mINSERT INTO "herbs" ("created_at", "pinyin", "commentary", "contraindications", "updated_at", "english", "category_id", "latin") VALUES('2010-01-18 22:16:00', 'Gui Zhi', '', '', '2010-01-18 22:16:00', 'Cinnamon Twig', 0, 'Cinnamomi Ramulus')[0m
+  [4;35;1mHerbFlavor Create (0.2ms)[0m   [0mINSERT INTO "herb_flavors" ("created_at", "updated_at", "herb_id", "flavor_id") VALUES('2010-01-18 22:16:00', '2010-01-18 22:16:00', 1, 1)[0m
+  [4;36;1mHerbFlavor Create (0.1ms)[0m   [0;1mINSERT INTO "herb_flavors" ("created_at", "updated_at", "herb_id", "flavor_id") VALUES('2010-01-18 22:16:00', '2010-01-18 22:16:00', 1, 2)[0m
+  [4;35;1mHerbFlavor Create (0.1ms)[0m   [0mINSERT INTO "herb_flavors" ("created_at", "updated_at", "herb_id", "flavor_id") VALUES('2010-01-18 22:16:00', '2010-01-18 22:16:00', 1, 3)[0m
+  [4;36;1mHerbChannel Create (1.0ms)[0m   [0;1mINSERT INTO "herb_channels" ("created_at", "channel_id", "updated_at", "herb_id") VALUES('2010-01-18 22:16:00', 1, '2010-01-18 22:16:00', 1)[0m
+  [4;35;1mHerbChannel Create (0.1ms)[0m   [0mINSERT INTO "herb_channels" ("created_at", "channel_id", "updated_at", "herb_id") VALUES('2010-01-18 22:16:00', 2, '2010-01-18 22:16:00', 1)[0m
+  [4;36;1mHerbChannel Create (0.1ms)[0m   [0;1mINSERT INTO "herb_channels" ("created_at", "channel_id", "updated_at", "herb_id") VALUES('2010-01-18 22:16:00', 3, '2010-01-18 22:16:00', 1)[0m
+  [4;35;1mHerbTherapeuticFunction Create (0.2ms)[0m   [0mINSERT INTO "herb_therapeutic_functions" ("created_at", "commentary", "updated_at", "herb_id", "therapeutic_function_id") VALUES('2010-01-18 22:16:00', NULL, '2010-01-18 22:16:00', 1, 1)[0m
+  [4;36;1mHerbTherapeuticFunction Create (0.1ms)[0m   [0;1mINSERT INTO "herb_therapeutic_functions" ("created_at", "commentary", "updated_at", "herb_id", "therapeutic_function_id") VALUES('2010-01-18 22:16:00', NULL, '2010-01-18 22:16:00', 1, 2)[0m
+  [4;35;1mHerbTherapeuticFunction Create (0.1ms)[0m   [0mINSERT INTO "herb_therapeutic_functions" ("created_at", "commentary", "updated_at", "herb_id", "therapeutic_function_id") VALUES('2010-01-18 22:16:00', NULL, '2010-01-18 22:16:00', 1, 3)[0m
+  [4;36;1mHerbTherapeuticFunction Create (0.1ms)[0m   [0;1mINSERT INTO "herb_therapeutic_functions" ("created_at", "commentary", "updated_at", "herb_id", "therapeutic_function_id") VALUES('2010-01-18 22:16:00', NULL, '2010-01-18 22:16:00', 1, 4)[0m
+  [4;35;1mHerbTherapeuticFunction Create (0.1ms)[0m   [0mINSERT INTO "herb_therapeutic_functions" ("created_at", "commentary", "updated_at", "herb_id", "therapeutic_function_id") VALUES('2010-01-18 22:16:00', NULL, '2010-01-18 22:16:00', 1, 5)[0m
+  [4;36;1mHerbTherapeuticFunction Create (0.2ms)[0m   [0;1mINSERT INTO "herb_therapeutic_functions" ("created_at", "commentary", "updated_at", "herb_id", "therapeutic_function_id") VALUES('2010-01-18 22:16:00', NULL, '2010-01-18 22:16:00', 1, 6)[0m
+Redirected to http://localhost:3000/herbs/1
+Completed in 1713ms (DB: 16) | 302 Found [http://localhost/herbs]
+
+
+Processing HerbsController#show (for 127.0.0.1 at 2010-01-18 14:16:00) [GET]
+  Parameters: {"id"=>"1"}
+  [4;35;1mHerb Load (0.5ms)[0m   [0mSELECT * FROM "herbs" WHERE ("herbs"."id" = 1) [0m
+Rendering template within layouts/application
+Rendering herbs/show
+  [4;36;1mHerbChannel Load (0.7ms)[0m   [0;1mSELECT * FROM "herb_channels" WHERE ("herb_channels".herb_id = 1) [0m
+  [4;35;1mHerbFlavor Load (1.0ms)[0m   [0mSELECT * FROM "herb_flavors" WHERE ("herb_flavors".herb_id = 1) [0m
+  [4;36;1mHerbTherapeuticFunction Load (1.1ms)[0m   [0;1mSELECT * FROM "herb_therapeutic_functions" WHERE ("herb_therapeutic_functions".herb_id = 1) [0m
+Completed in 140ms (View: 43, DB: 3) | 200 OK [http://localhost/herbs/1]
+
+
+Processing HerbsController#show (for 127.0.0.1 at 2010-01-18 14:16:31) [GET]
+  Parameters: {"id"=>"1"}
+  [4;35;1mHerb Load (0.4ms)[0m   [0mSELECT * FROM "herbs" WHERE ("herbs"."id" = 1) [0m
+Rendering template within layouts/application
+Rendering herbs/show
+
+ActionView::TemplateError (undefined method `category' for #<Herb:0xb5f8d3b4>) on line #3 of app/views/herbs/show.html.erb:
+1: <p>
+2:   <b>Category:</b>
+3:   <%=h @herb.category.name %>
+4: </p>
+5: 
+6: <p>
+
+    app/views/herbs/show.html.erb:3
+    app/controllers/herbs_controller.rb:18:in `show'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (69.3ms)
+Rendered rescues/_request_and_response (0.5ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing HerbsController#show (for 127.0.0.1 at 2010-01-18 14:16:40) [GET]
+  Parameters: {"id"=>"1"}
+  [4;36;1mHerb Load (0.4ms)[0m   [0;1mSELECT * FROM "herbs" WHERE ("herbs"."id" = 1) [0m
+Rendering template within layouts/application
+Rendering herbs/show
+
+ActionView::TemplateError (undefined method `name' for nil:NilClass) on line #3 of app/views/herbs/show.html.erb:
+1: <p>
+2:   <b>Category:</b>
+3:   <%=h @herb.herb_category.name %>
+4: </p>
+5: 
+6: <p>
+
+    app/views/herbs/show.html.erb:3
+    app/controllers/herbs_controller.rb:18:in `show'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (63.8ms)
+Rendered rescues/_request_and_response (0.5ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing HerbsController#show (for 127.0.0.1 at 2010-01-18 14:16:42) [GET]
+  Parameters: {"id"=>"1"}
+  [4;35;1mHerb Load (0.4ms)[0m   [0mSELECT * FROM "herbs" WHERE ("herbs"."id" = 1) [0m
+Rendering template within layouts/application
+Rendering herbs/show
+
+ActionView::TemplateError (undefined method `name' for nil:NilClass) on line #3 of app/views/herbs/show.html.erb:
+1: <p>
+2:   <b>Category:</b>
+3:   <%=h @herb.herb_category.name %>
+4: </p>
+5: 
+6: <p>
+
+    app/views/herbs/show.html.erb:3
+    app/controllers/herbs_controller.rb:18:in `show'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (66.5ms)
+Rendered rescues/_request_and_response (0.4ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing HerbsController#show (for 127.0.0.1 at 2010-01-18 14:17:08) [GET]
+  Parameters: {"id"=>"1"}
+  [4;36;1mHerb Load (0.4ms)[0m   [0;1mSELECT * FROM "herbs" WHERE ("herbs"."id" = 1) [0m
+Rendering template within layouts/application
+Rendering herbs/show
+  [4;35;1mHerbChannel Load (0.7ms)[0m   [0mSELECT * FROM "herb_channels" WHERE ("herb_channels".herb_id = 1) [0m
+  [4;36;1mHerbFlavor Load (0.6ms)[0m   [0;1mSELECT * FROM "herb_flavors" WHERE ("herb_flavors".herb_id = 1) [0m
+  [4;35;1mHerbTherapeuticFunction Load (1.0ms)[0m   [0mSELECT * FROM "herb_therapeutic_functions" WHERE ("herb_therapeutic_functions".herb_id = 1) [0m
+Completed in 59ms (View: 40, DB: 3) | 200 OK [http://localhost/herbs/1]
+
+
+Processing HerbsController#show (for 127.0.0.1 at 2010-01-18 14:20:02) [GET]
+  Parameters: {"id"=>"1"}
+  [4;36;1mHerb Load (0.5ms)[0m   [0;1mSELECT * FROM "herbs" WHERE ("herbs"."id" = 1) [0m
+Rendering template within layouts/application
+Rendering herbs/show
+  [4;35;1mHerbChannel Load (0.7ms)[0m   [0mSELECT * FROM "herb_channels" WHERE ("herb_channels".herb_id = 1) [0m
+  [4;36;1mChannel Load (0.3ms)[0m   [0;1mSELECT * FROM "channels" WHERE ("channels"."id" = 1) [0m
+  [4;35;1mChannel Load (0.3ms)[0m   [0mSELECT * FROM "channels" WHERE ("channels"."id" = 2) [0m
+  [4;36;1mChannel Load (0.3ms)[0m   [0;1mSELECT * FROM "channels" WHERE ("channels"."id" = 3) [0m
+  [4;35;1mHerbFlavor Load (0.7ms)[0m   [0mSELECT * FROM "herb_flavors" WHERE ("herb_flavors".herb_id = 1) [0m
+  [4;36;1mFlavor Load (0.4ms)[0m   [0;1mSELECT * FROM "flavors" WHERE ("flavors"."id" = 1) [0m
+  [4;35;1mFlavor Load (0.3ms)[0m   [0mSELECT * FROM "flavors" WHERE ("flavors"."id" = 2) [0m
+  [4;36;1mFlavor Load (0.3ms)[0m   [0;1mSELECT * FROM "flavors" WHERE ("flavors"."id" = 3) [0m
+  [4;35;1mHerbTherapeuticFunction Load (1.0ms)[0m   [0mSELECT * FROM "herb_therapeutic_functions" WHERE ("herb_therapeutic_functions".herb_id = 1) [0m
+
+ActionView::TemplateError (undefined method `name' for #<HerbTherapeuticFunction:0xb5fccf28>) on line #47 of app/views/herbs/show.html.erb:
+44: <h3>Therapeutic Functions</h3>
+45: <% @herb.herb_therapeutic_functions.each do |herb_therapeutic_function| %>
+46:   <div class="child">
+47:     <%= h herb_therapeutic_function.name %><br />
+48:   </div>
+49: <% end %>
+50: 
+
+    app/views/herbs/show.html.erb:47
+    app/views/herbs/show.html.erb:45
+    app/controllers/herbs_controller.rb:18:in `show'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (147.2ms)
+Rendered rescues/_request_and_response (0.5ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing HerbsController#show (for 127.0.0.1 at 2010-01-18 14:20:13) [GET]
+  Parameters: {"id"=>"1"}
+  [4;36;1mHerb Load (0.4ms)[0m   [0;1mSELECT * FROM "herbs" WHERE ("herbs"."id" = 1) [0m
+Rendering template within layouts/application
+Rendering herbs/show
+  [4;35;1mHerbChannel Load (0.7ms)[0m   [0mSELECT * FROM "herb_channels" WHERE ("herb_channels".herb_id = 1) [0m
+  [4;36;1mChannel Load (0.3ms)[0m   [0;1mSELECT * FROM "channels" WHERE ("channels"."id" = 1) [0m
+  [4;35;1mChannel Load (0.3ms)[0m   [0mSELECT * FROM "channels" WHERE ("channels"."id" = 2) [0m
+  [4;36;1mChannel Load (0.3ms)[0m   [0;1mSELECT * FROM "channels" WHERE ("channels"."id" = 3) [0m
+  [4;35;1mHerbFlavor Load (0.7ms)[0m   [0mSELECT * FROM "herb_flavors" WHERE ("herb_flavors".herb_id = 1) [0m
+  [4;36;1mFlavor Load (0.4ms)[0m   [0;1mSELECT * FROM "flavors" WHERE ("flavors"."id" = 1) [0m
+  [4;35;1mFlavor Load (0.4ms)[0m   [0mSELECT * FROM "flavors" WHERE ("flavors"."id" = 2) [0m
+  [4;36;1mFlavor Load (0.5ms)[0m   [0;1mSELECT * FROM "flavors" WHERE ("flavors"."id" = 3) [0m
+  [4;35;1mHerbTherapeuticFunction Load (1.0ms)[0m   [0mSELECT * FROM "herb_therapeutic_functions" WHERE ("herb_therapeutic_functions".herb_id = 1) [0m
+  [4;36;1mTherapeuticFunction Load (0.3ms)[0m   [0;1mSELECT * FROM "therapeutic_functions" WHERE ("therapeutic_functions"."id" = 1) [0m
+  [4;35;1mTherapeuticFunction Load (0.4ms)[0m   [0mSELECT * FROM "therapeutic_functions" WHERE ("therapeutic_functions"."id" = 2) [0m
+  [4;36;1mTherapeuticFunction Load (0.3ms)[0m   [0;1mSELECT * FROM "therapeutic_functions" WHERE ("therapeutic_functions"."id" = 3) [0m
+  [4;35;1mTherapeuticFunction Load (0.3ms)[0m   [0mSELECT * FROM "therapeutic_functions" WHERE ("therapeutic_functions"."id" = 4) [0m
+  [4;36;1mTherapeuticFunction Load (0.3ms)[0m   [0;1mSELECT * FROM "therapeutic_functions" WHERE ("therapeutic_functions"."id" = 5) [0m
+  [4;35;1mTherapeuticFunction Load (0.3ms)[0m   [0mSELECT * FROM "therapeutic_functions" WHERE ("therapeutic_functions"."id" = 6) [0m
+Completed in 96ms (View: 72, DB: 7) | 200 OK [http://localhost/herbs/1]
+
+
+Processing HerbsController#show (for 127.0.0.1 at 2010-01-18 14:22:13) [GET]
+  Parameters: {"id"=>"1"}
+  [4;36;1mHerb Load (0.5ms)[0m   [0;1mSELECT * FROM "herbs" WHERE ("herbs"."id" = 1) [0m
+Rendering template within layouts/application
+Rendering herbs/show
+  [4;35;1mHerbChannel Load (0.7ms)[0m   [0mSELECT * FROM "herb_channels" WHERE ("herb_channels".herb_id = 1) [0m
+  [4;36;1mChannel Load (0.3ms)[0m   [0;1mSELECT * FROM "channels" WHERE ("channels"."id" = 1) [0m
+  [4;35;1mChannel Load (0.3ms)[0m   [0mSELECT * FROM "channels" WHERE ("channels"."id" = 2) [0m
+  [4;36;1mChannel Load (0.3ms)[0m   [0;1mSELECT * FROM "channels" WHERE ("channels"."id" = 3) [0m
+  [4;35;1mHerbFlavor Load (0.7ms)[0m   [0mSELECT * FROM "herb_flavors" WHERE ("herb_flavors".herb_id = 1) [0m
+  [4;36;1mFlavor Load (0.3ms)[0m   [0;1mSELECT * FROM "flavors" WHERE ("flavors"."id" = 1) [0m
+  [4;35;1mFlavor Load (0.3ms)[0m   [0mSELECT * FROM "flavors" WHERE ("flavors"."id" = 2) [0m
+  [4;36;1mFlavor Load (0.3ms)[0m   [0;1mSELECT * FROM "flavors" WHERE ("flavors"."id" = 3) [0m
+  [4;35;1mHerbTherapeuticFunction Load (1.5ms)[0m   [0mSELECT * FROM "herb_therapeutic_functions" WHERE ("herb_therapeutic_functions".herb_id = 1) [0m
+  [4;36;1mTherapeuticFunction Load (0.4ms)[0m   [0;1mSELECT * FROM "therapeutic_functions" WHERE ("therapeutic_functions"."id" = 1) [0m
+  [4;35;1mTherapeuticFunction Load (0.3ms)[0m   [0mSELECT * FROM "therapeutic_functions" WHERE ("therapeutic_functions"."id" = 2) [0m
+  [4;36;1mTherapeuticFunction Load (0.3ms)[0m   [0;1mSELECT * FROM "therapeutic_functions" WHERE ("therapeutic_functions"."id" = 3) [0m
+  [4;35;1mTherapeuticFunction Load (0.3ms)[0m   [0mSELECT * FROM "therapeutic_functions" WHERE ("therapeutic_functions"."id" = 4) [0m
+  [4;36;1mTherapeuticFunction Load (0.3ms)[0m   [0;1mSELECT * FROM "therapeutic_functions" WHERE ("therapeutic_functions"."id" = 5) [0m
+  [4;35;1mTherapeuticFunction Load (0.3ms)[0m   [0mSELECT * FROM "therapeutic_functions" WHERE ("therapeutic_functions"."id" = 6) [0m
+Completed in 96ms (View: 72, DB: 7) | 200 OK [http://localhost/herbs/1]
+
+
+Processing HerbsController#show (for 127.0.0.1 at 2010-01-18 14:24:08) [GET]
+  Parameters: {"id"=>"1"}
+  [4;36;1mHerb Load (0.5ms)[0m   [0;1mSELECT * FROM "herbs" WHERE ("herbs"."id" = 1) [0m
+Rendering template within layouts/application
+Rendering herbs/show
+  [4;35;1mHerbChannel Load (0.7ms)[0m   [0mSELECT * FROM "herb_channels" WHERE ("herb_channels".herb_id = 1) [0m
+  [4;36;1mChannel Load (0.3ms)[0m   [0;1mSELECT * FROM "channels" WHERE ("channels"."id" = 1) [0m
+  [4;35;1mChannel Load (0.3ms)[0m   [0mSELECT * FROM "channels" WHERE ("channels"."id" = 2) [0m
+  [4;36;1mChannel Load (0.3ms)[0m   [0;1mSELECT * FROM "channels" WHERE ("channels"."id" = 3) [0m
+  [4;35;1mHerbFlavor Load (0.7ms)[0m   [0mSELECT * FROM "herb_flavors" WHERE ("herb_flavors".herb_id = 1) [0m
+  [4;36;1mFlavor Load (0.4ms)[0m   [0;1mSELECT * FROM "flavors" WHERE ("flavors"."id" = 1) [0m
+  [4;35;1mFlavor Load (0.3ms)[0m   [0mSELECT * FROM "flavors" WHERE ("flavors"."id" = 2) [0m
+  [4;36;1mFlavor Load (0.3ms)[0m   [0;1mSELECT * FROM "flavors" WHERE ("flavors"."id" = 3) [0m
+  [4;35;1mHerbTherapeuticFunction Load (1.1ms)[0m   [0mSELECT * FROM "herb_therapeutic_functions" WHERE ("herb_therapeutic_functions".herb_id = 1) [0m
+  [4;36;1mTherapeuticFunction Load (0.4ms)[0m   [0;1mSELECT * FROM "therapeutic_functions" WHERE ("therapeutic_functions"."id" = 1) [0m
+  [4;35;1mTherapeuticFunction Load (0.3ms)[0m   [0mSELECT * FROM "therapeutic_functions" WHERE ("therapeutic_functions"."id" = 2) [0m
+  [4;36;1mTherapeuticFunction Load (0.3ms)[0m   [0;1mSELECT * FROM "therapeutic_functions" WHERE ("therapeutic_functions"."id" = 3) [0m
+  [4;35;1mTherapeuticFunction Load (0.3ms)[0m   [0mSELECT * FROM "therapeutic_functions" WHERE ("therapeutic_functions"."id" = 4) [0m
+  [4;36;1mTherapeuticFunction Load (0.3ms)[0m   [0;1mSELECT * FROM "therapeutic_functions" WHERE ("therapeutic_functions"."id" = 5) [0m
+  [4;35;1mTherapeuticFunction Load (0.3ms)[0m   [0mSELECT * FROM "therapeutic_functions" WHERE ("therapeutic_functions"."id" = 6) [0m
+Completed in 96ms (View: 72, DB: 7) | 200 OK [http://localhost/herbs/1]
+
+
+Processing HerbsController#show (for 127.0.0.1 at 2010-01-18 14:24:10) [GET]
+  Parameters: {"id"=>"1"}
+  [4;36;1mHerb Load (0.5ms)[0m   [0;1mSELECT * FROM "herbs" WHERE ("herbs"."id" = 1) [0m
+Rendering template within layouts/application
+Rendering herbs/show
+  [4;35;1mHerbChannel Load (0.7ms)[0m   [0mSELECT * FROM "herb_channels" WHERE ("herb_channels".herb_id = 1) [0m
+  [4;36;1mChannel Load (0.4ms)[0m   [0;1mSELECT * FROM "channels" WHERE ("channels"."id" = 1) [0m
+  [4;35;1mChannel Load (0.4ms)[0m   [0mSELECT * FROM "channels" WHERE ("channels"."id" = 2) [0m
+  [4;36;1mChannel Load (0.4ms)[0m   [0;1mSELECT * FROM "channels" WHERE ("channels"."id" = 3) [0m
+  [4;35;1mHerbFlavor Load (0.7ms)[0m   [0mSELECT * FROM "herb_flavors" WHERE ("herb_flavors".herb_id = 1) [0m
+  [4;36;1mFlavor Load (0.4ms)[0m   [0;1mSELECT * FROM "flavors" WHERE ("flavors"."id" = 1) [0m
+  [4;35;1mFlavor Load (0.3ms)[0m   [0mSELECT * FROM "flavors" WHERE ("flavors"."id" = 2) [0m
+  [4;36;1mFlavor Load (0.3ms)[0m   [0;1mSELECT * FROM "flavors" WHERE ("flavors"."id" = 3) [0m
+  [4;35;1mHerbTherapeuticFunction Load (1.1ms)[0m   [0mSELECT * FROM "herb_therapeutic_functions" WHERE ("herb_therapeutic_functions".herb_id = 1) [0m
+  [4;36;1mTherapeuticFunction Load (0.4ms)[0m   [0;1mSELECT * FROM "therapeutic_functions" WHERE ("therapeutic_functions"."id" = 1) [0m
+  [4;35;1mTherapeuticFunction Load (0.3ms)[0m   [0mSELECT * FROM "therapeutic_functions" WHERE ("therapeutic_functions"."id" = 2) [0m
+  [4;36;1mTherapeuticFunction Load (0.3ms)[0m   [0;1mSELECT * FROM "therapeutic_functions" WHERE ("therapeutic_functions"."id" = 3) [0m
+  [4;35;1mTherapeuticFunction Load (0.3ms)[0m   [0mSELECT * FROM "therapeutic_functions" WHERE ("therapeutic_functions"."id" = 4) [0m
+  [4;36;1mTherapeuticFunction Load (0.3ms)[0m   [0;1mSELECT * FROM "therapeutic_functions" WHERE ("therapeutic_functions"."id" = 5) [0m
+  [4;35;1mTherapeuticFunction Load (0.3ms)[0m   [0mSELECT * FROM "therapeutic_functions" WHERE ("therapeutic_functions"."id" = 6) [0m
+Completed in 168ms (View: 68, DB: 7) | 200 OK [http://localhost/herbs/1]
+
+
+Processing HerbsController#edit (for 127.0.0.1 at 2010-01-18 14:24:38) [GET]
+  Parameters: {"id"=>"1"}
+  [4;36;1mHerb Load (0.4ms)[0m   [0;1mSELECT * FROM "herbs" WHERE ("herbs"."id" = 1) [0m
+Rendering template within layouts/application
+Rendering herbs/edit
+  [4;35;1mHerbChannel Load (0.7ms)[0m   [0mSELECT * FROM "herb_channels" WHERE ("herb_channels".herb_id = 1) [0m
+DEPRECATION WARNING: formatted_channels_path() has been deprecated. Please pass format to the standard channels_path method instead.. (called from _run_erb_app47views47herbs47_herb_channel46html46erb_locals_f_herb_channel_object at /home/tyler/Projects/herbs/app/views/herbs/_herb_channel.html.erb:4)
+  [4;36;1mChannel Load (0.4ms)[0m   [0;1mSELECT * FROM "channels" WHERE ("channels"."id" = 1) [0m
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+Rendered herbs/_herb_channel (93.2ms)
+DEPRECATION WARNING: formatted_channels_path() has been deprecated. Please pass format to the standard channels_path method instead.. (called from _run_erb_app47views47herbs47_herb_channel46html46erb_locals_f_herb_channel_object at /home/tyler/Projects/herbs/app/views/herbs/_herb_channel.html.erb:4)
+  [4;35;1mChannel Load (0.4ms)[0m   [0mSELECT * FROM "channels" WHERE ("channels"."id" = 2) [0m
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+Rendered herbs/_herb_channel (7.1ms)
+DEPRECATION WARNING: formatted_channels_path() has been deprecated. Please pass format to the standard channels_path method instead.. (called from _run_erb_app47views47herbs47_herb_channel46html46erb_locals_f_herb_channel_object at /home/tyler/Projects/herbs/app/views/herbs/_herb_channel.html.erb:4)
+  [4;36;1mChannel Load (0.4ms)[0m   [0;1mSELECT * FROM "channels" WHERE ("channels"."id" = 3) [0m
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+Rendered herbs/_herb_channel (7.4ms)
+DEPRECATION WARNING: formatted_channels_path() has been deprecated. Please pass format to the standard channels_path method instead.. (called from _run_erb_app47views47herbs47_herb_channel46html46erb_locals_f_herb_channel_object at /home/tyler/Projects/herbs/app/views/herbs/_herb_channel.html.erb:4)
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+Rendered herbs/_herb_channel (5.6ms)
+  [4;35;1mHerbFlavor Load (0.7ms)[0m   [0mSELECT * FROM "herb_flavors" WHERE ("herb_flavors".herb_id = 1) [0m
+DEPRECATION WARNING: formatted_flavors_path() has been deprecated. Please pass format to the standard flavors_path method instead.. (called from _run_erb_app47views47herbs47_herb_flavor46html46erb_locals_f_herb_flavor_object at /home/tyler/Projects/herbs/app/views/herbs/_herb_flavor.html.erb:4)
+  [4;36;1mFlavor Load (0.4ms)[0m   [0;1mSELECT * FROM "flavors" WHERE ("flavors"."id" = 1) [0m
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+Rendered herbs/_herb_flavor (14.5ms)
+DEPRECATION WARNING: formatted_flavors_path() has been deprecated. Please pass format to the standard flavors_path method instead.. (called from _run_erb_app47views47herbs47_herb_flavor46html46erb_locals_f_herb_flavor_object at /home/tyler/Projects/herbs/app/views/herbs/_herb_flavor.html.erb:4)
+  [4;35;1mFlavor Load (0.4ms)[0m   [0mSELECT * FROM "flavors" WHERE ("flavors"."id" = 2) [0m
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+Rendered herbs/_herb_flavor (6.5ms)
+DEPRECATION WARNING: formatted_flavors_path() has been deprecated. Please pass format to the standard flavors_path method instead.. (called from _run_erb_app47views47herbs47_herb_flavor46html46erb_locals_f_herb_flavor_object at /home/tyler/Projects/herbs/app/views/herbs/_herb_flavor.html.erb:4)
+  [4;36;1mFlavor Load (0.4ms)[0m   [0;1mSELECT * FROM "flavors" WHERE ("flavors"."id" = 3) [0m
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+Rendered herbs/_herb_flavor (6.9ms)
+DEPRECATION WARNING: formatted_flavors_path() has been deprecated. Please pass format to the standard flavors_path method instead.. (called from _run_erb_app47views47herbs47_herb_flavor46html46erb_locals_f_herb_flavor_object at /home/tyler/Projects/herbs/app/views/herbs/_herb_flavor.html.erb:4)
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+Rendered herbs/_herb_flavor (5.2ms)
+  [4;35;1mHerbTherapeuticFunction Load (1.1ms)[0m   [0mSELECT * FROM "herb_therapeutic_functions" WHERE ("herb_therapeutic_functions".herb_id = 1) [0m
+DEPRECATION WARNING: formatted_therapeutic_functions_path() has been deprecated. Please pass format to the standard therapeutic_functions_path method instead.. (called from _run_erb_app47views47herbs47_herb_therapeutic_function46html46erb_locals_f_herb_therapeutic_function_object at /home/tyler/Projects/herbs/app/views/herbs/_herb_therapeutic_function.html.erb:4)
+  [4;36;1mTherapeuticFunction Load (0.4ms)[0m   [0;1mSELECT * FROM "therapeutic_functions" WHERE ("therapeutic_functions"."id" = 1) [0m
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+Rendered herbs/_herb_therapeutic_function (15.7ms)
+DEPRECATION WARNING: formatted_therapeutic_functions_path() has been deprecated. Please pass format to the standard therapeutic_functions_path method instead.. (called from _run_erb_app47views47herbs47_herb_therapeutic_function46html46erb_locals_f_herb_therapeutic_function_object at /home/tyler/Projects/herbs/app/views/herbs/_herb_therapeutic_function.html.erb:4)
+  [4;35;1mTherapeuticFunction Load (0.4ms)[0m   [0mSELECT * FROM "therapeutic_functions" WHERE ("therapeutic_functions"."id" = 2) [0m
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+Rendered herbs/_herb_therapeutic_function (8.4ms)
+DEPRECATION WARNING: formatted_therapeutic_functions_path() has been deprecated. Please pass format to the standard therapeutic_functions_path method instead.. (called from _run_erb_app47views47herbs47_herb_therapeutic_function46html46erb_locals_f_herb_therapeutic_function_object at /home/tyler/Projects/herbs/app/views/herbs/_herb_therapeutic_function.html.erb:4)
+  [4;36;1mTherapeuticFunction Load (0.4ms)[0m   [0;1mSELECT * FROM "therapeutic_functions" WHERE ("therapeutic_functions"."id" = 3) [0m
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+Rendered herbs/_herb_therapeutic_function (7.8ms)
+DEPRECATION WARNING: formatted_therapeutic_functions_path() has been deprecated. Please pass format to the standard therapeutic_functions_path method instead.. (called from _run_erb_app47views47herbs47_herb_therapeutic_function46html46erb_locals_f_herb_therapeutic_function_object at /home/tyler/Projects/herbs/app/views/herbs/_herb_therapeutic_function.html.erb:4)
+  [4;35;1mTherapeuticFunction Load (0.4ms)[0m   [0mSELECT * FROM "therapeutic_functions" WHERE ("therapeutic_functions"."id" = 4) [0m
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+Rendered herbs/_herb_therapeutic_function (7.7ms)
+DEPRECATION WARNING: formatted_therapeutic_functions_path() has been deprecated. Please pass format to the standard therapeutic_functions_path method instead.. (called from _run_erb_app47views47herbs47_herb_therapeutic_function46html46erb_locals_f_herb_therapeutic_function_object at /home/tyler/Projects/herbs/app/views/herbs/_herb_therapeutic_function.html.erb:4)
+  [4;36;1mTherapeuticFunction Load (0.4ms)[0m   [0;1mSELECT * FROM "therapeutic_functions" WHERE ("therapeutic_functions"."id" = 5) [0m
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+Rendered herbs/_herb_therapeutic_function (7.5ms)
+DEPRECATION WARNING: formatted_therapeutic_functions_path() has been deprecated. Please pass format to the standard therapeutic_functions_path method instead.. (called from _run_erb_app47views47herbs47_herb_therapeutic_function46html46erb_locals_f_herb_therapeutic_function_object at /home/tyler/Projects/herbs/app/views/herbs/_herb_therapeutic_function.html.erb:4)
+  [4;35;1mTherapeuticFunction Load (0.4ms)[0m   [0mSELECT * FROM "therapeutic_functions" WHERE ("therapeutic_functions"."id" = 6) [0m
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+Rendered herbs/_herb_therapeutic_function (7.9ms)
+DEPRECATION WARNING: formatted_therapeutic_functions_path() has been deprecated. Please pass format to the standard therapeutic_functions_path method instead.. (called from _run_erb_app47views47herbs47_herb_therapeutic_function46html46erb_locals_f_herb_therapeutic_function_object at /home/tyler/Projects/herbs/app/views/herbs/_herb_therapeutic_function.html.erb:4)
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+Rendered herbs/_herb_therapeutic_function (6.5ms)
+Rendered herbs/_form (291.7ms)
+Completed in 323ms (View: 300, DB: 8) | 200 OK [http://localhost/herbs/1/edit]
+  [4;36;1mSQL (1.3ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.6ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateTherapeuticFunctions (20100118204411)
+Migrating to CreateHerbCategories (20100118204600)
+Migrating to CreateFlavors (20100118204720)
+Migrating to CreateChannels (20100118204747)
+Migrating to CreateHerbs (20100118204907)
+Migrating to CreateHerbTherapeuticFunctions (20100118205005)
+Migrating to CreateHerbChannels (20100118205114)
+Migrating to CreateHerbFlavors (20100118205147)
+Migrating to RenameHerbCategoryIdColumn (20100118222650)
+  [4;36;1mSQL (0.2ms)[0m   [0;1mselect sqlite_version(*)[0m
+  [4;35;1mSQL (1.1ms)[0m   [0mCREATE TEMPORARY TABLE "altered_herbs" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "herb_category_id" integer, "pinyin" varchar(255), "english" varchar(255), "latin" varchar(255), "commentary" text, "contraindications" text, "created_at" datetime, "updated_at" datetime) [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("herbs")[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mDROP TABLE "herbs"[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mCREATE TABLE "herbs" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "herb_category_id" integer, "pinyin" varchar(255), "english" varchar(255), "latin" varchar(255), "commentary" text, "contraindications" text, "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("altered_herbs")[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mDROP TABLE "altered_herbs"[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20100118222650')[0m
+  [4;36;1mSQL (0.8ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.6ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("channels")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("flavors")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("herb_categories")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("herb_channels")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("herb_flavors")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("herb_therapeutic_functions")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("herbs")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("therapeutic_functions")[0m
+
+
+Processing HerbsController#edit (for 127.0.0.1 at 2010-01-18 14:34:19) [GET]
+  Parameters: {"id"=>"1"}
+  [4;36;1mHerb Load (0.5ms)[0m   [0;1mSELECT * FROM "herbs" WHERE ("herbs"."id" = 1) [0m
+Rendering template within layouts/application
+Rendering herbs/edit
+DEPRECATION WARNING: formatted_herb_categories_path() has been deprecated. Please pass format to the standard herb_categories_path method instead.. (called from _run_erb_app47views47herbs47_form46html46erb_locals_f_form_object at /home/tyler/Projects/herbs/app/views/herbs/_form.html.erb:6)
+  [4;35;1mHerbCategory Load (0.3ms)[0m   [0mSELECT * FROM "herb_categories" WHERE ("herb_categories"."id" = 0) [0m
+  [4;36;1mHerbChannel Load (0.7ms)[0m   [0;1mSELECT * FROM "herb_channels" WHERE ("herb_channels".herb_id = 1) [0m
+DEPRECATION WARNING: formatted_channels_path() has been deprecated. Please pass format to the standard channels_path method instead.. (called from _run_erb_app47views47herbs47_herb_channel46html46erb_locals_f_herb_channel_object at /home/tyler/Projects/herbs/app/views/herbs/_herb_channel.html.erb:4)
+  [4;35;1mChannel Load (0.5ms)[0m   [0mSELECT * FROM "channels" WHERE ("channels"."id" = 1) [0m
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+Rendered herbs/_herb_channel (15.7ms)
+DEPRECATION WARNING: formatted_channels_path() has been deprecated. Please pass format to the standard channels_path method instead.. (called from _run_erb_app47views47herbs47_herb_channel46html46erb_locals_f_herb_channel_object at /home/tyler/Projects/herbs/app/views/herbs/_herb_channel.html.erb:4)
+  [4;36;1mChannel Load (0.4ms)[0m   [0;1mSELECT * FROM "channels" WHERE ("channels"."id" = 2) [0m
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+Rendered herbs/_herb_channel (7.0ms)
+DEPRECATION WARNING: formatted_channels_path() has been deprecated. Please pass format to the standard channels_path method instead.. (called from _run_erb_app47views47herbs47_herb_channel46html46erb_locals_f_herb_channel_object at /home/tyler/Projects/herbs/app/views/herbs/_herb_channel.html.erb:4)
+  [4;35;1mChannel Load (0.4ms)[0m   [0mSELECT * FROM "channels" WHERE ("channels"."id" = 3) [0m
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+Rendered herbs/_herb_channel (6.7ms)
+DEPRECATION WARNING: formatted_channels_path() has been deprecated. Please pass format to the standard channels_path method instead.. (called from _run_erb_app47views47herbs47_herb_channel46html46erb_locals_f_herb_channel_object at /home/tyler/Projects/herbs/app/views/herbs/_herb_channel.html.erb:4)
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+Rendered herbs/_herb_channel (5.4ms)
+  [4;36;1mHerbFlavor Load (0.7ms)[0m   [0;1mSELECT * FROM "herb_flavors" WHERE ("herb_flavors".herb_id = 1) [0m
+DEPRECATION WARNING: formatted_flavors_path() has been deprecated. Please pass format to the standard flavors_path method instead.. (called from _run_erb_app47views47herbs47_herb_flavor46html46erb_locals_f_herb_flavor_object at /home/tyler/Projects/herbs/app/views/herbs/_herb_flavor.html.erb:4)
+  [4;35;1mFlavor Load (0.4ms)[0m   [0mSELECT * FROM "flavors" WHERE ("flavors"."id" = 1) [0m
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+Rendered herbs/_herb_flavor (15.4ms)
+DEPRECATION WARNING: formatted_flavors_path() has been deprecated. Please pass format to the standard flavors_path method instead.. (called from _run_erb_app47views47herbs47_herb_flavor46html46erb_locals_f_herb_flavor_object at /home/tyler/Projects/herbs/app/views/herbs/_herb_flavor.html.erb:4)
+  [4;36;1mFlavor Load (0.4ms)[0m   [0;1mSELECT * FROM "flavors" WHERE ("flavors"."id" = 2) [0m
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+Rendered herbs/_herb_flavor (6.7ms)
+DEPRECATION WARNING: formatted_flavors_path() has been deprecated. Please pass format to the standard flavors_path method instead.. (called from _run_erb_app47views47herbs47_herb_flavor46html46erb_locals_f_herb_flavor_object at /home/tyler/Projects/herbs/app/views/herbs/_herb_flavor.html.erb:4)
+  [4;35;1mFlavor Load (0.4ms)[0m   [0mSELECT * FROM "flavors" WHERE ("flavors"."id" = 3) [0m
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+Rendered herbs/_herb_flavor (6.4ms)
+DEPRECATION WARNING: formatted_flavors_path() has been deprecated. Please pass format to the standard flavors_path method instead.. (called from _run_erb_app47views47herbs47_herb_flavor46html46erb_locals_f_herb_flavor_object at /home/tyler/Projects/herbs/app/views/herbs/_herb_flavor.html.erb:4)
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+Rendered herbs/_herb_flavor (5.2ms)
+  [4;36;1mHerbTherapeuticFunction Load (1.1ms)[0m   [0;1mSELECT * FROM "herb_therapeutic_functions" WHERE ("herb_therapeutic_functions".herb_id = 1) [0m
+DEPRECATION WARNING: formatted_therapeutic_functions_path() has been deprecated. Please pass format to the standard therapeutic_functions_path method instead.. (called from _run_erb_app47views47herbs47_herb_therapeutic_function46html46erb_locals_f_herb_therapeutic_function_object at /home/tyler/Projects/herbs/app/views/herbs/_herb_therapeutic_function.html.erb:4)
+  [4;35;1mTherapeuticFunction Load (0.4ms)[0m   [0mSELECT * FROM "therapeutic_functions" WHERE ("therapeutic_functions"."id" = 1) [0m
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+Rendered herbs/_herb_therapeutic_function (16.6ms)
+DEPRECATION WARNING: formatted_therapeutic_functions_path() has been deprecated. Please pass format to the standard therapeutic_functions_path method instead.. (called from _run_erb_app47views47herbs47_herb_therapeutic_function46html46erb_locals_f_herb_therapeutic_function_object at /home/tyler/Projects/herbs/app/views/herbs/_herb_therapeutic_function.html.erb:4)
+  [4;36;1mTherapeuticFunction Load (0.4ms)[0m   [0;1mSELECT * FROM "therapeutic_functions" WHERE ("therapeutic_functions"."id" = 2) [0m
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+Rendered herbs/_herb_therapeutic_function (7.4ms)
+DEPRECATION WARNING: formatted_therapeutic_functions_path() has been deprecated. Please pass format to the standard therapeutic_functions_path method instead.. (called from _run_erb_app47views47herbs47_herb_therapeutic_function46html46erb_locals_f_herb_therapeutic_function_object at /home/tyler/Projects/herbs/app/views/herbs/_herb_therapeutic_function.html.erb:4)
+  [4;35;1mTherapeuticFunction Load (0.4ms)[0m   [0mSELECT * FROM "therapeutic_functions" WHERE ("therapeutic_functions"."id" = 3) [0m
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+Rendered herbs/_herb_therapeutic_function (7.3ms)
+DEPRECATION WARNING: formatted_therapeutic_functions_path() has been deprecated. Please pass format to the standard therapeutic_functions_path method instead.. (called from _run_erb_app47views47herbs47_herb_therapeutic_function46html46erb_locals_f_herb_therapeutic_function_object at /home/tyler/Projects/herbs/app/views/herbs/_herb_therapeutic_function.html.erb:4)
+  [4;36;1mTherapeuticFunction Load (0.4ms)[0m   [0;1mSELECT * FROM "therapeutic_functions" WHERE ("therapeutic_functions"."id" = 4) [0m
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+Rendered herbs/_herb_therapeutic_function (7.8ms)
+DEPRECATION WARNING: formatted_therapeutic_functions_path() has been deprecated. Please pass format to the standard therapeutic_functions_path method instead.. (called from _run_erb_app47views47herbs47_herb_therapeutic_function46html46erb_locals_f_herb_therapeutic_function_object at /home/tyler/Projects/herbs/app/views/herbs/_herb_therapeutic_function.html.erb:4)
+  [4;35;1mTherapeuticFunction Load (0.4ms)[0m   [0mSELECT * FROM "therapeutic_functions" WHERE ("therapeutic_functions"."id" = 5) [0m
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+Rendered herbs/_herb_therapeutic_function (7.4ms)
+DEPRECATION WARNING: formatted_therapeutic_functions_path() has been deprecated. Please pass format to the standard therapeutic_functions_path method instead.. (called from _run_erb_app47views47herbs47_herb_therapeutic_function46html46erb_locals_f_herb_therapeutic_function_object at /home/tyler/Projects/herbs/app/views/herbs/_herb_therapeutic_function.html.erb:4)
+  [4;36;1mTherapeuticFunction Load (0.4ms)[0m   [0;1mSELECT * FROM "therapeutic_functions" WHERE ("therapeutic_functions"."id" = 6) [0m
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+Rendered herbs/_herb_therapeutic_function (7.4ms)
+DEPRECATION WARNING: formatted_therapeutic_functions_path() has been deprecated. Please pass format to the standard therapeutic_functions_path method instead.. (called from _run_erb_app47views47herbs47_herb_therapeutic_function46html46erb_locals_f_herb_therapeutic_function_object at /home/tyler/Projects/herbs/app/views/herbs/_herb_therapeutic_function.html.erb:4)
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+Rendered herbs/_herb_therapeutic_function (6.3ms)
+Rendered herbs/_form (303.0ms)
+Completed in 384ms (View: 347, DB: 8) | 200 OK [http://localhost/herbs/1/edit]
+
+
+Processing HerbCategoriesController#index to js (for 127.0.0.1 at 2010-01-18 14:34:23) [GET]
+  Parameters: {"search"=>"A"}
+  [4;35;1mHerbCategory Load (0.7ms)[0m   [0mSELECT * FROM "herb_categories" WHERE (name LIKE '%A%') [0m
+Rendering herb_categories/index
+Completed in 19ms (View: 10, DB: 1) | 200 OK [http://localhost/herb_categories.js?search=A]
+
+
+Processing HerbCategoriesController#index to js (for 127.0.0.1 at 2010-01-18 14:34:24) [GET]
+  Parameters: {"search"=>"Aci"}
+  [4;36;1mHerbCategory Load (0.7ms)[0m   [0;1mSELECT * FROM "herb_categories" WHERE (name LIKE '%Aci%') [0m
+Rendering herb_categories/index
+Completed in 10ms (View: 1, DB: 1) | 200 OK [http://localhost/herb_categories.js?search=Aci]
+
+
+Processing HerbCategoriesController#index to js (for 127.0.0.1 at 2010-01-18 14:34:28) [GET]
+  Parameters: {"search"=>"Acrid, Warm, Exterior"}
+  [4;35;1mHerbCategory Load (0.6ms)[0m   [0mSELECT * FROM "herb_categories" WHERE (name LIKE '%Acrid, Warm, Exterior%') [0m
+Rendering herb_categories/index
+Completed in 10ms (View: 1, DB: 1) | 200 OK [http://localhost/herb_categories.js?search=Acrid%2C%20Warm%2C%20Exterior]
+
+
+Processing HerbCategoriesController#index to js (for 127.0.0.1 at 2010-01-18 14:34:29) [GET]
+  Parameters: {"search"=>"Acrid, Warm, Exterior-"}
+  [4;36;1mHerbCategory Load (0.7ms)[0m   [0;1mSELECT * FROM "herb_categories" WHERE (name LIKE '%Acrid, Warm, Exterior-%') [0m
+Rendering herb_categories/index
+Completed in 11ms (View: 1, DB: 1) | 200 OK [http://localhost/herb_categories.js?search=Acrid%2C%20Warm%2C%20Exterior-]
+
+
+Processing HerbCategoriesController#index to js (for 127.0.0.1 at 2010-01-18 14:34:30) [GET]
+  Parameters: {"search"=>"Acrid, Warm, Exterior"}
+  [4;35;1mHerbCategory Load (0.7ms)[0m   [0mSELECT * FROM "herb_categories" WHERE (name LIKE '%Acrid, Warm, Exterior%') [0m
+Rendering herb_categories/index
+Completed in 11ms (View: 1, DB: 1) | 200 OK [http://localhost/herb_categories.js?search=Acrid%2C%20Warm%2C%20Exterior]
+
+
+Processing HerbCategoriesController#index to js (for 127.0.0.1 at 2010-01-18 14:34:31) [GET]
+  Parameters: {"search"=>"Acrid, Warm, Exterior-R"}
+  [4;36;1mHerbCategory Load (0.6ms)[0m   [0;1mSELECT * FROM "herb_categories" WHERE (name LIKE '%Acrid, Warm, Exterior-R%') [0m
+Rendering herb_categories/index
+Completed in 10ms (View: 1, DB: 1) | 200 OK [http://localhost/herb_categories.js?search=Acrid%2C%20Warm%2C%20Exterior-R]
+
+
+Processing HerbCategoriesController#index to js (for 127.0.0.1 at 2010-01-18 14:34:32) [GET]
+  Parameters: {"search"=>"Acrid, Warm, Exterior-Releas"}
+  [4;35;1mHerbCategory Load (0.7ms)[0m   [0mSELECT * FROM "herb_categories" WHERE (name LIKE '%Acrid, Warm, Exterior-Releas%') [0m
+Rendering herb_categories/index
+Completed in 11ms (View: 1, DB: 1) | 200 OK [http://localhost/herb_categories.js?search=Acrid%2C%20Warm%2C%20Exterior-Releas]
+
+
+Processing HerbCategoriesController#index to js (for 127.0.0.1 at 2010-01-18 14:34:33) [GET]
+  Parameters: {"search"=>"Acrid, Warm, Exterior-Releasing"}
+  [4;36;1mHerbCategory Load (0.7ms)[0m   [0;1mSELECT * FROM "herb_categories" WHERE (name LIKE '%Acrid, Warm, Exterior-Releasing%') [0m
+Rendering herb_categories/index
+Completed in 10ms (View: 1, DB: 1) | 200 OK [http://localhost/herb_categories.js?search=Acrid%2C%20Warm%2C%20Exterior-Releasing]
+
+
+Processing HerbCategoriesController#index to js (for 127.0.0.1 at 2010-01-18 14:34:33) [GET]
+  Parameters: {"search"=>"Acrid, Warm, Exterior-Releasing"}
+  [4;35;1mHerbCategory Load (10.6ms)[0m   [0mSELECT * FROM "herb_categories" WHERE (name LIKE '%Acrid, Warm, Exterior-Releasing%') [0m
+Rendering herb_categories/index
+Completed in 20ms (View: 1, DB: 11) | 200 OK [http://localhost/herb_categories.js?search=Acrid%2C%20Warm%2C%20Exterior-Releasing]
+
+
+Processing HerbCategoriesController#index to js (for 127.0.0.1 at 2010-01-18 14:34:34) [GET]
+  Parameters: {"search"=>"Acrid, Warm, Exterior-Releasing Herbs"}
+  [4;36;1mHerbCategory Load (0.7ms)[0m   [0;1mSELECT * FROM "herb_categories" WHERE (name LIKE '%Acrid, Warm, Exterior-Releasing Herbs%') [0m
+Rendering herb_categories/index
+Completed in 12ms (View: 1, DB: 1) | 200 OK [http://localhost/herb_categories.js?search=Acrid%2C%20Warm%2C%20Exterior-Releasing%20Herbs]
+
+
+Processing HerbsController#update (for 127.0.0.1 at 2010-01-18 14:34:41) [PUT]
+  Parameters: {"commit"=>"Update", "herb"=>{"herb_channels_attributes"=>{"0"=>{"channel_name"=>"Heart", "_destroy"=>"", "id"=>"1"}, "1"=>{"channel_name"=>"Lung", "_destroy"=>"", "id"=>"2"}, "2"=>{"channel_name"=>"Bladder", "_destroy"=>"", "id"=>"3"}}, "contraindications"=>"", "commentary"=>"", "pinyin"=>"Gui Zhi", "english"=>"Cinnamon Twig", "herb_therapeutic_functions_attributes"=>{"0"=>{"_destroy"=>"", "therapeutic_function_name"=>"Releases the exterior and assists the Yang", "id"=>"1"}, "1"=>{"_destroy"=>"", "therapeutic_function_name"=>"Warms and unblocks the channels and collaterals", "id"=>"2"}, "2"=>{"_destroy"=>"", "therapeutic_function_name"=>"Warms the Yang and transforms thin mucus", "id"=>"3"}, "3"=>{"_destroy"=>"", "therapeutic_function_name"=>"Assists the Heart Yang and unblocks the Yang Qi of the chest", "id"=>"4"}, "4"=>{"_destroy"=>"", "therapeutic_function_name"=>"Warms the channels, vessels and collaterals", "id"=>"5"}, "5"=>{"_destroy"=>"", "therapeutic_function_name"=>"Warms the middle and directs turbid Yin downward", "id"=>"6"}}, "herb_category_name"=>"Acrid, Warm, Exterior-Releasing Herbs", "herb_flavors_attributes"=>{"0"=>{"_destroy"=>"", "id"=>"1", "flavor_name"=>"Acrid"}, "1"=>{"_destroy"=>"", "id"=>"2", "flavor_name"=>"Sweet"}, "2"=>{"_destroy"=>"", "id"=>"3", "flavor_name"=>"Warm"}}, "latin"=>"Cinnamomi Ramulus"}, "authenticity_token"=>"EkdmYnOjUUm7mdWqcy4c5g4lbLMJyVp/3rEWc4Y9iaU=", "id"=>"1"}
+  [4;35;1mHerb Load (0.4ms)[0m   [0mSELECT * FROM "herbs" WHERE ("herbs"."id" = 1) [0m
+  [4;36;1mHerbChannel Load (0.7ms)[0m   [0;1mSELECT * FROM "herb_channels" WHERE ("herb_channels".herb_id = 1) [0m
+  [4;35;1mChannel Load (0.4ms)[0m   [0mSELECT * FROM "channels" WHERE ("channels"."name" = 'Heart') LIMIT 1[0m
+  [4;36;1mChannel Load (0.4ms)[0m   [0;1mSELECT * FROM "channels" WHERE ("channels"."name" = 'Lung') LIMIT 1[0m
+  [4;35;1mChannel Load (0.4ms)[0m   [0mSELECT * FROM "channels" WHERE ("channels"."name" = 'Bladder') LIMIT 1[0m
+  [4;36;1mHerbCategory Load (0.2ms)[0m   [0;1mSELECT * FROM "herb_categories" WHERE ("herb_categories"."name" = 'Acrid, Warm, Exterior-Releasing Herbs') LIMIT 1[0m
+  [4;35;1mHerbCategory Create (0.5ms)[0m   [0mINSERT INTO "herb_categories" ("name", "created_at", "updated_at") VALUES('Acrid, Warm, Exterior-Releasing Herbs', '2010-01-18 22:34:41', '2010-01-18 22:34:41')[0m
+  [4;36;1mHerbTherapeuticFunction Load (2.3ms)[0m   [0;1mSELECT * FROM "herb_therapeutic_functions" WHERE ("herb_therapeutic_functions".herb_id = 1) [0m
+  [4;35;1mTherapeuticFunction Load (0.4ms)[0m   [0mSELECT * FROM "therapeutic_functions" WHERE ("therapeutic_functions"."name" = 'Releases the exterior and assists the Yang') LIMIT 1[0m
+  [4;36;1mTherapeuticFunction Load (0.3ms)[0m   [0;1mSELECT * FROM "therapeutic_functions" WHERE ("therapeutic_functions"."name" = 'Warms and unblocks the channels and collaterals') LIMIT 1[0m
+  [4;35;1mTherapeuticFunction Load (0.3ms)[0m   [0mSELECT * FROM "therapeutic_functions" WHERE ("therapeutic_functions"."name" = 'Warms the Yang and transforms thin mucus') LIMIT 1[0m
+  [4;36;1mTherapeuticFunction Load (0.3ms)[0m   [0;1mSELECT * FROM "therapeutic_functions" WHERE ("therapeutic_functions"."name" = 'Assists the Heart Yang and unblocks the Yang Qi of the chest') LIMIT 1[0m
+  [4;35;1mTherapeuticFunction Load (0.3ms)[0m   [0mSELECT * FROM "therapeutic_functions" WHERE ("therapeutic_functions"."name" = 'Warms the channels, vessels and collaterals') LIMIT 1[0m
+  [4;36;1mTherapeuticFunction Load (0.3ms)[0m   [0;1mSELECT * FROM "therapeutic_functions" WHERE ("therapeutic_functions"."name" = 'Warms the middle and directs turbid Yin downward') LIMIT 1[0m
+  [4;35;1mHerbFlavor Load (0.6ms)[0m   [0mSELECT * FROM "herb_flavors" WHERE ("herb_flavors".herb_id = 1) [0m
+  [4;36;1mFlavor Load (0.4ms)[0m   [0;1mSELECT * FROM "flavors" WHERE ("flavors"."name" = 'Acrid') LIMIT 1[0m
+  [4;35;1mFlavor Load (0.3ms)[0m   [0mSELECT * FROM "flavors" WHERE ("flavors"."name" = 'Sweet') LIMIT 1[0m
+  [4;36;1mFlavor Load (0.3ms)[0m   [0;1mSELECT * FROM "flavors" WHERE ("flavors"."name" = 'Warm') LIMIT 1[0m
+  [4;35;1mHerb Update (0.4ms)[0m   [0mUPDATE "herbs" SET "updated_at" = '2010-01-18 22:34:42', "herb_category_id" = 1 WHERE "id" = 1[0m
+Redirected to http://localhost:3000/herbs/1
+Completed in 544ms (DB: 9) | 302 Found [http://localhost/herbs/1]
+
+
+Processing HerbsController#show (for 127.0.0.1 at 2010-01-18 14:34:42) [GET]
+  Parameters: {"id"=>"1"}
+  [4;36;1mHerb Load (0.4ms)[0m   [0;1mSELECT * FROM "herbs" WHERE ("herbs"."id" = 1) [0m
+Rendering template within layouts/application
+Rendering herbs/show
+  [4;35;1mHerbCategory Load (0.4ms)[0m   [0mSELECT * FROM "herb_categories" WHERE ("herb_categories"."id" = 1) [0m
+  [4;36;1mHerbChannel Load (0.7ms)[0m   [0;1mSELECT * FROM "herb_channels" WHERE ("herb_channels".herb_id = 1) [0m
+  [4;35;1mChannel Load (0.4ms)[0m   [0mSELECT * FROM "channels" WHERE ("channels"."id" = 1) [0m
+  [4;36;1mChannel Load (0.3ms)[0m   [0;1mSELECT * FROM "channels" WHERE ("channels"."id" = 2) [0m
+  [4;35;1mChannel Load (0.3ms)[0m   [0mSELECT * FROM "channels" WHERE ("channels"."id" = 3) [0m
+  [4;36;1mHerbFlavor Load (0.7ms)[0m   [0;1mSELECT * FROM "herb_flavors" WHERE ("herb_flavors".herb_id = 1) [0m
+  [4;35;1mFlavor Load (0.4ms)[0m   [0mSELECT * FROM "flavors" WHERE ("flavors"."id" = 1) [0m
+  [4;36;1mFlavor Load (0.5ms)[0m   [0;1mSELECT * FROM "flavors" WHERE ("flavors"."id" = 2) [0m
+  [4;35;1mFlavor Load (0.3ms)[0m   [0mSELECT * FROM "flavors" WHERE ("flavors"."id" = 3) [0m
+  [4;36;1mHerbTherapeuticFunction Load (1.0ms)[0m   [0;1mSELECT * FROM "herb_therapeutic_functions" WHERE ("herb_therapeutic_functions".herb_id = 1) [0m
+  [4;35;1mTherapeuticFunction Load (0.4ms)[0m   [0mSELECT * FROM "therapeutic_functions" WHERE ("therapeutic_functions"."id" = 1) [0m
+  [4;36;1mTherapeuticFunction Load (0.4ms)[0m   [0;1mSELECT * FROM "therapeutic_functions" WHERE ("therapeutic_functions"."id" = 2) [0m
+  [4;35;1mTherapeuticFunction Load (0.3ms)[0m   [0mSELECT * FROM "therapeutic_functions" WHERE ("therapeutic_functions"."id" = 3) [0m
+  [4;36;1mTherapeuticFunction Load (0.3ms)[0m   [0;1mSELECT * FROM "therapeutic_functions" WHERE ("therapeutic_functions"."id" = 4) [0m
+  [4;35;1mTherapeuticFunction Load (0.3ms)[0m   [0mSELECT * FROM "therapeutic_functions" WHERE ("therapeutic_functions"."id" = 5) [0m
+  [4;36;1mTherapeuticFunction Load (0.3ms)[0m   [0;1mSELECT * FROM "therapeutic_functions" WHERE ("therapeutic_functions"."id" = 6) [0m
+Completed in 106ms (View: 80, DB: 7) | 200 OK [http://localhost/herbs/1]
+
+
+Processing HerbsController#show (for 127.0.0.1 at 2010-01-18 14:38:00) [GET]
+  Parameters: {"id"=>"1"}
+  [4;35;1mHerb Load (0.5ms)[0m   [0mSELECT * FROM "herbs" WHERE ("herbs"."id" = 1) [0m
+Rendering template within layouts/application
+Rendering herbs/show
+  [4;36;1mHerbCategory Load (0.4ms)[0m   [0;1mSELECT * FROM "herb_categories" WHERE ("herb_categories"."id" = 1) [0m
+  [4;35;1mHerbChannel Load (0.7ms)[0m   [0mSELECT * FROM "herb_channels" WHERE ("herb_channels".herb_id = 1) [0m
+  [4;36;1mChannel Load (0.3ms)[0m   [0;1mSELECT * FROM "channels" WHERE ("channels"."id" = 1) [0m
+  [4;35;1mChannel Load (0.4ms)[0m   [0mSELECT * FROM "channels" WHERE ("channels"."id" = 2) [0m
+  [4;36;1mChannel Load (0.4ms)[0m   [0;1mSELECT * FROM "channels" WHERE ("channels"."id" = 3) [0m
+  [4;35;1mHerbFlavor Load (0.6ms)[0m   [0mSELECT * FROM "herb_flavors" WHERE ("herb_flavors".herb_id = 1) [0m
+  [4;36;1mFlavor Load (0.4ms)[0m   [0;1mSELECT * FROM "flavors" WHERE ("flavors"."id" = 1) [0m
+  [4;35;1mFlavor Load (0.3ms)[0m   [0mSELECT * FROM "flavors" WHERE ("flavors"."id" = 2) [0m
+  [4;36;1mFlavor Load (0.3ms)[0m   [0;1mSELECT * FROM "flavors" WHERE ("flavors"."id" = 3) [0m
+  [4;35;1mHerbTherapeuticFunction Load (1.0ms)[0m   [0mSELECT * FROM "herb_therapeutic_functions" WHERE ("herb_therapeutic_functions".herb_id = 1) [0m
+  [4;36;1mTherapeuticFunction Load (0.4ms)[0m   [0;1mSELECT * FROM "therapeutic_functions" WHERE ("therapeutic_functions"."id" = 1) [0m
+  [4;35;1mTherapeuticFunction Load (0.5ms)[0m   [0mSELECT * FROM "therapeutic_functions" WHERE ("therapeutic_functions"."id" = 2) [0m
+  [4;36;1mTherapeuticFunction Load (0.3ms)[0m   [0;1mSELECT * FROM "therapeutic_functions" WHERE ("therapeutic_functions"."id" = 3) [0m
+  [4;35;1mTherapeuticFunction Load (0.3ms)[0m   [0mSELECT * FROM "therapeutic_functions" WHERE ("therapeutic_functions"."id" = 4) [0m
+  [4;36;1mTherapeuticFunction Load (0.3ms)[0m   [0;1mSELECT * FROM "therapeutic_functions" WHERE ("therapeutic_functions"."id" = 5) [0m
+  [4;35;1mTherapeuticFunction Load (0.3ms)[0m   [0mSELECT * FROM "therapeutic_functions" WHERE ("therapeutic_functions"."id" = 6) [0m
+Completed in 113ms (View: 88, DB: 7) | 200 OK [http://localhost/herbs/1]
+
+
+Processing HerbCategoriesController#index (for 127.0.0.1 at 2010-01-18 14:38:10) [GET]
+  [4;36;1mHerbCategory Load (0.9ms)[0m   [0;1mSELECT * FROM "herb_categories" WHERE (name LIKE '%%') [0m
+Rendering template within layouts/application
+Rendering herb_categories/index
+Completed in 30ms (View: 20, DB: 1) | 200 OK [http://localhost/herb_categories]
+
+
+Processing HerbsController#index (for 127.0.0.1 at 2010-01-18 14:38:12) [GET]
+  [4;35;1mHerb Load (0.0ms)[0m   [0mSQLite3::SQLException: no such column: name: SELECT * FROM "herbs" WHERE (name LIKE '%%') [0m
+
+ActiveRecord::StatementInvalid (SQLite3::SQLException: no such column: name: SELECT * FROM "herbs" WHERE (name LIKE '%%') ):
+  app/controllers/herbs_controller.rb:5:in `index'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (59.3ms)
+Rendered rescues/_request_and_response (1.9ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing HerbsController#index (for 127.0.0.1 at 2010-01-18 14:38:34) [GET]
+  [4;36;1mHerb Load (0.9ms)[0m   [0;1mSELECT * FROM "herbs" WHERE (pinyin LIKE '%%') [0m
+Rendering template within layouts/application
+Rendering herbs/index
+
+ActionView::TemplateError (undefined method `category_id' for #<Herb:0xb5d5bd70>) on line #13 of app/views/herbs/index.html.erb:
+10: 
+11: <% @herbs.each do |herb| %>
+12:   <tr>
+13:     <td><%=h herb.category_id %></td>
+14:     <td><%=h herb.pinyin %></td>
+15:     <td><%=h herb.english %></td>
+16:     <td><%=h herb.latin %></td>
+
+    app/views/herbs/index.html.erb:13
+    app/views/herbs/index.html.erb:11:in `each'
+    app/views/herbs/index.html.erb:11
+    app/controllers/herbs_controller.rb:6:in `index'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (70.0ms)
+Rendered rescues/_request_and_response (0.4ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing HerbsController#index (for 127.0.0.1 at 2010-01-18 14:39:00) [GET]
+  [4;35;1mHerb Load (1.0ms)[0m   [0mSELECT * FROM "herbs" WHERE (pinyin LIKE '%%') [0m
+Rendering template within layouts/application
+Rendering herbs/index
+Completed in 36ms (View: 21, DB: 1) | 200 OK [http://localhost/herbs]
+  [4;36;1mSQL (1.2ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.7ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateTherapeuticFunctions (20100118204411)
+Migrating to CreateHerbCategories (20100118204600)
+Migrating to CreateFlavors (20100118204720)
+Migrating to CreateChannels (20100118204747)
+Migrating to CreateHerbs (20100118204907)
+Migrating to CreateHerbTherapeuticFunctions (20100118205005)
+Migrating to CreateHerbChannels (20100118205114)
+Migrating to CreateHerbFlavors (20100118205147)
+Migrating to RenameHerbCategoryIdColumn (20100118222650)
+Migrating to CreateSymptoms (20100118224102)
+  [4;36;1mSQL (0.2ms)[0m   [0;1mselect sqlite_version(*)[0m
+  [4;35;1mSQL (0.7ms)[0m   [0mCREATE TABLE "symptoms" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20100118224102')[0m
+Migrating to CreateFormulas (20100118224258)
+  [4;35;1mSQL (1.0ms)[0m   [0mCREATE TABLE "formulas" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "pinyin" varchar(255), "english" varchar(255), "preparation" text, "commentary" text, "created_at" datetime, "updated_at" datetime) [0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20100118224258')[0m
+Migrating to CreateContraindications (20100118224319)
+  [4;35;1mSQL (0.9ms)[0m   [0mCREATE TABLE "contraindications" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20100118224319')[0m
+Migrating to CreatePatterns (20100118224526)
+  [4;35;1mSQL (1.0ms)[0m   [0mCREATE TABLE "patterns" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "commentary" text, "created_at" datetime, "updated_at" datetime) [0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20100118224526')[0m
+Migrating to CreateFormulaHerbs (20100118224719)
+  [4;35;1mSQL (0.9ms)[0m   [0mCREATE TABLE "formula_herbs" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "formula_id" integer, "herb_id" integer, "formula_role_id" integer, "dose" varchar(255), "commentary" text, "created_at" datetime, "updated_at" datetime) [0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20100118224719')[0m
+Migrating to CreateFormulaSymptoms (20100118224747)
+  [4;35;1mSQL (0.6ms)[0m   [0mCREATE TABLE "formula_symptoms" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "formula_id" integer, "symptom_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20100118224747')[0m
+Migrating to CreateFormulaContraindications (20100118224821)
+  [4;35;1mSQL (1.0ms)[0m   [0mCREATE TABLE "formula_contraindications" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "formula_id" integer, "contraindication_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20100118224821')[0m
+Migrating to CreateFormulaCategories (20100118224841)
+  [4;35;1mSQL (1.0ms)[0m   [0mCREATE TABLE "formula_categories" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "commentary" text, "created_at" datetime, "updated_at" datetime) [0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20100118224841')[0m
+Migrating to CreateTongueQualities (20100118224906)
+  [4;35;1mSQL (1.1ms)[0m   [0mCREATE TABLE "tongue_qualities" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "commentary" text, "created_at" datetime, "updated_at" datetime) [0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20100118224906')[0m
+Migrating to CreatePulseQualities (20100118224940)
+  [4;35;1mSQL (0.9ms)[0m   [0mCREATE TABLE "pulse_qualities" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "commentary" text, "created_at" datetime, "updated_at" datetime) [0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20100118224940')[0m
+Migrating to CreateFormulaTongueQualities (20100118225047)
+  [4;35;1mSQL (1.1ms)[0m   [0mCREATE TABLE "formula_tongue_qualities" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "formula_id" integer, "tongue_quality_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20100118225047')[0m
+Migrating to CreateFormulaPulseQualities (20100118225106)
+  [4;35;1mSQL (1.0ms)[0m   [0mCREATE TABLE "formula_pulse_qualities" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "formula_id" integer, "pulse_quality_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20100118225106')[0m
+Migrating to CreateFormulaTherapeuticFunctions (20100118225756)
+  [4;35;1mSQL (1.0ms)[0m   [0mCREATE TABLE "formula_therapeutic_functions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "formula_id" integer, "therapeutic_function_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20100118225756')[0m
+Migrating to CreateFormulaPatterns (20100118230026)
+  [4;35;1mSQL (0.6ms)[0m   [0mCREATE TABLE "formula_patterns" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "formula_id" integer, "pattern_id" integer, "commentary" text, "created_at" datetime, "updated_at" datetime) [0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20100118230026')[0m
+Migrating to CreateFormulaRoles (20100118230554)
+  [4;35;1mSQL (1.0ms)[0m   [0mCREATE TABLE "formula_roles" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "pinyin" varchar(255), "english" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20100118230554')[0m
+  [4;35;1mSQL (1.5ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (1.3ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;35;1mSQL (1.3ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("channels")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("contraindications")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("flavors")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("formula_categories")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("formula_contraindications")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("formula_herbs")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("formula_patterns")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("formula_pulse_qualities")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("formula_roles")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("formula_symptoms")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("formula_therapeutic_functions")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("formula_tongue_qualities")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("formulas")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("herb_categories")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("herb_channels")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("herb_flavors")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("herb_therapeutic_functions")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("herbs")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("patterns")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("pulse_qualities")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("symptoms")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("therapeutic_functions")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("tongue_qualities")[0m
+
+
+Processing FormulasController#new (for 127.0.0.1 at 2010-01-18 15:28:31) [GET]
+Rendering template within layouts/application
+Rendering formulas/new
+DEPRECATION WARNING: formatted_contraindications_path() has been deprecated. Please pass format to the standard contraindications_path method instead.. (called from _run_erb_app47views47formulas47_formula_contraindication46html46erb_locals_f_formula_contraindication_object at /home/tyler/Projects/herbs/app/views/formulas/_formula_contraindication.html.erb:4)
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+Rendered formulas/_formula_contraindication (8.4ms)
+DEPRECATION WARNING: formatted_herbs_path() has been deprecated. Please pass format to the standard herbs_path method instead.. (called from _run_erb_app47views47formulas47_formula_herb46html46erb_locals_f_formula_herb_object at /home/tyler/Projects/herbs/app/views/formulas/_formula_herb.html.erb:4)
+
+ActionView::TemplateError (undefined method `formatted_formula_roles_path' for #<ActionView::Base:0xb6647a88>) on line #9 of app/views/formulas/_formula_herb.html.erb:
+6: 	</p>
+7: 	<p>
+8: 	Role: <%= f.text_field_with_auto_complete :formula_role_name, {}, 
+9: 			{ :url => formatted_formula_roles_path(:js), :method => :get, :skip_style => true,
+10: 			:with => "'search='+element.value" } %>
+11: 		
+12: 	</p>
+
+    app/views/formulas/_formula_herb.html.erb:9
+    app/helpers/formulas_helper.rb:14:in `new_child_fields'
+    app/helpers/formulas_helper.rb:13:in `new_child_fields'
+    app/helpers/formulas_helper.rb:8:in `add_child_link'
+    app/views/formulas/_form.html.erb:40
+    app/views/formulas/new.html.erb:4
+    app/views/formulas/new.html.erb:3
+    app/controllers/formulas_controller.rb:29:in `new'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (102.6ms)
+Rendered rescues/_request_and_response (2.0ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing FormulasController#new (for 127.0.0.1 at 2010-01-18 15:30:01) [GET]
+Rendering template within layouts/application
+Rendering formulas/new
+DEPRECATION WARNING: formatted_contraindications_path() has been deprecated. Please pass format to the standard contraindications_path method instead.. (called from _run_erb_app47views47formulas47_formula_contraindication46html46erb_locals_f_formula_contraindication_object at /home/tyler/Projects/herbs/app/views/formulas/_formula_contraindication.html.erb:4)
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+Rendered formulas/_formula_contraindication (8.4ms)
+DEPRECATION WARNING: formatted_herbs_path() has been deprecated. Please pass format to the standard herbs_path method instead.. (called from _run_erb_app47views47formulas47_formula_herb46html46erb_locals_f_formula_herb_object at /home/tyler/Projects/herbs/app/views/formulas/_formula_herb.html.erb:4)
+DEPRECATION WARNING: formatted_formula_roles_path() has been deprecated. Please pass format to the standard formula_roles_path method instead.. (called from _run_erb_app47views47formulas47_formula_herb46html46erb_locals_f_formula_herb_object at /home/tyler/Projects/herbs/app/views/formulas/_formula_herb.html.erb:9)
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+Rendered formulas/_formula_herb (14.1ms)
+DEPRECATION WARNING: formatted_patterns_path() has been deprecated. Please pass format to the standard patterns_path method instead.. (called from _run_erb_app47views47formulas47_formula_pattern46html46erb_locals_f_formula_pattern_object at /home/tyler/Projects/herbs/app/views/formulas/_formula_pattern.html.erb:4)
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+Rendered formulas/_formula_pattern (9.8ms)
+DEPRECATION WARNING: formatted_pulse_qualities_path() has been deprecated. Please pass format to the standard pulse_qualities_path method instead.. (called from _run_erb_app47views47formulas47_formula_pulse_quality46html46erb_locals_f_formula_pulse_quality_object at /home/tyler/Projects/herbs/app/views/formulas/_formula_pulse_quality.html.erb:4)
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+Rendered formulas/_formula_pulse_quality (8.5ms)
+DEPRECATION WARNING: formatted_symptoms_path() has been deprecated. Please pass format to the standard symptoms_path method instead.. (called from _run_erb_app47views47formulas47_formula_symptom46html46erb_locals_f_formula_symptom_object at /home/tyler/Projects/herbs/app/views/formulas/_formula_symptom.html.erb:4)
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+Rendered formulas/_formula_symptom (8.8ms)
+DEPRECATION WARNING: formatted_therapeutic_functions_path() has been deprecated. Please pass format to the standard therapeutic_functions_path method instead.. (called from _run_erb_app47views47formulas47_formula_therapeutic_function46html46erb_locals_f_formula_therapeutic_function_object at /home/tyler/Projects/herbs/app/views/formulas/_formula_therapeutic_function.html.erb:4)
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+DEPRECATION WARNING: _destroy is deprecated in nested attributes. Use _destroy instead.. (called from _destroy at /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/nested_attributes.rb:263)
+Rendered formulas/_formula_therapeutic_function (9.4ms)
+Rendered formulas/_form (292.8ms)
+Completed in 376ms (View: 341, DB: 0) | 200 OK [http://localhost/formulas/new]

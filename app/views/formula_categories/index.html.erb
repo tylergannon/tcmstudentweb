@@ -1,0 +1,19 @@
+<% title "Formula Categories" %>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Commentary</th>
+  </tr>
+  <% for formula_category in @formula_categories %>
+    <tr>
+      <td><%=h formula_category.name %></td>
+      <td><%=h formula_category.commentary %></td>
+      <td><%= link_to "Show", formula_category %></td>
+      <td><%= link_to "Edit", edit_formula_category_path(formula_category) %></td>
+      <td><%= link_to "Destroy", formula_category, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Formula Category", new_formula_category_path %></p>

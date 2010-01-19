@@ -1,0 +1,16 @@
+<% title "Pulse Quality" %>
+
+<p>
+  <strong>Name:</strong>
+  <%=h @pulse_quality.name %>
+</p>
+<p>
+  <strong>Commentary:</strong>
+  <%=h @pulse_quality.commentary %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_pulse_quality_path(@pulse_quality) %> |
+  <%= link_to "Destroy", @pulse_quality, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", pulse_qualities_path %>
+</p>

@@ -1,0 +1,17 @@
+<% title "Therapeutic Functions" %>
+
+<table>
+  <tr>
+    <th>Name</th>
+  </tr>
+  <% for therapeutic_function in @therapeutic_functions %>
+    <tr>
+      <td><%=h therapeutic_function.name %></td>
+      <td><%= link_to "Show", therapeutic_function %></td>
+      <td><%= link_to "Edit", edit_therapeutic_function_path(therapeutic_function) %></td>
+      <td><%= link_to "Destroy", therapeutic_function, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Therapeutic Function", new_therapeutic_function_path %></p>

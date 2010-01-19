@@ -1,0 +1,10 @@
+<% title "New Herb" %>
+
+<% form_for(@herb) do |f| %>
+  <%= render :partial => 'form', :locals => { :f => f } %>
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', herbs_path %>

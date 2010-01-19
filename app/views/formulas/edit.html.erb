@@ -1,0 +1,11 @@
+<% title "Editing #{@formula.pinyin}" %>
+
+<% form_for(@formula) do |f| %>
+  <%= render :partial => 'form', :locals => { :f => f } %>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @formula %> |
+<%= link_to 'Back', formulas_path %>

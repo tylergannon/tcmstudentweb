@@ -1,0 +1,64 @@
+<% title "#{@formula.pinyin} / #{@formula.english}" %>
+
+<hr>S/Sx</hr>
+
+
+<hr />
+<h2>Diagnosis</h2>
+<ul>
+	<% @formula.formula_patterns.each do |formula_pattern| %>
+		<li>formula_pattern.pattern_name</li>
+		<% unless formula_pattern.commentary.blank? %>
+			<ul>
+				<li><%=h formula_pattern.commentary %></li>
+			</ul>
+		<% end %>
+	<% end %>
+</ul>
+
+<hr  />	
+<h2>Herbs</h2>
+<table>
+	<% FormulaRole.all.each do |role| %>
+
+		<%= render :partial => "show_formula_herbs", :locals => { :formula_herbs => @formula.formula_herbs.select{|a| a.formula_role.pinyin == role.pinyin} } %>
+
+	<% end %>
+</table>
+
+
+<p>
+  <b>Preparation:</b>
+  <%=h @formula.preparation %>
+</p>
+
+
+<% @formula.formula_contraindications.each do |formula_contraindication| %>
+  <div class="child">
+  </div>
+<% end %>
+
+
+
+
+
+
+<% @formula.formula_pulse_qualities.each do |formula_pulse_quality| %>
+  <div class="child">
+  </div>
+<% end %>
+
+
+<% @formula.formula_therapeutic_functions.each do |formula_therapeutic_function| %>
+  <div class="child">
+  </div>
+<% end %>
+
+<p>
+  <b>Commentary:</b>
+  <%=h @formula.commentary %>
+</p>
+
+
+<%= link_to 'Edit', edit_formula_path(@formula) %> |
+<%= link_to 'Back', formulas_path %>

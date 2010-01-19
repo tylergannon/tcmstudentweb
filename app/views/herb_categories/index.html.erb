@@ -1,0 +1,17 @@
+<% title "Herb Categories" %>
+
+<table>
+  <tr>
+    <th>Name</th>
+  </tr>
+  <% for herb_category in @herb_categories %>
+    <tr>
+      <td><%=h herb_category.name %></td>
+      <td><%= link_to "Show", herb_category %></td>
+      <td><%= link_to "Edit", edit_herb_category_path(herb_category) %></td>
+      <td><%= link_to "Destroy", herb_category, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Herb Category", new_herb_category_path %></p>

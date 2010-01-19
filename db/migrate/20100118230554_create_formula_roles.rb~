@@ -1,0 +1,14 @@
+class CreateFormulaRoles < ActiveRecord::Migration
+  def self.up
+    create_table :formula_roles do |t|
+      t.string :pinyin
+      t.string :english
+
+      t.timestamps
+    end
+  end
+
+  def self.down
+    drop_table :formula_roles
+  end
+end

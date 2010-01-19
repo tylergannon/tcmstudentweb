@@ -1,0 +1,64 @@
+<%= f.error_messages %>
+
+<p>
+  <%= f.label :category_id %><br />
+  <%= f.text_field_with_auto_complete :herb_category_name, {}, 
+		{ :url => formatted_herb_categories_path(:js), :method => :get, :skip_style => true,
+  	:with => "'search='+element.value" } %>
+  
+</p>
+
+<p>
+  <%= f.label :pinyin %><br />
+  <%= f.text_field :pinyin %>
+</p>
+
+<p>
+  <%= f.label :english %><br />
+  <%= f.text_field :english %>
+</p>
+
+<p>
+  <%= f.label :latin %><br />
+  <%= f.text_field :latin %>
+</p>
+
+<p>
+  <%= f.label :commentary %><br />
+  <%= f.text_area :commentary %>
+</p>
+
+<p>
+  <%= f.label :contraindications %><br />
+  <%= f.text_area :contraindications %>
+</p>
+
+<div id='herb_channel_children'>
+  <% f.fields_for :herb_channels do |herb_channel_form| %>
+    <%= render :partial => 'herb_channel', :locals => { :f => herb_channel_form } %>
+  <% end %>
+</div>
+
+<p>
+  <%= add_child_link 'Add a HerbChannel', 'herb_channel', f %>
+</p>
+
+<div id='herb_flavor_children'>
+  <% f.fields_for :herb_flavors do |herb_flavor_form| %>
+    <%= render :partial => 'herb_flavor', :locals => { :f => herb_flavor_form } %>
+  <% end %>
+</div>
+
+<p>
+  <%= add_child_link 'Add a HerbFlavor', 'herb_flavor', f %>
+</p>
+
+<div id='herb_therapeutic_function_children'>
+  <% f.fields_for :herb_therapeutic_functions do |herb_therapeutic_function_form| %>
+    <%= render :partial => 'herb_therapeutic_function', :locals => { :f => herb_therapeutic_function_form } %>
+  <% end %>
+</div>
+
+<p>
+  <%= add_child_link 'Add a HerbTherapeuticFunction', 'herb_therapeutic_function', f %>
+</p>

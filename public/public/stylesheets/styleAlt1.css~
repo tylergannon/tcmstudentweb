@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>Uncreative Suite</title>
+<link rel="stylesheet" href="css/styleMain.css" type="text/css" media="screen" />
+</head>
+
+<body>
+
+<div id="container">
+<div id="containerPad">
+<div id="topLinks">
+	<a href="index.html">Link 1</a> | 
+	<a href="index.html">Link 2</a> | 
+	<a href="index.html">Link 3</a> | 
+	<a href="index.html">Link 4</a>
+</div>
+
+<div id="header">
+	<div class="headLeft"></div>
+	<div class="headMiddle">
+	<h1>Uncreative Suite</h1>
+	<h2>Some kind of XHTML/CSS2 Template</h2>
+	</div>
+	
+	
+	
+	<div class="headRight"></div>
+	<div id="navigation">
+		<div class="naviLeft"></div>
+		<div class="link"><a href="index.html">Main Page</a></div>
+		<div class="link"><a href="alt1.html">1-Column</a></div>
+		<div class="link"><a href="tags.html">Tag Examples</a></div>
+	</div>	
+</div>
+
+<div id="sidebar">
+	<div class="top">Random Image</div>
+	<div class="middle">
+		<div class="center">
+			<a href="index.html"><img src="img/imgtest.jpg" alt="random image" /></a> <br />
+			<span class="subtitle">Some kind of subtitle</span>
+		</div>
+	</div>
+	<div class="bottom"></div>
+	
+	<h1>Links</h1>
+	<div class="divider"></div>
+	
+	<div class="link"><a href="#heh">Link 1</a></div>
+	<div class="link"><a href="#heh">Link 2</a></div>
+	<div class="link"><a href="#heh">Link 3</a></div>
+	<div class="link"><a href="#heh">Link 4</a></div>
+	
+	&nbsp;
+	
+	<div class="top">Some Random Text</div>
+	<div class="middle"><p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Etiam interdum lorem sit amet magna. 
+	Vivamus mauris neque, lacinia a, sollicitudin.</p></div>
+	<div class="bottom"></div>
+
+</div>
+
+	
+
+<div id="content">
+	<div class="top">
+		<div class="topLeft"></div><div class="topMiddle"><h1>&raquo; Main page</h1></div><div class="topRight"></div>
+	</div>
+	<div class="middle">
+		<h2>Uncreative Suite</h2>
+		<div class="divider"></div>
+	
+		<p>Uncreative Suite is a web design I made to mimic the overhauled user interface of <b>Adobe Photoshop CS3</b>, at least to a certain extent. Why? I'm not entirely sure myself, but here it is.</p>
+		
+		<h3><span class="blue">What to expect from this design:</span></h3>
+		
+		<ul>
+		<li><b>Variable-width goodness.</b> It always bugs me when a design is fixed width because it expects people to use a certain
+		screen resolution or window size, otherwise you get a nasty little horizontal scrollbar. That problem is eliminated with variable width, and allows for
+		greater flexibility. If you prefer fixed width, it's as easy as changing a number in the stylesheet.</li>
+		
+		<li><b>Browser Compatibility.</b> I always try my best to make my designs compatible with all major internet browsers. That
+		includes (but is not limited to) <a href="http://www.microsoft.com/windows/ie/ie6/default.mspx">Internet Explorer 6</a>,
+		<a href="http://www.microsoft.com/windows/ie/default.asp">Internet Explorer 7</a>, <a href="http://www.mozilla.org/">Mozilla Firefox</a>, and
+		<a href="http://opera.com">Opera</a>.</li>
+		
+		<li><b>Simple yet Beautiful.</b> Another thing I always try and do is make a simple, functional design that looks good without bulking up the file
+		size or making it confusing to read or edit.</li>
+		</ul>
+				
+		<div class="commentBox">Posted on <i>Wednesday, January 3, 2007</i> by [your name goes here] | <a href="index.html">Comments (5)</a></div>
+		
+		<h2>Some kind of Header</h2>
+		<div class="divider"></div>
+		
+		<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Phasellus convallis laoreet lacus. Proin laoreet, ipsum id fringilla fermentum, metus est nonummy eros, ac tempus tellus magna egestas tortor. Vestibulum ultrices libero nec velit. Aliquam sollicitudin. Phasellus elementum massa suscipit arcu. Fusce sed nisi non massa pellentesque tincidunt. Cras luctus metus a turpis. Aliquam erat volutpat. Donec quis lorem. Nullam erat erat, sollicitudin vel, pharetra ac, tempor a, nulla. Aenean commodo mauris eu urna. Praesent rhoncus, orci in sodales fringilla, lorem purus elementum augue, molestie nonummy orci nisi sit amet neque. Vestibulum eu massa vel sapien placerat tincidunt. Nunc hendrerit, dolor eu porttitor pharetra, leo nulla placerat erat, luctus sollicitudin tortor velit ultrices velit. Suspendisse aliquam.</p>
+		
+		<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec lacus lectus, egestas suscipit, pharetra nec, bibendum nec, velit. Donec bibendum hendrerit ipsum. Duis in orci. Pellentesque ullamcorper arcu ut ipsum. In eleifend massa eget metus. Praesent sapien mauris, aliquam id, dignissim id, posuere vitae, ligula. Integer turpis eros, sollicitudin et, ultrices non, blandit sit amet, nisi. Integer vel mi eget quam dapibus pulvinar. Donec ullamcorper, massa ac faucibus vehicula, neque risus pharetra nibh, nec dignissim enim nisi id pede. Duis risus. Etiam accumsan. Donec turpis augue, porttitor tempus, gravida at, egestas eget, pede. Integer dignissim. Suspendisse fermentum risus ut arcu. Suspendisse fermentum lacinia nunc. Nullam lacinia pede mattis metus hendrerit dapibus. Nullam vulputate. Quisque ornare pulvinar diam.</p>
+
+		<p>Curabitur hendrerit nunc eget arcu. Phasellus varius elit vitae orci. Mauris id arcu. Duis ac enim ac tellus pretium nonummy. Vestibulum ultrices ipsum vel orci. Curabitur dolor felis, tempor sed, iaculis at, dapibus in, libero. Aliquam eu nisi tincidunt eros rutrum blandit. Sed volutpat risus scelerisque mauris. Fusce imperdiet, magna id sollicitudin placerat, mauris felis pretium turpis, ut rutrum arcu mauris vitae massa. Nullam volutpat dui vitae sem suscipit adipiscing.</p>
+
+		<p>Nulla sapien erat, ornare volutpat, vehicula eget, fermentum et, enim. Cras in nibh eu felis sagittis fermentum. Fusce molestie tristique pede. Pellentesque ut tortor. Aliquam eu odio sed odio fringilla rutrum. Donec lacinia pulvinar tortor. Donec est ante, venenatis sed, fringilla eget, consequat id, nisi. Sed at neque. Fusce iaculis facilisis magna. Duis in sem. In hac habitasse platea dictumst. Donec aliquam condimentum dolor.</p>
+		
+		<div class="commentBox">Posted on <i>Wednesday, January 3, 2007</i> by [your name goes here] | <a href="index.html">Comments (5)</a></div>
+	</div>
+	<div class="bottom"><div class="bottomLeft"></div><div class="bottomRight"></div></div>
+</div>
+<div id="contentEnd"></div>
+<div id="footerTop">
+	Copyright &copy; 2006 [insert your name here], all rights reserved<br />
+	<a href="http://validator.w3.org/check?uri=referer">Valid XHTML 1.1</a><br />
+	Design by <a href="http://doomrealm.mancubus.net">Matthew "Agent Spork" McGee</a><br />  Courtesy <a href="http://www.openwebdesign.org" target="_blank">Open Web Design</a>, Thanks to <a href="http://blog.legalhelpers.com/" target="_blank">Personal Bankruptcy</a>
+</div>
+
+</div>
+</div>
+<div id="footerBottom"><div class="left"></div><div class="right"></div></div>
+
+</body>
+</html>
