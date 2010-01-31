@@ -3484,3 +3484,168 @@ Rendered formulas/_formula_tongue_quality (7.4ms)
 Rendered formulas/_formula_contraindication (6.9ms)
 Rendered formulas/_form (279.2ms)
 Completed in 315ms (View: 293, DB: 1) | 200 OK [http://localhost/formulas/new]
+  [4;36;1mSQL (2.5ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (1.6ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateTherapeuticFunctions (20100118204411)
+Migrating to CreateHerbCategories (20100118204600)
+Migrating to CreateFlavors (20100118204720)
+Migrating to CreateChannels (20100118204747)
+Migrating to CreateHerbs (20100118204907)
+Migrating to CreateHerbTherapeuticFunctions (20100118205005)
+Migrating to CreateHerbChannels (20100118205114)
+Migrating to CreateHerbFlavors (20100118205147)
+Migrating to RenameHerbCategoryIdColumn (20100118222650)
+Migrating to CreateSymptoms (20100118224102)
+Migrating to CreateFormulas (20100118224258)
+Migrating to CreateContraindications (20100118224319)
+Migrating to CreatePatterns (20100118224526)
+Migrating to CreateFormulaHerbs (20100118224719)
+Migrating to CreateFormulaSymptoms (20100118224747)
+Migrating to CreateFormulaContraindications (20100118224821)
+Migrating to CreateFormulaCategories (20100118224841)
+Migrating to CreateTongueQualities (20100118224906)
+Migrating to CreatePulseQualities (20100118224940)
+Migrating to CreateFormulaTongueQualities (20100118225047)
+Migrating to CreateFormulaPulseQualities (20100118225106)
+Migrating to CreateFormulaTherapeuticFunctions (20100118225756)
+Migrating to CreateFormulaPatterns (20100118230026)
+Migrating to CreateFormulaRoles (20100118230554)
+Migrating to CreateDuiYaos (20100119054942)
+Migrating to CreateDuiYaoHerbs (20100119055029)
+Migrating to CreateFormulaDuiYaos (20100119055138)
+Migrating to AddCategoryToFormula (20100119070419)
+Migrating to AddChineseToFormulasAndHerbs (20100119173202)
+  [4;36;1mSQL (0.2ms)[0m   [0;1mselect sqlite_version(*)[0m
+  [4;35;1mSQL (0.8ms)[0m   [0mALTER TABLE "formulas" ADD "chinese" varchar(255)[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mALTER TABLE "herbs" ADD "chinese" varchar(255)[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20100119173202')[0m
+  [4;36;1mSQL (1.7ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (1.6ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (6.1ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("channels")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("contraindications")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("dui_yao_herbs")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("dui_yaos")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("flavors")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("formula_categories")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("formula_contraindications")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("formula_dui_yaos")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("formula_herbs")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("formula_patterns")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("formula_pulse_qualities")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("formula_roles")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("formula_symptoms")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("formula_therapeutic_functions")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("formula_tongue_qualities")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("formulas")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("herb_categories")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("herb_channels")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("herb_flavors")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("herb_therapeutic_functions")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("herbs")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("patterns")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("pulse_qualities")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("symptoms")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("therapeutic_functions")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("tongue_qualities")[0m
+
+
+Processing FormulasController#index (for 127.0.0.1 at 2010-01-19 09:34:16) [GET]
+  [4;36;1mFormula Load (1.7ms)[0m   [0;1mSELECT * FROM "formulas" [0m
+Rendering template within layouts/application
+Rendering formulas/index
+Completed in 88ms (View: 53, DB: 2) | 200 OK [http://localhost/formulas/]
+
+
+Processing FormulasController#edit (for 127.0.0.1 at 2010-01-19 09:34:20) [GET]
+  Parameters: {"id"=>"1"}
+  [4;35;1mFormula Load (0.4ms)[0m   [0mSELECT * FROM "formulas" WHERE ("formulas"."id" = 1) [0m
+Rendering template within layouts/application
+Rendering formulas/edit
+  [4;36;1mFormulaCategory Load (0.4ms)[0m   [0;1mSELECT * FROM "formula_categories" WHERE ("formula_categories"."id" = 1) [0m
+  [4;35;1mFormulaHerb Load (1.2ms)[0m   [0mSELECT * FROM "formula_herbs" WHERE ("formula_herbs".formula_id = 1) [0m
+  [4;36;1mFormulaRole Load (0.8ms)[0m   [0;1mSELECT * FROM "formula_roles" [0m
+Rendered formulas/_formula_herb (19.4ms)
+  [4;35;1mHerb Load (0.6ms)[0m   [0mSELECT * FROM "herbs" WHERE ("herbs"."id" = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "formula_roles" [0m
+Rendered formulas/_formula_herb (105.0ms)
+  [4;35;1mHerb Load (0.6ms)[0m   [0mSELECT * FROM "herbs" WHERE ("herbs"."id" = 2) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "formula_roles" [0m
+Rendered formulas/_formula_herb (9.1ms)
+  [4;35;1mHerb Load (0.6ms)[0m   [0mSELECT * FROM "herbs" WHERE ("herbs"."id" = 4) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "formula_roles" [0m
+Rendered formulas/_formula_herb (9.1ms)
+  [4;35;1mHerb Load (0.5ms)[0m   [0mSELECT * FROM "herbs" WHERE ("herbs"."id" = 3) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "formula_roles" [0m
+Rendered formulas/_formula_herb (8.8ms)
+  [4;35;1mHerb Load (0.5ms)[0m   [0mSELECT * FROM "herbs" WHERE ("herbs"."id" = 5) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "formula_roles" [0m
+Rendered formulas/_formula_herb (8.8ms)
+  [4;35;1mFormulaTherapeuticFunction Load (0.2ms)[0m   [0mSELECT * FROM "formula_therapeutic_functions" WHERE ("formula_therapeutic_functions".formula_id = 1) [0m
+Rendered formulas/_formula_therapeutic_function (7.7ms)
+  [4;36;1mFormulaPattern Load (0.2ms)[0m   [0;1mSELECT * FROM "formula_patterns" WHERE ("formula_patterns".formula_id = 1) [0m
+Rendered formulas/_formula_pattern (8.8ms)
+  [4;35;1mFormulaSymptom Load (0.2ms)[0m   [0mSELECT * FROM "formula_symptoms" WHERE ("formula_symptoms".formula_id = 1) [0m
+Rendered formulas/_formula_symptom (6.8ms)
+  [4;36;1mFormulaPulseQuality Load (0.2ms)[0m   [0;1mSELECT * FROM "formula_pulse_qualities" WHERE ("formula_pulse_qualities".formula_id = 1) [0m
+Rendered formulas/_formula_pulse_quality (7.1ms)
+  [4;35;1mFormulaTongueQuality Load (0.2ms)[0m   [0mSELECT * FROM "formula_tongue_qualities" WHERE ("formula_tongue_qualities".formula_id = 1) [0m
+Rendered formulas/_formula_tongue_quality (7.2ms)
+  [4;36;1mFormulaContraindication Load (0.2ms)[0m   [0;1mSELECT * FROM "formula_contraindications" WHERE ("formula_contraindications".formula_id = 1) [0m
+Rendered formulas/_formula_contraindication (7.9ms)
+Rendered formulas/_form (475.6ms)
+Completed in 520ms (View: 492, DB: 7) | 200 OK [http://localhost/formulas/1/edit]
+
+
+Processing FormulasController#update (for 127.0.0.1 at 2010-01-19 09:34:36) [PUT]
+  Parameters: {"commit"=>"Update", "authenticity_token"=>"EkdmYnOjUUm7mdWqcy4c5g4lbLMJyVp/3rEWc4Y9iaU=", "id"=>"1", "formula"=>{"commentary"=>"", "formula_herbs_attributes"=>{"0"=>{"commentary"=>"", "formula_role_id"=>"1", "id"=>"1", "_destroy"=>"", "herb_pinyin"=>"Gui Zhi", "dose"=>""}, "1"=>{"commentary"=>"", "formula_role_id"=>"2", "id"=>"2", "_destroy"=>"", "herb_pinyin"=>"Bai Shao", "dose"=>""}, "2"=>{"commentary"=>"", "formula_role_id"=>"3", "id"=>"3", "_destroy"=>"", "herb_pinyin"=>"Da Zao", "dose"=>""}, "3"=>{"commentary"=>"", "formula_role_id"=>"3", "id"=>"4", "_destroy"=>"", "herb_pinyin"=>"Sheng Jiang", "dose"=>""}, "4"=>{"commentary"=>"", "formula_role_id"=>"4", "id"=>"5", "_destroy"=>"", "herb_pinyin"=>"Zhi Gan Cao", "dose"=>""}}, "pinyin"=>"Gui Zhi Tang", "preparation"=>"", "english"=>"Cinnamon Twig Decoction", "chinese"=>"當歸四逆湯", "formula_category_name"=>"Exterior Releasing"}}
+  [4;35;1mFormula Load (0.4ms)[0m   [0mSELECT * FROM "formulas" WHERE ("formulas"."id" = 1) [0m
+  [4;36;1mFormulaHerb Load (1.2ms)[0m   [0;1mSELECT * FROM "formula_herbs" WHERE ("formula_herbs".formula_id = 1) [0m
+  [4;35;1mHerb Load (0.5ms)[0m   [0mSELECT * FROM "herbs" WHERE ("herbs"."pinyin" = 'Gui Zhi') LIMIT 1[0m
+  [4;36;1mHerb Load (0.5ms)[0m   [0;1mSELECT * FROM "herbs" WHERE ("herbs"."pinyin" = 'Bai Shao') LIMIT 1[0m
+  [4;35;1mHerb Load (0.4ms)[0m   [0mSELECT * FROM "herbs" WHERE ("herbs"."pinyin" = 'Da Zao') LIMIT 1[0m
+  [4;36;1mHerb Load (0.4ms)[0m   [0;1mSELECT * FROM "herbs" WHERE ("herbs"."pinyin" = 'Sheng Jiang') LIMIT 1[0m
+  [4;35;1mHerb Load (0.4ms)[0m   [0mSELECT * FROM "herbs" WHERE ("herbs"."pinyin" = 'Zhi Gan Cao') LIMIT 1[0m
+  [4;36;1mFormulaCategory Load (4.0ms)[0m   [0;1mSELECT * FROM "formula_categories" WHERE ("formula_categories"."name" = 'Exterior Releasing') LIMIT 1[0m
+  [4;35;1mFormula Update (0.6ms)[0m   [0mUPDATE "formulas" SET "updated_at" = '2010-01-19 17:34:36', "chinese" = '當歸四逆湯' WHERE "id" = 1[0m
+Redirected to http://localhost:3000/formulas/1
+Completed in 223ms (DB: 8) | 302 Found [http://localhost/formulas/1]
+
+
+Processing FormulasController#show (for 127.0.0.1 at 2010-01-19 09:34:36) [GET]
+  Parameters: {"id"=>"1"}
+  [4;36;1mFormula Load (0.4ms)[0m   [0;1mSELECT * FROM "formulas" WHERE ("formulas"."id" = 1) [0m
+Rendering template within layouts/application
+Rendering formulas/show
+  [4;35;1mFormulaPattern Load (0.3ms)[0m   [0mSELECT * FROM "formula_patterns" WHERE ("formula_patterns".formula_id = 1) [0m
+  [4;36;1mFormulaRole Load (0.8ms)[0m   [0;1mSELECT * FROM "formula_roles" [0m
+  [4;35;1mFormulaHerb Load (1.2ms)[0m   [0mSELECT * FROM "formula_herbs" WHERE ("formula_herbs".formula_id = 1) [0m
+  [4;36;1mFormulaRole Load (0.4ms)[0m   [0;1mSELECT * FROM "formula_roles" WHERE ("formula_roles"."id" = 1) [0m
+  [4;35;1mFormulaRole Load (0.4ms)[0m   [0mSELECT * FROM "formula_roles" WHERE ("formula_roles"."id" = 2) [0m
+  [4;36;1mFormulaRole Load (0.4ms)[0m   [0;1mSELECT * FROM "formula_roles" WHERE ("formula_roles"."id" = 3) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "formula_roles" WHERE ("formula_roles"."id" = 3) [0m
+  [4;36;1mFormulaRole Load (0.4ms)[0m   [0;1mSELECT * FROM "formula_roles" WHERE ("formula_roles"."id" = 4) [0m
+  [4;35;1mHerb Load (0.7ms)[0m   [0mSELECT * FROM "herbs" WHERE ("herbs"."id" = 1) [0m
+  [4;36;1mHerbCategory Load (0.4ms)[0m   [0;1mSELECT * FROM "herb_categories" WHERE ("herb_categories"."id" = 1) [0m
+Rendered formulas/_show_formula_herbs (30.3ms)
+  [4;35;1mHerb Load (0.5ms)[0m   [0mSELECT * FROM "herbs" WHERE ("herbs"."id" = 2) [0m
+Rendered formulas/_show_formula_herbs (2.6ms)
+  [4;36;1mHerb Load (0.5ms)[0m   [0;1mSELECT * FROM "herbs" WHERE ("herbs"."id" = 4) [0m
+  [4;35;1mHerb Load (0.4ms)[0m   [0mSELECT * FROM "herbs" WHERE ("herbs"."id" = 3) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "herb_categories" WHERE ("herb_categories"."id" = 1) [0m
+Rendered formulas/_show_formula_herbs (4.7ms)
+  [4;35;1mHerb Load (0.5ms)[0m   [0mSELECT * FROM "herbs" WHERE ("herbs"."id" = 5) [0m
+Rendered formulas/_show_formula_herbs (2.1ms)
+  [4;36;1mFormulaContraindication Load (0.3ms)[0m   [0;1mSELECT * FROM "formula_contraindications" WHERE ("formula_contraindications".formula_id = 1) [0m
+  [4;35;1mFormulaPulseQuality Load (0.2ms)[0m   [0mSELECT * FROM "formula_pulse_qualities" WHERE ("formula_pulse_qualities".formula_id = 1) [0m
+  [4;36;1mFormulaTherapeuticFunction Load (0.3ms)[0m   [0;1mSELECT * FROM "formula_therapeutic_functions" WHERE ("formula_therapeutic_functions".formula_id = 1) [0m
+Completed in 236ms (View: 206, DB: 8) | 200 OK [http://localhost/formulas/1]

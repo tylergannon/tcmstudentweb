@@ -1,45 +1,20 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :formula_roles
+
   map.resources :formulas
-
+	map.resources :formula_roles
   map.resources :tongue_qualities
-
   map.resources :therapeutic_functions
-
   map.resources :symptoms
-
   map.resources :pulse_qualities
-
   map.resources :patterns
-
   map.resources :contraindications
-
   map.resources :formula_categories
-
-  map.resources :pulse_qualities
-
-  map.resources :tongue_qualities
-
-  map.resources :formula_categories
-
-  map.resources :contraindications
-
-  map.resources :symptoms
-
   map.resources :herbs
-
   map.resources :herb_categories
-
   map.resources :channels
-
   map.resources :flavors
 
-  map.resources :therapeutic_functions
-
-  map.resources :herbs
-
-  map.resources :herb_categories
-
-  map.resources :therapeutic_functions
 
   # The priority is based upon order of creation: first created -> highest priority.
 
