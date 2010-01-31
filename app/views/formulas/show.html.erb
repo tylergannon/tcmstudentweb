@@ -38,11 +38,6 @@
   </div>
 <% end %>
 
-
-
-
-
-
 <% @formula.formula_pulse_qualities.each do |formula_pulse_quality| %>
   <div class="child">
   </div>
@@ -60,5 +55,7 @@
 </p>
 
 
-<%= link_to 'Edit', edit_formula_path(@formula) %> |
+<% if can? :update, @formula %>
+	<%= link_to 'Edit', edit_formula_path(@formula) %> |	
+<% end %>
 <%= link_to 'Back', formulas_path %>

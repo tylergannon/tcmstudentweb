@@ -2,12 +2,14 @@
 
 # Specifies gem version of Rails to use when vendor/rails is not present
 RAILS_GEM_VERSION = '2.3.5' unless defined? RAILS_GEM_VERSION
-
+NEGATIVE_CAPTCHA_SECRET = 'dcb05dc2da29728391f674c1ad64b328b42ea02bff134e6628cb49138cef70893d05fcd91dc8c347f9298540ea3555db41e99bf4dd747275ea69975036ef394b'
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
 
 Rails::Initializer.run do |config|
 	config.gem "repeated_auto_complete"
+	config.gem "authlogic"
+	config.gem "cancan"
   # Settings in config/environments/* take precedence over those specified here.
   # Application configuration should go into files in config/initializers
   # -- all .rb files in that directory are automatically loaded.
@@ -39,4 +41,7 @@ Rails::Initializer.run do |config|
   # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
   # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
   # config.i18n.default_locale = :de
+
+
 end
+

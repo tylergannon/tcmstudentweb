@@ -108,7 +108,7 @@ img { border: 0; margin: 1px; }
 }
 
 /*=========================================*/
-/*Navigation							   */
+/*Navigation							   							 */
 /*=========================================*/
 
 #navigation {
@@ -119,7 +119,6 @@ img { border: 0; margin: 1px; }
 	background-repeat: repeat-x;
 	margin-top: 100px;
 }
-
 
 #navigation .naviLeft {
 	height: 44px;

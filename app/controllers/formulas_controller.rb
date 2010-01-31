@@ -1,6 +1,6 @@
 class FormulasController < ApplicationController
-  # GET /formulas
-  # GET /formulas.xml
+  load_and_authorize_resource
+	
   def index
     @formulas = Formula.all
 
