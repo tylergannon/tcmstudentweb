@@ -53,6 +53,23 @@ class FormulasController < ApplicationController
       end
     end
   end
+	
+	def add_dui_yao
+		@formula_dui_yao = FormulaDuiYao.new
+		@formula_dui_yao.formula_id = params[:formula_id]
+		@formula_dui_yao.dui_yao = DuiYao.find_or_create_by_herbs_pinyin(params[:formula_dui_yao][:herb1_pinyin], params[:formula_dui_yao][:herb2_pinyin])
+		@formula_dui_yao.commentary = params[:formula_dui_yao][:commentary]
+    respond_to do |format|
+      if @formula.save
+        flash[:notice] = 'Dui Yao was successfully added.'
+        format.html { redirect_to(@formula) }
+        format.xml  { render :xml => @formula, :status => :created, :location => @formula }
+      else
+        format.html { render :action => "new" }
+        format.xml  { render :xml => @formula.errors, :status => :unprocessable_entity }
+      end
+    end
+	end
 
   # PUT /formulas/1
   # PUT /formulas/1.xml

@@ -7,5 +7,24 @@
   </p>
 <% end %>
 
+<h2>Dui Yao's</h2>
+<div id="dui_yao_flash"><%= flash[:dui_yao] %></div>
+<div id="dui_yaos">
+	<%= render :partial => "formula_dui_yaos/formula_dui_yao", :collection => @formula.formula_dui_yaos %>
+</div>
+
+<% form_remote_for :formula_dui_yao, :url => formula_dui_yaos_path, :html => {:id => "dui_yao_form"} do |f| %>
+	<%= f.hidden_field :formula_id, :value => @formula.id %>
+	<p>
+		Herb 1: <%= f.collection_select(:herb1_pinyin, @formula.herbs, :pinyin, :pinyin) %>
+	</p>
+	<p>
+		Herb 2: <%= f.collection_select(:herb2_pinyin, @formula.herbs, :pinyin, :pinyin) %>
+	</p>	
+	
+	<%= f.text_area :commentary, :rows => 3, :cols => 60 %>
+	<%= f.submit "Add Dui Yao" %>
+<% end %>
+
 <%= link_to 'Show', @formula %> |
 <%= link_to 'Back', formulas_path %>

@@ -1,0 +1,4 @@
+page.insert_html :bottom, :dui_yaos, :partial => 'formula_dui_yaos/formula_dui_yao', :object => @formula_dui_yao
+page[:dui_yao_form].reset
+page.replace_html :dui_yao_flash, flash[:dui_yao]
+flash.discard

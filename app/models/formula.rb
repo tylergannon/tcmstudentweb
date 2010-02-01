@@ -25,6 +25,9 @@ class Formula < ActiveRecord::Base
 	has_many :formula_patterns
 	accepts_nested_attributes_for :formula_patterns, :reject_if => proc {|a| a['pattern_name'.blank?]}
 	
+	has_many :formula_dui_yaos
+	accepts_nested_attributes_for :formula_dui_yaos, :reject_if => proc {|a| a['herb1_id'.blank?]}
+	
 	belongs_to :formula_category
 	def formula_category_name=(name)
 		self.formula_category = FormulaCategory.find_or_create_by_name(name) unless name.blank?

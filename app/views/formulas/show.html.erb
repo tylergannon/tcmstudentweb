@@ -55,6 +55,13 @@
 </p>
 
 
+<h2>Dui Yao's</h2>
+
+<div id="dui_yaos">
+	<%= render :partial => "formula_dui_yaos/formula_dui_yao", :collection => @formula.formula_dui_yaos %>
+</div>
+
+
 <% if can? :update, @formula %>
 	<%= link_to 'Edit', edit_formula_path(@formula) %> |	
 <% end %>
