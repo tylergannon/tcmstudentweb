@@ -1,6 +1,7 @@
 class FormulaCategoriesController < ApplicationController
   def index
-		@formulas = Formula.find(:all, :conditions => ['name LIKE ?', "%#{params[:search]}%"])
+		@formula_categories = FormulaCategory.find(:all, :conditions => ['name LIKE ?', "%#{params[:search]}%"])
+		
 		respond_to do |format|
 			format.html # index.html.erb
 			format.js   # index.js.erb
