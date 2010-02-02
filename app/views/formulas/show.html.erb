@@ -1,7 +1,7 @@
 <% title "#{@formula.pinyin}/ #{@formula.chinese} / #{@formula.english}" %>
 
-<hr>S/Sx</hr>
-
+<h2>S/Sx</h2>
+<%= @formula.formula_symptoms.collect{|a| a.symptom_name}.join(", ") %>
 
 <hr />
 <h2>Diagnosis</h2>
@@ -25,7 +25,6 @@
 
 	<% end %>
 </table>
-
 
 <p>
   <b>Preparation:</b>
