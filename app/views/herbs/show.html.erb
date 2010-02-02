@@ -1,9 +1,12 @@
 <% title "#{@herb.pinyin} << #{@herb.herb_category_name}" %>
+
+<h1><%= "#{@herb.pinyin}" %></h1>
+
 <p>
   <b>Category:</b>
   <%=h @herb.herb_category.name if @herb.herb_category %>
 </p>
-
+Page: <%= @herb.bensky_page %>
 <p>
   <b>Pinyin:</b>
   <%=h @herb.pinyin %>

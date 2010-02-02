@@ -4,16 +4,15 @@
   <tr>
     <th>Pinyin</th>
     <th>English</th>
-    <th>Preparation</th>
-    <th>Commentary</th>
+		<th>Page</th>		
   </tr>
 
 <% @formulas.each do |formula| %>
   <tr>
     <td><%=h formula.pinyin %></td>
     <td><%=h formula.english %></td>
-    <td><%=h formula.preparation %></td>
-    <td><%=h formula.commentary %></td>
+		<td><%=h formula.bensky_page %></td>
+		
     <td><%= link_to 'Show', formula %></td>
     <td>
 			<% if can? :update, formula %>
