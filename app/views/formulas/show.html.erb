@@ -7,7 +7,7 @@
 <h2>Diagnosis</h2>
 <ul>
 	<% @formula.formula_patterns.each do |formula_pattern| %>
-		<li>formula_pattern.pattern_name</li>
+		<li><%= formula_pattern.pattern_name %></li>
 		<% unless formula_pattern.commentary.blank? %>
 			<ul>
 				<li><%=h formula_pattern.commentary %></li>
