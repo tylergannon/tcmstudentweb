@@ -14,6 +14,7 @@ class FormulaDuiYaosController < ApplicationController
   end
 
   def create
+		@formula_dui_yao = FormulaDuiYao.new
 		myParams = params[:formula_dui_yao]
 		@formula_dui_yao.formula_id = myParams[:formula_id]
 		@formula = Formula.find(myParams[:formula_id])
