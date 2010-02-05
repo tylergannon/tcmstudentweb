@@ -3,7 +3,7 @@
 <p>
   <%= f.label :category_id %><br />
   <%= f.text_field_with_auto_complete :herb_category_name, {}, 
-		{ :url => herb_categories_path(:format => :js), :method => :get, :skip_style => true,
+{ :url => herb_categories_path(:format => :js), :method => :get, :skip_style => false,
   	:with => "'search='+element.value" } %>
   
 </p>
@@ -20,6 +20,10 @@
 <p>
   <%= f.label :english %><br />
   <%= f.text_field :english %>
+</p>
+<p>
+  <%= f.label :common_name %><br />
+  <%= f.text_field :common_name %>
 </p>
 
 <p>

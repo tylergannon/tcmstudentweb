@@ -1,6 +1,6 @@
 <% title "Editing #{@herb.pinyin}" %>
 
-<% form_for(@herb) do |f| %>
+<% form_for @herb, :html => {:multipart => true} do |f| %>
   <%= render :partial => 'form', :locals => { :f => f } %>
   <p>
     <%= f.submit 'Update' %>
