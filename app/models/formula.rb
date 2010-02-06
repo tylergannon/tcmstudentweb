@@ -5,7 +5,7 @@ class Formula < ActiveRecord::Base
 	
 	has_many :formula_herbs
 	has_many :herbs, :through => :formula_herbs
-	accepts_nested_attributes_for :formula_herbs, :reject_if => proc {|a| a['herb_name'.blank?]}
+	accepts_nested_attributes_for :formula_herbs, :allow_destroy => true, :reject_if => proc {|a| a['herb_name'.blank?]}
 	
 	has_many :formula_pulse_qualities
 	has_many :pulse_qualities, :through => :formula_pulse_qualities
