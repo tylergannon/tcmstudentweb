@@ -54,8 +54,6 @@ class HerbsController < ApplicationController
     end
   end
 
-  # PUT /herbs/1
-  # PUT /herbs/1.xml
   def update
     @herb = Herb.find(params[:id])
 
@@ -71,6 +69,17 @@ class HerbsController < ApplicationController
     end
   end
 
+
+	def update_herb
+		if @herb.update_attributes(params[:herb])
+			flash[:notice] = 'Herb was successfully updated.'
+			redirect_to(@herb)
+		else
+			render :action => "edit"
+			
+		end
+	end
+	
   # DELETE /herbs/1
   # DELETE /herbs/1.xml
   def destroy

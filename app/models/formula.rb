@@ -28,6 +28,17 @@ class Formula < ActiveRecord::Base
 	has_many :formula_dui_yaos
 	accepts_nested_attributes_for :formula_dui_yaos, :reject_if => proc {|a| a['herb1_id'.blank?]}
 	
+	has_many :formula_comparisons, :foreign_key => :formula1_id
+	accepts_nested_attributes_for :formula_comparisons, :reject_if => proc {|a| a['formula2_pinyin'.blank?]}
+	
+	has_many :other_formula_comparisons, :foreign_key => :formula2_id, :class_name => 'FormulaComparison'
+	
+	def all_comparisons
+	  formula_comparisons + other_formula_comparisons
+	end
+	
+	
+	
 	belongs_to :formula_category
 	def formula_category_name=(name)
 		self.formula_category = FormulaCategory.find_or_create_by_name(name) unless name.blank?

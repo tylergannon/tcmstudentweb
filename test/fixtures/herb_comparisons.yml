@@ -1,0 +1,19 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  herb1_id: 1
+  herb2_id: 1
+  herb3_id: 1
+  herb1_commentary: MyText
+  herb2_commentary: MyText
+  herb3_commentary: MyText
+  commentary: MyText
+
+two:
+  herb1_id: 1
+  herb2_id: 1
+  herb3_id: 1
+  herb1_commentary: MyText
+  herb2_commentary: MyText
+  herb3_commentary: MyText
+  commentary: MyText

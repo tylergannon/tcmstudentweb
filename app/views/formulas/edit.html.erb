@@ -20,7 +20,7 @@
 	</p>
 	<p>
 		Herb 2: <%= f.collection_select(:herb2_pinyin, @formula.herbs, :pinyin, :pinyin) %>
-	</p>	
+	</p>
 	
 	<%= f.text_area :commentary, :rows => 3, :cols => 60 %>
 	<%= f.submit "Add Dui Yao" %>

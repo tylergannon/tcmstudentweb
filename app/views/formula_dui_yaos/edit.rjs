@@ -1,0 +1,1 @@
+page << "window.open('#{edit_formula_dui_yao_path(@formula_dui_yao)}', 'Edit','left=20,top=20,width=500,height=500,toolbar=1,resizable=0' );"

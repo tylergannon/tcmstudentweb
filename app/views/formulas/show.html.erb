@@ -61,6 +61,32 @@
 	<%= render :partial => "formula_dui_yaos/formula_dui_yao", :collection => @formula.formula_dui_yaos %>
 </div>
 
+<h2>Comparisons</h2>
+<% @formula.all_comparisons.each do |formula_comparison| %>
+	<% 
+		if @formula.id == formula_comparison.formula1.id
+			other_formula = formula_comparison.formula2
+		else
+			other_formula = @formula
+		end
+	%>
+	<h3>Vs <%= link_to other_formula.pinyin, other_formula %></h3>
+	<table class="formula_comparison">
+		<tr>
+			<td>Both Herbs</td>
+			<td><%= formula_comparison.commentary %></td>
+		</tr>
+		<tr>
+			<td><%= formula_comparison.formula1.pinyin %></td>
+			<td><%= formula_comparison.formula1_commentary %></td>
+		</tr>
+		<tr>
+			<td><%= formula_comparison.formula2.pinyin %></td>
+			<td><%= formula_comparison.formula2_commentary %></td>
+		</tr>
+	</table>
+<% end %>
+
 
 <% if can? :update, @formula %>
 	<%= link_to 'Edit', edit_formula_path(@formula) %> |	

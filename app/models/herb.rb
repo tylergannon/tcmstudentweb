@@ -1,4 +1,10 @@
 class Herb < ActiveRecord::Base
+  has_attached_file :photo, :storage => :s3,
+    :styles => { :medium => "120x120>", :thumb => "80x80>" },
+    :s3_credentials => "#{RAILS_ROOT}/config/s3.yml",
+    :bucket => "herbs",
+    :path => ":class/:id/:basename_:style.:extension"
+	
 	has_many :herb_flavors
 	has_many :herbs, :through => :herb_flavors
 	accepts_nested_attributes_for :herb_flavors, :reject_if => proc {|a| a['flavor_name'.blank?]}
@@ -14,6 +20,18 @@ class Herb < ActiveRecord::Base
 	has_many :therapeutic_functions, :through => :herb_therapeutic_functions
 	accepts_nested_attributes_for :herb_therapeutic_functions, :reject_if => proc {|a| a['therapeutic_function_name'.blank?]}
 	
+	has_many :herb_comparisons, :foreign_key => :herb1_id
+	accepts_nested_attributes_for :herb_comparisons, :reject_if => proc {|a| a['herb2_pinyin'.blank?]}
+	
+	has_many :other_herb_comparisons, :foreign_key => :herb2_id
+
+	def display_name
+	  latin ? "#{pinyin} #{latin}" : pinyin
+	end
+	
+	def all_comparisons
+		herb_comparisons + other_herb_comparisons	  
+	end
 	
 	def herb_category_name=(name)
 		self.herb_category = HerbCategory.find_or_create_by_name(name) unless name.blank?
@@ -22,5 +40,4 @@ class Herb < ActiveRecord::Base
 	def herb_category_name
 		herb_category.name if herb_category
 	end
-	
 end

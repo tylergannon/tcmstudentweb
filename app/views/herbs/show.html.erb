@@ -62,6 +62,32 @@ Page: <%= @herb.bensky_page %>
   <%=h @herb.contraindications %>
 </p>
 
+<h2>Comparisons</h2>
+<% @herb.all_comparisons.each do |herb_comparison| %>
+	<% 
+		if @herb.id == herb_comparison.herb1.id
+			other_herb = herb_comparison.herb2
+		else
+			other_herb = @herb
+		end
+	%>
+	<h3>Vs <%= link_to other_herb.display_name, other_herb %></h3>
+	<table class="herb_comparison">
+		<tr>
+			<td>Both Herbs</td>
+			<td><%= herb_comparison.commentary %></td>
+		</tr>
+		<tr>
+			<td><%= herb_comparison.herb1.display_name %></td>
+			<td><%= herb_comparison.herb1_commentary %></td>
+		</tr>
+		<tr>
+			<td><%= herb_comparison.herb2.display_name %></td>
+			<td><%= herb_comparison.herb2_commentary %></td>
+		</tr>
+	</table>
+<% end %>
+
 
 <%= link_to 'Edit', edit_herb_path(@herb) %> |
 <%= link_to 'Back to Herbs', herbs_path %> |
