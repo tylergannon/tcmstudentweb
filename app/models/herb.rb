@@ -1,9 +1,4 @@
 class Herb < ActiveRecord::Base
-  has_attached_file :photo, :storage => :s3,
-    :styles => { :medium => "120x120>", :thumb => "80x80>" },
-    :s3_credentials => "#{RAILS_ROOT}/config/s3.yml",
-    :bucket => "herbs",
-    :path => ":class/:id/:basename_:style.:extension"
 	
 	has_many :herb_flavors
 	has_many :herbs, :through => :herb_flavors
