@@ -18,7 +18,7 @@ class Herb < ActiveRecord::Base
 	has_many :herb_comparisons, :foreign_key => :herb1_id
 	accepts_nested_attributes_for :herb_comparisons, :reject_if => proc {|a| a['herb2_pinyin'.blank?]}
 	
-	has_many :other_herb_comparisons, :foreign_key => :herb2_id
+	has_many :other_herb_comparisons, :foreign_key => :herb2_id, :class_name => "HerbComparison"
 
 	def display_name
 	  latin ? "#{pinyin} #{latin}" : pinyin
