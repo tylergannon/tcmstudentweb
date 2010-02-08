@@ -2,7 +2,12 @@
 
 
 <h2>S/Sx</h2>
-<ul><li><%= @formula.formula_symptoms.collect{|a| a.symptom_name}.join(", ") %></li></ul>
+<ul>
+	<li><%= @formula.formula_symptoms.collect{|a| a.symptom_name}.join(", ") %></li>
+	<li>Tongue: <%= @formula.formula_tongue_qualities.collect{|a| a.tongue_quality_name}.join(", ") %></li>
+	<li>Pulse: <%= @formula.pulse_qualities.collect{|a| a.pulse_quality_name}.join(", ") %></li>
+	
+</ul>
 
 <hr />
 <h2>Diagnosis</h2>
