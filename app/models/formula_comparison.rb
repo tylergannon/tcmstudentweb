@@ -21,4 +21,12 @@ class FormulaComparison < ActiveRecord::Base
 	def self.with_formula(formula)
 	  find(:all, :conditions => ["formula1_id = ? or formula2_id = ? or formula3_id = ?", formula.id, formula.id, formula.id])
 	end	
+  
+  def other_formula(formula)
+    if formula.id == formula1.id
+      formula2
+    else
+      formula
+    end
+  end
 end

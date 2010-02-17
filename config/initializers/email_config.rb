@@ -1,11 +1,14 @@
 if ENV['RAILS_ENV'] == "production"
   
   ActionMailer::Base.delivery_method = :smtp
-  ActionMailer::Base.smtp_settings = {
-    :address => '127.0.0.1',
-    :port => 25,
-    :domain => 'localhost'
-  }
+	ActionMailer::Base.smtp_settings = {
+		:address        => "smtp.sendgrid.net",
+		:port           => "25",
+		:authentication => :plain,
+		:user_name      => ENV['SENDGRID_USERNAME'],
+		:password       => ENV['SENDGRID_PASSWORD'],
+		:domain         => ENV['SENDGRID_DOMAIN'],
+	}
 	ActionMailer::Base.default_content_type = "text/html"	
 
 else
