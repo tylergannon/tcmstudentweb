@@ -26,7 +26,7 @@ class FormulaComparison < ActiveRecord::Base
     if formula.id == formula1.id
       formula2
     else
-      formula
+      formula1
     end
   end
 end

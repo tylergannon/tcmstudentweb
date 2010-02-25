@@ -1,0 +1,7 @@
+- formula_herbs.each do |formula_herb|
+  %tr
+    %td=formula_herb.formula_role.pinyin
+    %td=link_to formula_herb.herb.pinyin, formula_herb.herb
+    %td=formula_herb.herb.herb_category_name
+    %td=formula_herb.dose
+    %td=RedCloth.new(formula_herb.commentary).to_html

@@ -1,0 +1,2 @@
+module HerbPreparationsHelper
+end

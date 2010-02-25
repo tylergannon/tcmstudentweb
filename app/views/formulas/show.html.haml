@@ -1,5 +1,3 @@
-
-  	
 - title "#{@formula.formula_category.name}: #{@formula.pinyin}/ #{@formula.chinese} / #{@formula.english}"
 
 %h2 Signs and Symptoms
@@ -22,7 +20,7 @@
 %h2 Herbs
 %table
   - FormulaRole.all.each do |role|
-    - render :partial => "show_formula_herbs", :locals => { :formula_herbs => @formula.formula_herbs.select{|a| a.formula_role.pinyin == role.pinyin} }
+    = render :partial => "show_formula_herbs", :locals => { :formula_herbs => @formula.formula_herbs.select{|a| a.formula_role.pinyin == role.pinyin} }
 %p
   %b Preparation:
   = h @formula.preparation
@@ -47,10 +45,10 @@
 
 %h2 Comparisons
 - @formula.all_comparisons.each do |formula_comparison|
-  %h3= link_to formula_comparison.other_formula(@formula).pinyin, formula_comparison.other_formula(@formula) 
+  %h3= "vs #{link_to formula_comparison.other_formula(@formula).pinyin, formula_comparison.other_formula(@formula)}" 
   %table.formula_comparison
     %tr
-      %td Both Herbs
+      %td Both Formulas
       %td= RedCloth.new(formula_comparison.commentary).to_html
     %tr
       %td= formula_comparison.formula1.pinyin

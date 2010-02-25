@@ -1,5 +1,5 @@
 class Formula < ActiveRecord::Base
-	
+	validates_presence_of :formula_category, :pinyin, :english
 	has_many :formula_contraindications
 	accepts_nested_attributes_for :formula_contraindications, :allow_destroy => true, :reject_if => proc {|a| a['contraindication_name'.blank?]}
 	
