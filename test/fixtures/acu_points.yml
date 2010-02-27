@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  channel_id: 1
+  ordinal: 1
+  pinyin: MyString
+  chinese: MyString
+  name_discussion: MyText
+  comments: MyText
+
+two:
+  channel_id: 1
+  ordinal: 1
+  pinyin: MyString
+  chinese: MyString
+  name_discussion: MyText
+  comments: MyText

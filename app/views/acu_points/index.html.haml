@@ -1,0 +1,19 @@
+%h2 Listing Acu Points
+
+%table
+  %tr
+    %th Channel
+    %th Number
+    %th Pinyin
+    %th English
+  - @acu_points.each do |acu_point|
+    %tr
+      %td=h acu_point.channel.name
+      %td=h acu_point.ordinal
+      %td=h acu_point.pinyin
+      %td=h acu_point.english
+      %td= link_to 'Show', acu_point
+      %td= link_to 'Edit', edit_acu_point_path(acu_point)
+      %td= link_to 'Destroy', acu_point, :confirm => 'Are you sure?', :method => :delete
+
+= link_to 'New acu_point', new_acu_point_path

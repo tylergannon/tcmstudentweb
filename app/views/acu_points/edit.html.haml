@@ -1,0 +1,6 @@
+%h1 Editing acu_point
+- form_for(@acu_point) do |f|
+  = render :partial => 'form', :locals => { :f => f } 
+  %p= f.submit 'Update'
+  
+#{link_to 'Show', @acu_point} | #{link_to 'Back', acu_points_path}

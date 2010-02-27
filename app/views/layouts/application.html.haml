@@ -1,0 +1,91 @@
+!!!
+%html{:xmlns => "http://www.w3.org/1999/xhtml", "xml:lang" => "en", :lang => "en"}
+  %head
+    %meta{'http-equiv' => 'Content-Type', :content => 'text/html;charset=UTF-8'}/
+    %title= h(yield(:title) || "TCM Website")
+    = stylesheet_link_tag 'scaffold'
+    = javascript_include_tag 'prototype.js'
+    = javascript_include_tag 'nested_attributes.js'
+    = stylesheet_link_tag 'styleMain'
+    
+  %body
+    #container
+      #containerPad
+        -#
+          #topLinks
+            %a{'href' => 'index.html'} Link 1
+            |
+            %a{'href' => 'index.html'} Link 1
+        #header
+          .headLeft
+          .headMiddle
+            %h1 Turning Seasons
+            %h2 The Medicine is You.
+            %br/
+            - if logged_in?
+              Welcome #{h current_user.login}! Not you? #{link_to "Log out", '/logout'}
+            - else
+              #{link_to "Sign up", '/signup'} or #{link_to "log in", '/login'}
+          .headRight
+          #navigation
+            .naviLeft
+            .link= link_to 'Herb Categories',herb_categories_path
+            .link= link_to 'Herbs', herbs_path
+            .link= link_to 'Formulas', formulas_path
+      
+        #sidebar
+          .top Herb Of The Day
+          .middle
+            .center
+              %a{'href' => '#'}
+                %img{'src' => '/images/bupleurum.jpg'}
+              %br/
+              %span.subtitle Chai Hu - Bupleurum
+          .bottom
+          -#
+            %h1 Links
+            .divider
+            .link
+              a{'href' => '#'} Link 1
+          .top 4. M&ecirc;ng
+          .middle
+            %p
+              %b Youthful Folly
+              %img{'src' => '/images/hexagram_4.gif', 'border' => '0', 'align' => 'left'}/
+              above K&ecirc;n    Keeping Still, Mountain<BR>           below     K'an   The Abysmal, Water
+            %p
+              :textile
+                *The Judgement*
+                Youthful Folly has success.
+                It is not I who seek the young fool;
+                The young fool seeks me.
+                At the first oracle I inform him.
+                If he asks two or three times, it is importunity.
+                If he importunes, I give him no information.
+                Perseverance furthers.
+          .bottom
+        #content
+          .top
+            .topLeft
+            .topMiddle
+              - if show_title?
+                %h1= h yield(:title)
+            .topRight
+          .middle
+            - flash.each do |name, msg|
+              = content_tag :div, msg, :id => "flash_#{name}"
+            = yield
+            <div class="commentBox">Posted on <i>Wednesday, January 3, 2007</i> by [your name goes here] | <a href="index.html">Comments (5)</a></div>
+            .bottom
+              .bottomLeft
+              .bottomRight
+        #contentEnd
+        #footerTop
+          :textile
+            Copyright &copy; #{h Date.today.year} Tyler Gannon, all rights reserved
+            Design by #{link_to 'Matthew "Agent Spork" McGee', 'http://doomrealm.mancubus.net'}
+            Courtesy #{link_to 'Open Web Design', 'http://www.openwebdesign.org'}, Thanks to #{link_to 'Personal Bankruptcy', 'http://blog.legalhelpers.com/'}
+            
+        #footerBottom
+          .left
+          .right

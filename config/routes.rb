@@ -1,7 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
-
+  map.resources :acu_points
   map.resources :formulas
-	map.resources :formula_roles
+  map.resources :formula_roles
   map.resources :tongue_qualities
   map.resources :therapeutic_functions
   map.resources :symptoms
@@ -13,17 +13,17 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :herb_categories
   map.resources :channels
   map.resources :flavors
-	map.resources :formula_dui_yaos
-	
+  map.resources :formula_dui_yaos
+
   map.resource :user_session
   # map.root :controller => "user_sessions", :action => "new" # optional, this just sets the root route
   map.resource :account, :controller => "users"
   map.resources :users
-	
-	map.connect 'login', :controller => 'user_sessions', :action => 'new'
-	map.connect 'logout', :controller => 'user_sessions', :action => 'destroy'
-	map.connect 'signup', :controller => 'users', :action => 'new'
-	
+
+  map.connect 'login', :controller => 'user_sessions', :action => 'new'
+  map.connect 'logout', :controller => 'user_sessions', :action => 'destroy'
+  map.connect 'signup', :controller => 'users', :action => 'new'
+
   map.register '/register/:activation_code', :controller => 'activations', :action => 'new'
   map.activate '/activate/:id', :controller => 'activations', :action => 'create'
 

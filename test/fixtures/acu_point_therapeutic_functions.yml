@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  acu_point_id: 1
+  therapeutic_function_id: 1
+  commentary: MyText
+
+two:
+  acu_point_id: 1
+  therapeutic_function_id: 1
+  commentary: MyText

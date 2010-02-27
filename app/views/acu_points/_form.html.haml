@@ -1,0 +1,47 @@
+= f.error_messages
+
+%h2 Name
+%b Channel:
+= f.collection_select(:channel_id, Channel.find(:all), :id, :name)
+%br/
+%b Point Number:
+= f.text_field(:ordinal)
+%br/
+
+%b Pinyin:
+= f.text_field(:pinyin)
+%br/
+
+%b Chinese
+= f.text_field(:chinese)
+%br/
+
+%b English:
+= f.text_field(:english)
+%hr/
+
+%h2 Symptoms
+
+= add_child_link 'Add a symptom', 'acu_point_symptom', f
+#acu_point_symptom_children
+  - f.fields_for :acu_point_symptoms do |acu_point_symptom_form|
+    = render :partial => 'acu_point_symptom', :locals => { :f => acu_point_symptom_form }
+
+%hr/
+%h2 Functions
+= add_child_link 'Add a Therapeutic Function', 'acu_point_therapeutic_function', f
+#acu_point_therapeutic_function_children
+  - f.fields_for :acu_point_therapeutic_functions do |acu_point_therapeutic_function_form|
+    = render :partial => 'acu_point_therapeutic_function', :locals => { :f => acu_point_therapeutic_function_form }
+
+%hr/
+%b Discussion on the Name
+= f.text_area(:name_discussion, :rows => '2', :cols => '40')
+%br/
+
+%b Commentary
+= f.text_area :commentary, :rows => '2', :cols => '40'
+%br/
+
+
+
