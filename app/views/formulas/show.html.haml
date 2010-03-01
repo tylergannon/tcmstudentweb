@@ -18,9 +18,10 @@
 %hr/
 
 %h2 Herbs
-%table
+%table.formula_herbs
   - FormulaRole.all.each do |role|
     = render :partial => "show_formula_herbs", :locals => { :formula_herbs => @formula.formula_herbs.select{|a| a.formula_role.pinyin == role.pinyin} }
+
 %p
   %b Preparation:
   = h @formula.preparation
@@ -45,7 +46,7 @@
 
 %h2 Comparisons
 - @formula.all_comparisons.each do |formula_comparison|
-  %h3= "vs #{link_to formula_comparison.other_formula(@formula).pinyin, formula_comparison.other_formula(@formula)}" 
+  %h3= "vs #{link_to formula_comparison.other_formula(@formula).pinyin, formula_comparison.other_formula(@formula)}"
   %table.formula_comparison
     %tr
       %td Both Formulas
@@ -62,4 +63,3 @@
 - link_to 'Back', formulas_path
 
 
-		

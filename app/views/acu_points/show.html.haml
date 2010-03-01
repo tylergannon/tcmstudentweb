@@ -1,0 +1,12 @@
+- title @acu_point.display_name
+%h3 #{@acu_point.english} // #{@acu_point.chinese}
+
+%h2 Signs and Symptoms
+%ul
+  %li= @acu_point.acu_point_symptoms.collect{|a| a.symptom_name}.join(", ")
+
+%h2 Therapeutic Functions
+%ul
+  %li= @acu_point.acu_point_therapeutic_functions.collect{|a| a.therapeutic_function_name}.join(", ")
+%hr/
+#{link_to 'Edit', edit_acu_point_path(@acu_point)} | #{link_to 'Back', acu_points_path}

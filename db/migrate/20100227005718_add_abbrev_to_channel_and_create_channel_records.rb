@@ -4,7 +4,7 @@ class AddAbbrevToChannelAndCreateChannelRecords < ActiveRecord::Migration
     add_column :channels, :commentary, :text
 
     Channel.all.each {|c| c.destroy}
-    Channel.new(:name => 'Bladder', :abbreviation => 'UB').save
+
     Channel.new(:name => 'Lung', :abbreviation => 'Lu').save
     Channel.new(:name => 'Large Intestine', :abbreviation => 'LI').save
     Channel.new(:name => 'Stomach', :abbreviation => 'St').save

@@ -1,5 +1,6 @@
 class AcuPoint < ActiveRecord::Base
   validates_presence_of :pinyin
+  belongs_to :channel
   has_many :acu_point_therapeutic_functions
   accepts_nested_attributes_for :acu_point_therapeutic_functions, :allow_destroy => true, :reject_if => proc {|a| a['therapeutic_function_name'.blank?]}
 
@@ -7,6 +8,6 @@ class AcuPoint < ActiveRecord::Base
   accepts_nested_attributes_for :acu_point_symptoms, :allow_destroy => true, :reject_if => proc {|a| a['symptom_name'.blank?]}
 
   def display_name
-    
+    "#{channel.abbreviation}-#{ordinal} #{pinyin}"
   end
 end

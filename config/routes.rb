@@ -1,18 +1,15 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :acu_points
   map.resources :formulas
-  map.resources :formula_roles
   map.resources :tongue_qualities
   map.resources :therapeutic_functions
   map.resources :symptoms
   map.resources :pulse_qualities
-  map.resources :patterns
   map.resources :contraindications
   map.resources :formula_categories
   map.resources :herbs
   map.resources :herb_categories
   map.resources :channels
-  map.resources :flavors
   map.resources :formula_dui_yaos
 
   map.resource :user_session
@@ -34,6 +31,8 @@ ActionController::Routing::Routes.draw do |map|
   # Install the default routes as the lowest priority.
   # Note: These default routes make all actions in every controller accessible via GET requests. You should
   # consider removing or commenting them out if you're using named routes and resources.
+  map.connect ':controller/category/:category_id', :action => 'categoryindex'
   map.connect ':controller/:action/:id'
+
   map.connect ':controller/:action/:id.:format'
 end

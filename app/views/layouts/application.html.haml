@@ -4,10 +4,10 @@
     %meta{'http-equiv' => 'Content-Type', :content => 'text/html;charset=UTF-8'}/
     %title= h(yield(:title) || "TCM Website")
     = stylesheet_link_tag 'scaffold'
-    = javascript_include_tag 'prototype.js'
+    = javascript_include_tag :defaults
     = javascript_include_tag 'nested_attributes.js'
     = stylesheet_link_tag 'styleMain'
-    
+
   %body
     #container
       #containerPad
@@ -32,7 +32,11 @@
             .link= link_to 'Herb Categories',herb_categories_path
             .link= link_to 'Herbs', herbs_path
             .link= link_to 'Formulas', formulas_path
-      
+            .link= link_to 'AcuPoints', acu_points_path
+            .link= link_to 'Functions', therapeutic_functions_path
+
+
+
         #sidebar
           .top Herb Of The Day
           .middle
@@ -53,16 +57,16 @@
               %b Youthful Folly
               %img{'src' => '/images/hexagram_4.gif', 'border' => '0', 'align' => 'left'}/
               above K&ecirc;n    Keeping Still, Mountain<BR>           below     K'an   The Abysmal, Water
-            %p
-              :textile
-                *The Judgement*
-                Youthful Folly has success.
-                It is not I who seek the young fool;
-                The young fool seeks me.
-                At the first oracle I inform him.
-                If he asks two or three times, it is importunity.
-                If he importunes, I give him no information.
-                Perseverance furthers.
+
+            :textile
+              *The Judgement*
+              Youthful Folly has success.
+              It is not I who seek the young fool;
+              The young fool seeks me.
+              At the first oracle I inform him.
+              If he asks two or three times, it is importunity.
+              If he importunes, I give him no information.
+              Perseverance furthers.
           .bottom
         #content
           .top
@@ -85,7 +89,7 @@
             Copyright &copy; #{h Date.today.year} Tyler Gannon, all rights reserved
             Design by #{link_to 'Matthew "Agent Spork" McGee', 'http://doomrealm.mancubus.net'}
             Courtesy #{link_to 'Open Web Design', 'http://www.openwebdesign.org'}, Thanks to #{link_to 'Personal Bankruptcy', 'http://blog.legalhelpers.com/'}
-            
+
         #footerBottom
           .left
           .right

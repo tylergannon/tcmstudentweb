@@ -1,13 +1,19 @@
 class FormulasController < ApplicationController
   load_and_authorize_resource
-	
+
   def index
+
     @formulas = Formula.all
 
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @formulas }
     end
+  end
+
+  def categoryindex
+    @category = FormulaCategory.find(params[:category_id])
+    @formulas = Formula.find_all_by_formula_category_id(@category.id)
   end
 
   # GET /formulas/1
@@ -53,12 +59,12 @@ class FormulasController < ApplicationController
       end
     end
   end
-	
-	def add_dui_yao
-		@formula_dui_yao = FormulaDuiYao.new
-		@formula_dui_yao.formula_id = params[:formula_id]
-		@formula_dui_yao.dui_yao = DuiYao.find_or_create_by_herbs_pinyin(params[:formula_dui_yao][:herb1_pinyin], params[:formula_dui_yao][:herb2_pinyin])
-		@formula_dui_yao.commentary = params[:formula_dui_yao][:commentary]
+
+  def add_dui_yao
+    @formula_dui_yao = FormulaDuiYao.new
+    @formula_dui_yao.formula_id = params[:formula_id]
+    @formula_dui_yao.dui_yao = DuiYao.find_or_create_by_herbs_pinyin(params[:formula_dui_yao][:herb1_pinyin], params[:formula_dui_yao][:herb2_pinyin])
+    @formula_dui_yao.commentary = params[:formula_dui_yao][:commentary]
     respond_to do |format|
       if @formula.save
         flash[:notice] = 'Dui Yao was successfully added.'
@@ -69,7 +75,7 @@ class FormulasController < ApplicationController
         format.xml  { render :xml => @formula.errors, :status => :unprocessable_entity }
       end
     end
-	end
+  end
 
   # PUT /formulas/1
   # PUT /formulas/1.xml

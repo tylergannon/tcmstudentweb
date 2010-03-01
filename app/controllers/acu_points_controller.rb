@@ -4,7 +4,7 @@ class AcuPointsController < ApplicationController
   # GET /acu_points.xml
   def index
     @acu_points = AcuPoint.all
-    title "Listing Acu Points"
+    
 
     respond_to do |format|
       format.html # index.html.erb
