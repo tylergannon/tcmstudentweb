@@ -1,15 +1,13 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
-one:
-  formula_id: 1
-  herb_id: 1
-  role_id: 1
-  dose: MyString
-  commentary: MyText
-
-two:
-  formula_id: 1
-  herb_id: 1
-  role_id: 1
-  dose: MyString
-  commentary: MyText
+#one:
+#  formula_id: 1
+#  herb_id: 1
+#  dose: MyString
+#  commentary: MyText
+#
+#two:
+#  formula_id: 1
+#  herb_id: 1
+#  dose: MyString
+#  commentary: MyText

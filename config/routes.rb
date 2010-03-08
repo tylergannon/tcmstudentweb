@@ -12,6 +12,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :channels
   map.resources :formula_dui_yaos
   map.resources :patterns
+  map.resources :flavors
 
   map.resource :user_session
   # map.root :controller => "user_sessions", :action => "new" # optional, this just sets the root route

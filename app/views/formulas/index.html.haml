@@ -1,0 +1,26 @@
+%h1
+  Listing formulas
+= render :partial => 'show_category_list'
+%table
+  %tr
+    %th
+      Pinyin
+    %th
+      English
+    %th
+      Page
+  - @formulas.each do |formula|
+    %tr
+      %td= h formula.pinyin
+      %td= h formula.english
+      %td= h formula.bensky_page
+      %td= link_to 'Show', formula
+      %td
+        - if can? :update, formula
+          = link_to 'Edit', edit_formula_path(formula)
+      %td
+        - if can? :destroy, formula
+          = link_to 'Destroy', formula, :confirm => 'Are you sure?', :method => :delete
+%br/
+- if can? :create, Formula
+  = link_to 'New formula', new_formula_path

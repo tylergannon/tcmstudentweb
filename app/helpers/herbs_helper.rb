@@ -1,7 +1,7 @@
 module HerbsHelper
 
   def remove_child_link(name, form_builder)
-    form_builder.hidden_field(:_destroy) + link_to_function(name, "remove_child(this)")
+    form_builder.hidden_field(:_destroy) + link_to_function(name, "remove_child(this)", :tabindex => "0")
   end
 
   def add_child_link(name, child, form_builder)

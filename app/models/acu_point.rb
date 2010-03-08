@@ -1,5 +1,9 @@
+
+
 class AcuPoint < ActiveRecord::Base
   validates_presence_of :pinyin
+  validates_uniqueness_of :pinyin, :english
+  validates_uniqueness_of :ordinal, :scope => :channel_id
   belongs_to :channel
   has_many :acu_point_therapeutic_functions
   accepts_nested_attributes_for :acu_point_therapeutic_functions, :allow_destroy => true, :reject_if => proc {|a| a['therapeutic_function_name'.blank?]}

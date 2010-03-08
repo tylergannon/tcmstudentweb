@@ -31,11 +31,6 @@ class FormulasController < ApplicationController
   # GET /formulas/new.xml
   def new
     @formula = Formula.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @formula }
-    end
   end
 
   # GET /formulas/1/edit
@@ -43,21 +38,25 @@ class FormulasController < ApplicationController
     @formula = Formula.find(params[:id])
   end
 
+
+
   # POST /formulas
   # POST /formulas.xml
   def create
+    StringObjectHasher.hash_formula_symptoms(params[:formula], Formula.new)
+    StringObjectHasher.hash_therapeutic_functions(params[:formula], Formula.new)
     @formula = Formula.new(params[:formula])
 
-    respond_to do |format|
       if @formula.save
         flash[:notice] = 'Formula was successfully created.'
-        format.html { redirect_to(@formula) }
-        format.xml  { render :xml => @formula, :status => :created, :location => @formula }
+        redirect_to(@formula)
       else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @formula.errors, :status => :unprocessable_entity }
+        s = ""
+        @formula.errors.each_full {|msg| s += "<br />#{msg}"}
+        flash[:notice] = s
+
+        render :action => "new"
       end
-    end
   end
 
   def add_dui_yao
@@ -81,14 +80,20 @@ class FormulasController < ApplicationController
   # PUT /formulas/1.xml
   def update
     @formula = Formula.find(params[:id])
-
+    StringObjectHasher.hash_formula_symptoms(params[:formula], Formula.new)
+    StringObjectHasher.hash_therapeutic_functions(params[:formula], Formula.new)
     respond_to do |format|
       if @formula.update_attributes(params[:formula])
         flash[:notice] = 'Formula was successfully updated.'
         format.html { redirect_to(@formula) }
         format.xml  { head :ok }
       else
-        format.html { render :action => "edit" }
+        format.html {
+          render :action => "edit"
+          s = ""
+          @formula.errors.each_full {|msg| s += "<br />#{msg}"}
+          flash[:notice] = s
+        }
         format.xml  { render :xml => @formula.errors, :status => :unprocessable_entity }
       end
     end
@@ -106,3 +111,4 @@ class FormulasController < ApplicationController
     end
   end
 end
+

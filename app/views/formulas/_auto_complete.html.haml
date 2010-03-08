@@ -1,0 +1,6 @@
+%textarea{html_options}= text
+.auto_complete{'id' => "#{id}_auto_complete" }
+:javascript
+  new Ajax.Autocompleter('#{id}','#{id}_auto_complete', '#{path}',
+    { tokens: new Array(';','\n'), fullSearch: true, partialSearch: true
+      , callback:function(element, value) { return 'search='+value.split('=')[1] }, method:'get'});

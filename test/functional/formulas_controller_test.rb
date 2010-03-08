@@ -1,45 +1,99 @@
 require 'test_helper'
 
 class FormulasControllerTest < ActionController::TestCase
-  test "should get index" do
-    get :index
-    assert_response :success
-    assert_not_nil assigns(:formulas)
-  end
 
-  test "should get new" do
-    get :new
-    assert_response :success
-  end
-
-  test "should create formula" do
-    assert_difference('Formula.count') do
-      post :create, :formula => { }
+  context "on GET to :index" do
+    setup do
+      get :index
     end
 
-    assert_redirected_to formula_path(assigns(:formula))
+    should_respond_with :success
+    should_render_template :index
+    should_not_set_the_flash
   end
 
-  test "should show formula" do
-    get :show, :id => formulas(:one).to_param
-    assert_response :success
-  end
+  context "on GET to :new" do
+    setup do
+      @user = Factory.build(:user)
 
-  test "should get edit" do
-    get :edit, :id => formulas(:one).to_param
-    assert_response :success
-  end
-
-  test "should update formula" do
-    put :update, :id => formulas(:one).to_param, :formula => { }
-    assert_redirected_to formula_path(assigns(:formula))
-  end
-
-  test "should destroy formula" do
-    assert_difference('Formula.count', -1) do
-      delete :destroy, :id => formulas(:one).to_param
+      sess = UserSession.create(@user)
+      assert sess, "Should be able to log in."
+#      puts sess.inspect
+      get :new
     end
 
-    assert_redirected_to formulas_path
+
+    should_render_template :new
+    should_respond_with :success
   end
+
+  context "on POST to :create" do
+    setup do
+      formula = Factory.build(:formula, :english => "Formula_English")
+      post :create, :formula => ObjectHasher.hash_formula(formula)
+      @new_formula = Formula.find_by_english("Formula_English")
+      assert_instance_of(Formula, @new_formula)
+    end
+    should_assign_to :formula
+    should_create :formula
+    should_respond_with :redirect
+    should_change("the number of formulas", :by => 1) {Formula.count}
+    should_set_the_flash_to("Formula was successfully created.")
+    should_redirect_to("New formula path") {"/formulas/#{@new_formula.id}"}
+  end
+
+  context "on GET to :show" do
+    setup do
+      @new_formula = Factory.create(:formula)
+      get :show, :id => @new_formula.id
+    end
+    should_respond_with :success
+    should_render_template :show
+  end
+
+  context "on POST to :update" do
+    setup do
+      @new_formula = Factory(:formula, :english => "Formula_English")
+      post :update, :id => @new_formula.id, :formula => ObjectHasher.hash_formula(@new_formula)
+    end
+    should_assign_to :formula
+    should_respond_with :redirect
+    should_set_the_flash_to("Formula was successfully updated.")
+    should_redirect_to("New formula path") {"/formulas/#{@new_formula.id}"}
+  end
+
+  context "on GET to :edit" do
+    setup do
+      @new_formula = Factory(:formula, :english => "Formula_English")
+      get :edit, :id => @new_formula.id
+    end
+    should_assign_to :formula
+    should_respond_with :success
+    should_not_set_the_flash
+    should_render_template :edit
+  end
+#
+#
+#  test "should show formula" do
+#    get :show, :id => formulas(:one).to_param
+#    assert_response :success
+#  end
+#
+#  test "should get edit" do
+#    get :edit, :id => formulas(:one).to_param
+#    assert_response :success
+#  end
+#
+#  test "should update formula" do
+#    put :update, :id => formulas(:one).to_param, :formula => { }
+#    assert_redirected_to formula_path(assigns(:formula))
+#  end
+#
+#  test "should destroy formula" do
+#    assert_difference('Formula.count', -1) do
+#      delete :destroy, :id => formulas(:one).to_param
+#    end
+#
+#    assert_redirected_to formulas_path
+#  end
 end

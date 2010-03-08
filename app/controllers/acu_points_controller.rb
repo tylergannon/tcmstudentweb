@@ -4,7 +4,7 @@ class AcuPointsController < ApplicationController
   # GET /acu_points.xml
   def index
     @acu_points = AcuPoint.all
-    
+
 
     respond_to do |format|
       format.html # index.html.erb
@@ -16,8 +16,6 @@ class AcuPointsController < ApplicationController
   # GET /acu_points/1.xml
   def show
     @acu_point = AcuPoint.find(params[:id])
-
-    title ""
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @acu_point }
@@ -47,7 +45,7 @@ class AcuPointsController < ApplicationController
 
     respond_to do |format|
       if @acu_point.save
-        flash[:notice] = 'AcuPoint was successfully created.'
+        flash[:notice] = 'Acu Point was successfully created.'
         format.html { redirect_to(@acu_point) }
         format.xml  { render :xml => @acu_point, :status => :created, :location => @acu_point }
       else
@@ -64,7 +62,7 @@ class AcuPointsController < ApplicationController
 
     respond_to do |format|
       if @acu_point.update_attributes(params[:acu_point])
-        flash[:notice] = 'AcuPoint was successfully updated.'
+        flash[:notice] = 'Acu Point was successfully updated.'
         format.html { redirect_to(@acu_point) }
         format.xml  { head :ok }
       else

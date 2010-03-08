@@ -1,0 +1,104 @@
+= f.error_messages
+%h2
+  Name
+%table
+  %tr
+    %td
+      = f.label :pinyin
+      \:
+      = f.text_field :pinyin
+    %td
+      = f.label :english
+      \:
+      = f.text_field :english
+    %td
+      = f.label :chinese
+      \:
+      = f.text_field :chinese
+    %td
+      Page:
+      = f.text_field :bensky_page, :size => 6
+%h2
+  Category
+= f.text_field_with_auto_complete :formula_category_name, {},  { :url => formula_categories_path(:format => :js), :method => :get, :skip_style => false,  :with => "'search='+element.value" }
+%hr
+%h2
+  Ingredients
+= add_child_link 'Add an Herb', 'formula_herb', f
+#formula_herb_children
+  /
+    table>
+    <tr>
+    <td>Pinyin:</td>
+    <td>Role:</td>
+    <td>Dose:</td>
+    <td>Commentary:</td>
+    <td></td>
+    </tr>
+
+    </table
+  - f.fields_for :formula_herbs do |formula_herb_form|
+    = render :partial => 'formula_herb', :locals => { :f => formula_herb_form }
+
+%hr
+%h2 Therapeutic Functions
+= text_area_with_auto_complete f, "therapeutic_functions", @formula.formula_therapeutic_functions.collect{|v| v.therapeutic_function_name}, :rows => 2, :cols => 50  
+-#= add_child_link 'Add a Function', 'formula_therapeutic_function', f
+-##formula_therapeutic_function_children
+-#  - f.fields_for :formula_therapeutic_functions do |formula_therapeutic_function_form|
+-#    = render :partial => 'formula_therapeutic_function', :locals => { :f => formula_therapeutic_function_form }
+
+%hr
+%h2
+  Diagnosis
+= add_child_link 'Add a Pattern of Disharmony', 'formula_pattern', f
+#formula_pattern_children
+  - f.fields_for :formula_patterns do |formula_pattern_form|
+    = render :partial => 'formula_pattern', :locals => { :f => formula_pattern_form }
+
+%hr
+%h2 Signs and Symptoms
+= text_area_with_auto_complete f, "symptoms", @formula.formula_symptoms.collect{|v| v.symptom_name}, :rows => 2, :cols => 50
+-#
+  = add_child_link 'Add a Symptom', 'formula_symptom', f
+  #formula_symptom_children
+    - f.fields_for :formula_symptoms do |formula_symptom_form|
+      = render :partial => 'formula_symptom', :locals => { :f => formula_symptom_form }
+
+%h3
+  Pulse
+= add_child_link 'Add a Pulse', 'formula_pulse_quality', f
+#formula_pulse_quality_children
+  - f.fields_for :formula_pulse_qualities do |formula_pulse_quality_form|
+    = render :partial => 'formula_pulse_quality', :locals => { :f => formula_pulse_quality_form }
+
+%h3
+  Tongue
+= add_child_link 'Add a Tongue', 'formula_tongue_quality', f
+#formula_tongue_quality_children
+  - f.fields_for :formula_tongue_qualities do |formula_tongue_quality_form|
+    = render :partial => 'formula_tongue_quality', :locals => { :f => formula_tongue_quality_form }
+
+%hr
+%h2
+  Cautions and Contraindications
+= add_child_link 'Add a FormulaContraindication', 'formula_contraindication', f
+#formula_contraindication_children
+  - f.fields_for :formula_contraindications do |formula_contraindication_form|
+    = render :partial => 'formula_contraindication', :locals => { :f => formula_contraindication_form }
+
+%hr
+%h2
+  Preparation
+= f.text_area :preparation, :rows => 2, :cols => 40
+%hr
+%h2
+  Commentary
+= f.text_area :commentary
+%hr
+#formula_comparison_children
+  - f.fields_for :formula_comparisons do |formula_comparison_form|
+    = render :partial => 'formula_comparison', :locals => { :f => formula_comparison_form }
+
+%p
+  = add_child_link 'Add a Comparison', 'formula_comparison', f

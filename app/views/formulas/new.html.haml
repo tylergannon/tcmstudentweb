@@ -1,0 +1,8 @@
+- title "New Formula"
+- form_for(@formula) do |f|
+  = render :partial => 'form', :locals => { :f => f }
+  %p
+    = f.submit 'Create'
+
+= link_to 'Back', formulas_path
+

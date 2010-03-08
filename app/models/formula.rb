@@ -1,6 +1,7 @@
 class Formula < ActiveRecord::Base
   ROLES = %w[jūn chén zuǒ shǐ]
 	validates_presence_of :formula_category, :pinyin, :english
+  validates_uniqueness_of :pinyin, :english
 	has_many :formula_contraindications
 	accepts_nested_attributes_for :formula_contraindications, :allow_destroy => true, :reject_if => proc {|a| a['contraindication_name'.blank?]}
 
@@ -38,8 +39,6 @@ class Formula < ActiveRecord::Base
 	  formula_comparisons + other_formula_comparisons
 	end
 
-
-
 	belongs_to :formula_category
 	def formula_category_name=(name)
 		self.formula_category = FormulaCategory.find_or_create_by_name(name) unless name.blank?
@@ -59,5 +58,9 @@ class Formula < ActiveRecord::Base
 
   def non_chief_herbs
     herbs_from(Formula::ROLES[1]) + herbs_from(Formula::ROLES[2]) +  herbs_from(Formula::ROLES[3])
+  end
+
+  def symptoms
+    formula_symptoms.collect{|n| n.symptom_name}
   end
 end
