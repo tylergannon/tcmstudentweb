@@ -16,9 +16,6 @@ ActiveRecord::Schema.define(:version => 20100309041643) do
     t.integer  "symptom_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "key_symptom"
-    t.boolean  "maybe"
-    t.text     "commentary"
   end
 
   create_table "acu_point_therapeutic_functions", :force => true do |t|
@@ -138,9 +135,8 @@ ActiveRecord::Schema.define(:version => 20100309041643) do
     t.integer  "symptom_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "maybe"
+    t.boolean  "possibly"
     t.text     "commentary"
-    t.boolean  "key_symptom"
   end
 
   create_table "formula_therapeutic_functions", :force => true do |t|
