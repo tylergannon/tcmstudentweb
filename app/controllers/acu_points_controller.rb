@@ -41,6 +41,9 @@ class AcuPointsController < ApplicationController
   # POST /acu_points
   # POST /acu_points.xml
   def create
+#    raise
+    StringObjectHasher.hash_acu_point_symptoms(params, AcuPoint.new)
+    StringObjectHasher.hash_acu_point_therapeutic_functions(params, AcuPoint.new)
     @acu_point = AcuPoint.new(params[:acu_point])
 
     respond_to do |format|
@@ -59,7 +62,8 @@ class AcuPointsController < ApplicationController
   # PUT /acu_points/1.xml
   def update
     @acu_point = AcuPoint.find(params[:id])
-
+    StringObjectHasher.hash_acu_point_symptoms(params, @acu_point)
+    StringObjectHasher.hash_acu_point_therapeutic_functions(params, @acu_point)
     respond_to do |format|
       if @acu_point.update_attributes(params[:acu_point])
         flash[:notice] = 'Acu Point was successfully updated.'

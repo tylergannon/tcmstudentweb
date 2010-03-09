@@ -54,17 +54,18 @@ class FormulaSymptomReader
   end
 
   def hash
-    a = {:symptom_name => @fs.symptom_name}
-    if @fs.maybe then
-      a[:maybe] = "1"
-    end
-    if @fs.key_symptom then
-      a[:key_symptom] = "1"
-    end
-    if @fs.id then
-      a[:id] = @fs.id.to_s
-    end
-    a
+    ObjectHasher.hash_formula_symptom(@fs)
+#    a = {:symptom_name => @fs.symptom_name}
+#    if @fs.maybe then
+#      a[:maybe] = "1"
+#    end
+#    if @fs.key_symptom then
+#      a[:key_symptom] = "1"
+#    end
+#    if @fs.id then
+#      a[:id] = @fs.id.to_s
+#    end
+#    a
   end
 end
 

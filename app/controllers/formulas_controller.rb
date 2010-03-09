@@ -43,8 +43,8 @@ class FormulasController < ApplicationController
   # POST /formulas
   # POST /formulas.xml
   def create
-    StringObjectHasher.hash_formula_symptoms(params[:formula], Formula.new)
-    StringObjectHasher.hash_therapeutic_functions(params[:formula], Formula.new)
+    StringObjectHasher.hash_formula_symptoms(params, Formula.new)
+    StringObjectHasher.hash_therapeutic_functions(params, Formula.new)
     @formula = Formula.new(params[:formula])
 
       if @formula.save

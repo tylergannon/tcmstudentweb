@@ -42,7 +42,7 @@
 
 %hr
 %h2 Therapeutic Functions
-= text_area_with_auto_complete f, "therapeutic_functions", @formula.formula_therapeutic_functions.collect{|v| v.therapeutic_function_name}, :rows => 2, :cols => 50  
+= text_area_with_auto_complete f, "therapeutic_functions", @formula.formula_therapeutic_functions, :rows => 2, :cols => 50
 -#= add_child_link 'Add a Function', 'formula_therapeutic_function', f
 -##formula_therapeutic_function_children
 -#  - f.fields_for :formula_therapeutic_functions do |formula_therapeutic_function_form|
@@ -58,7 +58,7 @@
 
 %hr
 %h2 Signs and Symptoms
-= text_area_with_auto_complete f, "symptoms", @formula.formula_symptoms.collect{|v| v.symptom_name}, :rows => 2, :cols => 50
+= text_area_with_auto_complete f, "symptoms", @formula.symptoms, :rows => 2, :cols => 50
 -#
   = add_child_link 'Add a Symptom', 'formula_symptom', f
   #formula_symptom_children

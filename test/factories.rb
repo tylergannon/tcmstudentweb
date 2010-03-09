@@ -47,13 +47,30 @@ end
 Factory.define :tongue_quality do |f|
   f.name  "Moist"
 end
+THERAPEUTIC_FUNCTIONS = ["Release the exterior", "Course the liver"]
+SYMPTOMS = ["Headache", "Stomachache"]
 
 Factory.define :acu_point do |f|
   f.sequence(:pinyin) {|n| "Zu #{n} li"}
   f.sequence(:english) {|n| "Leg #{n} miles"}
-  f.association   :channel, :factory => :channel
+  f.association   :channel
+  f.acu_point_therapeutic_functions do |aptf|
+    THERAPEUTIC_FUNCTIONS.map{|f| aptf.association(:acu_point_therapeutic_function, \
+      :therapeutic_function => Factory(:therapeutic_function, :name => f)
+    )}
+  end
+  f.acu_point_symptoms do |aps|
+    SYMPTOMS.map{|f|
+      aps.association(:acu_point_symptom, \
+        :symptom => Factory(:symptom, :name => f)
+      )
+    }
+  end
+#  f.association   :acu_point_therapeutic_functions, :count => 3, :factory => :acu_point_therapeutic_function
+#  f.association   :acu_point_symptoms, :count => 3, :factory => :acu_point_symptom
   f.sequence(:ordinal) {|n| n}
 end
+
 
 Factory.define :formula_dui_yao do |f|
   f.association     :formula, :factory => :formula
@@ -73,6 +90,24 @@ Factory.define :herb do |f|
   f.association     :herb_category, :factory => :herb_category
 end
 
+Factory.define :symptom do |f|
+  f.sequence(:name) {|n| "Headache #{n}"}
+end
+
+Factory.define :therapeutic_function do |f|
+  f.sequence(:name) {|n| "Release exterior #{n}"}
+end
+
 Factory.define :herb_category do |f|
   f.name            "Herbs that Resolve the Exterior"
+end
+
+
+Factory.define :acu_point_therapeutic_function do |f|
+  f.association       :therapeutic_function, :factory => :therapeutic_function
+  f.commentary        "This mostly works in combination with another point."
+end
+
+Factory.define :acu_point_symptom do |f|
+  f.association       :symptom, :factory => :symptom
 end

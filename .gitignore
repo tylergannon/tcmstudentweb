@@ -1,7 +1,10 @@
 # Ignore all dotfiles...
 .*
+*.log
+*.sqlite3
 # except for .gitignore
 !.gitignore
 
 vendor/*
 *~
+

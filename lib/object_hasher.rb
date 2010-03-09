@@ -36,8 +36,7 @@ class ObjectHasher
 
   def self.hash_formula_symptom(fs)
     c = {}
-    set_param? c, "id", fs
-    set_param? c, "symptom_name", fs
+    ["id", "symptom_name", "maybe", "key_symptom"].each {|param| set_param?(c, param, fs)}
     c
   end
 
@@ -49,33 +48,49 @@ class ObjectHasher
 
   def self.hash_formula_therapeutic_function(tf)
     a = {}
-    set_param? a, "id", tf
-    set_param? a, "therapeutic_function_name", tf
+    ["id", "therapeutic_function_name"].each{|p| set_param?(a, p, tf)}
+    a
   end
 
+  def self.hash_acu_point_therapeutic_function(aptf)
+    simple_hash ["id", "acu_point_id", "therapeutic_function_name", "commentary"], aptf
+  end
 
+  def self.hash_acu_point_symptom(aps)
+    simple_hash ["id", "acu_point_id", "symptom_name"], aps
+  end
+  
   private
-
-  def self.hash_collection(hash, array)
-    return unless array && array.size>0
-    class_name = array[0].class.name.underscore
-    plural_name = class_name.tableize
-    hash["#{plural_name}_attributes"] = map_obj(array) do |obj|
-      self.send("hash_#{class_name}", obj)
+    def self.simple_hash(params, object)
+      a = {}
+      params.each{|p| set_param?(a, p, object)}
+      a
     end
-  end
 
-  def self.set_param?(h, prm, obj)
-    if obj.send(prm) != nil then
-      h[prm] = obj.send(prm)
+    def self.hash_collection(hash, array)
+      return unless array && array.size>0
+      class_name = array[0].class.name.underscore
+      plural_name = class_name.tableize
+      hash["#{plural_name}_attributes"] = map_obj(array) do |obj|
+        self.send("hash_#{class_name}", obj)
+      end
     end
-  end
 
-  def self.map_obj(ary, &code)
-    Hash[ary.map{|c|
-      [ary.index(c).to_s, code.call(c)]
-    }]
-  end
+    def self.set_param?(h, prm, obj)
+      if obj.send(prm) != nil then
+        val = obj.send(prm)
+        if val.class == TrueClass || val.class == FalseClass
+          val = val ? "1" : "0"
+        end
+        h[prm] = val
+      end
+    end
+
+    def self.map_obj(ary, &code)
+      Hash[ary.map{|c|
+        [ary.index(c).to_s, code.call(c)]
+      }]
+    end
 
 
 end

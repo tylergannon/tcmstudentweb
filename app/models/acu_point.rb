@@ -1,5 +1,6 @@
 
 
+
 class AcuPoint < ActiveRecord::Base
   validates_presence_of :pinyin
   validates_uniqueness_of :pinyin, :english

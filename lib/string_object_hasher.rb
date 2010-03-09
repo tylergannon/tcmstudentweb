@@ -1,20 +1,51 @@
 class StringObjectHasher
 
+  def self.encode(collection)
+    return if collection.nil? || collection == []
+    self.send("encode_#{collection[0].class.name.tableize}", collection)
+  end
+
+
   def self.hash_formula_symptoms(params, object)
     return if params[:extra].nil? || params[:extra][:symptoms].nil?
     a = StringObjectHasher.new(params[:extra][:symptoms],
-                           object.formula_symptoms,
-                           FormulaSymptomReader.new(nil)).get_hash
-    unless a.nil? then params[:formula_symptoms_attributes] = a end
+                               object.formula_symptoms,
+                               FormulaSymptomReader.new(nil)).get_hash
+    unless a.nil? then
+      params[:formula][:formula_symptoms_attributes] = a
+    end
   end
 
   def self.hash_therapeutic_functions(params, object)
     return if params[:extra].nil? || params[:extra][:therapeutic_functions].nil?
     a = StringObjectHasher.new(params[:extra][:therapeutic_functions],
-                           object.formula_therapeutic_functions,
-                           FormulaTherapeuticFunctionReader.new(nil)).get_hash
-    unless a.nil? then params[:formula_therapeutic_functions_attributes] = a end
+                               object.formula_therapeutic_functions,
+                               FormulaTherapeuticFunctionReader.new(nil)).get_hash
+    unless a.nil? then
+      params[:formula][:formula_therapeutic_functions_attributes] = a
+    end
   end
+
+  def self.hash_acu_point_therapeutic_functions(params, object)
+    return if params[:extra].nil? || params[:extra][:therapeutic_functions].nil?
+    a = StringObjectHasher.new(params[:extra][:therapeutic_functions],
+                               object.acu_point_therapeutic_functions,
+                               AcuPointTherapeuticFunctionReader.new(nil)).get_hash
+    unless a.nil? then
+      params[:acu_point][:acu_point_therapeutic_functions_attributes] = a
+    end
+  end
+
+  def self.hash_acu_point_symptoms(params, object)
+    return if params[:extra].nil? || params[:extra][:symptoms].nil?
+    a = StringObjectHasher.new(params[:extra][:symptoms],
+                               object.acu_point_symptoms,
+                               AcuPointSymptomReader.new(nil)).get_hash
+    unless a.nil? then
+      params[:acu_point][:acu_point_symptoms_attributes] = a
+    end
+  end
+
 
   def initialize(text, objects, reader)
     @strings = cleaned_items(text)
@@ -58,6 +89,24 @@ class StringObjectHasher
   end
 
   private
+    def self.encode_acu_point_symptoms(acu_point_symptoms)
+      acu_point_symptoms.map {|v| "#{v.maybe ? "-" : ""}#{v.key_symptom ? "*" : ""}#{v.symptom_name}"}.join("; ")
+    end
+
+    def self.encode_acu_point_therapeutic_functions(acu_point_therapeutic_functions)
+      acu_point_therapeutic_functions.map {|v| v.therapeutic_function_name}.join("\n")
+    end
+
+    def self.encode_formula_symptoms(fs)
+      fs.map {|v| "#{v.maybe ? "-" : ""}#{v.key_symptom ? "*" : ""}#{v.symptom_name}"}.join("; ")
+    end
+
+    def self.encode_formula_therapeutic_functions(ftf)
+      ftf.map  {|v| v.therapeutic_function_name}.join("\n")
+    end
+
+
+
   #
   #  Splits s by semicolon and removes leading and trailing whitespace from each resulting string
   #

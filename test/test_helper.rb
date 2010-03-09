@@ -3,7 +3,6 @@ require File.expand_path(File.dirname(__FILE__) + "/../config/environment")
 require 'test_help'
 require 'factory_girl'
 require "authlogic/test_case"
-require "lib/object_hasher.rb"
 require "factories.rb"
 
 
@@ -58,12 +57,15 @@ class ActiveSupport::TestCase
         Factory(class_name)
         yield
         get :index, :format => "js"
+
       end
       should_assign_to(class_name.tableize)
       should_respond_with :success
       should_render_template :index
       should_not_set_the_flash
+
     end
   end
+
 
 end

@@ -1,12 +1,10 @@
 require 'test_helper'
 
 class FormulasControllerTest < ActionController::TestCase
-
   context "on GET to :index" do
     setup do
       get :index
     end
-
     should_respond_with :success
     should_render_template :index
     should_not_set_the_flash
@@ -21,16 +19,17 @@ class FormulasControllerTest < ActionController::TestCase
 #      puts sess.inspect
       get :new
     end
-
-
     should_render_template :new
     should_respond_with :success
   end
 
+  EXTRA = {"therapeutic_functions" => "Raises the yang; Resolves the exterior",
+           "symptoms" => "Headache; Insomnia"}
+
   context "on POST to :create" do
     setup do
       formula = Factory.build(:formula, :english => "Formula_English")
-      post :create, :formula => ObjectHasher.hash_formula(formula)
+      post :create, :formula => ObjectHasher.hash_formula(formula), :extra => EXTRA
       @new_formula = Formula.find_by_english("Formula_English")
       assert_instance_of(Formula, @new_formula)
     end
@@ -40,6 +39,13 @@ class FormulasControllerTest < ActionController::TestCase
     should_change("the number of formulas", :by => 1) {Formula.count}
     should_set_the_flash_to("Formula was successfully created.")
     should_redirect_to("New formula path") {"/formulas/#{@new_formula.id}"}
+
+    should "Add therapeutic functions and symptoms to new formula" do
+      assert(@new_formula.formula_therapeutic_functions.size > 0, "Should have therapeutic functions")
+      assert(@new_formula.formula_therapeutic_functions.detect{|v| v.therapeutic_function_name == "Raises the yang"}, "Should raise yang.")
+      assert(@new_formula.formula_symptoms.detect{|v| v.symptom_name == "Headache"}, "Should have Headache")
+    end
+
   end
 
   context "on GET to :show" do

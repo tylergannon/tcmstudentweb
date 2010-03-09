@@ -3,4 +3,14 @@ module ApplicationHelper
   def textile(str)
     RedCloth.new(str).to_html unless str.nil?
   end
+
+  def text_area_with_auto_complete(form, field, values, options = {})
+    id = "extra_#{field}"
+    name = "extra[#{field}]"
+    options.merge!({:autocomplete => 'off', :id => id, :name => name})
+    text = StringObjectHasher.encode(values)
+    search_path = "/#{field.tableize}.js"
+    render(:partial => 'layouts/auto_complete',
+           :locals => {:id => id, :path => search_path, :text => text, :html_options => options})
+  end
 end

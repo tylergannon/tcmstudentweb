@@ -40,10 +40,6 @@ class FormulaTherapeuticFunctionReader
   end
 
   def hash
-    a = {:therapeutic_function_name => @fs.therapeutic_function_name}
-    if @fs.id then
-      a[:id] = @fs.id.to_s
-    end
-    a
+    ObjectHasher.hash_formula_therapeutic_function(@fs)
   end
 end

@@ -15,15 +15,6 @@ module FormulasHelper
     end
   end
 
-  def text_area_with_auto_complete(form, field, values, options = {})
-    id = "extra_#{field}"
-    name = "extra[#{field}]"
-    options.merge!({:autocomplete => 'off', :id => id, :name => name})
-    text = values.join("; ")
-    search_path = "/#{field.tableize}.js"
-    render(:partial => 'auto_complete',
-           :locals => {:id => id, :path => search_path, :text => text, :html_options => options})
-  end
 
 
 
