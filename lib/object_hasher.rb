@@ -36,7 +36,7 @@ class ObjectHasher
 
   def self.hash_formula_symptom(fs)
     c = {}
-    ["id", "symptom_name", "maybe", "key_symptom"].each {|param| set_param?(c, param, fs)}
+    ["id", "symptom_name", "maybe", "key_symptom", "commentary"].each {|param| set_param?(c, param, fs)}
     c
   end
 
@@ -53,13 +53,13 @@ class ObjectHasher
   end
 
   def self.hash_acu_point_therapeutic_function(aptf)
-    simple_hash ["id", "acu_point_id", "therapeutic_function_name", "commentary"], aptf
+    simple_hash ["id", "therapeutic_function_name", "commentary"], aptf
   end
 
   def self.hash_acu_point_symptom(aps)
-    simple_hash ["id", "acu_point_id", "symptom_name"], aps
+    simple_hash ["id", "symptom_name", "maybe", "key_symptom", "commentary"], aps
   end
-  
+
   private
     def self.simple_hash(params, object)
       a = {}

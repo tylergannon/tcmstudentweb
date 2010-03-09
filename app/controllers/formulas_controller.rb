@@ -80,8 +80,8 @@ class FormulasController < ApplicationController
   # PUT /formulas/1.xml
   def update
     @formula = Formula.find(params[:id])
-    StringObjectHasher.hash_formula_symptoms(params[:formula], Formula.new)
-    StringObjectHasher.hash_therapeutic_functions(params[:formula], Formula.new)
+    StringObjectHasher.hash_formula_symptoms(params, @formula)
+    StringObjectHasher.hash_therapeutic_functions(params, @formula)
     respond_to do |format|
       if @formula.update_attributes(params[:formula])
         flash[:notice] = 'Formula was successfully updated.'

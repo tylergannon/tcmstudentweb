@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100309025001) do
+ActiveRecord::Schema.define(:version => 20100309041643) do
 
   create_table "acu_point_symptoms", :force => true do |t|
     t.integer  "acu_point_id"
@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(:version => 20100309025001) do
     t.datetime "updated_at"
     t.boolean  "key_symptom"
     t.boolean  "maybe"
+    t.text     "commentary"
   end
 
   create_table "acu_point_therapeutic_functions", :force => true do |t|
@@ -138,6 +139,7 @@ ActiveRecord::Schema.define(:version => 20100309025001) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "maybe"
+    t.text     "commentary"
     t.boolean  "key_symptom"
   end
 

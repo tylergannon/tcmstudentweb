@@ -9,16 +9,29 @@ class FormulaSymptomReader
 
   def parse_string(s)
     _s = String.new(s)
-    if s.index("*") == 0
+    if _s.index("*") == 0
       @fs.key_symptom = true
       @fs.maybe = false
       _s.slice!(0)
       _s.strip!
     end
-    if s.index("-") == 0
+    if _s.index("-") == 0
       @fs.maybe = true
       @fs.key_symptom = false
       _s.slice!(0)
+      _s.strip!
+    end
+    if j = _s.index("(")
+      k = _s.index(")")
+      if k
+        _s.slice!(k)
+        k -= 1
+      else
+        k = _s.size-1
+      end
+      commentary = _s.slice!(j..k)
+      commentary.slice!(0)
+      @fs.commentary = commentary
       _s.strip!
     end
     @fs.symptom_name = _s if @fs.new_record?

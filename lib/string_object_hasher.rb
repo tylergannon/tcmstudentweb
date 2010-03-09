@@ -90,7 +90,21 @@ class StringObjectHasher
 
   private
     def self.encode_acu_point_symptoms(acu_point_symptoms)
-      acu_point_symptoms.map {|v| "#{v.maybe ? "-" : ""}#{v.key_symptom ? "*" : ""}#{v.symptom_name}"}.join("; ")
+      acu_point_symptoms.map {|v| encode_acu_point_symptom(v)}.join("; ")
+    end
+
+  def self.encode_formula_symptom(fs)
+    self.encode_acu_point_symptom(fs)
+  end
+
+    def self.encode_acu_point_symptom(aps)
+      a = aps.maybe ? "-" : ""
+      a += aps.key_symptom ? "*" : ""
+      a += aps.symptom_name
+      unless (aps.commentary == "") || aps.commentary.nil?
+        a += " (#{aps.commentary})"
+      end
+      a
     end
 
     def self.encode_acu_point_therapeutic_functions(acu_point_therapeutic_functions)
@@ -98,7 +112,7 @@ class StringObjectHasher
     end
 
     def self.encode_formula_symptoms(fs)
-      fs.map {|v| "#{v.maybe ? "-" : ""}#{v.key_symptom ? "*" : ""}#{v.symptom_name}"}.join("; ")
+      fs.map {|v| encode_acu_point_symptom(v)}.join("; ")
     end
 
     def self.encode_formula_therapeutic_functions(ftf)

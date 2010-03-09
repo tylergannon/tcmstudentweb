@@ -2,7 +2,7 @@
 
 %h2 Signs and Symptoms
 %ul
-  %li= @formula.formula_symptoms.collect{|a| a.symptom_name}.join(", ")
+  %li=  @formula.formula_symptoms.map{|a| display_formula_symptom(a) }.join(", ")
   %li= "Tongue #{@formula.formula_tongue_qualities.collect{|a| a.tongue_quality_name}.join(', ')}"
   %li= "Pulse: #{@formula.formula_pulse_qualities.collect{|a| a.pulse_quality_name}.join(', ')}"
 
