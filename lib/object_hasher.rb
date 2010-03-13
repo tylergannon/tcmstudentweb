@@ -56,10 +56,21 @@ class ObjectHasher
     simple_hash ["id", "therapeutic_function_name", "commentary"], aptf
   end
 
+  def self.hash_pattern_treatment_principle(ptp)
+    simple_hash ["id", "treatment_principle_name", "commentary"], ptp
+  end
+
+  def self.hash_pattern_symptom(ps)
+    hash_acu_point_symptom(ps)
+  end
+
   def self.hash_acu_point_symptom(aps)
     simple_hash ["id", "symptom_name", "maybe", "key_symptom", "commentary"], aps
   end
 
+  def self.hash_pattern(pattern)
+    simple_hash ["id", "name", "commentary"], pattern
+  end
   private
     def self.simple_hash(params, object)
       a = {}
@@ -91,6 +102,8 @@ class ObjectHasher
         [ary.index(c).to_s, code.call(c)]
       }]
     end
+
+
 
 
 end

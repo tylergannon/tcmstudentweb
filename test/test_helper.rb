@@ -52,7 +52,7 @@ class ActiveSupport::TestCase
   end
 
   def self.index_js_test(class_name, &block)
-    context "on GET to :index" do
+    context "on GET to :index.js" do
       setup do
         Factory(class_name)
         yield
@@ -63,9 +63,6 @@ class ActiveSupport::TestCase
       should_respond_with :success
       should_render_template :index
       should_not_set_the_flash
-
     end
   end
-
-
 end

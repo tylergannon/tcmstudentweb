@@ -1,0 +1,11 @@
+%h1 Patterns of Disharmony
+
+%ul
+  - @patterns.each do |pattern|
+    %li
+      = link_to pattern.name, pattern
+      - if can? :update, @pattern
+        "#{link_to('Edit', edit_pattern_path(pattern))} | #{link_to 'Destroy', pattern, :confirm => 'Are you sure?', :method => :delete}"
+%br/
+
+= link_to 'New pattern', new_pattern_path

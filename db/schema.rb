@@ -9,13 +9,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100309041643) do
+ActiveRecord::Schema.define(:version => 20100310173758) do
 
   create_table "acu_point_symptoms", :force => true do |t|
     t.integer  "acu_point_id"
     t.integer  "symptom_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "key_symptom"
+    t.boolean  "maybe"
+    t.text     "commentary"
   end
 
   create_table "acu_point_therapeutic_functions", :force => true do |t|
@@ -135,7 +138,8 @@ ActiveRecord::Schema.define(:version => 20100309041643) do
     t.integer  "symptom_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "possibly"
+    t.boolean  "maybe"
+    t.boolean  "key_symptom"
     t.text     "commentary"
   end
 
@@ -228,6 +232,24 @@ ActiveRecord::Schema.define(:version => 20100309041643) do
     t.string   "common_name"
     t.string   "short_name"
     t.boolean  "state_board"
+  end
+
+  create_table "pattern_symptoms", :force => true do |t|
+    t.integer  "symptom_id"
+    t.integer  "pattern_id"
+    t.text     "commentary"
+    t.boolean  "maybe"
+    t.boolean  "key_symptom"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "pattern_treatment_principles", :force => true do |t|
+    t.integer  "pattern_id"
+    t.integer  "therapeutic_function_id"
+    t.text     "commentary"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "patterns", :force => true do |t|

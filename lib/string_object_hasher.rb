@@ -46,6 +46,26 @@ class StringObjectHasher
     end
   end
 
+  def self.hash_pattern_treatment_principles(params, object)
+    return if params[:extra].nil? || params[:extra][:treatment_principles].nil?
+    a = StringObjectHasher.new(params[:extra][:treatment_principles],
+                               object.pattern_treatment_principles,
+                               PatternTreatmentPrincipleReader.new(nil)).get_hash
+    unless a.nil? then
+      params[:pattern][:pattern_treatment_principles_attributes] = a
+    end
+  end
+
+  def self.hash_pattern_symptoms(params, object)
+    return if params[:extra].nil? || params[:extra][:symptoms].nil?
+    a = StringObjectHasher.new(params[:extra][:symptoms],
+                               object.pattern_symptoms,
+                               PatternSymptomReader.new(nil)).get_hash
+    unless a.nil? then
+      params[:pattern][:pattern_symptoms_attributes] = a
+    end
+  end
+
 
   def initialize(text, objects, reader)
     @strings = cleaned_items(text)
@@ -119,7 +139,13 @@ class StringObjectHasher
       ftf.map  {|v| v.therapeutic_function_name}.join("\n")
     end
 
+    def self.encode_pattern_symptoms(fps)
+      FormParser.unparse_pattern_symptoms(fps)
+    end
 
+    def self.encode_pattern_treatment_principles(ptp)
+      ptp.map {|v| v.treatment_principle_name}.join("; ")
+    end
 
   #
   #  Splits s by semicolon and removes leading and trailing whitespace from each resulting string

@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :patterns
+
   map.resources :acu_points
   map.resources :formulas
   map.resources :tongue_qualities
@@ -19,6 +21,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resource :account, :controller => "users"
   map.resources :users
 
+  map.connect 'treatment_principles', :controller => 'therapeutic_functions'
+  
   map.connect 'login', :controller => 'user_sessions', :action => 'new'
   map.connect 'logout', :controller => 'user_sessions', :action => 'destroy'
   map.connect 'signup', :controller => 'users', :action => 'new'

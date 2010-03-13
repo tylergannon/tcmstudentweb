@@ -1,0 +1,37 @@
+- title @pattern.name
+
+%h2 Signs and Symptoms
+Keys: #{@pattern.pattern_symptoms.select{|x| x.key_symptom}.map{|y| y.symptom_name}.join(", ")}
+
+%ul
+  - @pattern.pattern_symptoms.each do |s|
+    %li
+      - if s.maybe
+        (possibly)
+      - if s.key_symptom
+        %i= s.symptom_name
+      - else
+        = s.symptom_name
+      - unless s.commentary.blank?
+        %ul
+          %li= textile(s.commentary)
+
+
+%h2 Treatment Principles
+%ul
+  - @pattern.pattern_treatment_principles.each do |p|
+    %li
+      = p.treatment_principle_name
+      - unless p.commentary.blank?
+        %ul
+          %li
+            :textile
+              #{p.commentary}
+
+- unless @pattern.commentary.blank?
+  %h2 Commentary
+  :textile
+    #{@pattern.commentary}
+
+- if can? :update, @pattern
+  = link_to 'Edit', edit_pattern_path(@pattern)

@@ -1,8 +1,8 @@
 require 'test_helper'
 
 class StringObjectHasherTest < ActiveSupport::TestCase
-  SYMPTOMS = "Headache; Pain in the neck"
-  THERAPEUTIC_FUNCTIONS = "Release the exterior, Course the Liver"
+  @symptoms = "Headache; Pain in the neck"
+  @therapeutic_functions = "Release the exterior, Course the Liver"
 
   context "Acu Point object hasher should behave correctly" do
     setup do

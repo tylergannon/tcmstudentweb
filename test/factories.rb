@@ -47,22 +47,26 @@ end
 Factory.define :tongue_quality do |f|
   f.name  "Moist"
 end
-THERAPEUTIC_FUNCTIONS = ["Release the exterior", "Course the liver"]
-SYMPTOMS = ["Headache", "Stomachache"]
+def therapeutic_functions
+  ["Release the exterior", "Course the liver"]
+end
+def symptoms
+  ["Headache", "Stomachache"]
+end
 
 Factory.define :acu_point do |f|
   f.sequence(:pinyin) {|n| "Zu #{n} li"}
   f.sequence(:english) {|n| "Leg #{n} miles"}
   f.association   :channel
   f.acu_point_therapeutic_functions do |aptf|
-    THERAPEUTIC_FUNCTIONS.map{|f| aptf.association(:acu_point_therapeutic_function, \
-      :therapeutic_function => Factory(:therapeutic_function, :name => f)
+    therapeutic_functions.map{|tf| aptf.association(:acu_point_therapeutic_function, \
+      :therapeutic_function => Factory(:therapeutic_function, :name => tf)
     )}
   end
   f.acu_point_symptoms do |aps|
-    SYMPTOMS.map{|f|
+    symptoms.map{|s|
       aps.association(:acu_point_symptom, \
-        :symptom => Factory(:symptom, :name => f)
+        :symptom => Factory(:symptom, :name => s)
       )
     }
   end
@@ -110,4 +114,40 @@ end
 
 Factory.define :acu_point_symptom do |f|
   f.association       :symptom, :factory => :symptom
+end
+
+Factory.define :pattern_treatment_principle do |f|
+  f.association       :treatment_principle, :factory => :therapeutic_function
+end
+
+Factory.define :pattern_symptom do |f|
+  f.association       :symptom
+  f.maybe             false
+  f.key_symptom       true
+  f.commentary        "What a bummer."
+end
+
+def create_pattern_symptom(name, commentary = "")
+  Factory.create(:pattern_symptom, :commentary => commentary, :symptom => Factory(:symptom, :name => name))
+end
+def build_pattern_symptom(name, commentary = "")
+  Factory.build(:pattern_symptom, :commentary => commentary, :symptom => Factory(:symptom, :name => name))
+end
+
+
+Factory.define :pattern do |f|
+  f.name            "Liver Qi Stagnation"
+
+    f.pattern_treatment_principles do |ptp|
+    therapeutic_functions.map{|tf| ptp.association(:pattern_treatment_principle, \
+      :treatment_principle => Factory(:therapeutic_function, :name => tf)
+    )}
+  end
+  f.pattern_symptoms do |ps|
+    symptoms.map{|tf|
+      ps.association(:pattern_symptom, \
+        :symptom => Factory(:symptom, :name => tf)
+      )
+    }
+  end
 end
