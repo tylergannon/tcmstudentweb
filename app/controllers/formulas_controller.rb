@@ -1,11 +1,11 @@
 class FormulasController < ApplicationController
   load_and_authorize_resource
   def index
-
-    @formulas = Formula.all
+    @formulas = Formula.find(:all, :conditions => ['canonical LIKE ?', "%#{params[:search]}%"])
 
     respond_to do |format|
       format.html # index.html.erb
+      format.js
       format.xml  { render :xml => @formulas }
     end
   end
