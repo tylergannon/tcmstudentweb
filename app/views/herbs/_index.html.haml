@@ -1,0 +1,23 @@
+%table
+  %tr
+    %th
+      Pinyin
+    %th
+      English
+    %th
+      Latin
+  - herbs.each do |herb|
+  %tr
+    %td
+      = h herb.pinyin
+    %td
+      = h herb.english
+    %td
+      = h herb.latin
+    %td
+      = link_to 'Show', herb
+    %td
+      = link_to 'Edit', edit_herb_path(herb)
+    %td
+      = link_to 'Destroy', herb, :confirm => 'Are you sure?', :method => :delete
+  

@@ -1,6 +1,5 @@
 class FormulasController < ApplicationController
   load_and_authorize_resource
-
   def index
 
     @formulas = Formula.all
@@ -30,12 +29,16 @@ class FormulasController < ApplicationController
   # GET /formulas/new
   # GET /formulas/new.xml
   def new
-    @formula = Formula.new
+    @formula = Formula.new(:citation => Citation.new)
+    @citation = Citation.new
+    @source_text_citation = Citation.new
   end
 
   # GET /formulas/1/edit
   def edit
     @formula = Formula.find(params[:id])
+    @citation = @formula.citation ||= Citation.new
+    @source_text_citation = @formula.source_text_citation ||= Citation.new
   end
 
 
@@ -43,9 +46,8 @@ class FormulasController < ApplicationController
   # POST /formulas
   # POST /formulas.xml
   def create
-    StringObjectHasher.hash_formula_symptoms(params, Formula.new)
-    StringObjectHasher.hash_therapeutic_functions(params, Formula.new)
     @formula = Formula.new(params[:formula])
+    write_symptoms_and_therapeutic_functions_to_params_hash
 
       if @formula.save
         flash[:notice] = 'Formula was successfully created.'
@@ -80,8 +82,7 @@ class FormulasController < ApplicationController
   # PUT /formulas/1.xml
   def update
     @formula = Formula.find(params[:id])
-    StringObjectHasher.hash_formula_symptoms(params, @formula)
-    StringObjectHasher.hash_therapeutic_functions(params, @formula)
+    write_symptoms_and_therapeutic_functions_to_params_hash
     respond_to do |format|
       if @formula.update_attributes(params[:formula])
         flash[:notice] = 'Formula was successfully updated.'
@@ -110,5 +111,21 @@ class FormulasController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+  def write_symptoms_and_therapeutic_functions_to_params_hash
+    symptoms_text = params[:extra][:symptoms]
+    unless symptoms_text.empty?
+      bullshit = FormParser.parse_symptoms(symptoms_text, FormulaSymptom)
+      @formula.attributes = {"formula_symptoms_attributes" =>
+              bullshit.write_attributes(@formula.formula_symptoms)}
+    end
+
+    tp_text = params[:extra][:therapeutic_functions]
+    unless tp_text.empty?
+      @formula.attributes = {"formula_therapeutic_functions_attributes" =>
+              FormParser.parse_therapeutic_functions(tp_text, FormulaTherapeuticFunction).write_attributes(@formula.formula_therapeutic_functions)}
+    end
+  end
+
 end
 

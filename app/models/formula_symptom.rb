@@ -17,4 +17,13 @@ class FormulaSymptom < ActiveRecord::Base
       symptom_name
     end
   end
+
+  def key_attributes
+    ["id", "symptom_name", "maybe", "key_symptom"]
+  end
+
+  def name
+    symptom_name
+  end
+  
 end

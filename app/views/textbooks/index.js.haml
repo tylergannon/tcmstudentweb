@@ -1,0 +1,7 @@
+%ul
+  - @textbooks.each do |t|
+    %li<
+      = t.title
+      - unless t.author_name.blank?
+        %span.informal
+          %i (#{t.author_name})

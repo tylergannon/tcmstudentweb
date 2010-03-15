@@ -1,0 +1,54 @@
+= f.error_messages
+= f.label :category_id
+%br
+= tfwac f, :herb_category_name,  herb_categories_path(:format => :js)
+
+%h2 Source
+%table
+  %tr
+    %td
+      = render :partial => 'citations/edit_citation', :locals => {:f => f, :field => :citation}
+    %td
+      = render :partial => 'citations/edit_citation', :locals => {:f => f, :field => :source_text_citation}
+
+%p
+  = f.label :pinyin
+  = f.text_field :pinyin
+%p
+  = f.label :english
+  = f.text_field :english
+%p
+  = f.label :common_name
+  = f.text_field :common_name
+%p
+  = f.label :latin
+  = f.text_field :latin
+%p
+  = f.label :commentary
+  = f.text_area :commentary
+%p
+  = f.label :contraindications
+  = f.text_area :contraindications
+%hr
+
+
+#herb_channel_children
+  - f.fields_for :herb_channels do |herb_channel_form|
+    = render :partial => 'herb_channel', :locals => { :f => herb_channel_form }
+%p
+  = add_child_link 'Add a HerbChannel', 'herb_channel', f
+#herb_flavor_children
+  - f.fields_for :herb_flavors do |herb_flavor_form|
+    = render :partial => 'herb_flavor', :locals => { :f => herb_flavor_form }
+%p
+  = add_child_link 'Add a HerbFlavor', 'herb_flavor', f
+#herb_therapeutic_function_children
+  - f.fields_for :herb_therapeutic_functions do |herb_therapeutic_function_form|
+    = render :partial => 'herb_therapeutic_function', :locals => { :f => herb_therapeutic_function_form }
+%p
+  = add_child_link 'Add a HerbTherapeuticFunction', 'herb_therapeutic_function', f
+#herb_comparison_children
+  - f.fields_for :herb_comparisons do |herb_comparison_form|
+    = render :partial => 'herb_comparison', :locals => { :f => herb_comparison_form }
+%p
+  = add_child_link 'Add a Comparison', 'herb_comparison', f

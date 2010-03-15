@@ -1,0 +1,10 @@
+= f.error_messages
+%p
+  = f.label :title
+  = f.text_field :title
+%p
+  = f.label :year
+  = f.text_field :year
+%p
+  Author: #{tfwac f, :author_name, authors_path(:format => :js)}
+

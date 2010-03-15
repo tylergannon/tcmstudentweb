@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100310173758) do
+ActiveRecord::Schema.define(:version => 20100315210609) do
 
   create_table "acu_point_symptoms", :force => true do |t|
     t.integer  "acu_point_id"
@@ -39,6 +39,14 @@ ActiveRecord::Schema.define(:version => 20100310173758) do
     t.text     "commentary"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "canonical"
+    t.integer  "citation_id"
+  end
+
+  create_table "authors", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "channels", :force => true do |t|
@@ -47,6 +55,13 @@ ActiveRecord::Schema.define(:version => 20100310173758) do
     t.datetime "updated_at"
     t.string   "abbreviation"
     t.text     "commentary"
+  end
+
+  create_table "citations", :force => true do |t|
+    t.integer  "textbook_id"
+    t.string   "where"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "contraindications", :force => true do |t|
@@ -148,6 +163,7 @@ ActiveRecord::Schema.define(:version => 20100310173758) do
     t.integer  "therapeutic_function_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "commentary"
   end
 
   create_table "formula_tongue_qualities", :force => true do |t|
@@ -169,6 +185,9 @@ ActiveRecord::Schema.define(:version => 20100310173758) do
     t.integer  "bensky_page"
     t.string   "short_name"
     t.boolean  "state_board"
+    t.string   "canonical"
+    t.integer  "citation_id"
+    t.integer  "source_text_citation_id"
   end
 
   create_table "herb_categories", :force => true do |t|
@@ -232,6 +251,9 @@ ActiveRecord::Schema.define(:version => 20100310173758) do
     t.string   "common_name"
     t.string   "short_name"
     t.boolean  "state_board"
+    t.string   "canonical"
+    t.integer  "citation_id"
+    t.integer  "source_text_citation_id"
   end
 
   create_table "pattern_symptoms", :force => true do |t|
@@ -257,6 +279,7 @@ ActiveRecord::Schema.define(:version => 20100310173758) do
     t.text     "commentary"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "citation_id"
   end
 
   create_table "pulse_qualities", :force => true do |t|
@@ -274,6 +297,14 @@ ActiveRecord::Schema.define(:version => 20100310173758) do
 
   create_table "symptoms", :force => true do |t|
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "textbooks", :force => true do |t|
+    t.string   "title"
+    t.integer  "author_id"
+    t.integer  "year"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

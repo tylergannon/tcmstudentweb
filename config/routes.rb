@@ -1,4 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :authors
+
+  map.resources :textbooks
+
   map.resources :patterns
 
   map.resources :acu_points
@@ -15,6 +19,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :formula_dui_yaos
   map.resources :patterns
   map.resources :flavors
+  map.resources :textbooks
 
   map.resource :user_session
   # map.root :controller => "user_sessions", :action => "new" # optional, this just sets the root route
@@ -22,7 +27,6 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :users
 
   map.connect 'treatment_principles', :controller => 'therapeutic_functions'
-  
   map.connect 'login', :controller => 'user_sessions', :action => 'new'
   map.connect 'logout', :controller => 'user_sessions', :action => 'destroy'
   map.connect 'signup', :controller => 'users', :action => 'new'

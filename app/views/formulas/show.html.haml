@@ -1,5 +1,10 @@
 - title "#{@formula.formula_category.name}: #{@formula.pinyin}/ #{@formula.chinese} / #{@formula.english}"
 
+- unless @formula.citation.nil?
+  Reference: #{render :partial => 'citations/show', :locals => {:citation => @formula.citation}}
+- unless @formula.source_text_citation.nil?
+  Source Text: #{render :partial => 'citations/show', :locals => {:citation => @formula.source_text_citation}}
+
 %h2 Signs and Symptoms
 %ul
   %li=  @formula.formula_symptoms.map{|a| display_formula_symptom(a) }.join(", ")

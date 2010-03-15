@@ -17,4 +17,14 @@ class PatternTreatmentPrinciple < ActiveRecord::Base
   def treatment_principle_name=(name)
     self.treatment_principle = TherapeuticFunction.find_or_create_by_name(name) unless name.blank?
   end
+
+  def therapeutic_function_name
+    treatment_principle_name
+  end
+
+  def therapeutic_function_name=(name)
+    self.treatment_principle_name = name
+  end
+
+
 end

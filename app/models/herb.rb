@@ -1,5 +1,9 @@
 class Herb < ActiveRecord::Base
 
+  def attributes
+    ["id", "pinyin", "english", "canonical", "herb_category_id", "commentary", "common_name", "short_name", "state_board", ]
+  end
+
 	has_many :herb_flavors
 	has_many :herbs, :through => :herb_flavors
 	accepts_nested_attributes_for :herb_flavors, :allow_destroy => true, :reject_if => proc {|a| a['flavor_name'.blank?]}
@@ -19,6 +23,22 @@ class Herb < ActiveRecord::Base
 	accepts_nested_attributes_for :herb_comparisons, :allow_destroy => true, :reject_if => proc {|a| a['herb2_pinyin'.blank?]}
 
 	has_many :other_herb_comparisons, :foreign_key => :herb2_id, :class_name => "HerbComparison"
+
+  belongs_to :citation
+  accepts_nested_attributes_for :citation, :allow_destroy => true, :reject_if => proc {|a| a['textbook_name'.blank?]}
+
+  belongs_to :source_text_citation, :class_name => "Citation"
+  accepts_nested_attributes_for :source_text_citation, :allow_destroy => true, :reject_if => proc {|a| a['textbook_name'.blank?]}
+
+
+  def pinyin=(p)
+    super(p)
+    self.canonical = p.normalize.titleize
+  end
+
+  def english=(name)
+    super(name.titleize)
+  end
 
 	def display_name
 	  latin ? "#{pinyin} #{latin}" : pinyin

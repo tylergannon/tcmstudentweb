@@ -7,5 +7,8 @@
 %h3 Treatment Principles
 = text_area_with_auto_complete f, "treatment_principles", @pattern.pattern_treatment_principles, :rows => 4, :cols => 60
 
+%h3 Source
+= render :partial => 'citations/edit_citation', :locals => {:f => f, :field => :citation}
+
 %h3 Comments
 = f.text_area :commentary, :rows => 6, :cols => 60

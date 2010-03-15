@@ -40,10 +40,10 @@ class PatternsController < ApplicationController
   def write_symptoms_and_treatment_principles_to_params_hash
     symptoms_text = params[:extra][:symptoms]
     unless symptoms_text.empty?
-      bullshit = FormParser.parse_pattern_symptoms(symptoms_text)
-      puts bullshit.inspect
-      bullshit = bullshit.write_attributes(@pattern.pattern_symptoms)
-      puts bullshit.inspect
+      bullshit = FormParser.parse_symptoms(symptoms_text, PatternSymptom)
+#      puts bullshit.inspect
+#      bullshit = bullshit.write_attributes(@pattern.pattern_symptoms)
+#      puts bullshit.inspect
       @pattern.attributes = {"pattern_symptoms_attributes" =>
               bullshit}
 
@@ -52,7 +52,7 @@ class PatternsController < ApplicationController
     tp_text = params[:extra][:treatment_principles]
     unless tp_text.empty?
       @pattern.attributes = {"pattern_treatment_principles_attributes" =>
-              FormParser.parse_pattern_treatment_principles(tp_text).write_attributes(@pattern.pattern_treatment_principles)}
+              FormParser.parse_therapeutic_functions(tp_text, PatternTreatmentPrinciple).write_attributes(@pattern.pattern_treatment_principles)}
 
     end
   end

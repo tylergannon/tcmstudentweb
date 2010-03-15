@@ -1,0 +1,14 @@
+.child
+  %p
+    Textbook
+    = f.label :title
+    %br
+    = f.text_field :title
+  %p
+    Textbook
+    = f.label :year
+    %br
+    = f.text_field :year
+  %p
+    = f.hidden_field :_delete, :class => 'delete'
+    = remove_child_link 'remove', f

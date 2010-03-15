@@ -2,7 +2,7 @@ class HerbsController < ApplicationController
   # GET /herbs
   # GET /herbs.xml
   def index
-		@herbs = Herb.find(:all, :conditions => ['pinyin LIKE ?', "%#{params[:search]}%"])
+		@herbs = Herb.find(:all, :conditions => ['canonical LIKE ?', "%#{params[:search]}%"])
 		respond_to do |format|
 			format.html # index.html.erb
 			format.js   # index.js.erb
@@ -76,10 +76,10 @@ class HerbsController < ApplicationController
 			redirect_to(@herb)
 		else
 			render :action => "edit"
-			
+
 		end
 	end
-	
+
   # DELETE /herbs/1
   # DELETE /herbs/1.xml
   def destroy

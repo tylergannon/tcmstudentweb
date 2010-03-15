@@ -35,7 +35,14 @@ class Formula < ActiveRecord::Base
 
 	has_many :other_formula_comparisons, :foreign_key => :formula2_id, :class_name => 'FormulaComparison'
 
-	def all_comparisons
+  belongs_to :citation
+  accepts_nested_attributes_for :citation, :allow_destroy => false, :reject_if => proc {|a| a['textbook_title'].blank?}
+
+  belongs_to :source_text_citation, :class_name => "Citation"
+  accepts_nested_attributes_for :source_text_citation, :allow_destroy => false, :reject_if => proc {|a| a['textbook_title'].blank?}
+
+
+  def all_comparisons
 	  formula_comparisons + other_formula_comparisons
 	end
 
@@ -63,4 +70,9 @@ class Formula < ActiveRecord::Base
   def symptoms
     formula_symptoms.collect{|n| n.symptom_name}
   end
+  def pinyin=(p)
+    super(p)
+    self.canonical = p.normalize.titleize
+  end
+
 end

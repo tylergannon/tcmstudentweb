@@ -39,6 +39,15 @@
     </table
   - f.fields_for :formula_herbs do |formula_herb_form|
     = render :partial => 'formula_herb', :locals => { :f => formula_herb_form }
+%hr
+%h2 Source
+%table
+  %tr
+    %td
+      = render :partial => 'citations/edit_citation', :locals => {:f => f, :field => :citation}
+    %td
+      = render :partial => 'citations/edit_citation', :locals => {:f => f, :field => :source_text_citation}
+
 
 %hr
 %h2 Therapeutic Functions

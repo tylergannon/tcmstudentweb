@@ -1,0 +1,10 @@
+%h1
+  Editing textbook
+- form_for(@textbook) do |f|
+= render :partial => 'form', :locals => { :f => f }
+%p
+  = f.submit 'Update'
+- end
+= link_to 'Show', @textbook
+|
+= link_to 'Back', textbooks_path

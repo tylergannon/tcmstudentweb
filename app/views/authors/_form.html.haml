@@ -1,0 +1,11 @@
+= f.error_messages
+%p
+  = f.label :name
+  %br
+  = f.text_field :name
+#textbook_children
+  - f.fields_for :textbooks do |textbook_form|
+  = render :partial => 'textbook', :locals => { :f => textbook_form }
+  - end
+%p
+  = add_child_link 'Add a Textbook', 'textbook', f

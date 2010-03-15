@@ -103,6 +103,10 @@ class ObjectHasher
       }]
     end
 
+  def self.hash_herb(herb)
+    # code here
+  end
+
 
 
 

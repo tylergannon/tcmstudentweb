@@ -2,6 +2,17 @@ require 'test_helper'
 
 class HerbsControllerTest < ActionController::TestCase
 
+  context "on POST to :create" do
+    setup do
+      herb_attributes = herb.write_attributes
+      herb_attributes[:citation_attributes] = {"textbook_title" => "Bensky", "where" => "192"}
+      herb_attributes[:citation_attributes] = {"textbook_title" => "Bensky", "where" => "192"}
+      herb = Factory.build(:herb, :citation_name => "Bensky (2006)")
+      post :create, :herb => ObjectHasher.hash_herb(herb)
+
+    end
+  end
+
   test "should get index" do
     get :index
     assert_response :success

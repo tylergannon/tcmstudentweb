@@ -4,6 +4,10 @@ module ApplicationHelper
     RedCloth.new(str).to_html unless str.nil?
   end
 
+  def tfwac(f, field, url)
+    f.text_field_with_auto_complete field, {}, { :url => url, :method => :get, :skip_style => true,	:with => "'search='+element.value" }
+  end
+
   def text_area_with_auto_complete(form, field, values, options = {})
     id = "extra_#{field}"
     name = "extra[#{field}]"

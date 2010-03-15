@@ -132,19 +132,19 @@ class StringObjectHasher
     end
 
     def self.encode_formula_symptoms(fs)
-      fs.map {|v| encode_acu_point_symptom(v)}.join("; ")
+      FormParser.unparse_symptoms(fs)
     end
 
     def self.encode_formula_therapeutic_functions(ftf)
-      ftf.map  {|v| v.therapeutic_function_name}.join("\n")
+      FormParser.unparse_therapeutic_functions(ftf)
     end
 
     def self.encode_pattern_symptoms(fps)
-      FormParser.unparse_pattern_symptoms(fps)
+      FormParser.unparse_symptoms(fps)
     end
 
     def self.encode_pattern_treatment_principles(ptp)
-      ptp.map {|v| v.treatment_principle_name}.join("; ")
+      FormParser.unparse_therapeutic_functions(ptp)
     end
 
   #
