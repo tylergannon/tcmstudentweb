@@ -8,6 +8,7 @@ class TextbooksController < ApplicationController
                                                search_param, search_param])
     respond_to do |format|
       format.html # index.html.erb
+      format.js
       format.xml  { render :xml => @textbooks }
     end
   end

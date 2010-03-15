@@ -9,19 +9,18 @@
     %th
       Author
   - @textbooks.each do |textbook|
-  %tr
-    %td
-      = h textbook.title
-    %td
-      = h textbook.year
-    %td
-      = h textbook.author_name
-    %td
-      = link_to 'Show', textbook
-    %td
-      = link_to 'Edit', edit_textbook_path(textbook)
-    %td
-      = link_to 'Destroy', textbook, :confirm => 'Are you sure?', :method => :delete
-  - end
+    %tr
+      %td
+        = h textbook.title
+      %td
+        = h textbook.year
+      %td
+        = h textbook.author_name
+      %td
+        = link_to 'Show', textbook
+      %td
+        = link_to 'Edit', edit_textbook_path(textbook)
+      %td
+        = link_to 'Destroy', textbook, :confirm => 'Are you sure?', :method => :delete
 %br
 = link_to 'New textbook', new_textbook_path
