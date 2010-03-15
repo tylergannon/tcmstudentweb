@@ -39,8 +39,8 @@ ActiveRecord::Schema.define(:version => 20100315210609) do
     t.text     "commentary"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "canonical"
     t.integer  "citation_id"
+    t.string   "canonical"
   end
 
   create_table "authors", :force => true do |t|
@@ -185,9 +185,9 @@ ActiveRecord::Schema.define(:version => 20100315210609) do
     t.integer  "bensky_page"
     t.string   "short_name"
     t.boolean  "state_board"
-    t.string   "canonical"
     t.integer  "citation_id"
     t.integer  "source_text_citation_id"
+    t.string   "canonical"
   end
 
   create_table "herb_categories", :force => true do |t|
@@ -251,9 +251,9 @@ ActiveRecord::Schema.define(:version => 20100315210609) do
     t.string   "common_name"
     t.string   "short_name"
     t.boolean  "state_board"
-    t.string   "canonical"
     t.integer  "citation_id"
     t.integer  "source_text_citation_id"
+    t.string   "canonical"
   end
 
   create_table "pattern_symptoms", :force => true do |t|

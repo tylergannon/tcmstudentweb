@@ -3,14 +3,20 @@ class AddCanonicalToHerbsFormulasAndAcuPoints < ActiveRecord::Migration
     add_column :acu_points, :canonical, :string
     add_column :herbs, :canonical, :string
     add_column :formulas, :canonical, :string
+    norm AcuPoint.all
+    norm Herb.all
+    norm Formula.all
 
-    [AcuPoint.all, Herb.all, Formula.all].each do |a|
+  end
+
+  def self.norm(a)
+    unless a.empty?
       a.each do |o|
+        puts o.inspect  
         o.canonical = o.pinyin.normalize
         o.save
       end
     end
-
   end
 
   def self.down

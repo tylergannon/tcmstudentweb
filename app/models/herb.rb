@@ -1,6 +1,6 @@
 class Herb < ActiveRecord::Base
 
-  def attributes
+  def key_attributes
     ["id", "pinyin", "english", "canonical", "herb_category_id", "commentary", "common_name", "short_name", "state_board", ]
   end
 
