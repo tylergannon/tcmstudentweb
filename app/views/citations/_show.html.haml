@@ -1,4 +1,4 @@
-- link_to edit_textbooks_path(citation.textbook) do
+- link_to edit_textbook_path(citation.textbook) do
   = citation.textbook.title
   - unless citation.textbook.year.nil? && citation.textbook.author.nil?
     = "(#{[citation.textbook.author.name, citation.textbook.year].delete_if{|v| v.nil?}.join(', ')})"
