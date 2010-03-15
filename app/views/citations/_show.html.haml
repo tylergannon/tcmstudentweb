@@ -1,6 +1,6 @@
 - link_to textbooks_path(citation.textbook, :action => :edit) do
-  <= citation.textbook.title
+  = citation.textbook.title
   - unless citation.textbook.year.nil? && citation.textbook.author.nil?
-    <= "(#{[citation.textbook.author.name, citation.textbook.year].delete_if{|v| v.nil?}.join(', ')})"
+    = "(#{[citation.textbook.author.name, citation.textbook.year].delete_if{|v| v.nil?}.join(', ')})"
 - unless citation.where.empty?
   , #{citation.where}
