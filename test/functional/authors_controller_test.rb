@@ -14,32 +14,31 @@ class AuthorsControllerTest < ActionController::TestCase
 
   test "should create author" do
     assert_difference('Author.count') do
-      post :create, :author => { }
+      post :create, :author => { "name" => "Coolio" }
     end
 
     assert_redirected_to author_path(assigns(:author))
   end
 
   test "should show author" do
-    get :show, :id => authors(:one).to_param
+    get :show, :id => Factory.create(:author).id
     assert_response :success
   end
 
   test "should get edit" do
-    get :edit, :id => authors(:one).to_param
+    get :edit, :id => Factory.create(:author).id
     assert_response :success
   end
 
   test "should update author" do
-    put :update, :id => authors(:one).to_param, :author => { }
+    put :update, :id => Factory.create(:author).id, :author => { }
     assert_redirected_to author_path(assigns(:author))
   end
 
-  test "should destroy author" do
-    assert_difference('Author.count', -1) do
-      delete :destroy, :id => authors(:one).to_param
+  context "Delete" do
+    should_delete(Author, :author) do
+      should_redirect_to("Textbooks path") {textbooks_path}
     end
-
-    assert_redirected_to authors_path
   end
+
 end

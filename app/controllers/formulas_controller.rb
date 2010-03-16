@@ -113,6 +113,7 @@ class FormulasController < ApplicationController
   end
 
   def write_symptoms_and_therapeutic_functions_to_params_hash
+    return unless params[:extra]
     symptoms_text = params[:extra][:symptoms]
     unless symptoms_text.empty?
       bullshit = FormParser.parse_symptoms(symptoms_text, FormulaSymptom)

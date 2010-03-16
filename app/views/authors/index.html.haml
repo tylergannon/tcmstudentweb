@@ -2,18 +2,12 @@
   Listing authors
 %table
   %tr
-    %th
-      Name
+    %th Name
   - @authors.each do |author|
-  %tr
-    %td
-      = h author.name
-    %td
-      = link_to 'Show', author
-    %td
-      = link_to 'Edit', edit_author_path(author)
-    %td
-      = link_to 'Destroy', author, :confirm => 'Are you sure?', :method => :delete
-  - end
+    %tr
+      %td= h author.name
+      %td= link_to 'Show', author
+      %td= link_to 'Edit', edit_author_path(author)
+      %td= link_to 'Destroy', author, :confirm => 'Are you sure?', :method => :delete
 %br
 = link_to 'New author', new_author_path

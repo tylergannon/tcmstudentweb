@@ -23,8 +23,8 @@ class FormulasControllerTest < ActionController::TestCase
     should_respond_with :success
   end
 
-  EXTRA = {"therapeutic_functions" => "Raises the yang; Resolves the exterior",
-           "symptoms" => "Headache; Insomnia"}
+  EXTRA = {"therapeutic_functions" => "Raises the yang\n Resolves the exterior",
+           "symptoms" => "Headache\n Insomnia"}
 
   context "on POST to :create" do
     setup do

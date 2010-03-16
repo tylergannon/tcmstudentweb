@@ -151,3 +151,17 @@ Factory.define :pattern do |f|
     }
   end
 end
+
+Factory.define :citation do |c|
+  c.where "p. 116"
+  c.association(:textbook)
+end
+
+Factory.define :textbook do |t|
+  t.title  'My Book'
+  t.association(:author)
+end
+
+Factory.define :author do |a|
+  a.name "Steve Woodley"
+end

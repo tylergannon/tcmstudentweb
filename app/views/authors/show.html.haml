@@ -3,16 +3,16 @@
     Name:
   = h @author.name
 - @author.textbooks.each do |textbook|
-.child
-  %p
-    %b
-      Textbook Title:
-    = h textbook.title
-  %p
-    %b
-      Textbook Year:
-    = h textbook.year
-- end
+  .child
+    %p
+      %b
+        Textbook Title:
+      = h textbook.title
+    %p
+      %b
+        Textbook Year:
+      = h textbook.year
+
 = link_to 'Edit', edit_author_path(@author)
 |
 = link_to 'Back', authors_path

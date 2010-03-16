@@ -33,7 +33,7 @@ class Herb < ActiveRecord::Base
 
   def pinyin=(p)
     super(p)
-    self.canonical = p.normalize.titleize
+    self.canonical = p.normalize.titleize unless p.nil?
   end
 
   def english=(name)

@@ -1,10 +1,9 @@
 - title "#{@herb.pinyin} << #{@herb.herb_category_name}"
 %h1
   = "#{@herb.pinyin}"
-%p
-  %b
-    Category:
-  = h @herb.herb_category.name if @herb.herb_category
+- if @herb.herb_category
+  %p
+    %b Category: #{@herb.herb_category.name}
 
 - unless @herb.citation.nil?
   Reference: #{render :partial => 'citations/show', :locals => {:citation => @herb.citation}}
@@ -42,7 +41,7 @@
   Therapeutic Functions
 %ul
   - @herb.herb_therapeutic_functions.each do |herb_therapeutic_function|
-  %li= h herb_therapeutic_function.therapeutic_function_name
+    %li= h herb_therapeutic_function.therapeutic_function_name
 
 %p
   %b
@@ -52,34 +51,24 @@
   %b
     Contraindications:
   = h @herb.contraindications
-%h2
-  Comparisons
+%h2 Comparisons
 - @herb.all_comparisons.each do |herb_comparison|
   - if @herb.id == herb_comparison.herb1.id
     - other_herb = herb_comparison.herb2
   - else
     - other_herb = @herb
   %h3
-    Vs
-    = link_to other_herb.display_name, other_herb
+    Vs #{link_to other_herb.display_name, other_herb}
   %table.herb_comparison
     %tr
-      %td
-        Both Herbs
-      %td
-        = herb_comparison.commentary
+      %td Both Herbs
+      %td= herb_comparison.commentary
     %tr
-      %td
-        = herb_comparison.herb1.display_name
-      %td
-        = herb_comparison.herb1_commentary
+      %td= herb_comparison.herb1.display_name
+      %td= herb_comparison.herb1_commentary
     %tr
-      %td
-        = herb_comparison.herb2.display_name
-      %td
-        = herb_comparison.herb2_commentary
-= link_to 'Edit', edit_herb_path(@herb)
-|
-= link_to 'Back to Herbs', herbs_path
-|
-= link_to 'New Herb', new_herb_path
+      %td= herb_comparison.herb2.display_name
+      %td= herb_comparison.herb2_commentary
+#{link_to 'Edit', edit_herb_path(@herb)} | #{link_to 'Back to Herbs', herbs_path} | #{link_to 'New Herb', new_herb_path}
+
+

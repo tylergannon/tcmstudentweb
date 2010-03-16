@@ -65,4 +65,25 @@ class ActiveSupport::TestCase
       should_not_set_the_flash
     end
   end
+
+  def self.should_delete(klass, factory, &block)
+    context "on DELETE to :destroy" do
+      setup do
+        Factory.create(factory)
+        @obj = klass.last
+        @id = @obj.id
+        assert_not_nil(@obj.id)
+        assert klass.exists?(@id)
+        delete :destroy, :id => @obj.id
+      end
+      # should_change("the number of patterns", :by => -1) {Textbook.count}
+      should "Delete it" do
+        assert !klass.exists?(@id)
+      end
+      if block
+        block
+      end
+    end
+  end
+
 end

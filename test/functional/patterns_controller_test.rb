@@ -25,8 +25,8 @@ class PatternsControllerTest < ActionController::TestCase
     should_respond_with :success
   end
 
-  PCT_EXTRA = {"treatment_principles" => "Raises the yang; Resolves the exterior",
-           "symptoms" => "*Headache; -Insomnia (difficult to sleep)"}
+  PCT_EXTRA = {"treatment_principles" => "Raises the yang\nResolves the exterior",
+           "symptoms" => "*Headache\n -Insomnia\n  difficult to sleep*****"}
 
   context "on POST to :create" do
     setup do
@@ -122,23 +122,21 @@ but it never goes away!"
   SYMPTOMS_TEXT = "Headache
 *Neck ache
 Pain in the butt
-  " + COMMENTS + "
-
+  " + COMMENTS + "*****
 -Stomach Ache
 Hernia
-  Cool
-
+  Cool*****
 Nice
 
 Seems cool
-  Don't you think?
+  Don't you think?*****
 
 "
 
 BROKEN_TEXT = "Headache
 *Neck Ache
 -Pain in the butt
-  That really hurts!
+  That really hurts!*****
 
 
 

@@ -6,4 +6,6 @@ class Pattern < ActiveRecord::Base
   accepts_nested_attributes_for :pattern_symptoms, :allow_destroy => true, \
     :reject_if => proc {|a| a['symptom_name'].blank?}
 
+  belongs_to :citation
+  accepts_nested_attributes_for :citation, :allow_destroy => true, :reject_if => proc {|a| a['textbook_name'].blank?}
 end

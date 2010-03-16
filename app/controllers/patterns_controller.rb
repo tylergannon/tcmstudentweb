@@ -45,7 +45,7 @@ class PatternsController < ApplicationController
 #      bullshit = bullshit.write_attributes(@pattern.pattern_symptoms)
 #      puts bullshit.inspect
       @pattern.attributes = {"pattern_symptoms_attributes" =>
-              bullshit}
+              bullshit.write_attributes(@pattern.pattern_symptoms)}
 
     end
 

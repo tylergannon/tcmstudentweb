@@ -20,7 +20,7 @@ Seems cool
 
   context "FormParser when given text descibing PatternSymptoms" do
     setup do
-      @pattern_symptoms = FormParser.parse_pattern_symptoms(PATTERN_TESTSTR)
+      @pattern_symptoms = FormParser.parse_symptoms(PATTERN_TESTSTR, PatternSymptom)
       @pattern = Factory(:pattern)
     end
     should "Generate a set of PatternSymptom objects." do
@@ -34,7 +34,7 @@ Seems cool
   end
   context "Some other text that seems troubled" do
     setup do
-      @pattern_symptoms = FormParser.parse_pattern_symptoms(TROUBLE)
+      @pattern_symptoms = FormParser.parse_symptoms(TROUBLE, PatternSymptom)
       @my_pattern = @pattern_symptoms[2]
     end
     should "Work" do
