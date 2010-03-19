@@ -37,40 +37,21 @@ class PatternsController < ApplicationController
     @pattern = Pattern.find(params[:id])
   end
 
-  def write_symptoms_and_treatment_principles_to_params_hash
-    symptoms_text = params[:extra][:symptoms]
-    unless symptoms_text.empty?
-      bullshit = FormParser.parse_symptoms(symptoms_text, PatternSymptom)
-#      puts bullshit.inspect
-#      bullshit = bullshit.write_attributes(@pattern.pattern_symptoms)
-#      puts bullshit.inspect
-      @pattern.attributes = {"pattern_symptoms_attributes" =>
-              bullshit.write_attributes(@pattern.pattern_symptoms)}
-
-    end
-
-    tp_text = params[:extra][:treatment_principles]
-    unless tp_text.empty?
-      @pattern.attributes = {"pattern_treatment_principles_attributes" =>
-              FormParser.parse_therapeutic_functions(tp_text, PatternTreatmentPrinciple).write_attributes(@pattern.pattern_treatment_principles)}
-
-    end
-  end
-
   # POST /patterns
   # POST /patterns.xml
   def create
-    @pattern = Pattern.new(params[:pattern])
-    write_symptoms_and_treatment_principles_to_params_hash()
-
-    respond_to do |format|
-      if @pattern.save
-        flash[:notice] = 'Pattern was successfully created.'
-        format.html { redirect_to(@pattern) }
-        format.xml  { render :xml => @pattern, :status => :created, :location => @pattern }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @pattern.errors, :status => :unprocessable_entity }
+    Pattern.transaction do
+      respond_to do |format|
+        begin
+          @pattern = Pattern.new(params[:pattern])
+          @pattern.save!
+          flash[:notice] = 'Pattern was successfully created.'
+          format.html { redirect_to(@pattern) }
+          format.xml  { render :xml => @pattern, :status => :created, :location => @pattern }
+        rescue
+          format.html { render :action => "new" }
+          format.xml  { render :xml => @pattern.errors, :status => :unprocessable_entity }
+        end
       end
     end
   end
@@ -78,17 +59,18 @@ class PatternsController < ApplicationController
   # PUT /patterns/1
   # PUT /patterns/1.xml
   def update
-    @pattern = Pattern.find(params[:id])
-    write_symptoms_and_treatment_principles_to_params_hash
-
-    respond_to do |format|
-      if @pattern.update_attributes(params[:pattern])
-        flash[:notice] = 'Pattern was successfully updated.'
-        format.html { redirect_to(@pattern) }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @pattern.errors, :status => :unprocessable_entity }
+    Pattern.transaction do
+      respond_to do |format|
+        begin
+          @pattern = Pattern.find(params[:id])
+          @pattern.update_attributes(params[:pattern])
+          flash[:notice] = 'Pattern was successfully updated.'
+          format.html { redirect_to(@pattern) }
+          format.xml  { head :ok }
+        rescue
+          format.html { render :action => "edit" }
+          format.xml  { render :xml => @pattern.errors, :status => :unprocessable_entity }
+        end
       end
     end
   end

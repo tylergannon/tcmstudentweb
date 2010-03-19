@@ -31,7 +31,8 @@ class PatternsControllerTest < ActionController::TestCase
   context "on POST to :create" do
     setup do
       @pattern = Factory.build(:pattern, :name => "Liver Qi Stagnation")
-      post :create, :pattern => ObjectHasher.hash_pattern(@pattern), :extra => {"symptoms" => SYMPTOMS_TEXT}
+      @pattern.pattern_symptoms_text = SYMPTOMS_TEXT
+      post :create, :pattern => ObjectHasher.hash_pattern(@pattern)
       @new_pattern = Pattern.find_by_name("Liver Qi Stagnation")
       assert_instance_of(Pattern, @new_pattern)
     end

@@ -69,7 +69,7 @@ class ObjectHasher
   end
 
   def self.hash_pattern(pattern)
-    simple_hash ["id", "name", "commentary"], pattern
+    simple_hash ["id", "name", "commentary", "pattern_symptoms_text", "pattern_treatment_principles_text"], pattern
   end
   private
     def self.simple_hash(params, object)

@@ -4,6 +4,7 @@ require 'test_help'
 require 'factory_girl'
 require "authlogic/test_case"
 require "factories.rb"
+require 'object_hasher.rb'
 
 
 class ActiveSupport::TestCase
@@ -86,4 +87,10 @@ class ActiveSupport::TestCase
     end
   end
 
+  def should_contain(array, &block)
+    assert(array.select{|v| block.call(v)}[0], "Array should contain an item like that.")
+  end
+  def should_not_contain(array, &block)
+    assert(array.select{|v| block.call(v)}[0].nil?, "Array should not contain an item like that.")
+  end
 end

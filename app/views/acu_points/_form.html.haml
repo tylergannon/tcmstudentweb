@@ -21,7 +21,7 @@
 %hr/
 
 %h2 Symptoms
-= text_area_with_auto_complete f, "symptoms", @acu_point.acu_point_symptoms, :rows => 2, :cols => 50
+= text_area_with_auto_complete f, :acu_point_symptoms_text, "symptoms", :rows => 2, :cols => 50
 
 -#= add_child_link 'Add a symptom', 'acu_point_symptom', f
 
@@ -31,7 +31,7 @@
 
 %hr/
 %h2 Functions
-= text_area_with_auto_complete f, "therapeutic_functions", @acu_point.acu_point_therapeutic_functions, :rows => 2, :cols => 50  
+= text_area_with_auto_complete f, :acu_point_therapeutic_functions_text, "therapeutic_functions", :rows => 2, :cols => 50
 
 -#= add_child_link 'Add a Therapeutic Function', 'acu_point_therapeutic_function', f
 -##acu_point_therapeutic_function_children

@@ -48,14 +48,9 @@
     %td
       = render :partial => 'citations/edit_citation', :locals => {:f => f, :field => :source_text_citation}
 
-
 %hr
 %h2 Therapeutic Functions
-= text_area_with_auto_complete f, "therapeutic_functions", @formula.formula_therapeutic_functions, :rows => 2, :cols => 50
--#= add_child_link 'Add a Function', 'formula_therapeutic_function', f
--##formula_therapeutic_function_children
--#  - f.fields_for :formula_therapeutic_functions do |formula_therapeutic_function_form|
--#    = render :partial => 'formula_therapeutic_function', :locals => { :f => formula_therapeutic_function_form }
+= text_area_with_auto_complete f, :formula_therapeutic_functions_text, "therapeutic_functions", :rows => 2, :cols => 50
 
 %hr
 %h2
@@ -67,7 +62,7 @@
 
 %hr
 %h2 Signs and Symptoms
-= text_area_with_auto_complete f, "symptoms", @formula.formula_symptoms, :rows => 2, :cols => 50
+= text_area_with_auto_complete f, :formula_symptoms_text, "symptoms", :rows => 2, :cols => 50
 -#
   = add_child_link 'Add a Symptom', 'formula_symptom', f
   #formula_symptom_children

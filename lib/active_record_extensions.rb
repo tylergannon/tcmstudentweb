@@ -8,30 +8,17 @@ module ActiveRecord
       end
     end
 
-    def << (other)
-      return if other.nil? || (other.class != self.class) || other.new_record? || !(self =~ other)
+    def incorporate(new_obj)
+      return if new_obj.nil? || (new_obj.class != self.class) || !(self =~ new_obj)
+      attr = {}
       key_attributes.each do |attribute|
-        old_val = other.send(attribute)
-        new_val = send(attribute)
-
-        if new_val.to_s.blank? && !old_val.to_s.blank?
-          send(attribute + "=", old_val)
+        new_val = new_obj.attributes[attribute]
+        unless new_val.to_s.nil?
+          attr[attribute] = new_val
         end
       end
+      self.attributes = attr
     end
 
-    def write_attributes
-      key_attributes.to_h{|a| {a.to_s => get_attribute(a).to_s} }.delete_if{|k,v| v.to_s.empty?}
-    end
-
-    def get_attribute(attr)
-      val = send(attr)
-      unless val.nil?
-        if val.class == TrueClass || val.class == FalseClass
-          val = val ? "1" : "0"
-        end
-        val
-      end
-    end
   end
 end

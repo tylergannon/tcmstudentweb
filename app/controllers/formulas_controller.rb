@@ -41,24 +41,38 @@ class FormulasController < ApplicationController
     @source_text_citation = @formula.source_text_citation ||= Citation.new
   end
 
-
-
-  # POST /formulas
-  # POST /formulas.xml
   def create
-    @formula = Formula.new(params[:formula])
-    write_symptoms_and_therapeutic_functions_to_params_hash
-
-      if @formula.save
-        flash[:notice] = 'Formula was successfully created.'
-        redirect_to(@formula)
-      else
-        s = ""
-        @formula.errors.each_full {|msg| s += "<br />#{msg}"}
-        flash[:notice] = s
-
-        render :action => "new"
+    Formula.transaction do
+      respond_to do |format|
+        begin
+          @formula = Formula.new(params[:formula])
+          @formula.save!
+          flash[:notice] = 'Formula was successfully created.'
+          format.html { redirect_to(@formula) }
+          format.xml  { render :xml => @formula, :status => :created, :location => @formula }
+        rescue
+          format.html { render :action => "new" }
+          format.xml  { render :xml => @formula.errors, :status => :unprocessable_entity }
+        end
       end
+    end
+  end
+
+  def update
+    Formula.transaction do
+      respond_to do |format|
+        begin
+          @formula = Formula.find(params[:id])
+          @formula.update_attributes(params[:formula])
+          flash[:notice] = 'Formula was successfully updated.'
+          format.html { redirect_to(@formula) }
+          format.xml  { head :ok }
+        rescue
+          format.html { render :action => "edit" }
+          format.xml  { render :xml => @formula.errors, :status => :unprocessable_entity }
+        end
+      end
+    end
   end
 
   def add_dui_yao
@@ -78,27 +92,6 @@ class FormulasController < ApplicationController
     end
   end
 
-  # PUT /formulas/1
-  # PUT /formulas/1.xml
-  def update
-    @formula = Formula.find(params[:id])
-    write_symptoms_and_therapeutic_functions_to_params_hash
-    respond_to do |format|
-      if @formula.update_attributes(params[:formula])
-        flash[:notice] = 'Formula was successfully updated.'
-        format.html { redirect_to(@formula) }
-        format.xml  { head :ok }
-      else
-        format.html {
-          render :action => "edit"
-          s = ""
-          @formula.errors.each_full {|msg| s += "<br />#{msg}"}
-          flash[:notice] = s
-        }
-        format.xml  { render :xml => @formula.errors, :status => :unprocessable_entity }
-      end
-    end
-  end
 
   # DELETE /formulas/1
   # DELETE /formulas/1.xml
@@ -111,22 +104,5 @@ class FormulasController < ApplicationController
       format.xml  { head :ok }
     end
   end
-
-  def write_symptoms_and_therapeutic_functions_to_params_hash
-    return unless params[:extra]
-    symptoms_text = params[:extra][:symptoms]
-    unless symptoms_text.empty?
-      bullshit = FormParser.parse_symptoms(symptoms_text, FormulaSymptom)
-      @formula.attributes = {"formula_symptoms_attributes" =>
-              bullshit.write_attributes(@formula.formula_symptoms)}
-    end
-
-    tp_text = params[:extra][:therapeutic_functions]
-    unless tp_text.empty?
-      @formula.attributes = {"formula_therapeutic_functions_attributes" =>
-              FormParser.parse_therapeutic_functions(tp_text, FormulaTherapeuticFunction).write_attributes(@formula.formula_therapeutic_functions)}
-    end
-  end
-
 end
 

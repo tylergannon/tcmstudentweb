@@ -2,10 +2,6 @@ class PatternSymptom < ActiveRecord::Base
   belongs_to :pattern
   belongs_to :symptom
 
-  def inspect
-    puts "#<PatternSymptom id:#{id}, symptom:#{symptom_name.inspect}, commentary:#{commentary}>\n"
-  end
-
   def symptom_name
     symptom.name if symptom
   end

@@ -128,10 +128,10 @@ Factory.define :pattern_symptom do |f|
 end
 
 def create_pattern_symptom(name, commentary = "")
-  Factory.create(:pattern_symptom, :commentary => commentary, :symptom => Factory(:symptom, :name => name))
+  PatternSymptom.create(:commentary => commentary, :symptom_name => name)
 end
 def build_pattern_symptom(name, commentary = "")
-  Factory.build(:pattern_symptom, :commentary => commentary, :symptom => Factory(:symptom, :name => name))
+  PatternSymptom.new(:commentary => commentary, :symptom_name => name)
 end
 
 
@@ -165,3 +165,5 @@ end
 Factory.define :author do |a|
   a.name "Steve Woodley"
 end
+
+

@@ -8,13 +8,12 @@ module ApplicationHelper
     f.text_field_with_auto_complete field, {}, { :url => url, :method => :get, :skip_style => true,	:with => "'search='+element.value" }
   end
 
-  def text_area_with_auto_complete(form, field, values, options = {})
-    id = "extra_#{field}"
-    name = "extra[#{field}]"
-    options.merge!({:autocomplete => 'off', :id => id, :name => name})
-    text = StringObjectHasher.encode(values)
-    search_path = "/#{field.tableize}.js"
+  def text_area_with_auto_complete(form, field, search_path, options = {})
     render(:partial => 'layouts/auto_complete',
-           :locals => {:id => id, :path => search_path, :text => text, :html_options => options})
+           :locals => {:f => form,  :path => search_path, :field => field, :html_options => options})
+  end
+
+  def field_id(form, field)
+    form.object_name.gsub(/\[/, "_").gsub(/\]/, "") + "_" + field.underscore
   end
 end

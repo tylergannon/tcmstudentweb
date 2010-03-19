@@ -70,9 +70,37 @@ class Formula < ActiveRecord::Base
   def symptoms
     formula_symptoms.collect{|n| n.symptom_name}
   end
+
+  def symptoms_text
+
+  end
+
+  def symptoms_text=(text)
+
+  end
+
   def pinyin=(p)
     super(p)
     self.canonical = p.normalize.titleize
   end
+
+  def formula_therapeutic_functions_text
+    FormParser.unparse_therapeutic_functions(formula_therapeutic_functions)
+  end
+
+  def formula_therapeutic_functions_text=(text)
+    new_ps = FormParser.parse_therapeutic_functions(text, FormulaTherapeuticFunction)
+    FormParser.merge(self.formula_therapeutic_functions, new_ps)
+  end
+  
+  def formula_symptoms_text
+    FormParser.unparse_symptoms(formula_symptoms)
+  end
+  
+  def formula_symptoms_text=(text)
+    new_ps = FormParser.parse_symptoms(text, FormulaSymptom)
+    FormParser.merge(self.formula_symptoms, new_ps)
+  end
+  
 
 end

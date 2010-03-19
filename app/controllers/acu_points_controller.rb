@@ -41,40 +41,39 @@ class AcuPointsController < ApplicationController
   # POST /acu_points
   # POST /acu_points.xml
   def create
-#    raise
-    StringObjectHasher.hash_acu_point_symptoms(params, AcuPoint.new)
-    StringObjectHasher.hash_acu_point_therapeutic_functions(params, AcuPoint.new)
-    @acu_point = AcuPoint.new(params[:acu_point])
-
-    respond_to do |format|
-      if @acu_point.save
-        flash[:notice] = 'Acu Point was successfully created.'
-        format.html { redirect_to(@acu_point) }
-        format.xml  { render :xml => @acu_point, :status => :created, :location => @acu_point }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @acu_point.errors, :status => :unprocessable_entity }
+    AcuPoint.transaction do
+      respond_to do |format|
+        begin
+          @acu_point = AcuPoint.new(params[:acu_point])
+          @acu_point.save!
+          flash[:notice] = 'Acu Point was successfully created.'
+          format.html { redirect_to(@acu_point) }
+          format.xml  { render :xml => @acu_point, :status => :created, :location => @acu_point }
+        rescue
+          format.html { render :action => "new" }
+          format.xml  { render :xml => @acu_point.errors, :status => :unprocessable_entity }
+        end
       end
     end
   end
 
-  # PUT /acu_points/1
-  # PUT /acu_points/1.xml
   def update
-    @acu_point = AcuPoint.find(params[:id])
-    StringObjectHasher.hash_acu_point_symptoms(params, @acu_point)
-    StringObjectHasher.hash_acu_point_therapeutic_functions(params, @acu_point)
-    respond_to do |format|
-      if @acu_point.update_attributes(params[:acu_point])
-        flash[:notice] = 'Acu Point was successfully updated.'
-        format.html { redirect_to(@acu_point) }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @acu_point.errors, :status => :unprocessable_entity }
+    AcuPoint.transaction do
+      respond_to do |format|
+        begin
+          @acu_point = AcuPoint.find(params[:id])
+          @acu_point.update_attributes(params[:acu_point])
+          flash[:notice] = 'Acu Point was successfully updated.'
+          format.html { redirect_to(@acu_point) }
+          format.xml  { head :ok }
+        rescue
+          format.html { render :action => "edit" }
+          format.xml  { render :xml => @acu_point.errors, :status => :unprocessable_entity }
+        end
       end
     end
   end
+
 
   # DELETE /acu_points/1
   # DELETE /acu_points/1.xml
