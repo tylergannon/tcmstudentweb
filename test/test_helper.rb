@@ -1,9 +1,9 @@
 ENV["RAILS_ENV"] = "test"
 require File.expand_path(File.dirname(__FILE__) + "/../config/environment")
-require 'test_help'
+require 'rails/test_help'
 require 'factory_girl'
 require "authlogic/test_case"
-require "factories.rb"
+require "factories.rb" unless FACTORIES
 require 'object_hasher.rb'
 
 

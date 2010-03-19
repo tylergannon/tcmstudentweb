@@ -1,0 +1,17 @@
+%table
+  %tr
+    %td
+      Name:
+    %td
+      = "#{@user.first_name} #{@user.last_name}"
+  %tr
+    %td
+      Login:
+    %td
+      = @user.login
+  %tr
+    %td
+      Email:
+    %td
+      = @user.email
+= link_to 'Edit', edit_account_path

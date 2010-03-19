@@ -1,11 +1,9 @@
 require 'test_helper'
-require 'mocha'
 
 class AcuPointsControllerTest < ActionController::TestCase
 
   context "on GET to :index" do
     setup do
-      AcuPoint.stubs(:all).returns([Factory(:acu_point), Factory(:acu_point)])
       get :index
     end
 

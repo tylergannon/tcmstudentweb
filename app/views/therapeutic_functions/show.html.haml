@@ -1,0 +1,11 @@
+- title "Therapeutic Function"
+%p
+  %strong
+    Name:
+  = h @therapeutic_function.name
+%p
+  = link_to "Edit", edit_therapeutic_function_path(@therapeutic_function)
+  |
+  = link_to "Destroy", @therapeutic_function, :confirm => 'Are you sure?', :method => :delete
+  |
+  = link_to "View All", therapeutic_functions_path

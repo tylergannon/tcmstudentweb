@@ -1,3 +1,4 @@
+FACTORIES = true
 Factory.define :formula do |f|
   f.pinyin        "Gui Zhi tang"
   f.english       "Cinnamon twig decoction"
@@ -18,9 +19,6 @@ Factory.define :user do |f|
   f.crypted_password        Authlogic::CryptoProviders::Sha512.encrypt("tylerrules" + salt)
 end
 
-Factory.define :formula_category do |f|
-  f.name          "Formulas that resolve the exterior"
-end
 
 Factory.define :contraindication do |f|
   f.name  "Spleen Qi deficiency diarrhea"
@@ -37,9 +35,7 @@ Factory.define :flavor do |f|
   f.name  "Sweet"
 end
 
-Factory.define :pattern do |f|
-  f.name  "Liver Qi Stagnation"
-end
+
 Factory.define :pulse_quality do |f|
   f.name  "Rolling"
 end

@@ -1,0 +1,17 @@
+- title "Contraindications"
+%table
+  %tr
+    %th
+      Name
+  - for contraindication in @contraindications
+    %tr
+      %td
+        = h contraindication.name
+      %td
+        = link_to "Show", contraindication
+      %td
+        = link_to "Edit", edit_contraindication_path(contraindication)
+      %td
+        = link_to "Destroy", contraindication, :confirm => 'Are you sure?', :method => :delete
+%p
+  = link_to "New Contraindication", new_contraindication_path

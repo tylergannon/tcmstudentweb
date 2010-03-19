@@ -1,0 +1,15 @@
+- title "Formula Category"
+%p
+  %strong
+    Name:
+  = h @formula_category.name
+%p
+  %strong
+    Commentary:
+  = h @formula_category.commentary
+%p
+  = link_to "Edit", edit_formula_category_path(@formula_category)
+  |
+  = link_to "Destroy", @formula_category, :confirm => 'Are you sure?', :method => :delete
+  |
+  = link_to "View All", formula_categories_path
