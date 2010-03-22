@@ -11,7 +11,7 @@ gem "authlogic", :git => "git://github.com/binarylogic/authlogic.git"
 gem 'cancan', :git => "git://github.com/ryanb/cancan.git"
 gem 'RedCloth'
 gem "haml"
-
+gem "negative-captcha", :git => "git://github.com/subwindow/negative-captcha.git"
 
 group :development do
 #  gem "sqlite3-ruby", :require => "sqlite3"
