@@ -4,6 +4,9 @@ class AcuPointsControllerTest < ActionController::TestCase
 
   context "on GET to :index" do
     setup do
+      3.times do
+        Factory(:acu_point)
+      end
       get :index
     end
 
@@ -23,9 +26,12 @@ class AcuPointsControllerTest < ActionController::TestCase
   context "on POST to :create" do
     setup do
       @acu_point = Factory.build(:acu_point)
+      puts ObjectHasher.hash_acu_point(@acu_point).inspect
       assert(@acu_point.valid?, "AcuPoint must be valid for saving, in order for this test to work.")
       post :create, :acu_point => ObjectHasher.hash_acu_point(@acu_point)
       @new_acu_point = AcuPoint.find_by_english(@acu_point.english)
+      puts "DUR!!!"
+      
       assert_equal(@acu_point.english, AcuPoint.last.english)
       assert_instance_of(AcuPoint, @new_acu_point)
     end

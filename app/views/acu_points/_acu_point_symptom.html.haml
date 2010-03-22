@@ -1,5 +1,5 @@
 .child
   %table
     %tr
-      %td= f.text_field_with_auto_complete :symptom_name, {}, { :url => symptoms_path(:format => :js), :method => :get, :skip_style => true, :with => "'search='+element.value" }
+      %td!!= f.text_field_with_auto_complete :symptom_name, {}, { :url => symptoms_path(:format => :js), :method => :get, :skip_style => true, :with => "'search='+element.value" }
       %td #{f.hidden_field :_destroy, :class => 'delete'}#{remove_child_link 'remove', f}

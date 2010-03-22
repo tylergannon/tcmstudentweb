@@ -5,7 +5,6 @@ class AcuPointsController < ApplicationController
   def index
     @acu_points = AcuPoint.all
 
-
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @acu_points }
@@ -44,6 +43,8 @@ class AcuPointsController < ApplicationController
     AcuPoint.transaction do
       respond_to do |format|
         begin
+          puts 1
+          puts params[:acu_point].inspect
           @acu_point = AcuPoint.new(params[:acu_point])
           @acu_point.save!
           flash[:notice] = 'Acu Point was successfully created.'

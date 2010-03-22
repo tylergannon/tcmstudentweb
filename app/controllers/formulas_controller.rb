@@ -42,6 +42,7 @@ class FormulasController < ApplicationController
   end
 
   def create
+    puts params[:formula]
     Formula.transaction do
       respond_to do |format|
         begin

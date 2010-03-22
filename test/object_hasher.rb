@@ -10,13 +10,13 @@ class ObjectHasher
      f.formula_symptoms,
      f.formula_therapeutic_functions,
      f.formula_herbs].each {|c| hash_collection(a, c)}
-
     a
   end
 
   def self.hash_acu_point(ap)
     h = {}
     ["id", "channel_id", "ordinal", "english", "pinyin"].each {|param| set_param?(h, param, ap)}
+
     [ap.acu_point_symptoms, ap.acu_point_therapeutic_functions].each {|c| hash_collection(h, c)}
     h
   end
@@ -93,7 +93,7 @@ class ObjectHasher
         if val.class == TrueClass || val.class == FalseClass
           val = val ? "1" : "0"
         end
-        h[prm] = val
+        h[prm] = val.to_s
       end
     end
 

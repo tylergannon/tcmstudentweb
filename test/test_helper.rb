@@ -3,9 +3,10 @@ require File.expand_path(File.dirname(__FILE__) + "/../config/environment")
 require 'rails/test_help'
 require 'factory_girl'
 require "authlogic/test_case"
-require "factories.rb" unless FACTORIES
 require 'object_hasher.rb'
 
+#Factory.definition_file_paths = [ File.join(Rails.root, 'test', 'factories') ]
+#Factory.find_definitions
 
 class ActiveSupport::TestCase
   include Authlogic::TestCase

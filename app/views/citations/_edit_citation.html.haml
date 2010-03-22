@@ -1,4 +1,3 @@
 - obj = f.object.send(field)
 - f.fields_for field, obj ||= Citation.new do |cf|
-  = cf.hidden_field :id
-  Reference: #{tfwac cf, :textbook_title, textbooks_path(:format => :js)} At: #{cf.text_field :where, :size => 10}
+  != "Reference: #{tfwac cf, :textbook_title, textbooks_path(:format => :js)} At: #{cf.text_field :where, :size => 10}"

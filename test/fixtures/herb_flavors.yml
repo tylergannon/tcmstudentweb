@@ -1,9 +1,0 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-
-one:
-  herb_id: 1
-  flavor_id: 1
-
-two:
-  herb_id: 1
-  flavor_id: 1

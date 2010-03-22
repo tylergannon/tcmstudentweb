@@ -55,16 +55,17 @@ Factory.define :acu_point do |f|
   f.sequence(:english) {|n| "Leg #{n} miles"}
   f.association   :channel
   f.acu_point_therapeutic_functions do |aptf|
-    therapeutic_functions.map{|tf| aptf.association(:acu_point_therapeutic_function, \
-      :therapeutic_function => Factory(:therapeutic_function, :name => tf)
-    )}
+    [
+    aptf.association(:acu_point_therapeutic_function) {|funk|
+      funk.association :therapeutic_function, :name => 'Release the exterior'},
+    aptf.association(:acu_point_therapeutic_function) {|funk|
+      funk.association :therapeutic_function, :name => 'Course the liver'}
+    ]
   end
   f.acu_point_symptoms do |aps|
-    symptoms.map{|s|
-      aps.association(:acu_point_symptom, \
-        :symptom => Factory(:symptom, :name => s)
-      )
-    }
+    [aps.association(:acu_point_symptom) {|sym| sym.association :symptom, :name => 'Headache' },
+     aps.association(:acu_point_symptom) {|sym| sym.association :symptom, :name => 'Stomachache'}]
+
   end
 #  f.association   :acu_point_therapeutic_functions, :count => 3, :factory => :acu_point_therapeutic_function
 #  f.association   :acu_point_symptoms, :count => 3, :factory => :acu_point_symptom
@@ -94,9 +95,7 @@ Factory.define :symptom do |f|
   f.sequence(:name) {|n| "Headache #{n}"}
 end
 
-Factory.define :therapeutic_function do |f|
-  f.sequence(:name) {|n| "Release exterior #{n}"}
-end
+
 
 Factory.define :herb_category do |f|
   f.name            "Herbs that Resolve the Exterior"
