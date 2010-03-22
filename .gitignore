@@ -5,6 +5,6 @@
 # except for .gitignore
 !.gitignore
 
-vendor/*
+
 *~
 
