@@ -2,10 +2,10 @@
 
 - @formulas.each do |formula|
   .formula_index
-    %h3 #{link_to(formula.pinyin, formula)} // #{link_to formula.english, formula} #{if can?(:update, formula) then "|" + link_to('Edit', edit_formula_path(formula)) end}
+    %h3!= "#{formula.state_board ? "**":""}#{link_to(formula.pinyin, formula)} // #{link_to formula.english, formula} #{if can?(:update, formula) then "|" + link_to('Edit', edit_formula_path(formula)) end}"
     %ul
       %li
         = render :partial => "formula_quick_herb_listing", :locals => { :formula => formula }
-      - if formula.bensky_page
-        %li Bensky: #{formula.bensky_page}
+      - if formula.citation
+        %li #{formula.citation.where}
 

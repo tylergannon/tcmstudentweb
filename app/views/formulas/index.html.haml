@@ -8,12 +8,12 @@
     %th
       English
     %th
-      Page
+      State Board
   - @formulas.each do |formula|
     %tr
       %td= h formula.pinyin
       %td= h formula.english
-      %td= h formula.bensky_page
+      %td= formula.state_board ? "*" : ""
       %td= link_to 'Show', formula
       %td
         - if can? :update, formula
