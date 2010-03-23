@@ -35,6 +35,9 @@ module TcmStudentWeb
     #   g.template_engine :erb
     #   g.test_framework  :test_unit, :fixture => true
     # end
+
+#    Haml::Template.options[:escape_html] = false
+
     config.generators do |g|
       g.template_engine :haml
       g.test_framework :test_unit, :fixture => true
@@ -44,3 +47,7 @@ module TcmStudentWeb
     config.filter_parameters << :password
   end
 end
+
+require "haml"
+require "haml/template"
+Haml::Template.options[:escape_html] = false

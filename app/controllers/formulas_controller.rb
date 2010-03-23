@@ -60,6 +60,7 @@ class FormulasController < ApplicationController
   end
 
   def update
+    puts params[:formula]
     Formula.transaction do
       respond_to do |format|
         begin

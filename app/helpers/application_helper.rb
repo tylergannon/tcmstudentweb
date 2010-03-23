@@ -14,6 +14,6 @@ module ApplicationHelper
   end
 
   def field_id(form, field)
-    form.object_name.gsub(/\[/, "_").gsub(/\]/, "") + "_" + field.underscore
+    form.object_name.gsub(/\[/, "_").gsub(/\]/, "") + "_" + field.to_s.underscore
   end
 end

@@ -5,21 +5,33 @@
 - unless @formula.source_text_citation.nil?
   Source Text: #{render :partial => 'citations/show', :locals => {:citation => @formula.source_text_citation}}
 
-%h2 Signs and Symptoms
-%ul
-  %li=  @formula.formula_symptoms.map{|a| display_formula_symptom(a) }.join(", ")
-  %li= "Tongue #{@formula.formula_tongue_qualities.collect{|a| a.tongue_quality_name}.join(', ')}"
-  %li= "Pulse: #{@formula.formula_pulse_qualities.collect{|a| a.pulse_quality_name}.join(', ')}"
-
 %hr/
 
-%h2 Diagnosis
-%ul
-  - @formula.formula_patterns.each do |formula_pattern|
-    %li= formula_pattern.pattern_name
-    - unless formula_pattern.commentary.blank?
-      %ul
-        %li= RedCloth.new(formula_pattern.commentary).to_html unless formula_pattern.commentary.nil?
+- @formula.formula_patterns.each do |formula_pattern|
+  - p = formula_pattern.pattern
+  %h2 Diagnosis: #{link_to p.name, p}
+
+  %h4 Signs and Symptoms
+  = "Keys: #{p.key_symptoms.map{|y| y.symptom_name}.join(", ")}" unless p.key_symptoms.size==0
+
+  %ul
+    - p.pattern_symptoms.each do |s|
+      %li
+        - if s.maybe
+          (possibly)
+        - if s.key_symptom
+          %i= s.symptom_name
+        - else
+          = s.symptom_name
+        - unless s.commentary.blank?
+          %ul
+            %li
+              :textile
+                #{s.commentary}
+
+  - unless formula_pattern.commentary.blank?
+    %ul
+      %li= RedCloth.new(formula_pattern.commentary).to_html unless formula_pattern.commentary.nil?
 %hr/
 
 %h2 Herbs

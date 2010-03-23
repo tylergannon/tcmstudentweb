@@ -49,15 +49,6 @@
   - f.fields_for :formula_patterns do |formula_pattern_form|
     = render :partial => 'formula_pattern', :locals => { :f => formula_pattern_form }
 
-%hr
-%h2 Signs and Symptoms
-= text_area_with_auto_complete f, :formula_symptoms_text, "symptoms", :rows => 2, :cols => 50
--#
-  = add_child_link 'Add a Symptom', 'formula_symptom', f
-  #formula_symptom_children
-    - f.fields_for :formula_symptoms do |formula_symptom_form|
-      = render :partial => 'formula_symptom', :locals => { :f => formula_symptom_form }
-
 %h3
   Pulse
 = add_child_link 'Add a Pulse', 'formula_pulse_quality', f

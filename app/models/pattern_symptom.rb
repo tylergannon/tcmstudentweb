@@ -18,6 +18,10 @@ class PatternSymptom < ActiveRecord::Base
     symptom_name
   end
 
+  def inspect
+    symptom_name + " " + super
+  end
+
   def key_attributes
     ["id", "key_symptom", "maybe", "commentary", "symptom_name"]
   end

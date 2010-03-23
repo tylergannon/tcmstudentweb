@@ -45,6 +45,7 @@ class FormParser
 
   def self.merge(old_array, new_array)
     old_array.each do |existing|
+      puts "OLD ARRAY::  #{existing.inspect}"
       new_obj = new_array.find_same(existing)
       if new_obj.nil?
         existing.destroy
@@ -54,9 +55,13 @@ class FormParser
         new_array.delete(new_obj)
       end
     end
-
-    #  Create new objects for anything not represented in the existing data.
-    old_array << new_array
+    new_array.each do |new|
+      puts "NEW ARRAY::  #{new.inspect}"
+      old = old_array.find_same(new)
+      if old.nil?
+        old_array << new
+      end
+    end
   end
 
 end

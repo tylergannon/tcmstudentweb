@@ -27,6 +27,10 @@ class Pattern < ActiveRecord::Base
     FormParser.merge(self.pattern_treatment_principles, new_ps)
   end
 
+  def key_symptoms
+    self.pattern_symptoms.select{|x| x.key_symptom}
+  end
+
   def key_attributes
     ["name", "id", "pattern_symptoms_text", "pattern_treatment_principles_text", "commentary"]
   end
