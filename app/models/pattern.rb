@@ -6,8 +6,23 @@ class Pattern < ActiveRecord::Base
   accepts_nested_attributes_for :pattern_symptoms, :allow_destroy => true, \
     :reject_if => proc {|a| a['symptom_name'].blank?}
 
+  has_many :point_prescriptions
+  accepts_nested_attributes_for :point_prescriptions, :allow_destroy => false
+
+  has_many :formula_patterns
+  accepts_nested_attributes_for :formula_patterns, :allow_destroy => true, :reject_if => proc {|a| a['formula_pinyin'].blank?}
+
   belongs_to :citation
-  accepts_nested_attributes_for :citation, :allow_destroy => true, :reject_if => proc {|a| a['textbook_name'].blank?}
+  accepts_nested_attributes_for :citation, :allow_destroy => true, :reject_if => proc {|a| a['textbook_title'].blank?}
+
+  def pattern_formulas
+    formula_patterns
+  end
+
+  def pattern_formulas=(pf)
+    self.formula_patterns = pf unless pf.nil?
+  end
+
 
   def pattern_symptoms_text
     FormParser.unparse_symptoms(self.pattern_symptoms)

@@ -35,5 +35,19 @@ Keys: #{@pattern.pattern_symptoms.select{|x| x.key_symptom}.map{|y| y.symptom_na
   :textile
     #{@pattern.commentary}
 
+- unless @pattern.pattern_formulas.blank?
+  %h2 Formulas
+  %ul
+    - @pattern.pattern_formulas.each do |pf|
+      %li!= "#{pf.formula_pinyin} (#{pf.citation.textbook})"
+
+- unless @pattern.point_prescriptions.blank?
+  - @pattern.point_prescriptions.each do |pp|
+    %h2!= "Point Prescription: #{pp.citation.textbook_title if pp.citation} #{link_to "edit", edit_point_prescription_path(pp)}"
+    %ul
+      - pp.pp_acu_points.each do |ap|
+        %li!= "#{ap.acu_point_abbrev} (#{ap.commentary})"
+
+
 - if can? :update, @pattern
   = link_to 'Edit', edit_pattern_path(@pattern)

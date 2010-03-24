@@ -14,6 +14,13 @@ class FormParser
     }
   end
 
+  def self.parse_point_prescription_acu_points(text)
+    scan_text(text).map {|match|
+      puts match
+      PointPrescriptionAcuPoint.new(:acu_point_abbrev => match[1].strip, :commentary => match[2])
+    }.delete_if{|v| v.acu_point.nil?}
+  end
+
   def self.parse_therapeutic_functions(text, klass)
     if text.empty?
       []
@@ -29,6 +36,15 @@ class FormParser
     text = ""
     ps.each do |s|
       text += "#{s.maybe ? "-" : ""}#{s.key_symptom ? "*" : ""}#{s.symptom_name}\n"
+      text += "  #{s.commentary}*****\n" unless s.commentary.blank?
+    end
+    text
+  end
+
+  def self.unparse_point_prescription_acu_points(ps)
+    text = ""
+    ps.each do |s|
+      text += "#{s.acu_point_abbrev}\n"
       text += "  #{s.commentary}*****\n" unless s.commentary.blank?
     end
     text

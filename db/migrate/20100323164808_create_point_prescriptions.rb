@@ -4,7 +4,7 @@ class CreatePointPrescriptions < ActiveRecord::Migration
       t.integer :pattern_id
       t.string :name
       t.text :commentary
-
+      t.integer :citation_id
       t.timestamps
     end
   end

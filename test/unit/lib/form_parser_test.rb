@@ -44,6 +44,22 @@ Seems cool
       assert(@my_pattern.key_symptom)
     end
   end
+
+  context "On Parse Point Prescription AcuPoints" do
+    setup do
+      FormParser.parse_point_prescription_acu_points(PPAP)
+    end
+  end
   TROUBLE = "Something dumb\r\nSomething else\r\n*Whatever!!!\r\n  Some interesting goodies*****\r\nBut you never know\r\n\r\n\r\n"
+
+
+  PPAP = "
+ub-1
+  Clears heat*****
+ub-2
+p-3
+  Lots of things*****"
+
+  POINT_PRESCRIPTION_TEXT= {"name"=>"Liver Qi Stagnation", "commentary"=>"", "pattern_treatment_principles_text"=>"", "point_prescriptions_attributes"=>{"1269444630467"=>{"commentary"=>"", "citation_attributes"=>{"textbook_title"=>"Chinese Herbal Medicine: Formulas And Strategies   ", "where"=>"32"}, "_destroy"=>"", "pp_acu_points_text"=>"ub-1\r\nub-2"}}, "citation_attributes"=>{"textbook_title"=>"Foundations Of Chinese Medicine", "id"=>"4", "where"=>"536"}, "pattern_symptoms_text"=>""}
 
 end

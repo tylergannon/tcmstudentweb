@@ -8,6 +8,8 @@ class Citation < ActiveRecord::Base
   end
 
   def textbook_title=(title)
-    self.textbook = Textbook.find_or_create_by_title(title.titleize) unless title.empty?
+    return if title.nil?
+    title = title.strip.titleize
+    self.textbook = Textbook.find_or_create_by_title(title) unless title.empty?
   end
 end

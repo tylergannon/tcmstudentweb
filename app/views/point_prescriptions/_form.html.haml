@@ -1,7 +1,3 @@
-- form_for ppap = PointPrescriptionAcuPoint.new(:point_prescription => @point_prescription), :remote => true do |ff|
-  = ff.text_field :acu_point_abbrev, :auto_complete => false
-  = ff.submit
-
 - form_for(@point_prescription) do |f|
   = f.error_messages
 
@@ -13,5 +9,12 @@
     = f.label :commentary
     %br
     = f.text_area :commentary
+  .field
+    = f.label :citation
+    = render :partial => 'citations/edit_citation', :locals => {:f => f, :field => :citation}
+  .field
+    = f.label :pp_acu_points_text, "Point Prescription Acu Points"
+    %br/
+    = f.text_area :pp_acu_points_text
   .actions
     = f.submit

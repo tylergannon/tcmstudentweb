@@ -8,6 +8,8 @@ class Textbook < ActiveRecord::Base
   end
 
   def author_name=(name)
+    return if name.nil?
+    name = name.strip
     self.author = Author.find_or_create_by_name(name) unless name.blank?
   end
 
