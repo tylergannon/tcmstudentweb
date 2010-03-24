@@ -1,0 +1,2 @@
+module PointPrescriptionsHelper
+end

@@ -1,6 +1,3 @@
-
-
-
 class AcuPoint < ActiveRecord::Base
   validates_presence_of :pinyin
   validates_uniqueness_of :pinyin, :english
@@ -40,5 +37,18 @@ class AcuPoint < ActiveRecord::Base
     new_ps = FormParser.parse_therapeutic_functions(text, AcuPointTherapeuticFunction)
     FormParser.merge(self.acu_point_therapeutic_functions, new_ps)
   end
-  
+
+  def abbrev
+    "#{channel.abbreviation}-#{ordinal}"
+  end
+
+  def self.find_by_abbrev(abbrev)
+    if match = abbrev.to_s.match(/(\w{1,2})[-_ ](\d{1,2})/)
+      ch = match[1].downcase
+      ord = match[2]
+      if Channel::ABBREVS.has_key?(ch)
+        find(:first, :conditions => ["channel_id = ? AND ordinal = ?", Channel::ABBREVS[ch], ord ])
+      end
+    end
+  end
 end

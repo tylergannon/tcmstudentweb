@@ -15,6 +15,8 @@ TcmStudentWeb::Application.routes.draw do
   resources :channels
   resources :formula_dui_yaos
   resources :patterns
+  resources :point_prescriptions
+  resources :point_prescription_acu_points
   resources :flavors
   resources :textbooks
   resource :user_session

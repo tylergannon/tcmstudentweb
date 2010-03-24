@@ -1,0 +1,22 @@
+%h1 Listing point_prescriptions
+
+%table
+  %thead
+    %tr
+      %th Pattern
+      %th Name
+      %th Commentary
+      %th{ :colspan => 3 }
+  
+  %tbody
+    - for point_prescription in @point_prescriptions
+      %tr{ :class => cycle(:odd, :even) }
+        %td= point_prescription.pattern_id
+        %td= point_prescription.name
+        %td= point_prescription.commentary
+        %td= link_to 'Show', point_prescription
+        %td= link_to 'Edit', edit_point_prescription_path(point_prescription)
+        %td= link_to 'Destroy', point_prescription, :confirm => 'Are you sure?', :method => :delete
+
+%br
+= link_to 'New point_prescription', new_point_prescription_path

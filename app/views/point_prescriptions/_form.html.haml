@@ -1,0 +1,17 @@
+- form_for ppap = PointPrescriptionAcuPoint.new(:point_prescription => @point_prescription), :remote => true do |ff|
+  = ff.text_field :acu_point_abbrev, :auto_complete => false
+  = ff.submit
+
+- form_for(@point_prescription) do |f|
+  = f.error_messages
+
+  .field
+    = f.label :name
+    %br
+    = f.text_field :name, :autocomplete => "off"
+  .field
+    = f.label :commentary
+    %br
+    = f.text_area :commentary
+  .actions
+    = f.submit

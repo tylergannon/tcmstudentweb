@@ -1,0 +1,11 @@
+%p
+  %strong Pattern:
+  = @point_prescription.pattern_id
+%p
+  %strong Name:
+  = @point_prescription.name
+%p
+  %strong Commentary:
+  = @point_prescription.commentary
+
+== #{ link_to 'Edit', edit_point_prescription_path(@point_prescription) } | #{ link_to 'Back', point_prescriptions_path }
