@@ -5,15 +5,15 @@
 = f.collection_select(:channel_id, Channel.find(:all), :id, :name)
 %br/
 %b Point Number:
-= f.text_field(:ordinal)
+= f.text_field(:ordinal, :autocomplete => "off")
 %br/
 
 %b Pinyin:
-= f.text_field(:pinyin)
+= f.text_field(:pinyin, :autocomplete => "off")
 %br/
 
 %b Chinese
-= f.text_field(:chinese)
+= f.text_field(:chinese, :autocomplete => "off")
 %br/
 
 = add_child_link 'Add a source', 'acu_point_info', f

@@ -14,7 +14,7 @@ class AcuPointsController < ApplicationController
   # GET /acu_points/1
   # GET /acu_points/1.xml
   def show
-    @acu_point = AcuPoint.find(params[:id])
+    @acu_point = AcuPoint.search(params[:id])
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @acu_point }
@@ -34,7 +34,7 @@ class AcuPointsController < ApplicationController
 
   # GET /acu_points/1/edit
   def edit
-    @acu_point = AcuPoint.find(params[:id])
+    @acu_point = AcuPoint.search(params[:id])
   end
 
   # POST /acu_points
