@@ -42,7 +42,7 @@ class AcuPointsController < ApplicationController
   def create
     AcuPoint.transaction do
       respond_to do |format|
-        begin
+#        begin
           puts 1
           puts params[:acu_point].inspect
           @acu_point = AcuPoint.new(params[:acu_point])
@@ -50,10 +50,10 @@ class AcuPointsController < ApplicationController
           flash[:notice] = 'Acu Point was successfully created.'
           format.html { redirect_to(@acu_point) }
           format.xml  { render :xml => @acu_point, :status => :created, :location => @acu_point }
-        rescue
-          format.html { render :action => "new" }
-          format.xml  { render :xml => @acu_point.errors, :status => :unprocessable_entity }
-        end
+#        rescue
+#          format.html { render :action => "new" }
+#          format.xml  { render :xml => @acu_point.errors, :status => :unprocessable_entity }
+#        end
       end
     end
   end
@@ -61,16 +61,16 @@ class AcuPointsController < ApplicationController
   def update
     AcuPoint.transaction do
       respond_to do |format|
-        begin
+#        begin
           @acu_point = AcuPoint.find(params[:id])
-          @acu_point.update_attributes(params[:acu_point])
+          @acu_point.update_attributes!(params[:acu_point])
           flash[:notice] = 'Acu Point was successfully updated.'
           format.html { redirect_to(@acu_point) }
           format.xml  { head :ok }
-        rescue
-          format.html { render :action => "edit" }
-          format.xml  { render :xml => @acu_point.errors, :status => :unprocessable_entity }
-        end
+#        rescue
+#          format.html { render :action => "edit" }
+#          format.xml  { render :xml => @acu_point.errors, :status => :unprocessable_entity }
+#        end
       end
     end
   end
