@@ -1,12 +1,18 @@
 - title @acu_point.display_name
-%h3 #{@acu_point.english} // #{@acu_point.chinese}
+%h2 #{@acu_point.pinyin} // #{@acu_point.chinese}
 
-%h2 Signs and Symptoms
-%ul
-  %li= @acu_point.acu_point_symptoms.collect{|a| a.symptom_name}.join(", ")
+- @acu_point.acu_point_infos.each do |acu_point_info|
+  %h2 Source: #{acu_point_info.citation.textbook_title}
+  %h2 Signs and Symptoms
+  %ul
+    %li= acu_point_info.acu_point_symptoms.collect{|a| a.symptom_name}.join(", ")
 
-%h2 Therapeutic Functions
-%ul
-  %li= @acu_point.acu_point_therapeutic_functions.collect{|a| a.therapeutic_function_name}.join(", ")
-%hr/
+  %h2 Therapeutic Functions
+  %ul
+    %li= acu_point_info.acu_point_therapeutic_functions.collect{|a| a.therapeutic_function_name}.join(", ")
+  %h2 Commentary
+  :textile
+    #{acu_point_info.commentary}
+  %hr/
+
 #{link_to 'Edit', edit_acu_point_path(@acu_point)} | #{link_to 'Back', acu_points_path}

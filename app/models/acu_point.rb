@@ -1,15 +1,11 @@
 class AcuPoint < ActiveRecord::Base
   validates_presence_of :pinyin
-  validates_uniqueness_of :pinyin, :english
+  validates_uniqueness_of :pinyin
   validates_uniqueness_of :ordinal, :scope => :channel_id
   belongs_to :channel
-  has_many :acu_point_therapeutic_functions
-  accepts_nested_attributes_for :acu_point_therapeutic_functions, :allow_destroy => true, :reject_if => proc {|a| a['therapeutic_function_name'.blank?]}
 
-  has_many :acu_point_symptoms
-  accepts_nested_attributes_for :acu_point_symptoms, :allow_destroy => true, :reject_if => proc {|a| a['symptom_name'.blank?]}
-
-  belongs_to :citation
+  has_many :acu_point_infos
+  accepts_nested_attributes_for :acu_point_infos, :allow_destroy => true
 
   def display_name
     "#{channel.abbreviation}-#{ordinal} #{pinyin}"
@@ -20,23 +16,8 @@ class AcuPoint < ActiveRecord::Base
     self.canonical = p.normalize.titleize
   end
 
-  def acu_point_symptoms_text
-    FormParser.unparse_symptoms(acu_point_symptoms)
-  end
-
-  def acu_point_symptoms_text=(text)
-    new_ps = FormParser.parse_symptoms(text, AcuPointSymptom)
-    FormParser.merge(self.acu_point_symptoms, new_ps)
-  end
-
-  def acu_point_therapeutic_functions_text
-    FormParser.unparse_therapeutic_functions(acu_point_therapeutic_functions)
-  end
-
-  def acu_point_therapeutic_functions_text=(text)
-    new_ps = FormParser.parse_therapeutic_functions(text, AcuPointTherapeuticFunction)
-    FormParser.merge(self.acu_point_therapeutic_functions, new_ps)
-  end
+  has_many :point_prescription_acu_points
+  has_many :point_prescriptions, :through => :point_prescription_acu_points
 
   def abbrev
     "#{channel.abbreviation}-#{ordinal}"

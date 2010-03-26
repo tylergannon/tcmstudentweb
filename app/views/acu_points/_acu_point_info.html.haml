@@ -1,0 +1,24 @@
+.child
+  %h3 Source
+  = render :partial => 'citations/edit_citation', :locals => {:f => f, :field => :citation}
+
+  %b English:
+  = f.text_field(:english)
+  %hr/
+
+  %h2 Symptoms
+  = text_area_with_auto_complete f, :acu_point_symptoms_text, "symptoms", :rows => 2, :cols => 50
+
+  -#= add_child_link 'Add a symptom', 'acu_point_symptom', f
+
+  -##acu_point_symptom_children
+  -#  - f.fields_for :acu_point_symptoms do |acu_point_symptom_form|
+  -#    = render :partial => 'acu_point_symptom', :locals => { :f => acu_point_symptom_form }
+
+  %hr/
+  %h2 Functions
+  = text_area_with_auto_complete f, :acu_point_therapeutic_functions_text, "therapeutic_functions", :rows => 2, :cols => 50
+
+  %b Commentary
+  = f.text_area :commentary, :rows => '2', :cols => '40'
+  %br/

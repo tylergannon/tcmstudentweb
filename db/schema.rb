@@ -9,37 +9,44 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100324063215) do
+ActiveRecord::Schema.define(:version => 20100326201411) do
+
+  create_table "acu_point_infos", :force => true do |t|
+    t.integer  "acu_point_id"
+    t.string   "english"
+    t.text     "commentary"
+    t.integer  "citation_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "acu_point_symptoms", :force => true do |t|
-    t.integer  "acu_point_id"
     t.integer  "symptom_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "key_symptom"
     t.boolean  "maybe"
     t.text     "commentary"
+    t.integer  "acu_point_info_id"
   end
 
   create_table "acu_point_therapeutic_functions", :force => true do |t|
-    t.integer  "acu_point_id"
     t.integer  "therapeutic_function_id"
     t.text     "commentary"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "acu_point_info_id"
   end
 
   create_table "acu_points", :force => true do |t|
     t.integer  "channel_id"
     t.integer  "ordinal"
     t.string   "pinyin"
-    t.string   "english"
     t.string   "chinese"
     t.text     "name_discussion"
     t.text     "commentary"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "citation_id"
     t.string   "canonical"
   end
 
