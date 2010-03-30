@@ -15,7 +15,7 @@ Keys: #{@pattern.pattern_symptoms.select{|x| x.key_symptom}.map{|y| y.symptom_na
       - unless s.commentary.blank?
         %ul
           %li
-            :textile
+            :tcmtextile
               #{s.commentary}
 
 
@@ -27,12 +27,12 @@ Keys: #{@pattern.pattern_symptoms.select{|x| x.key_symptom}.map{|y| y.symptom_na
       - unless p.commentary.blank?
         %ul
           %li
-            :textile
+            :tcmtextile
               #{p.commentary}
 
 - unless @pattern.commentary.blank?
   %h2 Commentary
-  :textile
+  :tcmtextile
     #{@pattern.commentary}
 
 - unless @pattern.pattern_formulas.blank?

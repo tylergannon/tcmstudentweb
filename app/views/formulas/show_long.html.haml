@@ -43,13 +43,13 @@
         - unless s.commentary.blank?
           %ul
             %li
-              :textile
+              :tcmtextile
                 #{s.commentary}
 
   - unless formula_pattern.commentary.blank?
     %ul
       %li
-        :textile
+        :tcmtextile
           #{formula_pattern.commentary}
 %hr/
 
@@ -68,7 +68,7 @@
 
 %p
   %b Commentary:
-  :textile
+  :tcmtextile
     #{@formula.commentary}
 
 - if @formula.formula_dui_yaos.size > 0
