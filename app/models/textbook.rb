@@ -1,6 +1,6 @@
 class Textbook < ActiveRecord::Base
   belongs_to :author
-  accepts_nested_attributes_for :author, :allow_destroy => false, :reject_if => proc {|a| a['name'.blank?]}
+  accepts_nested_attributes_for :author, :allow_destroy => false, :reject_if => proc {|a| a['name'].blank?}
 
 
   def author_name

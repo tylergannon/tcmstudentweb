@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100326201411) do
+ActiveRecord::Schema.define(:version => 20100330002152) do
 
   create_table "acu_point_infos", :force => true do |t|
     t.integer  "acu_point_id"
@@ -48,6 +48,13 @@ ActiveRecord::Schema.define(:version => 20100326201411) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "canonical"
+  end
+
+  create_table "articles", :force => true do |t|
+    t.string   "title"
+    t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "authors", :force => true do |t|
@@ -193,15 +200,16 @@ ActiveRecord::Schema.define(:version => 20100326201411) do
     t.integer  "bensky_page"
     t.string   "short_name"
     t.boolean  "state_board"
+    t.string   "canonical"
     t.integer  "citation_id"
     t.integer  "source_text_citation_id"
-    t.string   "canonical"
   end
 
   create_table "herb_categories", :force => true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "parent_category_id"
   end
 
   create_table "herb_channels", :force => true do |t|
@@ -259,9 +267,9 @@ ActiveRecord::Schema.define(:version => 20100326201411) do
     t.string   "common_name"
     t.string   "short_name"
     t.boolean  "state_board"
+    t.string   "canonical"
     t.integer  "citation_id"
     t.integer  "source_text_citation_id"
-    t.string   "canonical"
   end
 
   create_table "pattern_symptoms", :force => true do |t|

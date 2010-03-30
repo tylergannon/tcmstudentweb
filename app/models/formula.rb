@@ -1,37 +1,37 @@
 class Formula < ActiveRecord::Base
   ROLES = %w[jūn chén zuǒ shǐ]
 	validates_presence_of :formula_category, :pinyin, :english
-  validates_uniqueness_of :pinyin, :english
+  validates_uniqueness_of :pinyin, :canonical
 	has_many :formula_contraindications
-	accepts_nested_attributes_for :formula_contraindications, :allow_destroy => true, :reject_if => proc {|a| a['contraindication_name'.blank?]}
+	accepts_nested_attributes_for :formula_contraindications, :allow_destroy => true, :reject_if => proc {|a| a['contraindication_name'].blank?}
 
 	has_many :formula_herbs
 	has_many :herbs, :through => :formula_herbs
-	accepts_nested_attributes_for :formula_herbs, :allow_destroy => true, :reject_if => proc {|a| a['herb_name'.blank?]}
+	accepts_nested_attributes_for :formula_herbs, :allow_destroy => true, :reject_if => proc {|a| a['herb_name'].blank?}
 
 	has_many :formula_pulse_qualities
 	has_many :pulse_qualities, :through => :formula_pulse_qualities
-	accepts_nested_attributes_for :formula_pulse_qualities, :allow_destroy => true, :reject_if => proc {|a| a['pulse_quality_name'.blank?]}
+	accepts_nested_attributes_for :formula_pulse_qualities, :allow_destroy => true, :reject_if => proc {|a| a['pulse_quality_name'].blank?}
 
 	has_many :formula_symptoms
-	accepts_nested_attributes_for :formula_symptoms, :allow_destroy => true, :reject_if => proc {|a| a['symptom_name'.blank?]}
+	accepts_nested_attributes_for :formula_symptoms, :allow_destroy => true, :reject_if => proc {|a| a['symptom_name'].blank?}
 	has_many :symptoms, :through => :formula_symptoms
 
 	has_many :formula_tongue_qualities
-	accepts_nested_attributes_for :formula_tongue_qualities, :allow_destroy => true, :reject_if => proc {|a| a['tongue_quality_name'.blank?]}
+	accepts_nested_attributes_for :formula_tongue_qualities, :allow_destroy => true, :reject_if => proc {|a| a['tongue_quality_name'].blank?}
 
 	has_many :formula_therapeutic_functions
-	accepts_nested_attributes_for :formula_therapeutic_functions, :allow_destroy => true, :reject_if => proc {|a| a['therapeutic_function_name'.blank?]}
+	accepts_nested_attributes_for :formula_therapeutic_functions, :allow_destroy => true, :reject_if => proc {|a| a['therapeutic_function_name'].blank?}
 	has_many :therapeutic_functions, :through => :formula_therapeutic_functions
 
 	has_many :formula_patterns
-	accepts_nested_attributes_for :formula_patterns, :allow_destroy => true, :reject_if => proc {|a| a['pattern_name'.blank?]}
+	accepts_nested_attributes_for :formula_patterns, :allow_destroy => true, :reject_if => proc {|a| a['pattern_name'].blank?}
 
 	has_many :formula_dui_yaos
-	accepts_nested_attributes_for :formula_dui_yaos, :allow_destroy => true, :reject_if => proc {|a| a['herb1_id'.blank?]}
+	accepts_nested_attributes_for :formula_dui_yaos, :allow_destroy => true, :reject_if => proc {|a| a['herb1_id'].blank?}
 
 	has_many :formula_comparisons, :foreign_key => :formula1_id
-	accepts_nested_attributes_for :formula_comparisons, :allow_destroy => true, :reject_if => proc {|a| a['formula2_pinyin'.blank?]}
+	accepts_nested_attributes_for :formula_comparisons, :allow_destroy => true, :reject_if => proc {|a| a['formula2_pinyin'].blank?}
 
 	has_many :other_formula_comparisons, :foreign_key => :formula2_id, :class_name => 'FormulaComparison'
 
@@ -92,15 +92,24 @@ class Formula < ActiveRecord::Base
     new_ps = FormParser.parse_therapeutic_functions(text, FormulaTherapeuticFunction)
     FormParser.merge(self.formula_therapeutic_functions, new_ps)
   end
-  
+
   def formula_symptoms_text
     FormParser.unparse_symptoms(formula_symptoms)
   end
-  
+
   def formula_symptoms_text=(text)
     new_ps = FormParser.parse_symptoms(text, FormulaSymptom)
     FormParser.merge(self.formula_symptoms, new_ps)
   end
-  
 
+  def self.search(str, symbol = :all)
+    return Formula.all if str.empty?
+    str.strip!
+    if /^\d+$/.match(str)
+      find(str)
+    else
+      str = "%#{str.gsub(/[-_+]/, " ").gsub(/%20/, " ").downcase.strip}%"
+      find(symbol, :conditions => ["canonical like ? or english like ? or pinyin like ?", str, str, str])
+    end
+  end
 end

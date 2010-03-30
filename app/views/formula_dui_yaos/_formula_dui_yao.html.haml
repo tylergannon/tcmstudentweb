@@ -2,6 +2,4 @@
   = "#{formula_dui_yao.dui_yao.herb1.pinyin} / #{formula_dui_yao.dui_yao.herb2.pinyin}:"
 %ul
   %li
-    = RedCloth.new(formula_dui_yao.commentary).to_html
-/
-  \%= link_to_remote 'Edit', :url => {:action => "edit", :id => formula_dui_yao.id} %
+    != RedCloth.new(formula_dui_yao.commentary).to_html

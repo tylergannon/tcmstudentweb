@@ -1,7 +1,7 @@
 class FormulasController < ApplicationController
-  load_and_authorize_resource
+
   def index
-    @formulas = Formula.find(:all, :conditions => ['canonical LIKE ?', "%#{params[:search]}%"])
+    @formulas = Formula.search(params[:search])
 
     respond_to do |format|
       format.html # index.html.erb
@@ -18,7 +18,8 @@ class FormulasController < ApplicationController
   # GET /formulas/1
   # GET /formulas/1.xml
   def show
-    @formula = Formula.find(params[:id])
+
+    @formula = Formula.search(params[:id], :first)
 
     respond_to do |format|
       format.html # show.html.erb
@@ -36,7 +37,7 @@ class FormulasController < ApplicationController
 
   # GET /formulas/1/edit
   def edit
-    @formula = Formula.find(params[:id])
+    @formula = Formula.search(params[:id], :first)
     @citation = @formula.citation ||= Citation.new
     @source_text_citation = @formula.source_text_citation ||= Citation.new
   end
@@ -64,7 +65,7 @@ class FormulasController < ApplicationController
     Formula.transaction do
       respond_to do |format|
         begin
-          @formula = Formula.find(params[:id])
+          @formula = Formula.search(params[:id], :first)
           @formula.update_attributes(params[:formula])
           flash[:notice] = 'Formula was successfully updated.'
           format.html { redirect_to(@formula) }

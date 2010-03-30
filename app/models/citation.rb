@@ -1,6 +1,6 @@
 class Citation < ActiveRecord::Base
   belongs_to :textbook
-  accepts_nested_attributes_for :textbook, :allow_destroy => false, :reject_if => proc {|a| a['title'.blank?]}
+  accepts_nested_attributes_for :textbook, :allow_destroy => false, :reject_if => proc {|a| a['title'].blank?}
 
 
   def textbook_title

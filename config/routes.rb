@@ -1,6 +1,8 @@
+
 TcmStudentWeb::Application.routes.draw do
   resources :authors
   resources :textbooks
+  resources :articles
   resources :patterns
   resources :acu_points
   resources :formulas
@@ -22,6 +24,7 @@ TcmStudentWeb::Application.routes.draw do
   resource :user_session
   resource :account
   resources :users
+  resources :searches
   match 'treatment_principles' => 'therapeutic_functions#index'
   match 'login' => 'user_sessions#new'
   match 'logout' => 'user_sessions#destroy'

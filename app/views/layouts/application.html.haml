@@ -26,6 +26,10 @@
               Welcome #{h current_user.login}! Not you? #{link_to "Log out", '/logout'}
             - else
               #{link_to "Sign up", '/signup'} or #{link_to "log in", '/login'}
+            %br/
+            - form_for :search, :url => { :action => :find_or_create } do |f|
+              != text_field_with_auto_complete "search", "query", {}, { :url => '/search.js', :method => :get, :skip_style => true,	:with => "'search='+element.value" }
+              != submit_tag "Find or Create"
           .headRight
           #navigation
             .naviLeft
@@ -79,7 +83,7 @@
             - flash.each do |name, msg|
               = content_tag :div, msg, :id => "flash_#{name}"
             = yield
-            <div class="commentBox">Posted on <i>Wednesday, January 3, 2007</i> by [your name goes here] | <a href="index.html">Comments (5)</a></div>
+
             .bottom
               .bottomLeft
               .bottomRight

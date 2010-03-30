@@ -306,21 +306,26 @@ img {
 #content h2 {
   margin: 0;
   font-size: 16px;
-  font-variant: small-caps;
+  # font-variant: small-caps;
   color: #597ca6;
+  display: inline;
 }
 
 #content h3 {
   margin: 0;
   font-size: 14px;
-  font-variant: small-caps;
+  # font-variant: small-caps;
   color: #597ca6;
+  display: inline;
+
 }
 
 #content h3 {
   margin: 0;
   font-size: 12px;
   font-weight: bold;
+  display: inline;
+
 }
 
 #content .quote {
@@ -334,13 +339,27 @@ img {
   color: #646464;
 }
 
-#content li {
-  margin-bottom: 10px;
-}
+/*#content li {*/
+  /*margin-bottom: 10px;*/
+/*}*/
 
 #content a {
   color: #516e91;
   text-decoration: none;
+}
+
+#content .preparation{
+  font-size: 10px;
+}
+
+#content .commentary{
+  font-size: 11px;
+}
+#content .commentary p {
+  font-size: 11px;
+}
+#content .commentary li {
+  font-size: 11px;
 }
 
 #content a:hover {
