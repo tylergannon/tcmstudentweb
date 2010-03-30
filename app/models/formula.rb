@@ -7,7 +7,7 @@ class Formula < ActiveRecord::Base
 
 	has_many :formula_herbs
 	has_many :herbs, :through => :formula_herbs
-	accepts_nested_attributes_for :formula_herbs, :allow_destroy => true, :reject_if => proc {|a| a['herb_name'].blank?}
+	accepts_nested_attributes_for :formula_herbs, :allow_destroy => true, :reject_if => proc {|a| a['herb_pinyin'].blank?}
 
 	has_many :formula_pulse_qualities
 	has_many :pulse_qualities, :through => :formula_pulse_qualities
@@ -25,7 +25,7 @@ class Formula < ActiveRecord::Base
 	has_many :therapeutic_functions, :through => :formula_therapeutic_functions
 
 	has_many :formula_patterns
-	accepts_nested_attributes_for :formula_patterns, :allow_destroy => true, :reject_if => proc {|a| a['pattern_name'].blank?}
+	accepts_nested_attributes_for :formula_patterns, :allow_destroy => true
 
 	has_many :formula_dui_yaos
 	accepts_nested_attributes_for :formula_dui_yaos, :allow_destroy => true, :reject_if => proc {|a| a['herb1_id'].blank?}
