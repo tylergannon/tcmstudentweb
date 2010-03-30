@@ -108,7 +108,7 @@ class Formula < ActiveRecord::Base
     if /^\d+$/.match(str)
       find(str)
     else
-      str = "%#{str.gsub(/[-_+]/, " ").gsub(/%20/, " ").downcase.strip}%"
+      str = "%#{str.gsub(/[-_+]/, " ").gsub(/%20/, " ").titleize.strip}%"
       find(symbol, :conditions => ["canonical like ? or english like ? or pinyin like ?", str, str, str])
     end
   end
