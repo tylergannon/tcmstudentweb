@@ -54,5 +54,16 @@ class Herb < ActiveRecord::Base
 
 	def herb_category_name
 		herb_category.name if herb_category
-	end
+  end
+
+  def self.search(str, symbol = :all)
+    str = str.to_s.strip
+    return Herb.all if str.empty?
+    if /^\d+$/.match(str)
+      find(str)
+    else
+      str = "%#{str.gsub(/[-_+]/, " ").gsub(/%20/, " ").downcase}%"
+      find(symbol, :conditions => ["lower(canonical) like ? or lower(latin) like ? or lower(pinyin) like ? or lower(common_name) like ?", str, str, str, str])
+    end
+  end
 end

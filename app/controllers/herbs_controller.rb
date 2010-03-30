@@ -2,7 +2,7 @@ class HerbsController < ApplicationController
   # GET /herbs
   # GET /herbs.xml
   def index
-		@herbs = Herb.find(:all, :conditions => ['canonical LIKE ?', "%#{params[:search]}%"])
+		@herbs = Herb.search(params[:search])
 		respond_to do |format|
 			format.html # index.html.erb
 			format.js   # index.js.erb
@@ -13,7 +13,7 @@ class HerbsController < ApplicationController
   # GET /herbs/1
   # GET /herbs/1.xml
   def show
-    @herb = Herb.find(params[:id])
+    @herb = Herb.search(params[:id], :first)
 
     respond_to do |format|
       format.html # show.html.erb
@@ -34,7 +34,7 @@ class HerbsController < ApplicationController
 
   # GET /herbs/1/edit
   def edit
-    @herb = Herb.find(params[:id])
+    @herb = Herb.search(params[:id], :first)
   end
 
   # POST /herbs
