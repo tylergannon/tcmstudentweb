@@ -4,7 +4,7 @@ class FormulaHerb < ActiveRecord::Base
 	belongs_to :formula_role
 
 	def herb_pinyin=(pinyin)
-    return if pinyin.blank
+    return if pinyin.blank?
     a = Herb.search(pinyin, :first)
     raise "Could not find herb #{pinyin}" unless a
     self.herb = a
