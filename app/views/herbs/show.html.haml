@@ -73,6 +73,9 @@
     %tr
       %td= herb_comparison.herb2.display_name
       %td= herb_comparison.herb2_commentary
+
+%b Formulas:
+!= @herb.formulas.map{|f| link_to f.pinyin, f}.join(", ")
 #{link_to 'Edit', edit_herb_path(@herb)} | #{link_to 'Back to Herbs', herbs_path} | #{link_to 'New Herb', new_herb_path}
 
 

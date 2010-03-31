@@ -7,8 +7,10 @@ class Herb < ActiveRecord::Base
   end
 
 	has_many :herb_flavors
-	has_many :herbs, :through => :herb_flavors
 	accepts_nested_attributes_for :herb_flavors, :allow_destroy => true, :reject_if => proc {|a| a['flavor_name'].blank?}
+
+  has_many :formula_herbs
+  has_many :formulas, :through => :formula_herbs
 
 	belongs_to :herb_category
 	accepts_nested_attributes_for :herb_category, :allow_destroy => true, :reject_if => proc {|a| a['name'].blank?}
