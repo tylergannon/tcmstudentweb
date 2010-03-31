@@ -1,5 +1,5 @@
 class FormParser
-  PATTERN_SYMPTOMS_REGEXP = /([\*-])?([^\n\(]+)(?:(?:\n  (.*?);{2}\n)|\s\(([^\)]+)\))?/m
+  PATTERN_SYMPTOMS_REGEXP = /([\*-])?([^\n\(]+)(?:(?:\n\s{2}(.*?);{2})|\s\(([^\)]+)\))?\n/m
 
   def self.scan_text(text)
     (text + "\n").gsub(/\r\n/, "\n").scan(PATTERN_SYMPTOMS_REGEXP)
