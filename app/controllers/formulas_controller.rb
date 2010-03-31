@@ -46,8 +46,6 @@ class FormulasController < ApplicationController
     Formula.transaction do
       respond_to do |format|
         begin
-          write "a = #{params[:formula].inspect}"
-          write "Formula.new(a).save!"
           @formula = Formula.new(params[:formula])
           @formula.save!
           flash[:notice] = 'Formula was successfully created.'
@@ -65,9 +63,6 @@ class FormulasController < ApplicationController
     Formula.transaction do
       respond_to do |format|
         begin
-          write "a = Formula.search(\"#{params[:id]}\", :first)"
-          write "a.attributes = #{params[:formula].inspect}"
-
           @formula = Formula.search(params[:id], :first)
           @formula.update_attributes(params[:formula])
           flash[:notice] = 'Formula was successfully updated.'
@@ -109,12 +104,6 @@ class FormulasController < ApplicationController
       format.html { redirect_to(formulas_url) }
       format.xml  { head :ok }
     end
-  end
-
-  def write(s)
-    puts s
-    file = File.new("/home/tyler/Projects/tcm_student_web/log/formulas_log.txt", "a")
-    file.write("#{s}\n")
   end
 end
 
