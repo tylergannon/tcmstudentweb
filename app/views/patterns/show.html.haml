@@ -39,7 +39,7 @@ Keys: #{@pattern.pattern_symptoms.select{|x| x.key_symptom}.map{|y| y.symptom_na
   %h2 Formulas
   %ul
     - @pattern.pattern_formulas.each do |pf|
-      %li!= "#{pf.formula_pinyin} (#{pf.citation.textbook})"
+      %li!= "#{link_to pf.formula_pinyin, pf.formula} (#{pf.citation.textbook.title})"
 
 - unless @pattern.point_prescriptions.blank?
   - @pattern.point_prescriptions.each do |pp|
