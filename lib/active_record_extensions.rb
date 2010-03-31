@@ -20,7 +20,27 @@ module ActiveRecord
       self.attributes = attr
     end
 
-    
+    def self.search(str, symbol = :all)
+      str = str.to_s.strip
+      return all if str.empty?
+      if /^\d+$/.match(str)
+        find(str)
+      else
+        str = str.strip.gsub(/[-_+]/, " ").gsub(/%20/, " ").downcase
 
+        if symbol == :first
+          conditions = search_columns.map{|c| "trim(lower(#{c})) = '#{str}'"}.join(" or ")
+          if a = find(:first, :conditions => conditions)
+            a
+          else
+            conditions = search_columns.map{|c| "trim(lower(#{c})) like '%#{str}%'"}.join(" or ")
+            find(:first, :conditions => conditions)
+          end
+        else
+          conditions = search_columns.map{|c| "trim(lower(#{c})) like '%#{str}%'"}.join(" or ")
+          find(symbol, :conditions => conditions)
+        end
+      end
+    end
   end
 end

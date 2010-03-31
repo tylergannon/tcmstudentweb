@@ -49,4 +49,8 @@ class Pattern < ActiveRecord::Base
   def key_attributes
     ["name", "id", "pattern_symptoms_text", "pattern_treatment_principles_text", "commentary"]
   end
+
+  def self.search_columns
+    ["name"]
+  end
 end

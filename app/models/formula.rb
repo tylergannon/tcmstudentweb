@@ -104,14 +104,7 @@ class Formula < ActiveRecord::Base
     FormParser.merge(self.formula_symptoms, new_ps)
   end
 
-  def self.search(str, symbol = :all)
-    return Formula.all if str.empty?
-    str.strip!
-    if /^\d+$/.match(str)
-      find(str)
-    else
-      str = "%#{str.gsub(/[-_+]/, " ").gsub(/%20/, " ").titleize.strip}%"
-      find(symbol, :conditions => ["canonical like ? or english like ? or pinyin like ?", str, str, str])
-    end
+  def self.search_columns
+    ["canonical", "english", "pinyin"]
   end
 end

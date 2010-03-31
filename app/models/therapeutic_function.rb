@@ -12,10 +12,7 @@ class TherapeuticFunction < ActiveRecord::Base
   end
 
   default_scope :order => 'name'
-  def self.search(str, scope = :all)
-    str = str.to_s
-    return all if str.empty?
-    return find(str) if str.is_numeric?
-    find(scope, :conditions => ["lower(name) like ?", str.to_search_string])
+  def self.search_columns
+    ["name"]
   end
 end

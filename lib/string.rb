@@ -18,7 +18,7 @@ class String
 
   def to_search_string
     a = gsub(/[-_+]/, " ").gsub(/%20/, " ").downcase
-    a.index("%") ? a : "%#{a}%"
+    a.index("%") ? a : "%#{a}"
   end
 
   def to_url_string
