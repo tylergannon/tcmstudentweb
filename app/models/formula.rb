@@ -1,4 +1,6 @@
 class Formula < ActiveRecord::Base
+
+  default_scope :order => 'canonical'
   ROLES = %w[jūn chén zuǒ shǐ]
 	validates_presence_of :formula_category, :pinyin, :english
   validates_uniqueness_of :pinyin, :canonical

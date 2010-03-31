@@ -6,15 +6,15 @@
     %td
       = f.label :pinyin
       \:
-      = f.text_field :pinyin
+      = f.text_field :pinyin, :autocomplete => "off"
     %td
       = f.label :english
       \:
-      = f.text_field :english
+      = f.text_field :english, :autocomplete => "off"
     %td
       = f.label :chinese
       \:
-      = f.text_field :chinese
+      = f.text_field :chinese, :autocomplete => "off"
     %td
       #{f.label :state_board}:#{f.check_box :state_board}
 

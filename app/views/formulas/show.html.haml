@@ -21,7 +21,7 @@
     %td
       - if formula_pattern = @formula.formula_patterns[0]
         - p = formula_pattern.pattern
-        = "Keys: #{p.key_symptoms.map{|y| y.symptom_name}.join(", ")}" unless p.key_symptoms.size==0
+        = "Keys: #{p.key_symptoms.map{|y| y.symptom_name + y.commentary.blank? ? "" : " (#{y.commentary.slice(0..40)})"}.join(", ")}" unless p.key_symptoms.size==0
   - @formula.formula_patterns.each do |formula_pattern|
     - p = formula_pattern.pattern
     %tr
@@ -30,7 +30,7 @@
         #{link_to p.name, p}
       %td{'valign' => 'top'}
         %b Indications:
-        = p.pattern_symptoms.map{|ps| ps.symptom_name}.join(", ")
+        = p.pattern_symptoms.map{|y| y.symptom_name + (y.commentary.blank? ? "" : " (#{y.commentary.slice(0..40)})")}.join(", ")
 
 
 

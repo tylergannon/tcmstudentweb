@@ -1,4 +1,6 @@
 class Herb < ActiveRecord::Base
+  default_scope :order => 'canonical'
+
   validates_uniqueness_of :pinyin, :canonical
   def key_attributes
     ["id", "pinyin", "english", "canonical", "herb_category_id", "commentary", "common_name", "short_name", "state_board", ]

@@ -11,5 +11,18 @@ class String
         #.gsub(/ÌÍÎÏĬĪ/, "I") \
         #.gsub(/ÒÓÔÕÖŌŎŐ/, "O") \
   end
+
+  def is_numeric?
+    /^\d+$/.match(self) ? true : false
+  end
+
+  def to_search_string
+    a = gsub(/[-_+]/, " ").gsub(/%20/, " ").downcase
+    a.index("%") ? a : "%#{a}%"
+  end
+
+  def to_url_string
+    titleize.gsub(" ", "_")
+  end
 end
 

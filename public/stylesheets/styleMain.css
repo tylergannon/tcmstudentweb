@@ -300,33 +300,27 @@ img {
 #content h1 {
   margin: 0;
   font-size: 16px;
-  color: #597ca6;
+  /*color: #597ca6;*/
 }
 
 #content h2 {
-  margin: 0;
-  font-size: 16px;
-  # font-variant: small-caps;
-  color: #597ca6;
+  /*margin: 0;*/
+  font-size: 15px;
+  /*# font-variant: small-caps;*/
+  /*color: #597ca6;*/
   display: inline;
 }
 
 #content h3 {
-  margin: 0;
-  font-size: 14px;
-  # font-variant: small-caps;
-  color: #597ca6;
+  /*margin: 0;*/
+  /*font-size: 14px;*/
+  /*# font-variant: small-caps;*/
+  /*color: #597ca6;*/
   display: inline;
 
 }
 
-#content h3 {
-  margin: 0;
-  font-size: 12px;
-  font-weight: bold;
-  display: inline;
 
-}
 
 #content .quote {
   margin: 16px;
@@ -404,12 +398,12 @@ img {
   padding-top: 4px;
 }
 
-#content .topMiddle h1 {
-  margin: 0;
-  font-size: 16px;
-  color: #575757;
-  font-weight: bold;
-}
+/*#content .topMiddle h1 {*/
+  /*margin: 0;*/
+  /*font-size: 16px;*/
+  /*color: #575757;*/
+  /*font-weight: bold;*/
+/*}*/
 
 #content .topRight {
   float: right;

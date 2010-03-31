@@ -10,7 +10,7 @@
 
   %h2 Therapeutic Functions
   %ul
-    %li= acu_point_info.acu_point_therapeutic_functions.collect{|a| a.therapeutic_function_name}.join(", ")
+    %li!= acu_point_info.acu_point_therapeutic_functions.collect{|a| link_to a.therapeutic_function_name, a.therapeutic_function}.join(", ")
   %h2 Commentary
   :tcmtextile
     #{acu_point_info.commentary}

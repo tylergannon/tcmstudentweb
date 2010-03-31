@@ -1,6 +1,6 @@
 class TherapeuticFunctionsController < ApplicationController
   def index
-    @therapeutic_functions = TherapeuticFunction.find(:all, :conditions => ['lower(name) LIKE ?', "%#{params[:search].downcase}%"])
+    @therapeutic_functions = TherapeuticFunction.search(params[:search])
     respond_to do |format|
     	format.html # index.html.erb
     	format.js   # index.js.erb

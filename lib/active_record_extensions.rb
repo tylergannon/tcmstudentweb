@@ -20,5 +20,7 @@ module ActiveRecord
       self.attributes = attr
     end
 
+    
+
   end
 end

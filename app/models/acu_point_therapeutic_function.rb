@@ -1,5 +1,5 @@
 class AcuPointTherapeuticFunction < ActiveRecord::Base
-  belongs_to :acu_point
+  belongs_to :acu_point_info
   belongs_to :therapeutic_function
 
   def name

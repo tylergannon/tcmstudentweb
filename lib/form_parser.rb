@@ -1,8 +1,12 @@
 class FormParser
-  PATTERN_SYMPTOMS_REGEXP = /([\*-])?([^\n]+)\n(?:  (.*?)\*{5}\n)?/m
+  PATTERN_SYMPTOMS_REGEXP = /([\*-])?([^\n\(]+)(?:(?:\n  (.*?);{2}\n)|\s\(([^\)]+)\))?/m
 
   def self.scan_text(text)
     (text + "\n").gsub(/\r\n/, "\n").scan(PATTERN_SYMPTOMS_REGEXP)
+  end
+
+  def self.get_commentary(match)
+    match[2] ||= match[3]
   end
 
   def self.parse_symptoms(text, klass)
@@ -10,7 +14,7 @@ class FormParser
       klass.send(:new, :symptom_name => match[1].strip,
                  :maybe => (match[0]=="-"),
                  :key_symptom => (match[0]=="*"),
-                 :commentary => match[2])
+                 :commentary => get_commentary(match))
     }
   end
 
@@ -27,16 +31,27 @@ class FormParser
     else
       scan_text(text).map {|match|
         klass.send(:new, :therapeutic_function_name => match[1].strip,
-                   :commentary => match[2])
+                   :commentary => get_commentary(match))
       }
+    end
+  end
+
+  def self.unparse_commentary(s)
+    case
+      when s.commentary.blank?
+        "\n"
+      when s.commentary.index("\n") || s.commentary.length > 40
+        "\n  #{s.commentary};;\n"
+      else
+        " (#{s.commentary})\n"
     end
   end
 
   def self.unparse_symptoms(ps)
     text = ""
     ps.each do |s|
-      text += "#{s.maybe ? "-" : ""}#{s.key_symptom ? "*" : ""}#{s.symptom_name}\n"
-      text += "  #{s.commentary}*****\n" unless s.commentary.blank?
+      text += "#{s.maybe ? "-" : ""}#{s.key_symptom ? "*" : ""}#{s.symptom_name}"
+      text += unparse_commentary(s)
     end
     text
   end
@@ -44,8 +59,7 @@ class FormParser
   def self.unparse_point_prescription_acu_points(ps)
     text = ""
     ps.each do |s|
-      text += "#{s.acu_point_abbrev}\n"
-      text += "  #{s.commentary}*****\n" unless s.commentary.blank?
+      text += "#{s.acu_point_abbrev}" + unparse_commentary(s)
     end
     text
   end
@@ -53,8 +67,7 @@ class FormParser
   def self.unparse_therapeutic_functions(ptp)
     text = ""
     ptp.each do |tp|
-      text += "#{tp.therapeutic_function_name}\n"
-      text += "  #{tp.commentary}*****\n" unless tp.commentary.blank?
+      text += "#{tp.therapeutic_function_name}" + unparse_commentary(tp)
     end
     text
   end

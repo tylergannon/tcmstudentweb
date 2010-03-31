@@ -1,17 +1,5 @@
 - title "Therapeutic Functions"
-%table
-  %tr
-    %th
-      Name
-  - for therapeutic_function in @therapeutic_functions
-    %tr
-      %td
-        = h therapeutic_function.name
-      %td
-        = link_to "Show", therapeutic_function
-      %td
-        = link_to "Edit", edit_therapeutic_function_path(therapeutic_function)
-      %td
-        = link_to "Destroy", therapeutic_function, :confirm => 'Are you sure?', :method => :delete
+= render @therapeutic_functions
+
 %p
   = link_to "New Therapeutic Function", new_therapeutic_function_path
