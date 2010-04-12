@@ -12,6 +12,7 @@ TcmStudentWeb::Application.routes.draw do
   resources :pulse_qualities
   resources :contraindications
   resources :formula_categories
+  resources :formula_comparisons
   resources :herbs
   resources :herb_categories
   resources :channels

@@ -29,7 +29,11 @@ module ApplicationHelper
   end
 
   def link_to_herb(herb)
-    link_to herb.pinyin, herb
+    link_to herb.pinyin, herb, :title => herb.latin
+  end
+  
+  def link_to_formula(formula)
+    link_to formula.pinyin, formula, :title => formula.english
   end
 
   def field_id(form, field)

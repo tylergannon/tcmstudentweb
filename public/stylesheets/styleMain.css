@@ -598,3 +598,8 @@ img {
   margin-bottom: 0;
   padding-bottom: 0;
 }
+
+.formulaComparison td {
+  width: 50%;
+  vertical-align: text-top;
+}
