@@ -1,1 +1,4 @@
-= auto_complete_result @contraindications, :name
+%ul
+  - @contraindications.each do |c|
+    %li><
+      = c.name

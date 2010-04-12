@@ -18,6 +18,6 @@
 
 = add_child_link 'Add a source', 'acu_point_info', f
 #acu_point_info_children
-  - f.fields_for :acu_point_infos do |acu_point_info_form|
+  = f.fields_for :acu_point_infos do |acu_point_info_form|
     = render :partial => 'acu_point_info', :locals => { :f => acu_point_info_form }
 

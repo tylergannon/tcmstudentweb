@@ -26,7 +26,7 @@ module TcmStudentWeb
     # config.time_zone = 'Central Time (US & Canada)'
 
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
-    # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
+    # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
     # Configure generators values. Many other options are available, be sure to check the documentation.
@@ -36,18 +36,7 @@ module TcmStudentWeb
     #   g.test_framework  :test_unit, :fixture => true
     # end
 
-#    Haml::Template.options[:escape_html] = false
-
-    config.generators do |g|
-      g.template_engine :haml
-      g.test_framework :test_unit, :fixture => true
-      g.fixture_replacement :factory_girl, :dir => "test/factories"
-    end
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters << :password
   end
 end
-
-require "haml"
-require "haml/template"
-Haml::Template.options[:escape_html] = false

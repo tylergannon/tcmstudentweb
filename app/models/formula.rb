@@ -2,7 +2,7 @@ class Formula < ActiveRecord::Base
 
   default_scope :order => 'canonical'
   ROLES = %w[jūn chén zuǒ shǐ]
-	validates_presence_of :formula_category, :pinyin, :english
+	validates_presence_of :pinyin
   validates_uniqueness_of :pinyin, :canonical
 	has_many :formula_contraindications
 	accepts_nested_attributes_for :formula_contraindications, :allow_destroy => true, :reject_if => proc {|a| a['contraindication_name'].blank?}
@@ -30,7 +30,7 @@ class Formula < ActiveRecord::Base
 	accepts_nested_attributes_for :formula_patterns, :allow_destroy => true
 
 	has_many :formula_dui_yaos
-	accepts_nested_attributes_for :formula_dui_yaos, :allow_destroy => true, :reject_if => proc {|a| a['herb1_id'].blank?}
+	accepts_nested_attributes_for :formula_dui_yaos, :allow_destroy => true#, :reject_if => proc {|a| a['herb1_id'].blank?}
 
 	has_many :formula_comparisons, :foreign_key => :formula1_id
 	accepts_nested_attributes_for :formula_comparisons, :allow_destroy => true, :reject_if => proc {|a| a['formula2_pinyin'].blank?}

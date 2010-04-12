@@ -1,4 +1,7 @@
 %ul
   - @formulas.each do |f|
-    %li<
+    %li><
       = f.pinyin
+      - unless f.english.blank?
+        %span.informal>
+          %i (#{f.english})

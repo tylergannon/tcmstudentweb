@@ -3,7 +3,7 @@ class FormulaTherapeuticFunction < ActiveRecord::Base
 	belongs_to :therapeutic_function
 
 	def therapeutic_function_name=(name)
-		self.therapeutic_function = TherapeuticFunction.find_or_create_by_name(name) unless name.blank?
+		self.therapeutic_function = TherapeuticFunction.find_or_create(:name, name) unless name.blank?
 	end
 
 	def therapeutic_function_name

@@ -1,1 +1,4 @@
-= auto_complete_result @formula_categories, :name
+%ul
+  - @formula_categories.each do |fc|
+    %li><
+      = fc.name

@@ -1,6 +1,6 @@
 %h1
   Editing textbook
-- form_for(@textbook) do |f|
+= form_for(@textbook) do |f|
   = render :partial => 'form', :locals => { :f => f }
   %p
     = f.submit 'Update'

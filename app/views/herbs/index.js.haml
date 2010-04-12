@@ -1,1 +1,7 @@
-= auto_complete_result @herbs, :pinyin
+%ul
+  - @herbs.each do |t|
+    %li><
+      = t.pinyin
+      - unless t.latin.blank?
+        %span.informal>
+          %i (#{t.latin})

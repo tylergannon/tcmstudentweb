@@ -16,6 +16,8 @@ module Haml::Filters::TcmTextile
           "herbs"
         when 'p'
           "patterns"
+        when 's'
+          "symptoms"
       end
       "\"#{$2}\":/#{controller}/#{$2.gsub(" ", "_").downcase}"
     }

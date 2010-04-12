@@ -576,3 +576,25 @@ img {
   /*cellpadding: 0px;*/
 
 }
+
+#formula_herbs p {
+  float: none;
+  clear: none;
+  padding: 0;
+  margin: 0;
+  display: inline;
+  margin-top: 0;
+  padding-top: 0;
+}
+#formula_herbs ol {
+  margin-top: 0;
+  padding-top: 0;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+#formula_herbs ul {
+  margin-top: 0;
+  padding-top: 0;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}

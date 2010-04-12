@@ -3,7 +3,11 @@
 
 %h3 Signs and Symptoms
 = text_area_with_auto_complete f, :pattern_symptoms_text, 'symptoms', :rows => 6, :cols => 60
-
+%b Tongue:
+= f.text_field :tongue, :autocomplete => "off"
+%b Pulse
+= f.text_field :pulse, :autocomplete => "off"
+%br/
 %h3 Treatment Principles
 = text_area_with_auto_complete f, :pattern_treatment_principles_text, 'therapeutic_functions', :rows => 4, :cols => 60
 

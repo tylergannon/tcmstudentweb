@@ -3,6 +3,18 @@
   %strong
     Name:
   = h @symptom.name
+
+%p
+  %h3 Formulas
+  %ul
+    - @symptom.formulas.each do |f|
+      %li!= link_to f.pinyin, f
+  %br/
+  %h3 Patterns
+  %ul
+    - @symptom.patterns.each do |p|
+      %li!= link_to p.name, p
+
 %p
   = link_to "Edit", edit_symptom_path(@symptom)
   |

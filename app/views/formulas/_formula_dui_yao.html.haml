@@ -1,0 +1,16 @@
+.child
+  %table
+    %tr
+      %td{'width' => '50%'}
+        %b Herb 1:
+        != f.text_field_with_auto_complete :herb1_pinyin, {}, { :url => herbs_path(:format => :js), :method => :get, :skip_style => true,	:with => "'search='+element.value" }
+      %td{'width' => '50%'}
+        %b Herb 2:
+        != f.text_field_with_auto_complete :herb2_pinyin, {}, { :url => herbs_path(:format => :js), :method => :get, :skip_style => true,	:with => "'search='+element.value" }
+    %tr
+      %td{'colspal' => '2', 'width' => '100%'}
+        %b Commentary
+        %br/
+        = f.text_area :commentary, :rows => "3", :cols=> 45
+        %br/
+        #{remove_child_link 'remove', f}

@@ -7,7 +7,6 @@ class FormulaPattern < ActiveRecord::Base
   belongs_to :citation
   accepts_nested_attributes_for :citation, :allow_destroy => true, :reject_if => proc {|a| a['textbook_title'].blank?}
 
-
   def pattern_name=(name)
 		self.pattern = Pattern.find_or_create_by_name(name) unless name.blank?
 	end

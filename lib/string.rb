@@ -4,7 +4,7 @@ class String
     .gsub(/[àáâãäåāăǎ]/, "a") \
     .gsub(/[èéêëēĕėęě]/, "e") \
     .gsub(/[ìíîïĩīĭį]/, "i") \
-    .gsub(/[òóôõöōŏő]/, "o") \
+    .gsub(/[òóôõöōŏǒő]/, "o") \
     .gsub(/[ùúûüũūŭůűų]/, "u")
         #    .gsub(/ÀÁÂÃÄÅĀĂ/, "A") \
         #.gsub(/ÈÉÊËĒĔĖĘĚ/, "E") \
@@ -80,6 +80,6 @@ class String
     str.downcase! if options[:downcase]
     str.gsub!(/\ /,'_') if options[:convert_spaces]
     str.gsub(options[:regexp], '')
-  end  
+  end
 end
 

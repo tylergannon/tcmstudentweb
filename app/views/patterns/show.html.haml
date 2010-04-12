@@ -5,13 +5,14 @@ Keys: #{@pattern.pattern_symptoms.select{|x| x.key_symptom}.map{|y| y.symptom_na
 
 %ul
   - @pattern.pattern_symptoms.each do |s|
+    - l = link_to s.symptom_name, s.symptom
     %li
       - if s.maybe
         (possibly)
       - if s.key_symptom
-        %i= s.symptom_name
+        %i= l
       - else
-        = s.symptom_name
+        = l
       - unless s.commentary.blank?
         %ul
           %li
@@ -39,14 +40,14 @@ Keys: #{@pattern.pattern_symptoms.select{|x| x.key_symptom}.map{|y| y.symptom_na
   %h2 Formulas
   %ul
     - @pattern.pattern_formulas.each do |pf|
-      %li!= "#{link_to pf.formula_pinyin, pf.formula} (#{pf.citation.textbook.title})"
+      %li!= "#{link_to pf.formula_pinyin, pf.formula} (#{pf.citation.textbook.title if pf.citation})"
 
 - unless @pattern.point_prescriptions.blank?
   - @pattern.point_prescriptions.each do |pp|
     %h2!= "Point Prescription: #{pp.citation.textbook_title if pp.citation} #{link_to "edit", edit_point_prescription_path(pp)}"
     %ul
       - pp.pp_acu_points.each do |ap|
-        %li!= "#{ap.acu_point_abbrev} (#{ap.commentary})"
+        %li!= "#{link_to ap.acu_point_abbrev, ap} (#{ap.commentary})"
 
 
 - if can? :update, @pattern

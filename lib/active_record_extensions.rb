@@ -21,26 +21,64 @@ module ActiveRecord
     end
 
     def self.search(str, symbol = :all)
-      str = str.to_s.strip
-      return all if str.empty?
-      if /^\d+$/.match(str)
+      return search_one(str) if symbol == :first
+
+      str = str.to_s.strip.downcase
+
+      if str.empty?
+        find(:all)
+      elsif /^\d+$/.match(str)
         find(str)
       else
-        str = str.strip.gsub(/[-_+]/, " ").gsub(/%20/, " ").downcase
-
-        if symbol == :first
-          conditions = search_columns.map{|c| "trim(lower(#{c})) = '#{str}'"}.join(" or ")
-          if a = find(:first, :conditions => conditions)
-            a
-          else
-            conditions = search_columns.map{|c| "trim(lower(#{c})) like '%#{str}%'"}.join(" or ")
-            find(:first, :conditions => conditions)
+        result = find(:all, :conditions => condition("= '#{str}'"))
+        result.extend(ArrayPlus)
+        [ find(:all, :conditions => condition("like '#{str}%'")),
+          find(:all, :conditions => condition("like '%#{str}%'"))].each do |a|
+          a.each do |b|
+            result << b unless result.include?(b)
           end
-        else
-          conditions = search_columns.map{|c| "trim(lower(#{c})) like '%#{str}%'"}.join(" or ")
-          find(symbol, :conditions => conditions)
         end
+
+        result
       end
     end
+
+    def self.search_one(str)
+      str = str.to_s.strip
+
+      if str.empty?
+        nil
+      elsif /^\d+$/.match(str)
+        find (str)
+      elsif a = find(:first, :conditions => condition("= '#{str}'"))
+        a
+      elsif a = find(:first, :conditions => condition("like '#{str}%'"))
+        a
+      else
+        find(:first, :conditions => condition("like '%#{str}%'"))
+      end
+    end
+
+    def self.search_equals(str)
+      str = str.to_s.strip.downcase
+      if str.empty?
+        nil
+      else
+        find(:first, :conditions => condition("= '#{str}'"))
+      end
+    end
+
+    def self.find_or_create(field, value)
+      value = value.to_s.strip
+      return if value.empty?
+      a = find(:first, :conditions => "lower('#{value}') = lower(#{field.to_s})")
+      a ||= create(field => value)
+    end
+
+
+    private
+      def self.condition(cond)
+         search_columns.map{|c| "trim(lower(#{c})) #{cond}"}.join(" or ")
+      end
   end
 end

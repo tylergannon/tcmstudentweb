@@ -2,19 +2,20 @@
 # This preamble is the current preamble for Rails 3 apps; edit as needed.
 #path "/usr/bin/rails", :glob => "{*/,}*.gemspec"
 #git "git://github.com/rails/rack.git"
-gem "rails", "3.0.0.beta"
+gem "rails", "3.0.0.beta2"
 
 source 'http://gems.github.com'
 source 'http://rubygems.org'
 #gem 'repeated_auto_complete', :git => "git://github.com/patshaughnessy/auto_complete.git"
-gem "authlogic", :git => "git://github.com/binarylogic/authlogic.git"
+gem "authlogic", :git => "git://github.com/odorcicd/authlogic.git", :branch => "rails3"
+
 gem 'cancan', :git => "git://github.com/ryanb/cancan.git"
 gem 'RedCloth'
 gem "haml"
 
 group :development do
 #  gem "sqlite3-ruby", :require => "sqlite3"
-  gem 'nifty-generators', :git =>  'git://github.com/dvyjones/nifty-generators.git', :branch => 'rails3'
+#  gem 'nifty-generators', :git =>  'git://github.com/dvyjones/nifty-generators.git', :branch => 'rails3'
 end
 
 group :test do

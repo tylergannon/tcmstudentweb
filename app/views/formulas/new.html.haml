@@ -1,5 +1,5 @@
 - title "New Formula"
-- form_for(@formula) do |f|
+= form_for(@formula) do |f|
   = render :partial => 'form', :locals => { :f => f }
   %p
     = f.submit 'Create'

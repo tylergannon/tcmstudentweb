@@ -1,1 +1,4 @@
-= auto_complete_result @patterns, :name
+%ul
+  - @patterns.each do |p|
+    %li><
+      = p.name

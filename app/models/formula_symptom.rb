@@ -3,7 +3,7 @@ class FormulaSymptom < ActiveRecord::Base
 	belongs_to :symptom
 
 	def symptom_name=(name)
-		self.symptom = Symptom.find_or_create_by_name(name) unless name.blank?
+		self.symptom = Symptom.find_or_create(:name, name) unless name.blank?
 	end
 
 	def symptom_name
@@ -25,5 +25,5 @@ class FormulaSymptom < ActiveRecord::Base
   def name
     symptom_name
   end
-  
+
 end

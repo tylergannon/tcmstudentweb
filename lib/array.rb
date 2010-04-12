@@ -7,3 +7,11 @@ class Array
     select{|o| o =~ obj}[0]
   end
 end
+
+module ArrayPlus
+  def +(y)
+    y.each do |o|
+      self << o unless include?(o)
+    end
+  end
+end

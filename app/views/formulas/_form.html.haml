@@ -26,7 +26,7 @@
   Ingredients
 = add_child_link 'Add an Herb', 'formula_herb', f
 #formula_herb_children
-  - f.fields_for :formula_herbs do |formula_herb_form|
+  = f.fields_for :formula_herbs do |formula_herb_form|
     = render :partial => 'formula_herb', :locals => { :f => formula_herb_form }
 %hr
 %h2 Source
@@ -46,29 +46,15 @@
   Diagnosis
 = add_child_link 'Add a Pattern of Disharmony', 'formula_pattern', f
 #formula_pattern_children
-  - f.fields_for :formula_patterns do |formula_pattern_form|
+  = f.fields_for :formula_patterns do |formula_pattern_form|
     = render :partial => 'formula_pattern', :locals => { :f => formula_pattern_form }
-
-%h3
-  Pulse
-= add_child_link 'Add a Pulse', 'formula_pulse_quality', f
-#formula_pulse_quality_children
-  - f.fields_for :formula_pulse_qualities do |formula_pulse_quality_form|
-    = render :partial => 'formula_pulse_quality', :locals => { :f => formula_pulse_quality_form }
-
-%h3
-  Tongue
-= add_child_link 'Add a Tongue', 'formula_tongue_quality', f
-#formula_tongue_quality_children
-  - f.fields_for :formula_tongue_qualities do |formula_tongue_quality_form|
-    = render :partial => 'formula_tongue_quality', :locals => { :f => formula_tongue_quality_form }
 
 %hr
 %h2
   Cautions and Contraindications
 = add_child_link 'Add a FormulaContraindication', 'formula_contraindication', f
 #formula_contraindication_children
-  - f.fields_for :formula_contraindications do |formula_contraindication_form|
+  = f.fields_for :formula_contraindications do |formula_contraindication_form|
     = render :partial => 'formula_contraindication', :locals => { :f => formula_contraindication_form }
 
 %hr
@@ -79,10 +65,20 @@
 %h2
   Commentary
 = f.text_area :commentary
-%hr
+%hr/
+%h2 Comparisons
 #formula_comparison_children
-  - f.fields_for :formula_comparisons do |formula_comparison_form|
+  = f.fields_for :formula_comparisons do |formula_comparison_form|
     = render :partial => 'formula_comparison', :locals => { :f => formula_comparison_form }
 
 %p
   = add_child_link 'Add a Comparison', 'formula_comparison', f
+
+%hr/
+%h2 Dui Yao
+#formula_dui_yao_children
+  = f.fields_for :formula_dui_yaos do |formula_dui_yao_form|
+    = render :partial => 'formula_dui_yao', :locals => { :f => formula_dui_yao_form }
+%p
+  = add_child_link 'Add a Dui Yao', 'formula_dui_yao', f
+

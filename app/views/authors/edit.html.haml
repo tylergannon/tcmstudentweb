@@ -1,6 +1,6 @@
 %h1
   Editing author
-- form_for(@author) do |f|
+= form_for(@author) do |f|
   = render :partial => 'form', :locals => { :f => f }
   %p
     = f.submit 'Update'

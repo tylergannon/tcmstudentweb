@@ -21,7 +21,7 @@ class FormParser
   def self.parse_point_prescription_acu_points(text)
     scan_text(text).map {|match|
       puts match
-      PointPrescriptionAcuPoint.new(:acu_point_abbrev => match[1].strip, :commentary => match[2])
+      PointPrescriptionAcuPoint.new(:acu_point_abbrev => match[1].strip, :commentary => get_commentary(match))
     }.delete_if{|v| v.acu_point.nil?}
   end
 
