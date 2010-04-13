@@ -1,21 +1,15 @@
 - title "Formula Categories"
-%table
-  %tr
-    %th
-      Name
-    %th
-      Commentary
-  - for formula_category in @formula_categories
-    %tr
-      %td
-        = h formula_category.name
-      %td
-        = h formula_category.commentary
-      %td
-        = link_to "Show", formula_category
-      %td
-        = link_to "Edit", edit_formula_category_path(formula_category)
-      %td
-        = link_to "Destroy", formula_category, :confirm => 'Are you sure?', :method => :delete
+
+%ul#formula_categories
+  - @formula_categories.each do |category|
+    %li[category]
+      %span.handle [drag]
+      != link(category)
+      %br/
+      != link_to("Edit", edit_formula_category_path(category))
+      != "/" + link_to( "Destroy", category, :confirm => 'Are you sure?', :method => :delete)
+
+
+= sortable_element("formula_categories", :url => sort_formula_categories_path, :handle => "handle")
 %p
   = link_to "New Formula Category", new_formula_category_path

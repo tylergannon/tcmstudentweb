@@ -60,6 +60,14 @@ class Herb < ActiveRecord::Base
 		herb_category.name if herb_category
   end
 
+  def link_name
+    pinyin
+  end
+
+  def link_title
+    english
+  end
+
   def self.search_columns
     ["canonical", "latin", "pinyin", "common_name"]
   end

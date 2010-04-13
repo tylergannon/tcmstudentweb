@@ -7,8 +7,9 @@ gem "rails", "3.0.0.beta2"
 source 'http://gems.github.com'
 source 'http://rubygems.org'
 #gem 'repeated_auto_complete', :git => "git://github.com/patshaughnessy/auto_complete.git"
-gem "authlogic", :git => "git://github.com/odorcicd/authlogic.git", :branch => "rails3"
 
+gem "authlogic", :git => "git://github.com/odorcicd/authlogic.git", :branch => "rails3"
+gem "acts-as-list"
 gem 'cancan', :git => "git://github.com/ryanb/cancan.git"
 gem 'RedCloth'
 gem "haml"

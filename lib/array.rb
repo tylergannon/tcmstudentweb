@@ -6,6 +6,11 @@ class Array
   def find_same(obj)
     select{|o| o =~ obj}[0]
   end
+
+  def plus_if(obj)
+    self << obj unless include?(obj) || obj.nil?
+  end
+
 end
 
 module ArrayPlus

@@ -75,6 +75,14 @@ module ActiveRecord
       a ||= create(field => value)
     end
 
+    def link_name
+      name
+    end
+
+    def link_title
+      ""
+    end
+
 
     private
       def self.condition(cond)

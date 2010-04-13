@@ -50,6 +50,10 @@ class Pattern < ActiveRecord::Base
     ["name", "id", "pattern_symptoms_text", "pattern_treatment_principles_text", "commentary"]
   end
 
+  def link_name
+    name
+  end
+
   def self.search_columns
     ["name"]
   end

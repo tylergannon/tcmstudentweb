@@ -1,0 +1,485 @@
+body
+  height: 100%
+  margin: 0
+  padding: 0
+  background-color: #c0c0c0
+  font-family: Verdana, Arial, Helvetica, sans-serif
+  font-size: 12px
+  line-height: 18px
+  color: #333333
+
+
+img
+  border: 0
+  margin: 1px
+
+
+.left
+  float: left
+
+
+.right
+  float: right
+
+
+.center
+  text-align: center
+
+
+#container
+  margin: 0 auto
+  width: 95%
+  height: 100%
+  background-color: #333333
+
+
+#containerPad
+  margin-left: 1px
+  margin-right: 1px
+  background-color: #646464
+  padding-left: 16px
+  padding-top: 8px
+  padding-right: 16px
+  border-left: 1px solid #767676
+  border-right: 1px solid #767676
+
+
+#topLinks
+  text-align: right
+  margin-bottom: 8px
+  font-size: 10px
+  font-weight: bold
+  color: #b6b6b6
+
+  a
+    color: #b6b6b6
+    text-decoration: none
+
+    &:hover
+      color: #d2d2d2
+
+
+#header
+  height: 144px
+  display: block
+  background-image: url("/images/header_middle.gif")
+  background-repeat: repeat-x
+  margin-bottom: 24px
+
+  .headLeft
+    width: 16px
+    height: 144px
+    float: left
+    background-image: url("/images/header_left.gif")
+
+  .headMiddle
+    float: left
+    margin-left: 8px
+    margin-top: 58px
+
+  .headRight
+    width: 16px
+    height: 144px
+    float: right
+    background-image: url("/images/header_right.gif")
+
+  h1
+    margin: 0
+    font-size: 24px
+    font-weight: bold
+    font-variant: small-caps
+    color: #ededed
+
+  h2
+    margin: 0
+    font-size: 10px
+    font-weight: bold
+    float: left
+    color: #000000
+
+
+#navigation
+  height: 44px
+  float: right
+  background-image: url("/images/navigation_middle.gif")
+  background-position: bottom left
+  background-repeat: repeat-x
+  margin-top: 100px
+
+  .naviLeft
+    height: 44px
+    width: 20px
+    float: left
+    background-image: url("/images/navigation_left.gif")
+    background-position: bottom left
+    background-repeat: no-repeat
+
+  .link
+    height: 44px
+    float: left
+    background-image: url("/images/navigation_link.gif")
+    background-position: right -44px
+    background-repeat: no-repeat
+
+    a
+      height: 32px
+      display: block
+      text-align: left
+      font-size: 12px
+      font-weight: bold
+      text-decoration: none
+      background-image: url("/images/navigation_link.gif")
+      background-position: right 0
+      color: #446937
+      padding-top: 10px
+      padding-right: 12px
+      padding-left: 12px
+
+
+* html #navigation .link a
+  width: 112px
+  text-align: center
+  padding-left: 0
+  padding-right: 0
+
+
+#navigation .link a:hover
+  background-image: none
+  color: #5e784f
+
+
+#sidebar
+  float: right
+  width: 144px
+
+  .top
+    width: 144px
+    height: 20px
+    background-image: url("/images/sidebar_top.gif")
+    text-align: center
+    font-size: 12px
+    color: #575757
+    font-weight: bold
+    padding-top: 4px
+
+  .middle
+    background-color: #ededed
+    width: 144px
+    font-size: 11px
+
+  .bottom
+    width: 144px
+    height: 8px
+    background-image: url("/images/sidebar_bottom.gif")
+    margin-bottom: 16px
+    background-repeat: no-repeat
+
+  p
+    margin: 0
+    padding: 4px
+
+  h1
+    color: #b6b6b6
+    margin: 0
+    font-size: 11px
+    font-weight: bold
+    text-align: center
+
+  .divider
+    margin-top: 4px
+    margin-bottom: 0
+    height: 2px
+    background-image: url("/images/sidebar_divider.gif")
+    background-repeat: repeat-x
+
+  img
+    padding: 1px
+    background-color: #ffffff
+    border: 1px solid #a5a5a5
+    margin-top: 8px
+
+  .subtitle
+    font-size: 10px
+
+  .link
+    width: 144px
+    height: 32px
+    background-image: url("/images/sidebar_link.gif")
+
+    a
+      display: block
+      height: 24px
+      padding-left: 16px
+      padding-top: 8px
+      background-image: url("/images/sidebar_link.gif")
+      font-size: 12px
+      font-weight: bold
+      text-decoration: none
+      color: #b6b6b6
+
+      &:hover
+        color: #b4c3d2
+        background-position: 0 -32px
+
+
+#content
+  margin-right: 160px
+
+
+#contentEnd
+  clear: both
+
+
+#content
+  .divider
+    margin: 8px 0
+    height: 2px
+    background-image: url("/images/content_divider.gif")
+    background-repeat: repeat-x
+
+  h1
+    margin: 0
+    font-size: 16px
+
+  h2
+    font-size: 15px
+    display: inline
+
+  h3
+    display: inline
+
+  .quote
+    margin: 16px
+    padding: 12px
+    background-color: #e3e3e3
+    background-image: url("/images/content_quote.gif")
+    background-position: bottom right
+    background-repeat: no-repeat
+    border: 1px solid #b8b8b8
+    color: #646464
+
+  a
+    color: #516e91
+    text-decoration: none
+
+  .preparation
+    font-size: 10px
+
+  .commentary
+    font-size: 11px
+
+    p, li
+      font-size: 11px
+
+  a:hover
+    color: #6e98c9
+
+  .red
+    color: #a94848
+
+  .green
+    color: #6f9151
+
+  .blue
+    color: #597ca6
+
+  .strike
+    text-decoration: line-through
+
+  .top
+    height: 24px
+    background-image: url("/images/content_topMiddle.gif")
+    background-repeat: repeat-x
+
+  .topLeft
+    float: left
+    height: 20px
+    width: 8px
+    background-image: url("/images/content_topLeft.gif")
+    background-repeat: no-repeat
+
+  .topMiddle
+    float: left
+    padding-top: 4px
+
+  .topRight
+    float: right
+    height: 20px
+    width: 8px
+    background-image: url("/images/content_topRight.gif")
+    background-repeat: no-repeat
+
+  .middle
+    background-color: #ededed
+    padding: 8px 16px
+
+
+* html #content .middle
+  margin-right: 3px
+
+
+#content .bottom
+  height: 8px
+  background-color: #ededed
+  margin-bottom: 16px
+
+
+* html #content .bottom
+  margin-right: 3px
+
+
+#content
+  .bottomLeft
+    height: 8px
+    width: 8px
+    float: left
+    background-image: url("/images/content_bottomLeft.gif")
+    background-repeat: no-repeat
+    background-position: bottom left
+
+  .bottomRight
+    height: 8px
+    width: 8px
+    float: right
+    background-image: url("/images/content_bottomRight.gif")
+    background-repeat: no-repeat
+    background-position: bottom right
+
+  .commentBox
+    margin: 16px 0
+    padding: 8px
+    background-color: #e3e3e3
+    border: 1px solid #b8b8b8
+    text-align: right
+    font-size: 10px
+    line-height: normal
+    color: #646464
+
+  .formulaComparison td
+    width: 50%
+    vertical-align: text-top
+
+  li .handle
+    font-size: 12px
+    cursor: move
+    color: #777
+
+  .formula
+    td
+      font-size: 10px
+      vertical-align: text-top
+    li
+      font-size: 10px
+
+
+  .sb_formula
+    font-size: 12px
+    font-weight: bold
+
+
+#footerTop
+  font-size: 10px
+  text-align: center
+  line-height: normal
+
+  a
+    color: #b6b6b6
+    text-decoration: none
+
+    &:hover
+      color: #b4c3d2
+
+
+#footerBottom
+  margin: 0 auto
+  width: 95%
+  height: 16px
+  background-image: url("/images/footer_middle.gif")
+  margin-bottom: 16px
+
+  .left
+    float: left
+    width: 16px
+    height: 16px
+    background-image: url("/images/footer_left.gif")
+
+  .right
+    float: right
+    width: 16px
+    height: 16px
+    background-image: url("/images/footer_right.gif")
+
+
+#flash_notice, #flash_error
+  padding: 5px 8px
+  margin: 10px 0
+
+
+#flash_notice
+  background-color: #CFC
+  border: solid 1px #6C6
+
+
+#flash_error
+  background-color: #FCC
+  border: solid 1px #C66
+
+
+.fieldWithErrors
+  display: inline
+
+
+#errorExplanation
+  width: 400px
+  border: 2px solid #CF0000
+  padding: 0px
+  padding-bottom: 12px
+  margin-bottom: 20px
+  background-color: #f0f0f0
+
+  h2
+    text-align: left
+    font-weight: bold
+    padding: 5px 5px 5px 15px
+    font-size: 12px
+    margin: 0
+    background-color: #c00
+    color: #fff
+
+  p
+    color: #333
+    margin-bottom: 0
+    padding: 8px
+
+  ul
+    margin: 2px 24px
+
+    li
+      font-size: 12px
+      list-style: disc
+
+
+.chief
+  font-weight: bold
+  font-style: italic
+
+
+.formula_herbs
+
+#formula_herbs
+  p
+    float: none
+    clear: none
+    padding: 0
+    margin: 0
+    display: inline
+    margin-top: 0
+    padding-top: 0
+
+  ol, ul
+    margin-top: 0
+    padding-top: 0
+    margin-bottom: 0
+    padding-bottom: 0
+
+

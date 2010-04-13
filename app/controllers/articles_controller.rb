@@ -10,6 +10,28 @@ class ArticlesController < ApplicationController
     end
   end
 
+  def report
+    @article = Article.find(params[:id])
+    @formulas, @herbs, @patterns = [[], [], []]
+
+    @article.body.scan(/"(\w):([\w\s]+)"/m).each do |match|
+      case match[0]
+        when 'f'
+          @formulas.plus_if(Formula.search_equals(match[1]))
+        when 'h'
+          @herbs.plus_if(Herb.search_equals(match[1]))
+        when 'p'
+          @patterns.plus_if(Pattern.search_equals[match[1]])
+      end
+    end
+
+    @formulas_by_category = []
+    FormulaCategory.find(:all, :order => "position").each do |cat|
+      formulae = @formulas.select{|f| f.formula_category == cat}
+      @formulas_by_category << [cat, formulae] unless formulae.size==0
+    end
+  end
+
   # GET /articles/1
   # GET /articles/1.xml
   def show

@@ -31,9 +31,28 @@ module ApplicationHelper
   def link_to_herb(herb)
     link_to herb.pinyin, herb, :title => herb.latin
   end
-  
+
   def link_to_formula(formula)
     link_to formula.pinyin, formula, :title => formula.english
+  end
+
+  def link(obj)
+    return unless obj
+    if obj.class == Array
+      obj.map{|v| link(v)}.join(", ")
+    elsif obj.class == PatternSymptom
+        bold(link(obj.symptom), obj.key_symptom) + (obj.commentary.blank? ? "" : " (#{obj.commentary.slice(0..40)})")
+    else
+      link_to obj.link_name, obj, :title => obj.link_title
+    end
+  end
+
+  def bold(text, bool)
+    if bool
+      "<b>#{text}</b>"
+    else
+      text
+    end
   end
 
   def field_id(form, field)

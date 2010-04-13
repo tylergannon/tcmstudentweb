@@ -11,17 +11,6 @@ class Formula < ActiveRecord::Base
 	has_many :herbs, :through => :formula_herbs
 	accepts_nested_attributes_for :formula_herbs, :allow_destroy => true, :reject_if => proc {|a| a['herb_pinyin'].blank?}
 
-	has_many :formula_pulse_qualities
-	has_many :pulse_qualities, :through => :formula_pulse_qualities
-	accepts_nested_attributes_for :formula_pulse_qualities, :allow_destroy => true, :reject_if => proc {|a| a['pulse_quality_name'].blank?}
-
-	has_many :formula_symptoms
-	accepts_nested_attributes_for :formula_symptoms, :allow_destroy => true, :reject_if => proc {|a| a['symptom_name'].blank?}
-	has_many :symptoms, :through => :formula_symptoms
-
-	has_many :formula_tongue_qualities
-	accepts_nested_attributes_for :formula_tongue_qualities, :allow_destroy => true, :reject_if => proc {|a| a['tongue_quality_name'].blank?}
-
 	has_many :formula_therapeutic_functions
 	accepts_nested_attributes_for :formula_therapeutic_functions, :allow_destroy => true, :reject_if => proc {|a| a['therapeutic_function_name'].blank?}
 	has_many :therapeutic_functions, :through => :formula_therapeutic_functions
@@ -102,6 +91,14 @@ class Formula < ActiveRecord::Base
   def formula_symptoms_text=(text)
     new_ps = FormParser.parse_symptoms(text, FormulaSymptom)
     FormParser.merge(self.formula_symptoms, new_ps)
+  end
+
+  def link_name
+    pinyin
+  end
+
+  def link_title
+    english
   end
 
   def self.search_columns

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100412033802) do
+ActiveRecord::Schema.define(:version => 20100413003626) do
 
   create_table "acu_point_infos", :force => true do |t|
     t.integer  "acu_point_id"
@@ -103,6 +103,8 @@ ActiveRecord::Schema.define(:version => 20100412033802) do
     t.text     "commentary"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "position"
+    t.integer  "parent_category"
   end
 
   create_table "formula_comparisons", :force => true do |t|
@@ -212,6 +214,8 @@ ActiveRecord::Schema.define(:version => 20100412033802) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "parent_category_id"
+    t.integer  "position"
+    t.integer  "parent_category"
   end
 
   create_table "herb_channels", :force => true do |t|

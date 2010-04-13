@@ -11,7 +11,11 @@ TcmStudentWeb::Application.routes.draw do
   resources :symptoms
   resources :pulse_qualities
   resources :contraindications
-  resources :formula_categories
+  resources :formula_categories do
+    collection do
+      post :sort
+    end
+  end
   resources :formula_comparisons
   resources :herbs
   resources :herb_categories
