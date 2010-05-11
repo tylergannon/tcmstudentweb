@@ -32,6 +32,7 @@
       %td{'valign' => 'top'}
         %b Diagnosis:
         #{link_to p.name, p}
+        %p #{show_citation formula_pattern.citation}
       %td{'valign' => 'top'}
         %b Indications:
         != link_to_pattern_symptoms(p.pattern_symptoms)

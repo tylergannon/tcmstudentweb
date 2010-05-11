@@ -83,6 +83,13 @@ module ActiveRecord
       ""
     end
 
+    def self.find_by_textbook(text)
+      textbook_ids = Textbook.search(text).map{|v| v.id}
+      find(:all, :joins => :citation, :conditions => "citations.textbook_id in (#{textbook_ids.join(", ")})")
+      # Formula.find(:all, :joins => :citation, :conditions => {:citations => {:textbook_id => a.id }})
+
+    end
+
 
     private
       def self.condition(cond)

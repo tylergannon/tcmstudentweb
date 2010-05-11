@@ -1,12 +1,12 @@
 .child
   .field
-    = f.label :pp_acu_points_text, "Point Prescription Acu Points"
+    = f.label :pp_acu_points_text, "Point Prescription Acu Points", :rows => 12, :cols => 100
     %br/
     = f.text_area :pp_acu_points_text
   .field
     = f.label :commentary
     %br
-    = f.text_area :commentary, :rows => 2, :cols => 40
+    = f.text_area :commentary, :rows => 2, :cols => 100
   .field
     = f.label :citation
     = render :partial => 'citations/edit_citation', :locals => {:f => f, :field => :citation}

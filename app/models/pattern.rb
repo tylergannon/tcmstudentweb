@@ -57,4 +57,15 @@ class Pattern < ActiveRecord::Base
   def self.search_columns
     ["name"]
   end
+
+  def compare(him)
+
+    mine = self.pattern_symptoms.map{|x| x.symptom.name}
+    his = him.pattern_symptoms.map{|x| x.symptom.name}
+
+    just_mine = mine.select{|x| !his.include?(x)}
+    just_his = his.select{|x| !mine.include?(x)}
+    shared = mine.select{|x| his.include?(x)}
+    {:shared => shared, :just_his => just_his, :just_mine => just_mine}
+  end
 end

@@ -34,7 +34,24 @@ class AcuPoint < ActiveRecord::Base
   has_many :point_prescriptions, :through => :point_prescription_acu_points
 
   def abbrev
-    "#{channel.abbreviation}-#{ordinal}"
+    if channel.id == 15
+      pinyin
+    else
+      "#{channel.abbreviation}-#{ordinal}"
+    end
+  end
+
+  def self.search_columns
+    ['pinyin', 'canonical']
+  end
+
+  def self.search_equals(s)
+    s.strip!
+    if (a = find_by_abbrev(s))
+      a
+    else
+      super(s)
+    end
   end
 
   def self.find_by_abbrev(abbrev)

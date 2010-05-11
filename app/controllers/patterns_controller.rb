@@ -2,7 +2,11 @@ class PatternsController < ApplicationController
   # GET /patterns
   # GET /patterns.xml
   def index
-		@patterns = Pattern.find(:all, :conditions => ['name LIKE ?', "%#{params[:search]}%"])
+    if params[:text] != nil
+      @patterns = Pattern.find_by_textbook(params[:text])
+    else
+      @patterns = Pattern.find(:all, :conditions => ['name LIKE ?', "%#{params[:search]}%"])
+    end
     respond_to do |format|
       format.html # index.html.erb
       format.js
@@ -13,7 +17,7 @@ class PatternsController < ApplicationController
   # GET /patterns/1
   # GET /patterns/1.xml
   def show
-    @pattern = Pattern.find(params[:id])
+    @pattern = Pattern.search_one(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb

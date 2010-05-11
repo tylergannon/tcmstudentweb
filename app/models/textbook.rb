@@ -13,6 +13,10 @@ class Textbook < ActiveRecord::Base
     self.author = Author.find_or_create_by_name(name) unless name.blank?
   end
 
+  def self.search_columns
+    ["title", "abbrev"]
+  end
+
   def search_result
     "#{title} <i>(#{author.name})</i>"
   end

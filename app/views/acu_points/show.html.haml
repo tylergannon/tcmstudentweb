@@ -16,4 +16,11 @@
     #{acu_point_info.commentary}
   %hr/
 
+%ul
+  - @acu_point.point_prescription_acu_points.each do |ppap|
+    %li
+      :tcmtextile
+        #{ppap.commentary} for ??#{link(ppap.point_prescription.pattern)}?? (#{show_citation(ppap.point_prescription.citation, :short)})
+
+
 #{link_to 'Edit', edit_acu_point_path(@acu_point)} | #{link_to 'Back', acu_points_path}
