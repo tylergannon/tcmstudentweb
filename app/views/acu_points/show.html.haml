@@ -4,6 +4,10 @@
 - @acu_point.acu_point_infos.each do |acu_point_info|
   %h2 Source: #{acu_point_info.citation.textbook_title}
   English Translation: #{acu_point_info.english}
+  %h2 Location
+  :tcmtextile
+    #{acu_point_info.location}
+
   %h2 Signs and Symptoms
   %ul
     %li= acu_point_info.acu_point_symptoms.collect{|a| a.symptom_name}.join(", ")
