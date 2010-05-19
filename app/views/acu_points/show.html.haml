@@ -1,6 +1,7 @@
 - title @acu_point.display_name
 %h2 #{@acu_point.pinyin} // #{@acu_point.chinese}
-
+%h3 Point Categories:
+!= tag_list @acu_point.point_categories
 - @acu_point.acu_point_infos.each do |acu_point_info|
   %h2 Source: #{acu_point_info.citation.textbook_title}
   English Translation: #{acu_point_info.english}

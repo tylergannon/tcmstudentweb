@@ -1,4 +1,5 @@
 class Formula < ActiveRecord::Base
+  acts_as_taggable
 
   default_scope :order => 'canonical'
   ROLES = %w[jūn chén zuǒ shǐ]

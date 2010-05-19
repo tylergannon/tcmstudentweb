@@ -13,6 +13,7 @@ gem "acts-as-list"
 gem 'cancan', :git => "git://github.com/ryanb/cancan.git"
 gem 'RedCloth'
 gem "haml"
+# gem 'acts-as-taggable-on'
 
 group :development do
 #  gem "sqlite3-ruby", :require => "sqlite3"

@@ -12,20 +12,33 @@ module ApplicationHelper
   end
 
   def add_child_link(name, child, form_builder)
+    # puts "||#{form_builder}||"
     fields = escape_javascript(new_child_fields(child, form_builder))
+    puts "BLAH: #{fields}  BLAH"
     link_to_function(name, h("add_child(this, \"#{child}\", \"#{fields}\")"))
   end
 
   def new_child_fields(child, form_builder)
+    output = ""
     form_builder.fields_for(child.pluralize.to_sym, child.camelize.constantize.new, :child_index => 'NEW_RECORD') do |f|
-      puts render(:partial => child.underscore, :locals => { :f => f })
+      output += render(:partial => child.underscore, :locals => { :f => f })
     end
+    output
   end
 
 
   def text_area_with_auto_complete(form, field, search_path, options = {})
     render(:partial => 'layouts/auto_complete',
            :locals => {:f => form,  :path => search_path, :field => field, :html_options => options})
+  end
+
+  def tag_field(form, field)
+    render(:partial => 'layouts/tag_field',
+           :locals => {:f => form, :field => field})
+  end
+
+  def tag_list(tl)
+    tl.map{|t| link_to t, t.name}.join(", ")
   end
 
   def link_to_herb(herb)

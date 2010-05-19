@@ -29,6 +29,7 @@ TcmStudentWeb::Application.routes.draw do
   resource :user_session
   resource :account
   resources :users
+  resources :tags
   resources :searches
   match 'treatment_principles' => 'therapeutic_functions#index'
   match 'login' => 'user_sessions#new'

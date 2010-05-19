@@ -4,6 +4,8 @@ class AcuPoint < ActiveRecord::Base
   validates_uniqueness_of :pinyin
   validates_uniqueness_of :ordinal, :scope => :channel_id
   belongs_to :channel
+  acts_as_taggable
+  acts_as_taggable_on :point_categories
 
   def self.search(str)
     str.strip!

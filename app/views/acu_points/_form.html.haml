@@ -16,6 +16,16 @@
 = f.text_field(:chinese, :autocomplete => "off")
 %br/
 
+%b Tags
+= tag_field(f, :tag_list)
+%br/
+
+%b Point Categories
+= tag_field(f, :point_category_list)
+%br/
+
+
+
 = add_child_link 'Add a source', 'acu_point_info', f
 #acu_point_info_children
   = f.fields_for :acu_point_infos do |acu_point_info_form|
