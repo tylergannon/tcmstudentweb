@@ -7,7 +7,7 @@
       %h1!= @formula.chinese if @formula.chinese
       %b "#{@formula.english}"
     %td
-      %h3= @formula.formula_category.name
+      %h3= @formula.formula_category.name if @formula.formula_category
       %br/
       - unless @formula.citation.nil?
         Reference: #{render :partial => 'citations/show', :locals => {:citation => @formula.citation}}
@@ -100,5 +100,4 @@
 - if can? :update, @formula
   = link_to 'Edit', edit_formula_path(@formula)
 - link_to 'Back', formulas_path
-
 

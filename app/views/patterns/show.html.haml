@@ -49,6 +49,8 @@ Keys: #{@pattern.pattern_symptoms.select{|x| x.key_symptom}.map{|y| y.symptom_na
       - pp.pp_acu_points.each do |ap|
         %li!= "#{link_to ap.acu_point_abbrev, ap.acu_point} (#{ap.commentary})"
 
+%h3 Tags
+!= tag_list @pattern.tags
 
 - if can? :update, @pattern
   = link_to 'Edit', edit_pattern_path(@pattern)
