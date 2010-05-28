@@ -66,6 +66,7 @@ namespace :import do
       else
         f.citation = f.citation ||= Citation.create(:textbook_id => 2)
         f.citation.where = page
+        t.tag_list = "State Board"
         f.save
       end
 
