@@ -7,6 +7,8 @@ class Herb < ActiveRecord::Base
     ["id", "pinyin", "english", "canonical", "herb_category_id", "commentary", "common_name", "short_name", "state_board", ]
   end
 
+  belongs_to :herb_category
+
   has_many :formula_herbs
   has_many :formulas, :through => :formula_herbs
 
