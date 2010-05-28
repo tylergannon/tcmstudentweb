@@ -17,6 +17,9 @@
       = f.text_field :chinese, :autocomplete => "off"
     %td
       #{f.label :state_board}:#{f.check_box :state_board}
+%b Tags
+= tag_field(f, :tag_list)
+%br/
 
 %h2
   Category
