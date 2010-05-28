@@ -18,6 +18,9 @@ gem 'acts-as-taggable-on'
 group :development do
 #  gem "sqlite3-ruby", :require => "sqlite3"
 #  gem 'nifty-generators', :git =>  'git://github.com/dvyjones/nifty-generators.git', :branch => 'rails3'
+  gem 'scrapi'
+  gem 'htmlentities'
+  gem 'ya2yaml'
 end
 
 group :test do
@@ -26,3 +29,4 @@ group :test do
   gem "factory_girl", :git => "git://github.com/thoughtbot/factory_girl.git", :branch => "rails3"
   gem "shoulda", :git => "git://github.com/bmaddy/shoulda.git", :branch => "rails3"
 end
+
