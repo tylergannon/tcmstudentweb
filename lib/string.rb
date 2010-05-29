@@ -16,6 +16,11 @@ class String
     /^\d+$/.match(self) ? true : false
   end
 
+  def to_list(delim=",")
+    split(delim).map{|t| t.strip}
+
+  end
+
   def to_search_string
     a = gsub(/[-_+]/, " ").gsub(/%20/, " ").downcase
     a.index("%") ? a : "%#{a}"

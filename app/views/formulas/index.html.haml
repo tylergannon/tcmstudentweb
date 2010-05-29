@@ -1,6 +1,8 @@
 %h1
   Listing formulas
-= render :partial => 'show_category_list'
+  - tag_cloud(@tags, %w(css1 css2 css3 css4)) do |tag, css_class|
+    = link_to tag.name, "/formulas/t/#{tag.name}", :class => css_class
+
 %table
   %tr
     %th
@@ -24,3 +26,4 @@
 %br/
 - if can? :create, Formula
   = link_to 'New formula', new_formula_path
+

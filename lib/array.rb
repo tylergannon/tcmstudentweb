@@ -11,6 +11,10 @@ class Array
     self << obj unless include?(obj) || obj.nil?
   end
 
+  def strip_all
+    map!{|t| t.strip}
+  end
+
 end
 
 module ArrayPlus
@@ -20,3 +24,4 @@ module ArrayPlus
     end
   end
 end
+

@@ -1,13 +1,22 @@
 class FormulasController < ApplicationController
 
   def index
-    @formulas = Formula.search(params[:search])
+    if params.has_key?(:tag_name)
+      @formulas = Formula.tagged_with(params[:tag_name].to_list)
+    else
+      @formulas = Formula.search(params[:search])
+    end
+
+    @tags = Formula.tag_counts_on(:tags)
 
     respond_to do |format|
       format.html # index.html.erb
       format.js
       format.xml  { render :xml => @formulas }
     end
+  end
+
+  def tag_cloud
   end
 
   def categoryindex

@@ -13,7 +13,7 @@ TcmStudentWeb::Application.routes.draw do
   resources :contraindications
   resources :formula_categories do
     collection do
-      post :sort
+      post :sortformula
     end
   end
   resources :formula_comparisons
@@ -39,5 +39,7 @@ TcmStudentWeb::Application.routes.draw do
   match '/activate/:id' => 'activations#create', :as => :activate
   match '/' => 'formulas#index'
   match ':controller/category/:category_id' => '#categoryindex'
+  match ':controller/t/:tag_name' => '#index'
   match '/:controller(/:action(/:id))'
 end
+

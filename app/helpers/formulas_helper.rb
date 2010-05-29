@@ -1,4 +1,5 @@
 module FormulasHelper
+  include ActsAsTaggableOn::TagsHelper
 
   def link_to_pattern_symptoms(pattern_symptoms)
     pattern_symptoms.map{|y|
@@ -21,3 +22,4 @@ module FormulasHelper
     s
   end
 end
+
