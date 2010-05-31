@@ -58,7 +58,7 @@ namespace :import do
   end
 
   task :shang => :environment do
-    formulas = YAML::load_file("/home/tyler/Desktop/zhong jing.yml")
+    formulas = YAML::load_file("lib/tasks/zhong.yml")
     formulas.each do |info|
       st = (info[:text] == "shang han lun" ? 5 : 2)
       formula = Formula.search_equals(info[:formula])

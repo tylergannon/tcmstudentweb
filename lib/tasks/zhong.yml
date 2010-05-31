@@ -1,0 +1,1058 @@
+--- 
+- 
+  ? !ruby/symbol formula
+  : "ma huang tang"
+  ? !ruby/symbol page
+  : "7"
+  ? !ruby/symbol text
+  : "shang han lun"
+- 
+  ? !ruby/symbol formula
+  : "ma huang jia zhu tang"
+  ? !ruby/symbol page
+  : "10"
+  ? !ruby/symbol text
+  : "shang han lun"
+- 
+  ? !ruby/symbol formula
+  : "da qing long tang"
+  ? !ruby/symbol page
+  : "11"
+  ? !ruby/symbol text
+  : "shang han lun"
+- 
+  ? !ruby/symbol formula
+  : "gui zhi tang"
+  ? !ruby/symbol page
+  : "13"
+  ? !ruby/symbol text
+  : "shang han lun"
+- 
+  ? !ruby/symbol formula
+  : "gui zhi jia gui tang"
+  ? !ruby/symbol page
+  : "18"
+  ? !ruby/symbol text
+  : "shang han lun"
+- 
+  ? !ruby/symbol formula
+  : "gui zhi jia shao yao tang"
+  ? !ruby/symbol page
+  : "18"
+  ? !ruby/symbol text
+  : "shang han lun"
+- 
+  ? !ruby/symbol formula
+  : "gui zhi shao yao tang"
+  ? !ruby/symbol page
+  : "18"
+  ? !ruby/symbol text
+  : "shang han lun"
+- 
+  ? !ruby/symbol formula
+  : "gui zhi jia hou po xing zi tang"
+  ? !ruby/symbol page
+  : "18"
+  ? !ruby/symbol text
+  : "shang han lun"
+- 
+  ? !ruby/symbol formula
+  : "gui zhi jia fu zi tang"
+  ? !ruby/symbol page
+  : "19"
+  ? !ruby/symbol text
+  : "shang han lun"
+- 
+  ? !ruby/symbol formula
+  : "gui zhi jia ge gen tang"
+  ? !ruby/symbol page
+  : "19"
+  ? !ruby/symbol text
+  : "shang han lun"
+- 
+  ? !ruby/symbol formula
+  : "gui zhi ma huang ge ban tang"
+  ? !ruby/symbol page
+  : "19"
+  ? !ruby/symbol text
+  : "shang han lun"
+- 
+  ? !ruby/symbol formula
+  : "gui zhi er yue bi yi tang"
+  ? !ruby/symbol page
+  : "19"
+  ? !ruby/symbol text
+  : "shang han lun"
+- 
+  ? !ruby/symbol formula
+  : "wu tou gui zhi tang"
+  ? !ruby/symbol page
+  : "19"
+  ? !ruby/symbol text
+  : "essentials from the golden cabinet"
+- 
+  ? !ruby/symbol formula
+  : "ge gen tang"
+  ? !ruby/symbol page
+  : "19"
+  ? !ruby/symbol text
+  : "shang han lun"
+- 
+  ? !ruby/symbol formula
+  : "ge gen jia ban xia tang"
+  ? !ruby/symbol page
+  : "19"
+  ? !ruby/symbol text
+  : "shang han lun"
+- 
+  ? !ruby/symbol formula
+  : "xiao qing long tang"
+  ? !ruby/symbol page
+  : "21"
+  ? !ruby/symbol text
+  : "shang han lun"
+- 
+  ? !ruby/symbol formula
+  : "xiao qing long jia shi gao tang"
+  ? !ruby/symbol page
+  : "21"
+  ? !ruby/symbol text
+  : "shang han lun"
+- 
+  ? !ruby/symbol formula
+  : "she gan ma huang tang"
+  ? !ruby/symbol page
+  : "21"
+  ? !ruby/symbol text
+  : "essentials from the golden cabinet"
+- 
+  ? !ruby/symbol formula
+  : "ma huang xi xin fu zi tang"
+  ? !ruby/symbol page
+  : "50"
+  ? !ruby/symbol text
+  : "shang han lun"
+- 
+  ? !ruby/symbol formula
+  : "ma huang fu zi gan cao tang"
+  ? !ruby/symbol page
+  : "50"
+  ? !ruby/symbol text
+  : "shang han lun"
+- 
+  ? !ruby/symbol formula
+  : "da cheng Qi tang"
+  ? !ruby/symbol page
+  : "62"
+  ? !ruby/symbol text
+  : "shang han lun"
+- 
+  ? !ruby/symbol formula
+  : "xiao cheng Qi tang"
+  ? !ruby/symbol page
+  : "62"
+  ? !ruby/symbol text
+  : "shang han lun"
+- 
+  ? !ruby/symbol formula
+  : "tiao wei cheng Qi tang"
+  ? !ruby/symbol page
+  : "66"
+  ? !ruby/symbol text
+  : "shang han lun"
+- 
+  ? !ruby/symbol formula
+  : "da huang gan cao tang"
+  ? !ruby/symbol page
+  : "66"
+  ? !ruby/symbol text
+  : "shang han lun"
+- 
+  ? !ruby/symbol formula
+  : "hou po san wu tang"
+  ? !ruby/symbol page
+  : "67"
+  ? !ruby/symbol text
+  : "shang han lun"
+- 
+  ? !ruby/symbol formula
+  : "da xian xiong tang"
+  ? !ruby/symbol page
+  : "69"
+  ? !ruby/symbol text
+  : "shang han lun"
+- 
+  ? !ruby/symbol formula
+  : "da xian xiong wan"
+  ? !ruby/symbol page
+  : "71"
+  ? !ruby/symbol text
+  : "shang han lun"
+- 
+  ? !ruby/symbol formula
+  : "da huang fu zi t"
+  ? !ruby/symbol page
+  : "71"
+  ? !ruby/symbol text
+  : "essentials from the golden cabinet"
+- 
+  ? !ruby/symbol formula
+  : "bai san"
+  ? !ruby/symbol page
+  : "76"
+  ? !ruby/symbol text
+  : "shang han lun"
+- 
+  ? !ruby/symbol formula
+  : "ma zi ren wan"
+  ? !ruby/symbol page
+  : "81"
+  ? !ruby/symbol text
+  : "shang han lun"
+- 
+  ? !ruby/symbol formula
+  : "shi zao tang"
+  ? !ruby/symbol page
+  : "90"
+  ? !ruby/symbol text
+  : "shang han lun"
+- 
+  ? !ruby/symbol formula
+  : "gan sui ban xia tang"
+  ? !ruby/symbol page
+  : "91"
+  ? !ruby/symbol text
+  : "essentials from the golden cabinet"
+- 
+  ? !ruby/symbol formula
+  : "ji jiao li huang wan"
+  ? !ruby/symbol page
+  : "94"
+  ? !ruby/symbol text
+  : "essentials from the golden cabinet"
+- 
+  ? !ruby/symbol formula
+  : "xiao chai hi tang"
+  ? !ruby/symbol page
+  : "104"
+  ? !ruby/symbol text
+  : "shang han lun"
+- 
+  ? !ruby/symbol formula
+  : "chai hu gui zhi tang"
+  ? !ruby/symbol page
+  : "109"
+  ? !ruby/symbol text
+  : "shang han lun"
+- 
+  ? !ruby/symbol formula
+  : "chai hu jia mang xiao tang"
+  ? !ruby/symbol page
+  : "110"
+  ? !ruby/symbol text
+  : "shang han lun"
+- 
+  ? !ruby/symbol formula
+  : "chai hu jia long gu mu li tang"
+  ? !ruby/symbol page
+  : "113"
+  ? !ruby/symbol text
+  : "shang han lun"
+- 
+  ? !ruby/symbol formula
+  : "si ni san"
+  ? !ruby/symbol page
+  : "116"
+  ? !ruby/symbol text
+  : "shang han lun"
+- 
+  ? !ruby/symbol formula
+  : "zhi shi shao yao san"
+  ? !ruby/symbol page
+  : "120"
+  ? !ruby/symbol text
+  : "essentials from the golden cabinet"
+- 
+  ? !ruby/symbol formula
+  : "ban xia xie xin tang"
+  ? !ruby/symbol page
+  : "127"
+  ? !ruby/symbol text
+  : "shang han lun"
+- 
+  ? !ruby/symbol formula
+  : "gan cao xie xin tang"
+  ? !ruby/symbol page
+  : "130"
+  ? !ruby/symbol text
+  : "shang han lun"
+- 
+  ? !ruby/symbol formula
+  : "sheng jiang xie xin tang"
+  ? !ruby/symbol page
+  : "130"
+  ? !ruby/symbol text
+  : "shang han lun"
+- 
+  ? !ruby/symbol formula
+  : "huang lian tang"
+  ? !ruby/symbol page
+  : "131"
+  ? !ruby/symbol text
+  : "shang han lun"
+- 
+  ? !ruby/symbol formula
+  : "gan jiang huang lian hiang qin ren shen tang"
+  ? !ruby/symbol page
+  : "133"
+  ? !ruby/symbol text
+  : "shang han lun"
+- 
+  ? !ruby/symbol formula
+  : "chai hu gui jiang tang"
+  ? !ruby/symbol page
+  : "140"
+  ? !ruby/symbol text
+  : "shang han lun"
+- 
+  ? !ruby/symbol formula
+  : "bai hu tang"
+  ? !ruby/symbol page
+  : "150"
+  ? !ruby/symbol text
+  : "shang han lun"
+- 
+  ? !ruby/symbol formula
+  : "bai hu jia ren shen tang"
+  ? !ruby/symbol page
+  : "154"
+  ? !ruby/symbol text
+  : "shang han lun"
+- 
+  ? !ruby/symbol formula
+  : "bai hu jia gui zhi tang"
+  ? !ruby/symbol page
+  : "154"
+  ? !ruby/symbol text
+  : "essentials from the golden cabinet"
+- 
+  ? !ruby/symbol formula
+  : "zhu ye shi gao tang"
+  ? !ruby/symbol page
+  : "155"
+  ? !ruby/symbol text
+  : "shang han lun"
+- 
+  ? !ruby/symbol formula
+  : "zhi zi chi tang"
+  ? !ruby/symbol page
+  : "158"
+  ? !ruby/symbol text
+  : "shang han lun"
+- 
+  ? !ruby/symbol formula
+  : "zhi zi gan cao chi tang"
+  ? !ruby/symbol page
+  : "160"
+  ? !ruby/symbol text
+  : "shang han lun"
+- 
+  ? !ruby/symbol formula
+  : "zhi zi sheng jiang chi tang"
+  ? !ruby/symbol page
+  : "160"
+  ? !ruby/symbol text
+  : "shang han lun"
+- 
+  ? !ruby/symbol formula
+  : "zhi shi zhi zi chi tang"
+  ? !ruby/symbol page
+  : "160"
+  ? !ruby/symbol text
+  : "shang han lun"
+- 
+  ? !ruby/symbol formula
+  : "zhi zi gan jiang tang"
+  ? !ruby/symbol page
+  : "160"
+  ? !ruby/symbol text
+  : "shang han lun"
+- 
+  ? !ruby/symbol formula
+  : "zhi zi hou po tang"
+  ? !ruby/symbol page
+  : "160"
+  ? !ruby/symbol text
+  : "shang han lun"
+- 
+  ? !ruby/symbol formula
+  : "zhi zi da huang tang"
+  ? !ruby/symbol page
+  : "161"
+  ? !ruby/symbol text
+  : "essentials from the golden cabinet"
+- 
+  ? !ruby/symbol formula
+  : "xie xin tang"
+  ? !ruby/symbol page
+  : "171"
+  ? !ruby/symbol text
+  : "essentials from the golden cabinet"
+- 
+  ? !ruby/symbol formula
+  : "da huang huang lian xie xin tang"
+  ? !ruby/symbol page
+  : "173"
+  ? !ruby/symbol text
+  : "shang han lun"
+- 
+  ? !ruby/symbol formula
+  : "fu zi xie xin tang"
+  ? !ruby/symbol page
+  : "173"
+  ? !ruby/symbol text
+  : "shang han lun"
+- 
+  ? !ruby/symbol formula
+  : "ma xing shi gan tang"
+  ? !ruby/symbol page
+  : "183"
+  ? !ruby/symbol text
+  : "shang han lun"
+- 
+  ? !ruby/symbol formula
+  : "yue bi tang"
+  ? !ruby/symbol page
+  : "185"
+  ? !ruby/symbol text
+  : "essentials from the golden cabinet"
+- 
+  ? !ruby/symbol formula
+  : "yue bi jia zhu tang"
+  ? !ruby/symbol page
+  : "185"
+  ? !ruby/symbol text
+  : "essentials from the golden cabinet"
+- 
+  ? !ruby/symbol formula
+  : "yue bi jia jia ban xia tang"
+  ? !ruby/symbol page
+  : "185"
+  ? !ruby/symbol text
+  : "essentials from the golden cabinet"
+- 
+  ? !ruby/symbol formula
+  : "ting li da zao xie fei tang"
+  ? !ruby/symbol page
+  : "188"
+  ? !ruby/symbol text
+  : "essentials from the golden cabinet"
+- 
+  ? !ruby/symbol formula
+  : "huang qin tang"
+  ? !ruby/symbol page
+  : "208"
+  ? !ruby/symbol text
+  : "shang han lun"
+- 
+  ? !ruby/symbol formula
+  : "bai tou weng tang"
+  ? !ruby/symbol page
+  : "210"
+  ? !ruby/symbol text
+  : "shang han lun"
+- 
+  ? !ruby/symbol formula
+  : "bai tou weng jia gan cao e jiao tang"
+  ? !ruby/symbol page
+  : "211"
+  ? !ruby/symbol text
+  : "essentials from the golden cabinet"
+- 
+  ? !ruby/symbol formula
+  : "bai he di huang tang"
+  ? !ruby/symbol page
+  : "220"
+  ? !ruby/symbol text
+  : "essentials from the golden cabinet"
+- 
+  ? !ruby/symbol formula
+  : "bai hu zhi mu tang"
+  ? !ruby/symbol page
+  : "222"
+  ? !ruby/symbol text
+  : "essentials from the golden cabinet"
+- 
+  ? !ruby/symbol formula
+  : "hua shi dai zhe tang"
+  ? !ruby/symbol page
+  : "222"
+  ? !ruby/symbol text
+  : "essentials from the golden cabinet"
+- 
+  ? !ruby/symbol formula
+  : "bai he ji zi huang tang"
+  ? !ruby/symbol page
+  : "222"
+  ? !ruby/symbol text
+  : "essentials from the golden cabinet"
+- 
+  ? !ruby/symbol formula
+  : "bai he hua shi san"
+  ? !ruby/symbol page
+  : "223"
+  ? !ruby/symbol text
+  : "essentials from the golden cabinet"
+- 
+  ? !ruby/symbol formula
+  : "dang gui si ni tang"
+  ? !ruby/symbol page
+  : "252"
+  ? !ruby/symbol text
+  : "shang han lun"
+- 
+  ? !ruby/symbol formula
+  : "dang gui si ni jia wu zhu yu sheng jiang tang"
+  ? !ruby/symbol page
+  : "255"
+  ? !ruby/symbol text
+  : "shang han lun"
+- 
+  ? !ruby/symbol formula
+  : "huang Qi gui zhi wu wu tang"
+  ? !ruby/symbol page
+  : "255"
+  ? !ruby/symbol text
+  : "essentials from the golden cabinet"
+- 
+  ? !ruby/symbol formula
+  : "li zhong wan"
+  ? !ruby/symbol page
+  : "257"
+  ? !ruby/symbol text
+  : "shang han lun"
+- 
+  ? !ruby/symbol formula
+  : "wu zhu yu tang"
+  ? !ruby/symbol page
+  : "261"
+  ? !ruby/symbol text
+  : "shang han lun"
+- 
+  ? !ruby/symbol formula
+  : "xiao jian zhong tang"
+  ? !ruby/symbol page
+  : "264"
+  ? !ruby/symbol text
+  : "shang han lun"
+- 
+  ? !ruby/symbol formula
+  : "huang Qi jian zhong tang"
+  ? !ruby/symbol page
+  : "267"
+  ? !ruby/symbol text
+  : "essentials from the golden cabinet"
+- 
+  ? !ruby/symbol formula
+  : "da jian zhong tang"
+  ? !ruby/symbol page
+  : "268"
+  ? !ruby/symbol text
+  : "essentials from the golden cabinet"
+- 
+  ? !ruby/symbol formula
+  : "gan cao gan jiang tang"
+  ? !ruby/symbol page
+  : "270"
+  ? !ruby/symbol text
+  : "essentials from the golden cabinet"
+- 
+  ? !ruby/symbol formula
+  : "bai zhu fu zi tang"
+  ? !ruby/symbol page
+  : "272"
+  ? !ruby/symbol text
+  : "essentials from the golden cabinet"
+- 
+  ? !ruby/symbol formula
+  : "si ni tang"
+  ? !ruby/symbol page
+  : "274"
+  ? !ruby/symbol text
+  : "shang han lun"
+- 
+  ? !ruby/symbol formula
+  : "tong mai si ni tang"
+  ? !ruby/symbol page
+  : "277"
+  ? !ruby/symbol text
+  : "shang han lun"
+- 
+  ? !ruby/symbol formula
+  : "si ni jia ren shen tang"
+  ? !ruby/symbol page
+  : "277"
+  ? !ruby/symbol text
+  : "shang han lun"
+- 
+  ? !ruby/symbol formula
+  : "bai tong tang"
+  ? !ruby/symbol page
+  : "277"
+  ? !ruby/symbol text
+  : "shang han lun"
+- 
+  ? !ruby/symbol formula
+  : "da chai hu tang"
+  ? !ruby/symbol page
+  : "286"
+  ? !ruby/symbol text
+  : "shang han lun"
+- 
+  ? !ruby/symbol formula
+  : "hou po Qi wu tang"
+  ? !ruby/symbol page
+  : "289"
+  ? !ruby/symbol text
+  : "essentials from the golden cabinet"
+- 
+  ? !ruby/symbol formula
+  : "ge gen huang qin huang lian tang"
+  ? !ruby/symbol page
+  : "292"
+  ? !ruby/symbol text
+  : "shang han lun"
+- 
+  ? !ruby/symbol formula
+  : "gui zhi ren shen tang"
+  ? !ruby/symbol page
+  : "298"
+  ? !ruby/symbol text
+  : "shang han lun"
+- 
+  ? !ruby/symbol formula
+  : "shao yao gan cao tang"
+  ? !ruby/symbol page
+  : "344"
+  ? !ruby/symbol text
+  : "shang han lun"
+- 
+  ? !ruby/symbol formula
+  : "shao yao gan cao fu zi tang"
+  ? !ruby/symbol page
+  : "345"
+  ? !ruby/symbol text
+  : "shang han lun"
+- 
+  ? !ruby/symbol formula
+  : "dang gui sheng jiang yang rou tang"
+  ? !ruby/symbol page
+  : "356"
+  ? !ruby/symbol text
+  : "essentials from the golden cabinet"
+- 
+  ? !ruby/symbol formula
+  : "zhi gan cao tang"
+  ? !ruby/symbol page
+  : "356"
+  ? !ruby/symbol text
+  : "shang han lun"
+- 
+  ? !ruby/symbol formula
+  : "shen Qi wan"
+  ? !ruby/symbol page
+  : "395"
+  ? !ruby/symbol text
+  : "essentials from the golden cabinet"
+- 
+  ? !ruby/symbol formula
+  : "tao hua tang"
+  ? !ruby/symbol page
+  : "427"
+  ? !ruby/symbol text
+  : "shang han lun"
+- 
+  ? !ruby/symbol formula
+  : "chi shi zhi yu yu liang tang"
+  ? !ruby/symbol page
+  : "429"
+  ? !ruby/symbol text
+  : "shang han lun"
+- 
+  ? !ruby/symbol formula
+  : "gui zhi hia long gu mu li tang"
+  ? !ruby/symbol page
+  : "429"
+  ? !ruby/symbol text
+  : "essentials from the golden cabinet"
+- 
+  ? !ruby/symbol formula
+  : "gui zhi gan cao long gu mu li tang"
+  ? !ruby/symbol page
+  : "441"
+  ? !ruby/symbol text
+  : "shang han lun"
+- 
+  ? !ruby/symbol formula
+  : "suan zao ren tang"
+  ? !ruby/symbol page
+  : "463"
+  ? !ruby/symbol text
+  : "essentials from the golden cabinet"
+- 
+  ? !ruby/symbol formula
+  : "huang lian e jiao tang"
+  ? !ruby/symbol page
+  : "469"
+  ? !ruby/symbol text
+  : "shang han lun"
+- 
+  ? !ruby/symbol formula
+  : "gan mai da zao tang"
+  ? !ruby/symbol page
+  : "471"
+  ? !ruby/symbol text
+  : "essentials from the golden cabinet"
+- 
+  ? !ruby/symbol formula
+  : "zhi shi xie bai gui zhi tang"
+  ? !ruby/symbol page
+  : "514"
+  ? !ruby/symbol text
+  : "essentials from the golden cabinet"
+- 
+  ? !ruby/symbol formula
+  : "gua lou xie bai bai jiu tang"
+  ? !ruby/symbol page
+  : "515"
+  ? !ruby/symbol text
+  : "essentials from the golden cabinet"
+- 
+  ? !ruby/symbol formula
+  : "gua lou xie bai ban xia tang"
+  ? !ruby/symbol page
+  : "516"
+  ? !ruby/symbol text
+  : "essentials from the golden cabinet"
+- 
+  ? !ruby/symbol formula
+  : "ban xia hou po tang"
+  ? !ruby/symbol page
+  : "516"
+  ? !ruby/symbol text
+  : "essentials from the golden cabinet"
+- 
+  ? !ruby/symbol formula
+  : "xuan fu dai zhe tang"
+  ? !ruby/symbol page
+  : "542"
+  ? !ruby/symbol text
+  : "shang han lun"
+- 
+  ? !ruby/symbol formula
+  : "ju pi zhu ru tang"
+  ? !ruby/symbol page
+  : "544"
+  ? !ruby/symbol text
+  : "essentials from the golden cabinet"
+- 
+  ? !ruby/symbol formula
+  : "ju pi tang"
+  ? !ruby/symbol page
+  : "546"
+  ? !ruby/symbol text
+  : "essentials from the golden cabinet"
+- 
+  ? !ruby/symbol formula
+  : "da ban xia tang"
+  ? !ruby/symbol page
+  : "549"
+  ? !ruby/symbol text
+  : "essentials from the golden cabinet"
+- 
+  ? !ruby/symbol formula
+  : "xiao ban xia tang"
+  ? !ruby/symbol page
+  : "551"
+  ? !ruby/symbol text
+  : "essentials from the golden cabinet"
+- 
+  ? !ruby/symbol formula
+  : "xiao ban xia jia fu ling tang"
+  ? !ruby/symbol page
+  : "551"
+  ? !ruby/symbol text
+  : "essentials from the golden cabinet"
+- 
+  ? !ruby/symbol formula
+  : "gan jiang ren shen ban xia wan"
+  ? !ruby/symbol page
+  : "552"
+  ? !ruby/symbol text
+  : "essentials from the golden cabinet"
+- 
+  ? !ruby/symbol formula
+  : "tao he cheng Qi tang"
+  ? !ruby/symbol page
+  : "559"
+  ? !ruby/symbol text
+  : "shang han lun"
+- 
+  ? !ruby/symbol formula
+  : "xia yu xue tang"
+  ? !ruby/symbol page
+  : "562"
+  ? !ruby/symbol text
+  : "essentials from the golden cabinet"
+- 
+  ? !ruby/symbol formula
+  : "di dang tang"
+  ? !ruby/symbol page
+  : "562"
+  ? !ruby/symbol text
+  : "shang han lun"
+- 
+  ? !ruby/symbol formula
+  : "xuan fu hua tang"
+  ? !ruby/symbol page
+  : "575"
+  ? !ruby/symbol text
+  : "essentials from the golden cabinet"
+- 
+  ? !ruby/symbol formula
+  : "wen jing tang"
+  ? !ruby/symbol page
+  : "577"
+  ? !ruby/symbol text
+  : "essentials from the golden cabinet"
+- 
+  ? !ruby/symbol formula
+  : "gui zhi fu ling wan"
+  ? !ruby/symbol page
+  : "583"
+  ? !ruby/symbol text
+  : "essentials from the golden cabinet"
+- 
+  ? !ruby/symbol formula
+  : "dang gui shao yao san"
+  ? !ruby/symbol page
+  : "587"
+  ? !ruby/symbol text
+  : "essentials from the golden cabinet"
+- 
+  ? !ruby/symbol formula
+  : "dang gui san"
+  ? !ruby/symbol page
+  : "590"
+  ? !ruby/symbol text
+  : "essentials from the golden cabinet"
+- 
+  ? !ruby/symbol formula
+  : "da huang zhe chong wan"
+  ? !ruby/symbol page
+  : "595"
+  ? !ruby/symbol text
+  : "essentials from the golden cabinet"
+- 
+  ? !ruby/symbol formula
+  : "bai ye tang"
+  ? !ruby/symbol page
+  : "607"
+  ? !ruby/symbol text
+  : "essentials from the golden cabinet"
+- 
+  ? !ruby/symbol formula
+  : "huang tu tang"
+  ? !ruby/symbol page
+  : "608"
+  ? !ruby/symbol text
+  : "essentials from the golden cabinet"
+- 
+  ? !ruby/symbol formula
+  : "jiao ai tang"
+  ? !ruby/symbol page
+  : "610"
+  ? !ruby/symbol text
+  : "essentials from the golden cabinet"
+- 
+  ? !ruby/symbol formula
+  : "wu tou tang"
+  ? !ruby/symbol page
+  : "624"
+  ? !ruby/symbol text
+  : "essentials from the golden cabinet"
+- 
+  ? !ruby/symbol formula
+  : "feng yin tang"
+  ? !ruby/symbol page
+  : "639"
+  ? !ruby/symbol text
+  : "essentials from the golden cabinet"
+- 
+  ? !ruby/symbol formula
+  : "mai men dong tang"
+  ? !ruby/symbol page
+  : "670"
+  ? !ruby/symbol text
+  : "essentials from the golden cabinet"
+- 
+  ? !ruby/symbol formula
+  : "yin chen hao tang"
+  ? !ruby/symbol page
+  : "710"
+  ? !ruby/symbol text
+  : "shang han lun"
+- 
+  ? !ruby/symbol formula
+  : "wu ling san"
+  ? !ruby/symbol page
+  : "724"
+  ? !ruby/symbol text
+  : "shang han lun"
+- 
+  ? !ruby/symbol formula
+  : "yin chen wu ling san"
+  ? !ruby/symbol page
+  : "729"
+  ? !ruby/symbol text
+  : "essentials from the golden cabinet"
+- 
+  ? !ruby/symbol formula
+  : "fu ling gan cao tang"
+  ? !ruby/symbol page
+  : "729"
+  ? !ruby/symbol text
+  : "shang han lun"
+- 
+  ? !ruby/symbol formula
+  : "zhu ling tang"
+  ? !ruby/symbol page
+  : "729"
+  ? !ruby/symbol text
+  : "shang han lun"
+- 
+  ? !ruby/symbol formula
+  : "dang gui bei mu ku shen wan"
+  ? !ruby/symbol page
+  : "732"
+  ? !ruby/symbol text
+  : "essentials from the golden cabinet"
+- 
+  ? !ruby/symbol formula
+  : "fang ji huang Qi tang"
+  ? !ruby/symbol page
+  : "735"
+  ? !ruby/symbol text
+  : "essentials from the golden cabinet"
+- 
+  ? !ruby/symbol formula
+  : "fang ji fu ling tang"
+  ? !ruby/symbol page
+  : "737"
+  ? !ruby/symbol text
+  : "essentials from the golden cabinet"
+- 
+  ? !ruby/symbol formula
+  : "ling gui zhu gan tang"
+  ? !ruby/symbol page
+  : "738"
+  ? !ruby/symbol text
+  : "shang han lun"
+- 
+  ? !ruby/symbol formula
+  : "gan cao gan jiang fu ling bai zhu tang"
+  ? !ruby/symbol page
+  : "742"
+  ? !ruby/symbol text
+  : "essentials from the golden cabinet"
+- 
+  ? !ruby/symbol formula
+  : "zhen wu tang"
+  ? !ruby/symbol page
+  : "744"
+  ? !ruby/symbol text
+  : "shang han lun"
+- 
+  ? !ruby/symbol formula
+  : "fu zi tang"
+  ? !ruby/symbol page
+  : "747"
+  ? !ruby/symbol text
+  : "shang han lun"
+- 
+  ? !ruby/symbol formula
+  : "gan cao fu zi tang"
+  ? !ruby/symbol page
+  : "749"
+  ? !ruby/symbol text
+  : "shang han lun"
+- 
+  ? !ruby/symbol formula
+  : "gui zhi shao yao zhi mu tang"
+  ? !ruby/symbol page
+  : "760"
+  ? !ruby/symbol text
+  : "essentials from the golden cabinet"
+- 
+  ? !ruby/symbol formula
+  : "xiao xian xiong tang"
+  ? !ruby/symbol page
+  : "793"
+  ? !ruby/symbol text
+  : "shang han lun"
+- 
+  ? !ruby/symbol formula
+  : "ling gan wu wei jiang xin tang"
+  ? !ruby/symbol page
+  : "806"
+  ? !ruby/symbol text
+  : "essentials from the golden cabinet"
+- 
+  ? !ruby/symbol formula
+  : "gui ling wu wei gan cao tang"
+  ? !ruby/symbol page
+  : "808"
+  ? !ruby/symbol text
+  : "essentials from the golden cabinet"
+- 
+  ? !ruby/symbol formula
+  : "ling gan wu wei jia jiang xin ban xia xing ren tang"
+  ? !ruby/symbol page
+  : "808"
+  ? !ruby/symbol text
+  : "essentials from the golden cabinet"
+- 
+  ? !ruby/symbol formula
+  : "gua di san"
+  ? !ruby/symbol page
+  : "817"
+  ? !ruby/symbol text
+  : "shang han lun"
+- 
+  ? !ruby/symbol formula
+  : "zhi zhu tang"
+  ? !ruby/symbol page
+  : "838"
+  ? !ruby/symbol text
+  : "essentials from the golden cabinet"
+- 
+  ? !ruby/symbol formula
+  : "wu mei wan"
+  ? !ruby/symbol page
+  : "847"
+  ? !ruby/symbol text
+  : "shang han lun"
+- 
+  ? !ruby/symbol formula
+  : "da huang mu dan tang"
+  ? !ruby/symbol page
+  : "880"
+  ? !ruby/symbol text
+  : "essentials from the golden cabinet"
+- 
+  ? !ruby/symbol formula
+  : "yi yi fu zi bai jiang san"
+  ? !ruby/symbol page
+  : "884"
+  ? !ruby/symbol text
+  : "essentials from the golden cabinet"
