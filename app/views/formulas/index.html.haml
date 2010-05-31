@@ -8,14 +8,14 @@
     %th
       Pinyin
     %th
-      English
+      Page
     %th
-      State Board
+      Tags
   - @formulas.each do |formula|
     %tr
       %td= h formula.pinyin
-      %td= h formula.english
-      %td= formula.state_board ? "*" : ""
+      %td= h formula.citation.where if formula.citation
+      %td= formula.tag_list
       %td= link_to 'Show', formula
       %td
         - if can? :update, formula

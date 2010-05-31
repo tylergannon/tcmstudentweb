@@ -57,6 +57,25 @@ namespace :import do
     end
   end
 
+  task :shang => :environment do
+    formulas = YAML::load_file("/home/tyler/Desktop/zhong jing.yml")
+    formulas.each do |info|
+      st = (info[:text] == "shang han lun" ? 5 : 2)
+      formula = Formula.search_equals(info[:formula])
+      if formula.nil?
+        puts "Creating #{info[:formula]}"
+        formula = Formula.create(:pinyin => info[:formula].titleize)
+      end
+      formula.citation = formula.citation ||= Citation.create(:textbook_id => 2, :where => info[:page])
+      formula.source_text_citation = formula.source_text_citation ||= \
+        Citation.new(:textbook_id => st)
+      formula.tag_list = formula.tag_list.to_s + ",Shang Han Lun"
+      puts "Unable to save #{info[:formula]}" unless formula.save
+
+    end
+
+  end
+
   task :formula_1 => :environment do
     formulas = YAML::load_file("lib/tasks/list.yml")
     formulas.each_pair do |name, page|
