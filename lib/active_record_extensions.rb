@@ -44,7 +44,7 @@ module ActiveRecord
     end
 
     def self.search_one(str)
-      str = str.to_s.strip
+      str = str.to_s.strip.downcase
 
       if str.empty?
         nil
@@ -97,3 +97,4 @@ module ActiveRecord
       end
   end
 end
+
