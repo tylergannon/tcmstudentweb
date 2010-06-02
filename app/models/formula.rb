@@ -107,3 +107,4 @@ class Formula < ActiveRecord::Base
     ["canonical", "english", "pinyin"]
   end
 end
+
