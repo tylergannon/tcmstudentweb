@@ -7,6 +7,7 @@ module Haml::Filters::TcmTextile
 
   def render(text)
     text = text.gsub(MY_PATTERN) {|m|
+      link_text = $2
       controller = case $1
         when 'f'
           "formulas"
@@ -14,6 +15,8 @@ module Haml::Filters::TcmTextile
           "acu_points"
         when 'h'
           "herbs"
+          x = Herb.search_equals(link_text)
+          link_text = x.nil? ? link_text : x.pinyin
         when 'p'
           "patterns"
         when 's'
@@ -25,3 +28,4 @@ module Haml::Filters::TcmTextile
 
   end
 end
+
