@@ -14,15 +14,15 @@ module Haml::Filters::TcmTextile
         when 'a'
           "acu_points"
         when 'h'
-          "herbs"
           x = Herb.search_equals(link_text)
           link_text = x.nil? ? link_text : x.pinyin
+          "herbs"
         when 'p'
           "patterns"
         when 's'
           "symptoms"
       end
-      "\"#{$2}\":/#{controller}/#{$2.gsub(" ", "_").downcase}"
+      "\"#{link_text}\":/#{controller}/#{$2.gsub(" ", "_").downcase}"
     }
     RedCloth.new(text).to_html
 
