@@ -30,16 +30,6 @@
   %b
     Common Name:
   = h @herb.common_name
-%h3
-  Channels
-%ul
-  - @herb.herb_channels.each do |herb_channel|
-    %li= h herb_channel.channel_name
-%h3
-  Flavor and Temperature
-%ul
-  - @herb.herb_flavors.each do |herb_flavor|
-    %li= h herb_flavor.flavor_name
 
 %h3
   Therapeutic Functions
@@ -77,5 +67,4 @@
 %b Formulas:
 != @herb.formulas.map{|f| link_to f.pinyin, f}.join(", ")
 #{link_to 'Edit', edit_herb_path(@herb)} | #{link_to 'Back to Herbs', herbs_path} | #{link_to 'New Herb', new_herb_path}
-
 
