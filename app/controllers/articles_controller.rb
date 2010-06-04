@@ -2,7 +2,13 @@ class ArticlesController < ApplicationController
   # GET /articles
   # GET /articles.xml
   def index
-    @articles = Article.all
+    if params.has_key?(:tag_name)
+      @articles = Article.tagged_with(params[:tag_name].to_list)
+    else
+      @articles = Article.search(params[:search])
+    end
+
+    @tags = Article.tag_counts_on(:tags)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -12,12 +18,12 @@ class ArticlesController < ApplicationController
 
   def report
     @article = Article.find(params[:id])
-    @formulas, @herbs, @patterns = [[], [], []]
+    @Articles, @herbs, @patterns = [[], [], []]
 
     @article.body.scan(/"(\w):([\w\s]+)"/m).each do |match|
       case match[0]
         when 'f'
-          @formulas.plus_if(Formula.search_equals(match[1]))
+          @Articles.plus_if(Article.search_equals(match[1]))
         when 'h'
           @herbs.plus_if(Herb.search_equals(match[1]))
         when 'p'
@@ -25,10 +31,10 @@ class ArticlesController < ApplicationController
       end
     end
 
-    @formulas_by_category = []
-    FormulaCategory.find(:all, :order => "position").each do |cat|
-      formulae = @formulas.select{|f| f.formula_category == cat}
-      @formulas_by_category << [cat, formulae] unless formulae.size==0
+    @Articles_by_category = []
+    ArticleCategory.find(:all, :order => "position").each do |cat|
+      Articlee = @Articles.select{|f| f.Article_category == cat}
+      @Articles_by_category << [cat, Articlee] unless Articlee.size==0
     end
   end
 
@@ -103,3 +109,4 @@ class ArticlesController < ApplicationController
     end
   end
 end
+

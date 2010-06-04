@@ -1,18 +1,11 @@
-%h1 Listing articles
+%h1 Articles
 
-%table
-  %thead
-    %tr
-      %th Title
-      %th{ :colspan => 3 }
+%h2 Tag Cloud
+- tag_cloud(@tags, %w(css1 css2 css3 css4)) do |tag, css_class|
+  = link_to tag.name, "/articles/t/#{tag.name}", :class => css_class
 
-  %tbody
-    - for article in @articles
-      %tr{ :class => cycle(:odd, :even) }
-        %td= article.title
-        %td= link_to 'Show', article
-        %td= link_to 'Edit', edit_article_path(article)
-        %td= link_to 'Destroy', article, :confirm => 'Are you sure?', :method => :delete
+@articles.each do |article|
+  render article
 
 %br
 = link_to 'New article', new_article_path

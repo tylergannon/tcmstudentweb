@@ -6,9 +6,13 @@
     %br
     = f.text_field :title, :autocomplete => "off  "
   .field
+    %b Tags
+    = tag_field(f, :tag_list)
+  .field
     = f.label :body
     %br
     = f.text_area :body, :rows => 30, :cols => 120
 
   .actions
     = f.submit
+
