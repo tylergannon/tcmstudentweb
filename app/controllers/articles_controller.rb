@@ -33,8 +33,8 @@ class ArticlesController < ApplicationController
 
     @articles_by_category = []
     ArticleCategory.find(:all, :order => "position").each do |cat|
-      Articlee = @articles.select{|f| f.Article_category == cat}
-      @articles_by_category << [cat, Articlee] unless Articlee.size==0
+      articlee = @articles.select{|f| f.article_category == cat}
+      @articles_by_category << [cat, articlee] unless articlee.size==0
     end
   end
 
