@@ -1,10 +1,10 @@
 %h1 Articles
 
 %h2 Tag Cloud
-- tag_cloud(@tags, %w(css1 css2 css3 css4)) do |tag, css_class|
+= tag_cloud(@tags, %w(css1 css2 css3 css4)) do |tag, css_class|
   = link_to tag.name, "/articles/t/#{tag.name}", :class => css_class
 
-@articles.each do |article|
+= @articles.each do |article|
   = render article
 
 %br
