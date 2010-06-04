@@ -18,12 +18,12 @@ class ArticlesController < ApplicationController
 
   def report
     @article = Article.find(params[:id])
-    @Articles, @herbs, @patterns = [[], [], []]
+    @articles, @herbs, @patterns = [[], [], []]
 
     @article.body.scan(/"(\w):([\w\s]+)"/m).each do |match|
       case match[0]
         when 'f'
-          @Articles.plus_if(Article.search_equals(match[1]))
+          @articles.plus_if(Article.search_equals(match[1]))
         when 'h'
           @herbs.plus_if(Herb.search_equals(match[1]))
         when 'p'
@@ -31,10 +31,10 @@ class ArticlesController < ApplicationController
       end
     end
 
-    @Articles_by_category = []
+    @articles_by_category = []
     ArticleCategory.find(:all, :order => "position").each do |cat|
-      Articlee = @Articles.select{|f| f.Article_category == cat}
-      @Articles_by_category << [cat, Articlee] unless Articlee.size==0
+      Articlee = @articles.select{|f| f.Article_category == cat}
+      @articles_by_category << [cat, Articlee] unless Articlee.size==0
     end
   end
 
