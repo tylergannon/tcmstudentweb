@@ -5,7 +5,7 @@
   = link_to tag.name, "/articles/t/#{tag.name}", :class => css_class
 
 @articles.each do |article|
-  render article
+  = render article
 
 %br
 = link_to 'New article', new_article_path
