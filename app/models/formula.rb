@@ -53,7 +53,8 @@ class Formula < ActiveRecord::Base
   end
 
   def chief_herbs
-    herbs_from(Formula::ROLES[0])
+    a = herbs_from(Formula::ROLES[0])
+    a unless a.size == formula_herbs.size
   end
 
   def non_chief_herbs
