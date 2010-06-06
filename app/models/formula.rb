@@ -10,7 +10,9 @@ class Formula < ActiveRecord::Base
 	accepts_nested_attributes_for :formula_contraindications, :allow_destroy => true, :reject_if => proc {|a| a['contraindication_name'].blank?}
 
 	has_many :formula_herbs
-	has_many :herbs, :through => :formula_herbs
+	def herbs
+	  formula_herbs.map{|t| t.herb}
+	end
 	accepts_nested_attributes_for :formula_herbs, :allow_destroy => true, :reject_if => proc {|a| a['herb_pinyin'].blank?}
 
 	has_many :formula_therapeutic_functions
@@ -18,7 +20,10 @@ class Formula < ActiveRecord::Base
 	has_many :therapeutic_functions, :through => :formula_therapeutic_functions
 
 	has_many :formula_patterns
-	has_many :patterns, :through => :formula_patterns
+	def patterns
+	  formula_patterns.map{|t| t.pattern}
+	end
+
 	accepts_nested_attributes_for :formula_patterns, :allow_destroy => true
 
 	has_many :formula_dui_yaos

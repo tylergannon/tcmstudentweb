@@ -1,9 +1,10 @@
 class FormulasController < ApplicationController
+  require "prawn/measurement_extensions"
   prawnto :prawn => {
-              :left_margin => 48,
-              :right_margin => 48,
-              :top_margin => 24,
-              :bottom_margin => 24}
+              :left_margin => 8.mm,
+              :right_margin => 8.mm,
+              :top_margin => 5.mm,
+              :bottom_margin => 5.mm}
   def index
     if params.has_key?(:tag_name)
       @formulas = Formula.tagged_with(params[:tag_name].to_list)
@@ -36,10 +37,7 @@ class FormulasController < ApplicationController
         (0..2).each do |c|
           if !(f = @formulas.shift).nil?
             newq[r][c] = f.canonical
-            newa[r][2-c] = {:ingredients=>f.herbs.map{|t| t.canonical}, :symptoms =>[] }
-            f.patterns.each do |p|
-              newa[r][2-c][:symptoms] << p.symptoms.map{|t| t.name}
-            end
+            newa[r][2-c] = f
           end
         end
       end
