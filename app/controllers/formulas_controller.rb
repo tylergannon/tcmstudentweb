@@ -36,7 +36,7 @@ class FormulasController < ApplicationController
         (0..2).each do |c|
           if !(f = @formulas.shift).nil?
             newq[r][c] = f.canonical
-            newa[r][2-c] = {:ingredients=>f.herbs.map{|t| t.pinyin}, :symptoms =>[] }
+            newa[r][2-c] = {:ingredients=>f.herbs.map{|t| t.canonical}, :symptoms =>[] }
             f.patterns.each do |p|
               newa[r][2-c][:symptoms] << p.symptoms.map{|t| t.name}
             end
