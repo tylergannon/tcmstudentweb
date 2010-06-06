@@ -15,7 +15,7 @@ gem 'RedCloth'
 gem "haml"
 gem 'acts-as-taggable-on'
 gem 'prawn'
-gem 'prawnto', :git => 'git://github.com/bryanl/prawnto.git', :branch => 'rails3'
+#gem 'prawnto', :git => 'git://github.com/bryanl/prawnto.git', :branch => 'rails3'
 
 group :development do
   gem 'scrapi'
