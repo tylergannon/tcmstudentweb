@@ -32,9 +32,9 @@ while !(qpage = @q.shift).nil?
   write_page(apage, pdf) do |f|
 
     if !(fp = f.formula_patterns[0]).nil?
-      pdf.text_box fp.pattern.name, :size => 10, :style=>:bold, \
+      pdf.text_box fp.pattern.name, :size => 11, :style=>:bold, \
         :overflow => :shrink_to_fit, :at => [margin,pdf.bounds.height-margin], :width => pdf.bounds.width-6, \
-        :height => title_ht
+        :height => title_ht, :align => :center
     end
 
     pdf.bounding_box [margin,pdf.bounds.height-title_full_ht], :width => herbs_width, :height => pdf.bounds.height-title_full_ht do
