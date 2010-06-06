@@ -37,7 +37,7 @@ class FormulasController < ApplicationController
           if !(f = @formulas.shift).nil?
             newq[r][c] = f.canonical
             newa[r][2-c] = {:ingredients=>f.herbs.map{|t| t.pinyin}, :symptoms =>[] }
-            f.patterns.bensky.each do |p|
+            f.patterns.each do |p|
               newa[r][2-c][:symptoms] << p.symptoms.map{|t| t.name}
             end
           end
