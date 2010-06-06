@@ -1,8 +1,8 @@
 class FormulaPattern < ActiveRecord::Base
-	belongs_to :formula
+  belongs_to :formula
   accepts_nested_attributes_for :formula, :allow_destroy => false, :reject_if => proc {|a| a['pinyin'].blank?}
-  default_scope bensky
   scope :bensky, joins(:citation).where("citations.textbook_id = 2")
+  default_scope bensky
   belongs_to :pattern
   accepts_nested_attributes_for :pattern, :allow_destroy => false, :reject_if => proc {|a| a['name'].blank?}
   belongs_to :citation
