@@ -5,12 +5,17 @@ TcmStudentWeb::Application.routes.draw do
   resources :articles
   resources :patterns
   resources :acu_points
-  resources :formulas
+
   resources :tongue_qualities
   resources :therapeutic_functions
   resources :symptoms
   resources :pulse_qualities
   resources :contraindications
+  resources :formulas do
+    collection do
+      get :cards
+    end
+  end
   resources :formula_categories do
     collection do
       post :sortformula

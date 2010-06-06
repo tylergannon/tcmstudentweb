@@ -1,5 +1,9 @@
 class FormulasController < ApplicationController
-
+  prawnto :prawn => {
+              :left_margin => 48,
+              :right_margin => 48,
+              :top_margin => 24,
+              :bottom_margin => 24}
   def index
     if params.has_key?(:tag_name)
       @formulas = Formula.tagged_with(params[:tag_name].to_list)
@@ -13,6 +17,34 @@ class FormulasController < ApplicationController
       format.html # index.html.erb
       format.js
       format.xml  { render :xml => @formulas }
+    end
+  end
+
+  def page
+    [[nil, nil, nil],[nil, nil, nil],[nil, nil, nil],[nil, nil, nil]]
+  end
+
+  def cards
+    @formulas = Formula.tagged_with(params[:tags].to_list)
+    @q = []
+    @a = []
+
+    while @formulas.size > 0
+      newq=page
+      newa=page
+      (0..3).each do |r|
+        (0..2).each do |c|
+          if !(f = @formulas.shift).nil?
+            newq[r][c] = f.canonical
+            newa[r][2-c] = {:ingredients=>f.herbs.map{|t| t.pinyin}, :symptoms =>[] }
+            f.patterns.bensky.each do |p|
+              newa[r][2-c][:symptoms] << p.symptoms.map{|t| t.name}
+            end
+          end
+        end
+      end
+      @q << newq
+      @a << newa
     end
   end
 

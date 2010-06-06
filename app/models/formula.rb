@@ -18,6 +18,7 @@ class Formula < ActiveRecord::Base
 	has_many :therapeutic_functions, :through => :formula_therapeutic_functions
 
 	has_many :formula_patterns
+	has_many :patterns, :through => :formula_patterns
 	accepts_nested_attributes_for :formula_patterns, :allow_destroy => true
 
 	has_many :formula_dui_yaos

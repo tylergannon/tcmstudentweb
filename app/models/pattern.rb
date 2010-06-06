@@ -6,6 +6,7 @@ class Pattern < ActiveRecord::Base
   accepts_nested_attributes_for :pattern_treatment_principles, :allow_destroy => true, \
     :reject_if => proc {|a| a['treatment_principle_name'].blank?}
   has_many :pattern_symptoms
+  has_many :symptoms, :through => :pattern_symptoms
   accepts_nested_attributes_for :pattern_symptoms, :allow_destroy => true, \
     :reject_if => proc {|a| a['symptom_name'].blank?}
 
@@ -13,6 +14,7 @@ class Pattern < ActiveRecord::Base
   accepts_nested_attributes_for :point_prescriptions, :allow_destroy => false
 
   has_many :formula_patterns
+  has_many :formulas, :through => :formula_patterns
   accepts_nested_attributes_for :formula_patterns, :allow_destroy => true, :reject_if => proc {|a| a['formula_pinyin'].blank?}
 
   belongs_to :citation
