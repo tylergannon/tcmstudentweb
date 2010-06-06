@@ -1,5 +1,6 @@
 class Pattern < ActiveRecord::Base
   acts_as_taggable
+  scope :bensky, joins(:citation).where("citations.textbook_id = 2")
 
   has_many :pattern_treatment_principles
   accepts_nested_attributes_for :pattern_treatment_principles, :allow_destroy => true, \
@@ -71,3 +72,4 @@ class Pattern < ActiveRecord::Base
     {:shared => shared, :just_his => just_his, :just_mine => just_mine}
   end
 end
+

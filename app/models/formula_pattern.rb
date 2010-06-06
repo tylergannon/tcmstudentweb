@@ -1,7 +1,7 @@
 class FormulaPattern < ActiveRecord::Base
 	belongs_to :formula
   accepts_nested_attributes_for :formula, :allow_destroy => false, :reject_if => proc {|a| a['pinyin'].blank?}
-
+    default_scope joins(:pattern) & Pattern.bensky
   belongs_to :pattern
   accepts_nested_attributes_for :pattern, :allow_destroy => false, :reject_if => proc {|a| a['name'].blank?}
   belongs_to :citation
@@ -23,3 +23,4 @@ class FormulaPattern < ActiveRecord::Base
   	formula.pinyin if formula
   end
 end
+

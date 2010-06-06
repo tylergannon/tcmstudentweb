@@ -43,6 +43,10 @@ module ActiveRecord
       end
     end
 
+    def self.search_columns
+      []
+    end
+
     def self.search_one(str)
       str = str.to_s.strip.downcase
 
