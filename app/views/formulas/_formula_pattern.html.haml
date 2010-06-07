@@ -1,5 +1,6 @@
 .child
   = f.hidden_field :id
+  = link_to "Edit", edit_pattern_path(f.object.pattern)
   %p
     %b Signs and Symptoms
     = f.fields_for "pattern_attributes", f.object.pattern ||= Pattern.new do |pf|

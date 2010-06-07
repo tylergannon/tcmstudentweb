@@ -3,7 +3,12 @@ TcmStudentWeb::Application.routes.draw do
   resources :authors
   resources :textbooks
   resources :articles
-  resources :patterns
+  resources :patterns do
+    collection do
+      get :cards
+    end
+  end
+
   resources :acu_points
 
   resources :tongue_qualities
@@ -14,6 +19,7 @@ TcmStudentWeb::Application.routes.draw do
   resources :formulas do
     collection do
       get :cards
+      post :sort
     end
   end
   resources :formula_categories do

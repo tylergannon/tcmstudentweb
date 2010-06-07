@@ -3,6 +3,9 @@ class FormulaHerb < ActiveRecord::Base
 	belongs_to :herb
 	belongs_to :formula_role
 
+  default_scope order("position")
+
+
 	def herb_pinyin=(pinyin)
     return if pinyin.blank?
     a = Herb.search(pinyin, :first)
@@ -22,3 +25,4 @@ class FormulaHerb < ActiveRecord::Base
 		formula_role.pinyin if formula_role
 	end
 end
+

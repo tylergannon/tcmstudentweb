@@ -100,5 +100,6 @@
 
 - if can? :update, @formula
   = link_to 'Edit', edit_formula_path(@formula)
+  = link_to "Edit Next: #{@next.pinyin}", "#{edit_formula_path(@next)}/?tags=#{@taglist}"
 - link_to 'Back', formulas_path
 

@@ -34,14 +34,26 @@ class Pattern < ActiveRecord::Base
     self.formula_patterns = pf unless pf.nil?
   end
 
-
   def pattern_symptoms_text
     FormParser.unparse_symptoms(self.pattern_symptoms)
   end
 
   def pattern_symptoms_text=(text)
+    puts "I AM Pattern #{self.name}"
+    puts "I am #{self.new_record? ? '' : 'not'} a new record."
+    puts "I just got handed this:"
+    puts text
+    puts
+    puts "I already have these PS's."
+    puts self.pattern_symptoms.inspect
+    puts
+    puts"And these are the new ones:"
     new_ps = FormParser.parse_symptoms(text, PatternSymptom)
+    puts new_ps.inspect
     FormParser.merge(self.pattern_symptoms, new_ps)
+    puts
+    puts "My new ps's are:"
+    puts self.pattern_symptoms.inspect
   end
 
   def pattern_treatment_principles_text

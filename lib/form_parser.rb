@@ -10,10 +10,11 @@ class FormParser
   end
 
   def self.parse_symptoms(text, klass)
-    scan_text(text).map {|match|
+    scan_text(text).map_with_index {|match, x|
       klass.send(:new, :symptom_name => match[1].strip,
                  :maybe => (match[0]=="-"),
                  :key_symptom => (match[0]=="*"),
+                 :position => x,
                  :commentary => get_commentary(match))
     }
   end
@@ -94,3 +95,4 @@ class FormParser
   end
 
 end
+

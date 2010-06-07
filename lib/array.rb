@@ -6,7 +6,13 @@ class Array
   def find_same(obj)
     select{|o| o =~ obj}[0]
   end
-
+  def map_with_index
+    result = []
+    self.each_with_index do |elt, idx|
+      result << yield(elt, idx)
+    end
+    result
+  end
   def plus_if(obj)
     self << obj unless include?(obj) || obj.nil?
   end

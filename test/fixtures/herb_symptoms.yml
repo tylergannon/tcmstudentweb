@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  herb_id: 1
+  symptom_id: 1
+  position: 1
+  commentary: MyText
+  citation_id: 1
+
+two:
+  herb_id: 1
+  symptom_id: 1
+  position: 1
+  commentary: MyText
+  citation_id: 1

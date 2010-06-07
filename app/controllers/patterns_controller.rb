@@ -14,6 +14,27 @@ class PatternsController < ApplicationController
     end
   end
 
+  def cards
+    @patterns = Pattern.tagged_with(params[:tags].to_list)
+    @q = []
+    @a = []
+
+    while @patterns.size > 0
+      newq=page
+      newa=page
+      (0..3).each do |r|
+        (0..2).each do |c|
+          if !(p = @patterns.shift).nil?
+            newq[r][c] = p
+            newa[r][2-c] = p
+          end
+        end
+      end
+      @q << newq
+      @a << newa
+    end
+  end
+
   # GET /patterns/1
   # GET /patterns/1.xml
   def show
@@ -91,3 +112,4 @@ class PatternsController < ApplicationController
     end
   end
 end
+

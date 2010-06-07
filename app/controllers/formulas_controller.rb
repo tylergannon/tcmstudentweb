@@ -1,10 +1,4 @@
 class FormulasController < ApplicationController
-  require "prawn/measurement_extensions"
-  prawnto :prawn => {
-              :left_margin => 8.mm,
-              :right_margin => 8.mm,
-              :top_margin => 5.mm,
-              :bottom_margin => 5.mm}
   def index
     if params.has_key?(:tag_name)
       @formulas = Formula.tagged_with(params[:tag_name].to_list)
@@ -19,10 +13,6 @@ class FormulasController < ApplicationController
       format.js
       format.xml  { render :xml => @formulas }
     end
-  end
-
-  def page
-    [[nil, nil, nil],[nil, nil, nil],[nil, nil, nil],[nil, nil, nil]]
   end
 
   def cards
@@ -57,8 +47,12 @@ class FormulasController < ApplicationController
   # GET /formulas/1
   # GET /formulas/1.xml
   def show
-
     @formula = Formula.search(params[:id], :first)
+    if (@taglist = params[:tags]).nil?
+      @next = Formula.next_from(@formula)[0]
+    else
+      @next = Formula.next_from(@formula).tagged_with(@taglist.to_list)[0]
+    end
 
     respond_to do |format|
       format.html # show.html.erb
@@ -102,7 +96,7 @@ class FormulasController < ApplicationController
     Formula.transaction do
       respond_to do |format|
         begin
-          @formula = Formula.search(params[:id], :first)
+          @formula = Formula.find(params[:id])
           @formula.update_attributes(params[:formula])
           flash[:notice] = 'Formula was successfully updated.'
           format.html { redirect_to(@formula) }
@@ -115,23 +109,12 @@ class FormulasController < ApplicationController
     end
   end
 
-  def add_dui_yao
-    @formula_dui_yao = FormulaDuiYao.new
-    @formula_dui_yao.formula_id = params[:formula_id]
-    @formula_dui_yao.dui_yao = DuiYao.find_or_create_by_herbs_pinyin(params[:formula_dui_yao][:herb1_pinyin], params[:formula_dui_yao][:herb2_pinyin])
-    @formula_dui_yao.commentary = params[:formula_dui_yao][:commentary]
-    respond_to do |format|
-      if @formula.save
-        flash[:notice] = 'Dui Yao was successfully added.'
-        format.html { redirect_to(@formula) }
-        format.xml  { render :xml => @formula, :status => :created, :location => @formula }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @formula.errors, :status => :unprocessable_entity }
-      end
+  def sort
+    params[:formula_herb_children].each_with_index do |id, index|
+      FormulaHerb.update_all(['position=?', index+1], ['id=?', id])
     end
+    render :nothing => true
   end
-
 
   # DELETE /formulas/1
   # DELETE /formulas/1.xml

@@ -28,9 +28,11 @@
 %h2
   Ingredients
 = add_child_link 'Add an Herb', 'formula_herb', f
-#formula_herb_children
+%ul#formula_herb_children
   = f.fields_for :formula_herbs do |formula_herb_form|
     = render :partial => 'formula_herb', :locals => { :f => formula_herb_form }
+
+= sortable_element "formula_herb_children", :url => sort_formulas_path
 %hr
 %h2 Source
 %table

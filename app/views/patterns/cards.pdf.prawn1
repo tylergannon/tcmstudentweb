@@ -1,0 +1,7 @@
+- title "Editing #{@pattern.name}"
+= form_for @pattern do |f|
+  = render :partial => "form", :locals => {:f => f}
+  %p= f.submit 'Update'
+
+= link_to('Show', @pattern) + "|" + link_to('Back to Patterns index', patterns_path)
+
