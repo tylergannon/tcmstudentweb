@@ -22,6 +22,12 @@ TcmStudentWeb::Application.routes.draw do
       post :sort
     end
   end
+  resources :pattern_symptoms do
+    collection do
+      post :sort
+    end
+  end
+
   resources :formula_categories do
     collection do
       post :sortformula

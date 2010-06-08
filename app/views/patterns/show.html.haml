@@ -3,7 +3,7 @@
 %h2 Signs and Symptoms
 Keys: #{@pattern.pattern_symptoms.select{|x| x.key_symptom}.map{|y| y.symptom_name}.join(", ")}
 
-%ul
+%ul#formula_symptoms
   - @pattern.pattern_symptoms.each do |s|
     - l = link_to s.symptom_name, s.symptom
     %li
@@ -19,6 +19,8 @@ Keys: #{@pattern.pattern_symptoms.select{|x| x.key_symptom}.map{|y| y.symptom_na
             :tcmtextile
               #{s.commentary}
 
+- if can? :update, @pattern
+  = sortable_element "formula_symptoms", :url => sort_pattern_symptoms_path
 
 %h2 Treatment Principles
 %ul
@@ -54,3 +56,4 @@ Keys: #{@pattern.pattern_symptoms.select{|x| x.key_symptom}.map{|y| y.symptom_na
 
 - if can? :update, @pattern
   = link_to 'Edit', edit_pattern_path(@pattern)
+
