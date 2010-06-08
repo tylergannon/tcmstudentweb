@@ -15,18 +15,18 @@ class PatternsController < ApplicationController
   end
 
   def cards
-    @patterns = Pattern.tagged_with(params[:tags].to_list)
+    @patterns = params.has_key?(:tags) ? Pattern.tagged_with(params[:tags].to_list) : Pattern.all
     @q = []
     @a = []
 
     while @patterns.size > 0
       newq=page
       newa=page
-      (0..3).each do |r|
-        (0..2).each do |c|
+      (0..2).each do |r|
+        (0..1).each do |c|
           if !(p = @patterns.shift).nil?
             newq[r][c] = p
-            newa[r][2-c] = p
+            newa[r][1-c] = p
           end
         end
       end
