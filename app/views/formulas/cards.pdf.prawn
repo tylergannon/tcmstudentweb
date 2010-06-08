@@ -37,11 +37,11 @@ while !(qpage = @q.shift).nil?
         :height => title_ht, :align => :center
     end
 
-    pdf.bounding_box [margin,pdf.bounds.height-7.mm], :width => herbs_width, :height => pdf.bounds.height-title_full_ht do
+    pdf.bounding_box [margin,pdf.bounds.height-10.mm], :width => herbs_width, :height => pdf.bounds.height-title_full_ht do
       Formula::ROLES.each do |role|
         f_herbs = f.formula_herbs.select{|fh| fh.formula_role.pinyin == role}
         f_herbs.each do |f_herb|
-          pdf.text f_herb.herb.canonical, :size => 10, :style => ((f_herb.formula_role.id==1)&&f.chief_herbs) ? :bold : :normal
+          pdf.text f_herb.herb.canonical, :size => 9, :style => ((f_herb.formula_role.id==1)&&f.chief_herbs) ? :bold : :normal
         end
       end
     end
