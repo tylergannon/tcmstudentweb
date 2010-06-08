@@ -1,7 +1,5 @@
 module ActiveRecord
   class Base
-    scope :bensky, lambda {joins(:citation).where("citations.textbook_id = 2")}
-    scope :gio, lambda {joins(:citation).where("citations.textbook_id = 20")}
     def =~ (other)
       if other.nil? || (other.class != self.class)
         false

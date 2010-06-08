@@ -1,4 +1,6 @@
 class FormulaPattern < ActiveRecord::Base
+  scope :bensky, lambda {joins(:citation).where("citations.textbook_id = 2")}
+  scope :gio, lambda {joins(:citation).where("citations.textbook_id = 20")}
   belongs_to :formula
   accepts_nested_attributes_for :formula, :allow_destroy => false, :reject_if => proc {|a| a['pinyin'].blank?}
   belongs_to :pattern
