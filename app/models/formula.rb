@@ -1,5 +1,7 @@
 class Formula < ActiveRecord::Base
   acts_as_taggable
+  acts_as_cited
+
   acts_as_taggable_on :formula_categories
 
   default_scope :order => 'canonical'

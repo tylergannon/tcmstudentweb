@@ -1,6 +1,7 @@
 class Herb < ActiveRecord::Base
   default_scope :order => 'canonical'
-  acts_as_taggable_on :flavors, :channels
+  acts_as_cited
+  acts_as_taggable_on :flavors, :channels, :categories
 
   validates_uniqueness_of :pinyin, :canonical
   def key_attributes

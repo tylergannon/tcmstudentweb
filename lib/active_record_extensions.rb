@@ -1,5 +1,18 @@
 module ActiveRecord
   class Base
+    def self.acts_as_cited
+      class_eval do
+        scope :bensky, lambda {joins(:citation).where("citations.textbook_id = 2")}
+        scope :gio, lambda {joins(:citation).where("citations.textbook_id = 20")}
+        scope :text, lambda { |name|
+          tb = Textbook.where("textbooks.abbrev = '#{name}'")
+          joins(:citation).where("citations.textbook_id = #{tb[0].id}") unless tb.size==0
+        }
+        scope :named, lambda {|name|
+          where(condition("= '#{name}'"))
+        }
+      end
+    end
     def =~ (other)
       if other.nil? || (other.class != self.class)
         false
