@@ -2,6 +2,9 @@
 # Likewise, all the methods added will be available for all controllers.
 
 class ApplicationController < ActionController::Base
+  USER_NAME, PASSWORD = "tyler", "mr.c00l"
+
+  before_filter :authenticate
   include Authentication
   helper :all
   protect_from_forgery
@@ -24,6 +27,11 @@ class ApplicationController < ActionController::Base
   end
 
   private
+    def authenticate
+      authenticate_or_request_with_http_basic do |user_name, password|
+        user_name == USER_NAME && password == PASSWORD
+      end
+    end
     def current_user_session
       return @current_user_session if defined?(@current_user_session)
       @current_user_session = UserSession.find
