@@ -34,13 +34,14 @@
 %h3
   Therapeutic Functions
 %ul
-  - @herb.herb_therapeutic_functions.each do |herb_therapeutic_function|
-    %li= h herb_therapeutic_function.therapeutic_function_name
-      - unless herb_therapeutic_function.discussion.commentary.empty?
+  - @herb.herb_therapeutic_functions.each do |htf|
+    %li
+      = h htf.therapeutic_function_name
+      - unless htf.discussion.commentary.empty?
         %ul
           %li
             :tcmtextile
-              #{herb_therapeutic_function.commentary}
+              #{htf.commentary}
 
 %p
   %b
