@@ -37,7 +37,7 @@
   - @herb.herb_therapeutic_functions.each do |htf|
     %li
       = h htf.therapeutic_function_name
-      - unless htf.discussion.commentary.empty?
+      - unless htf.commentary.empty?
         %ul
           %li
             :tcmtextile
