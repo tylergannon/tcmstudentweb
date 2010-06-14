@@ -36,11 +36,17 @@
 %ul
   - @herb.herb_therapeutic_functions.each do |herb_therapeutic_function|
     %li= h herb_therapeutic_function.therapeutic_function_name
+      - unless herb_therapeutic_function.discussion.commentary.empty?
+        %ul
+          %li
+            :tcmtextile
+              #{herb_therapeutic_function.commentary}
 
 %p
   %b
     Commentary:
-  = h @herb.commentary
+    :tcmtextile
+      #{@herb.commentary}
 %p
   %b
     Contraindications:
