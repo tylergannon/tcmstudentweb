@@ -4,6 +4,14 @@ module ApplicationHelper
     RedCloth.new(str).to_html unless str.nil?
   end
 
+  def short_citation(cit)
+    if cit.nil? || cit.textbook.nil?
+      nil
+    else
+      cit.textbook.abbrev ||= cit.textbook.title
+    end
+  end
+
   def tfwac(f, field, url)
     f.text_field_with_auto_complete field, {}, { :url => url, :method => :get, :skip_style => true,	:with => "'search='+element.value" }
   end
@@ -81,3 +89,4 @@ module ApplicationHelper
     form.object_name.gsub(/\[/, "_").gsub(/\]/, "") + "_" + field.to_s.underscore
   end
 end
+
