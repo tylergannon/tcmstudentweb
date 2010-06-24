@@ -1,6 +1,8 @@
 class Pattern < ActiveRecord::Base
   acts_as_taggable
   acts_as_cited
+  default_scope :order => 'id'
+
   has_many :pattern_treatment_principles
   accepts_nested_attributes_for :pattern_treatment_principles, :allow_destroy => true, \
     :reject_if => proc {|a| a['treatment_principle_name'].blank?}
