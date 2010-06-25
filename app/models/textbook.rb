@@ -2,6 +2,12 @@ class Textbook < ActiveRecord::Base
   belongs_to :author
   accepts_nested_attributes_for :author, :allow_destroy => false, :reject_if => proc {|a| a['name'].blank?}
 
+  scope :textbook_search, lambda {|name|
+    name.downcase!
+    joins(:author).where("lower(textbooks.abbrev) like '%#{name}%'
+      or lower(textbooks.title) like '%#{name}%'
+      or lower(authors.name) like '%#{name}'")
+  }
 
   def author_name
     self.author.name if self.author

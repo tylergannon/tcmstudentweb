@@ -1,5 +1,5 @@
 class PointPrescription < ActiveRecord::Base
-  has_many :pp_acu_points, :class_name => "PointPrescriptionAcuPoint"
+  has_many :pp_acu_points, :class_name => "PointPrescriptionAcuPoint", :dependent => :delete_all
   accepts_nested_attributes_for :pp_acu_points, :allow_destroy => true, :reject_if => proc {|a| a['acu_point'].nil?}
 
   has_many :acu_points, :through => :pp_acu_points
@@ -19,3 +19,4 @@ class PointPrescription < ActiveRecord::Base
     FormParser.merge(self.pp_acu_points, new_ps)
   end
 end
+
