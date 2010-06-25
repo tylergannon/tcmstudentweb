@@ -2,10 +2,7 @@ class TextbooksController < ApplicationController
   # GET /textbooks
   # GET /textbooks.xml
   def index
-    search_param = "%#{params[:search]}%"
-    @textbooks = Textbook.find(:all, :joins => 'LEFT OUTER JOIN authors ON authors.id = textbooks.author_id',
-                               :conditions => ["title LIKE ? OR authors.name LIKE ?",
-                                               search_param, search_param])
+    @textbooks = Textbook.textbook_search(params[:search])
     respond_to do |format|
       format.html # index.html.erb
       format.js
@@ -86,3 +83,4 @@ class TextbooksController < ApplicationController
     end
   end
 end
+
