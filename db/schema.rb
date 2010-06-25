@@ -9,7 +9,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100607185254) do
+ActiveRecord::Schema.define(:version => 20100625174534) do
+
+  create_table "acu_point_categories", :force => true do |t|
+    t.integer  "acu_point_id"
+    t.integer  "category_id"
+    t.integer  "position"
+    t.text     "commentary"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "acu_point_infos", :force => true do |t|
     t.integer  "acu_point_id"
@@ -60,6 +69,12 @@ ActiveRecord::Schema.define(:version => 20100607185254) do
   end
 
   create_table "authors", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "categories", :force => true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
