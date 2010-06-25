@@ -71,7 +71,7 @@ module ApplicationHelper
   def show_citation(citation, short = false)
     return if citation.nil?
     if short
-      "(#{citation.textbook.abbreviation})"
+      "(#{citation.textbook.abbrev})"
     else
       render :partial => 'citations/show', :locals => {:citation => citation} unless citation.nil?
     end
