@@ -4,9 +4,9 @@ class Textbook < ActiveRecord::Base
 
   scope :textbook_search, lambda {|name|
     name.downcase!
-    joins(:author).where("lower(textbooks.abbrev) like '%#{name}%'
+    includes(:author).where("lower(textbooks.abbrev) like '%#{name}%'
       or lower(textbooks.title) like '%#{name}%'
-      or lower(authors.name) like '%#{name}'")
+      or lower(authors.name) like '%#{name}%'")
   }
 
   def author_name
