@@ -1,7 +1,11 @@
 - title @acu_point.display_name
 %h2 #{@acu_point.pinyin} // #{@acu_point.chinese}
+%br/
 %h3 Point Categories:
-!= tag_list @acu_point.point_categories
+%ul
+  - @acu_point.acu_point_categories.each do |cat|
+    %li= "#{cat.category_name} (#{cat.commentary})"
+
 - @acu_point.acu_point_infos.each do |acu_point_info|
   %h2 Source: #{acu_point_info.citation.textbook_title}
   English Translation: #{acu_point_info.english}
@@ -29,3 +33,4 @@
 
 
 #{link_to 'Edit', edit_acu_point_path(@acu_point)} | #{link_to 'Back', acu_points_path}
+

@@ -7,6 +7,9 @@ class AcuPoint < ActiveRecord::Base
   acts_as_taggable
   acts_as_taggable_on :point_categories
 
+  has_many :acu_point_categories, :dependent => :destroy, :autosave => true
+  has_many :categories, :through => :acu_point_categories
+
   def self.search(str)
     str.strip!
     if /^\d+$/.match(str)
@@ -30,6 +33,15 @@ class AcuPoint < ActiveRecord::Base
   def pinyin=(p)
     super(p)
     self.canonical = p.normalize.titleize
+  end
+
+  def acu_point_categories_text=(text)
+    new_ps = FormParser.parse_categories(text, AcuPointCategory)
+    FormParser.merge(self.acu_point_categories, new_ps)
+  end
+
+  def acu_point_categories_text
+    FormParser.unparse_categories(acu_point_categories)
   end
 
   has_many :point_prescription_acu_points
@@ -67,3 +79,4 @@ class AcuPoint < ActiveRecord::Base
     end
   end
 end
+

@@ -2,6 +2,7 @@
 TcmStudentWeb::Application.routes.draw do
   resources :authors
   resources :textbooks
+  resources :categories
   resources :articles
   resources :patterns do
     collection do

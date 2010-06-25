@@ -13,3 +13,4 @@ class Citation < ActiveRecord::Base
     self.textbook = Textbook.find_or_create_by_title(title) unless title.empty?
   end
 end
+

@@ -19,9 +19,16 @@ class FormParser
     }
   end
 
+  def self.parse_categories(text, klass)
+    scan_text(text).map_with_index {|match, x|
+      klass.send(:new, :category_name => match[1].strip,
+                 :position => x,
+                 :commentary => get_commentary(match))
+    }
+  end
+
   def self.parse_point_prescription_acu_points(text)
     scan_text(text).map {|match|
-      puts match
       PointPrescriptionAcuPoint.new(:acu_point => AcuPoint.search_equals(match[1].strip), :commentary => get_commentary(match))
     }.delete_if{|v| v.acu_point.nil?}
   end
@@ -69,6 +76,14 @@ class FormParser
     text = ""
     ptp.each do |tp|
       text += "#{tp.therapeutic_function_name}" + unparse_commentary(tp)
+    end
+    text
+  end
+
+  def self.unparse_categories(apcs)
+    text = ""
+    apcs.each do |apc|
+      text += "#{apc.category_name}" + unparse_commentary(apc)
     end
     text
   end
