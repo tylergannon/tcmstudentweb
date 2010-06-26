@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100625174534) do
+ActiveRecord::Schema.define(:version => 20100626172439) do
 
   create_table "acu_point_categories", :force => true do |t|
     t.integer  "acu_point_id"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(:version => 20100625174534) do
     t.boolean  "maybe"
     t.text     "commentary"
     t.integer  "acu_point_info_id"
+    t.integer  "position"
   end
 
   create_table "acu_point_therapeutic_functions", :force => true do |t|

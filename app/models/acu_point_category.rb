@@ -10,6 +10,10 @@ class AcuPointCategory < ActiveRecord::Base
     category.name if category
   end
 
+  def key_attributes
+    ["id", "category_name","commentary", "position"]
+  end
+
   def category_name=(name)
     return if name.blank?
     self.category = Category.where("lower(name) = '#{name.downcase}'")[0]

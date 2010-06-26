@@ -13,39 +13,39 @@ class Formula < ActiveRecord::Base
   ROLES = %w[jūn chén zuǒ shǐ]
 	validates_presence_of :pinyin
   validates_uniqueness_of :pinyin, :canonical
-	has_many :formula_contraindications
+	has_many :formula_contraindications, :dependent => :destroy
 	accepts_nested_attributes_for :formula_contraindications, :allow_destroy => true, :reject_if => proc {|a| a['contraindication_name'].blank?}
 
-	has_many :formula_herbs
+	has_many :formula_herbs, :dependent => :destroy
 	def herbs
 	  formula_herbs.map{|t| t.herb}
 	end
 	accepts_nested_attributes_for :formula_herbs, :allow_destroy => true, :reject_if => proc {|a| a['herb_pinyin'].blank?}
 
-	has_many :formula_therapeutic_functions
+	has_many :formula_therapeutic_functions, :dependent => :destroy
 	accepts_nested_attributes_for :formula_therapeutic_functions, :allow_destroy => true, :reject_if => proc {|a| a['therapeutic_function_name'].blank?}
 	has_many :therapeutic_functions, :through => :formula_therapeutic_functions
 
-	has_many :formula_patterns
+	has_many :formula_patterns, :dependent => :destroy
 	def patterns
 	  formula_patterns.map{|t| t.pattern}
 	end
 
 	accepts_nested_attributes_for :formula_patterns, :allow_destroy => true
 
-	has_many :formula_dui_yaos
+	has_many :formula_dui_yaos, :dependent => :destroy
 	accepts_nested_attributes_for :formula_dui_yaos, :allow_destroy => true
 
-	has_many :formula_comparisons, :foreign_key => :formula1_id
+	has_many :formula_comparisons, :foreign_key => :formula1_id, :dependent => :destroy
 	accepts_nested_attributes_for :formula_comparisons, :allow_destroy => true, :reject_if => proc {|a| a['formula2_pinyin'].blank?}
 
-	has_many :other_formula_comparisons, :foreign_key => :formula2_id, :class_name => 'FormulaComparison'
+	has_many :other_formula_comparisons, :foreign_key => :formula2_id, :class_name => 'FormulaComparison', :dependent => :destroy
 
-  belongs_to :citation
-  accepts_nested_attributes_for :citation, :allow_destroy => false, :reject_if => proc {|a| a['textbook_title'].blank?}
+  belongs_to :citation, :dependent => :destroy
+  accepts_nested_attributes_for :citation, :allow_destroy => true, :reject_if => proc {|a| a['textbook_title'].blank?}
 
-  belongs_to :source_text_citation, :class_name => "Citation"
-  accepts_nested_attributes_for :source_text_citation, :allow_destroy => false, :reject_if => proc {|a| a['textbook_title'].blank?}
+  belongs_to :source_text_citation, :class_name => "Citation", :dependent => :destroy
+  accepts_nested_attributes_for :source_text_citation, :allow_destroy => true, :reject_if => proc {|a| a['textbook_title'].blank?}
 
 
   def all_comparisons
