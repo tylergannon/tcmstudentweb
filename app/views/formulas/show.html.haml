@@ -53,12 +53,14 @@
   = h @formula.preparation
 
 %h3 Commentary
+
 - @formula.formula_patterns.each do |formula_pattern|
   - unless formula_pattern.commentary.blank?
     .commentary
       %b= formula_pattern.pattern_name
       :tcmtextile
         #{formula_pattern.commentary}
+
 :tcmtextile
   #{@formula.commentary}
 
