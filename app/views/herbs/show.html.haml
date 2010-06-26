@@ -24,14 +24,16 @@
             #{htf.commentary}
           = hide_box_for htf
 
-%h3 Commentary:
-:tcmtextile
-  #{@herb.commentary}
+- unless @herb.commentary.empty?
+  %h3 Commentary:
+  :tcmtextile
+    #{@herb.commentary}
 
-%h3 Contraindications:
-= h @herb.contraindications
+- unless @herb.contraindications.empty?
+  %h3 Contraindications:
+  = h @herb.contraindications
 
-- if @herb.all_comparisons.size > =
+- if @herb.all_comparisons.size > 0
   %h3 Comparisons
 
 - @herb.all_comparisons.each do |herb_comparison|
