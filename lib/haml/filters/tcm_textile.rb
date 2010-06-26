@@ -18,7 +18,6 @@ module Haml::Filters::TcmTextile
           "acu_points"
         when 'h'
           klass = Herb
-          x = Herb.search_equals(link_text)
           "herbs"
         when 'p'
           klass = Pattern
@@ -32,7 +31,7 @@ module Haml::Filters::TcmTextile
       end
       x = klass.search_equals(link_text)
       link_text = x.nil? ? link_text : x.name
-      arg = x.nil? ? "new?name=#{link_text}" : x.id
+      arg = x.nil? ? "new?name=#{link_text.gsub(' ', '%20')}" : x.id
       "\"#{link_text}\":/#{controller}/#{arg}"
     }
     RedCloth.new(text).to_html
