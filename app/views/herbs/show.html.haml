@@ -1,35 +1,15 @@
 - title "#{@herb.pinyin} << #{@herb.herb_category_name}"
 %h1
-  = "#{@herb.pinyin}"
-- if @herb.herb_category
-  %p
-    %b Category: #{@herb.herb_category.name}
+  #{@herb.pinyin} #{herb.chinese}
+%h3
+  #{@herb.english}
+  #{@herb.latin}
+  #{@herb.common_name}
 
 - unless @herb.citation.nil?
   Reference: #{render :partial => 'citations/show', :locals => {:citation => @herb.citation}}
 - unless @herb.source_text_citation.nil?
   Source Text: #{render :partial => 'citations/show', :locals => {:citation => @herb.source_text_citation}}
-
-%p
-  %b
-    Pinyin:
-  = h @herb.pinyin
-%p
-  %b
-    Chinese:
-  = h @herb.chinese
-%p
-  %b
-    English:
-  = h @herb.english
-%p
-  %b
-    Latin:
-  = h @herb.latin
-%p
-  %b
-    Common Name:
-  = h @herb.common_name
 
 %h3
   Therapeutic Functions
@@ -44,15 +24,15 @@
             #{htf.commentary}
           = hide_box_for htf
 
-%p
-  %b Commentary:
-  :tcmtextile
-    #{@herb.commentary}
-%p
-  %b
-    Contraindications:
-  = h @herb.contraindications
-%h2 Comparisons
+%h3 Commentary:
+:tcmtextile
+  #{@herb.commentary}
+
+%h3 Contraindications:
+= h @herb.contraindications
+
+- if @herb.all_comparisons.size > =
+  %h3 Comparisons
 
 - @herb.all_comparisons.each do |herb_comparison|
   - if @herb.id == herb_comparison.herb1.id
@@ -71,17 +51,18 @@
     %tr
       %td= herb_comparison.herb2.display_name
       %td= herb_comparison.herb2_commentary
-%hr/
-%b Formulas:
-%ul
-  - @herb.formula_herbs.each do |fh|
-    %li
-      = link_to fh.formula.pinyin, fh.formula
-      - if fh.formula.chief_herbs
-        (#{fh.formula_role.pinyin})
-      - unless fh.commentary.empty?
-        :tcmtextile
-          #{fh.commentary}
+
+- if @herb.formula_herbs.size > 0
+  %h3 Formulas:
+  %ul
+    - @herb.formula_herbs.each do |fh|
+      %li
+        = link_to fh.formula.pinyin, fh.formula
+        - if fh.formula.chief_herbs
+          (#{fh.formula_role.pinyin})
+        - unless fh.commentary.empty?
+          :tcmtextile
+            #{fh.commentary}
 
 #{link_to 'Edit', edit_herb_path(@herb)} | #{link_to 'Back to Herbs', herbs_path} | #{link_to 'New Herb', new_herb_path}
 
