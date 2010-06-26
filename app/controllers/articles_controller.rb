@@ -55,6 +55,7 @@ class ArticlesController < ApplicationController
   # GET /articles/new.xml
   def new
     @article = Article.new
+    @article.title = params[:name]
 
     respond_to do |format|
       format.html # new.html.erb
