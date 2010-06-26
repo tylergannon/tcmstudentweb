@@ -27,7 +27,7 @@ class AcuPoint < ActiveRecord::Base
   accepts_nested_attributes_for :acu_point_infos, :allow_destroy => true
 
   def display_name
-    "#{abbrev} #{pinyin}"
+    pinyin.empty? ? abbrev : "#{abbrev} #{pinyin}"
   end
 
   def pinyin=(p)
