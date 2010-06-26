@@ -43,6 +43,9 @@ class AcuPoint < ActiveRecord::Base
   def acu_point_categories_text
     FormParser.unparse_categories(acu_point_categories)
   end
+  def name
+    display_name
+  end
 
   has_many :point_prescription_acu_points
   has_many :point_prescriptions, :through => :point_prescription_acu_points

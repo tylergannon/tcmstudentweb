@@ -28,7 +28,9 @@ class Herb < ActiveRecord::Base
   belongs_to :source_text_citation, :class_name => "Citation"
   accepts_nested_attributes_for :source_text_citation, :allow_destroy => true, :reject_if => proc {|a| a['textbook_title'].blank?}
 
-
+  def name
+    pinyin
+  end
   def pinyin=(p)
     super(p)
     self.canonical = p.normalize.titleize unless p.nil?

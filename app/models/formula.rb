@@ -77,6 +77,9 @@ class Formula < ActiveRecord::Base
   def symptoms
     formula_symptoms.collect{|n| n.symptom_name}
   end
+  def name
+    pinyin
+  end
 
   def pinyin=(p)
     super(p)
