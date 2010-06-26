@@ -32,7 +32,8 @@ module Haml::Filters::TcmTextile
       end
       x = klass.search_equals(link_text)
       link_text = x.nil? ? link_text : x.name
-      "\"#{link_text}\":/#{controller}/#{x.nil? ? "new?name=#{link_text} : x.id}"
+      arg = x.nil? ? "new?name=#{link_text}" : x.id
+      "\"#{link_text}\":/#{controller}/#{arg}"
     }
     RedCloth.new(text).to_html
 
