@@ -1,11 +1,14 @@
 - title "#{@herb.pinyin} << #{@herb.herb_category_name}"
 %h1
   #{@herb.pinyin} #{@herb.chinese}
+%br/
 %h3
   #{@herb.english}
+  %br/
   #{@herb.latin}
+  %br/
   #{@herb.common_name}
-
+%br/
 - unless @herb.citation.nil?
   Reference: #{render :partial => 'citations/show', :locals => {:citation => @herb.citation}}
 - unless @herb.source_text_citation.nil?
