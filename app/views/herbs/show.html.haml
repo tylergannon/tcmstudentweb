@@ -36,12 +36,13 @@
 %ul
   - @herb.herb_therapeutic_functions.each do |htf|
     %li
-      = h htf.therapeutic_function_name
+      %b= h htf.therapeutic_function_name
       - unless htf.commentary.empty?
-        %ul
-          %li
-            :tcmtextile
-              #{htf.commentary}
+        = show_box_for htf, :link_name => "Details"
+        = detail_box_for htf do
+          :tcmtextile
+            #{htf.commentary}
+          = hide_box_for htf
 
 %p
   %b
@@ -53,6 +54,7 @@
     Contraindications:
   = h @herb.contraindications
 %h2 Comparisons
+
 - @herb.all_comparisons.each do |herb_comparison|
   - if @herb.id == herb_comparison.herb1.id
     - other_herb = herb_comparison.herb2
@@ -70,8 +72,17 @@
     %tr
       %td= herb_comparison.herb2.display_name
       %td= herb_comparison.herb2_commentary
-
+%hr/
 %b Formulas:
-!= @herb.formulas.map{|f| link_to f.pinyin, f}.join(", ")
+%ul
+  - @herb.formula_herbs.each do |fh|
+    %li
+      = link_to fh.formula.pinyin, fh.formula
+      - if fh.formula.chief_herbs
+        (#{fh.formula_role.pinyin})
+      - unless fh.commentary.empty?
+        :tcmtextile
+          #{fh.commentary}
+
 #{link_to 'Edit', edit_herb_path(@herb)} | #{link_to 'Back to Herbs', herbs_path} | #{link_to 'New Herb', new_herb_path}
 

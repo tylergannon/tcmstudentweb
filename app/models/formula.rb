@@ -78,14 +78,6 @@ class Formula < ActiveRecord::Base
     formula_symptoms.collect{|n| n.symptom_name}
   end
 
-  def symptoms_text
-
-  end
-
-  def symptoms_text=(text)
-
-  end
-
   def pinyin=(p)
     super(p)
     self.canonical = p.normalize.titleize

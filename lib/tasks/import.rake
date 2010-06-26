@@ -5,6 +5,59 @@ namespace :import do
       import_formula fn[0], fn[1], fn[2], fn[3]
     end
   end
+  DIRECTORY = "/home/tyler/Dropbox/Documents/Projects/tcm_student_web/Herbs"
+  task :herb_functions => :environment do
+    require 'yaml'
+
+    dir = Dir.open("#{DIRECTORY}")
+    dir.entries.select{|t| t.index("yml") && !t.index("pages")}.each do |file|
+      data = YAML::load_file("#{DIRECTORY}/#{file.to_s}")
+      herb = Herb.search_equals(data[:canonical])
+      if herb.nil?
+        puts "unable to find #{data[:canonical]}"
+      else
+        herb.commentary = data[:discussion]
+        if data[:bensky].to_i > 0
+          if herb.citation.nil?
+            herb.citation = Citation.new(:textbook_id =>41, :where => data[:bensky])
+          else
+            herb.citation.where = data[:bensky]
+          end
+        end
+        if data[:functions].size > 0
+          herb.herb_therapeutic_functions.each {|tf| tf.destroy}
+          data[:functions].each do |f|
+            herb.herb_therapeutic_functions << HerbTherapeuticFunction.create(:therapeutic_function_name => f[:function], :commentary => f[:discussion], :herb_id => herb.id)
+          end
+        end
+        herb.save
+      end
+    end
+  end
+
+  task :get_herb_functions => :environment do
+    require 'yaml'
+
+    dir = Dir.open("#{DIRECTORY}")
+    dir.entries.select{|t| t.index("yml") && !t.index("pages")}.each do |file|
+      data = YAML::load_file("#{DIRECTORY}/#{file.to_s}")
+      herb = Herb.search_equals(data[:canonical])
+      if herb.nil?
+        puts "unable to find #{data[:canonical]}"
+      else
+        data[:discussion] = herb.commentary.strip unless herb.commentary.nil?
+        data[:bensky] = herb.citation.where unless herb.citation.nil?
+        if herb.citation.nil?
+          puts "#{herb.pinyin} has no citation."
+        end
+        data[:functions] = []
+        herb.herb_therapeutic_functions.order(:id).each do |htf|
+          data[:functions] << {:function => htf.therapeutic_function_name, :discussion => htf.commentary}
+        end
+        File.open("#{DIRECTORY}/#{file.to_s}", "w"){|t| t.write(data.to_yaml)}
+      end
+    end
+  end
 
   task :herbs => :environment do
     require 'rubygems'
