@@ -14,5 +14,12 @@ module PatternsHelper
     s
   end
 
-
+  def my_title(pattern)
+    if pattern.citation = cit
+      "#{pattern.name} (#{cit.textbook.abbrev}, #{cit.where})"
+    else
+      pattern.name
+    end
+  end
 end
+

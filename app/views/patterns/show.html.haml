@@ -1,4 +1,4 @@
-- title @pattern.name
+- title my_title(@pattern)
 
 %h2 Signs and Symptoms
 Keys: #{@pattern.pattern_symptoms.select{|x| x.key_symptom}.map{|y| y.symptom_name}.join(", ")}
