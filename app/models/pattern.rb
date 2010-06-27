@@ -3,10 +3,10 @@ class Pattern < ActiveRecord::Base
   acts_as_cited
   default_scope :order => 'id'
 
-  has_many :pattern_treatment_principles
+  has_many :pattern_treatment_principles, :dependent => :destroy
   accepts_nested_attributes_for :pattern_treatment_principles, :allow_destroy => true, \
     :reject_if => proc {|a| a['treatment_principle_name'].blank?}
-  has_many :pattern_symptoms
+  has_many :pattern_symptoms, :dependent => :destroy
 
   def symptoms
     pattern_symptoms.map{|t| t.symptom}
@@ -16,15 +16,15 @@ class Pattern < ActiveRecord::Base
     :reject_if => proc {|a| a['symptom_name'].blank?}
 
   has_many :point_prescriptions
-  accepts_nested_attributes_for :point_prescriptions, :allow_destroy => false
+  accepts_nested_attributes_for :point_prescriptions, :allow_destroy => true
 
-  has_many :formula_patterns
+  has_many :formula_patterns, :dependent => :destroy
   def formulas
     formula_patterns.map{|t| t.formula}
   end
   accepts_nested_attributes_for :formula_patterns, :allow_destroy => true, :reject_if => proc {|a| a['formula_pinyin'].blank?}
 
-  belongs_to :citation
+  belongs_to :citation, :dependent => :destroy
   accepts_nested_attributes_for :citation, :allow_destroy => true, :reject_if => proc {|a| a['textbook_title'].blank?}
 
   def pattern_formulas
@@ -40,21 +40,8 @@ class Pattern < ActiveRecord::Base
   end
 
   def pattern_symptoms_text=(text)
-    puts "I AM Pattern #{self.name}"
-    puts "I am #{self.new_record? ? '' : 'not'} a new record."
-    puts "I just got handed this:"
-    puts text
-    puts
-    puts "I already have these PS's."
-    puts self.pattern_symptoms.inspect
-    puts
-    puts"And these are the new ones:"
     new_ps = FormParser.parse_symptoms(text, PatternSymptom)
-    puts new_ps.inspect
     FormParser.merge(self.pattern_symptoms, new_ps)
-    puts
-    puts "My new ps's are:"
-    puts self.pattern_symptoms.inspect
   end
 
   def pattern_treatment_principles_text

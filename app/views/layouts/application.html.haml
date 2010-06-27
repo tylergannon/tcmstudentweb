@@ -11,11 +11,6 @@
   %body
     #container
       #containerPad
-        -#
-          #topLinks
-            %a{'href' => 'index.html'} Link 1
-            |
-            %a{'href' => 'index.html'} Link 1
         #header
           .headLeft
           .headMiddle
@@ -29,45 +24,13 @@
           .headRight
           #navigation
             .naviLeft
-            .link= link_to 'Herb Categories',herb_categories_path
+            .link= link_to 'New Article','/article/new'
+            .link= link_to 'Study Guide','/articles/15'
             .link= link_to 'Herbs', herbs_path
             .link= link_to 'Formulas', '/articles/1'
-            .link= link_to 'AcuPoints', acu_points_path
-            .link= link_to 'Functions', therapeutic_functions_path
-            .link= link_to 'Patterns', patterns_path
+            .link= link_to 'New Formula', '/formulas/new'
+            .link= link_to 'New Pattern','/patterns/new'
 
-
-        #sidebar
-          .top Herb Of The Day
-          .middle
-            .center
-              %a{'href' => '#'}
-                %img{'src' => '/images/bupleurum.jpg'}
-              %br/
-              %span.subtitle Chai Hu - Bupleurum
-          .bottom
-          -#
-            %h1 Links
-            .divider
-            .link
-              a{'href' => '#'} Link 1
-          .top 4. M&ecirc;ng
-          .middle
-            %p
-              %b Youthful Folly
-              %img{'src' => '/images/hexagram_4.gif', 'border' => '0', 'align' => 'left'}/
-              above K&ecirc;n    Keeping Still, Mountain<BR>           below     K'an   The Abysmal, Water
-
-            :tcmtextile
-              *The Judgement*
-              Youthful Folly has success.
-              It is not I who seek the young fool;
-              The young fool seeks me.
-              At the first oracle I inform him.
-              If he asks two or three times, it is importunity.
-              If he importunes, I give him no information.
-              Perseverance furthers.
-          .bottom
         #content
           .top
             .topLeft
@@ -93,3 +56,4 @@
         #footerBottom
           .left
           .right
+
