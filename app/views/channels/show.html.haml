@@ -4,6 +4,7 @@
   - info = p.acu_point_infos.from_text("ellis")[0]
   - info = info ||= AcuPointInfo.new
   %h2= link_to p.display_name, p
+  = link_to "Edit", edit_acu_point_path(p)
   %br/
   - unless info.location.empty?
     :tcmtextile
