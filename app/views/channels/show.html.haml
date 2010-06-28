@@ -1,0 +1,21 @@
+- title "Showing points on the #{@channel.name} channel."
+
+- @acu_points.each do |p|
+  - info = p.acu_point_infos.from_text("ellis")[0]
+  - info = info ||= AcuPointInfo.new
+  %h2= link_to p.display_name, p
+  %br/
+  - unless info.location.empty?
+    :tcmtextile
+      h3. Location
+     
+      #{info.location}
+
+  - info.acu_point_therapeutic_functions.each do |t|
+    = t.therapeutic_function_name
+    %br/
+  != info.acu_point_symptoms.map{|t| link_to t.symptom_name, t.symptom}.join(", ")
+  %br/
+  %br/
+  %hr/
+  %br/

@@ -1,6 +1,5 @@
 class Channel < ActiveRecord::Base
-	has_many :herbs
-
+  has_many :acu_points
   ABBREVS = {"lu" => 1,
               "lung" => 1,
               "l" => 1,

@@ -9,7 +9,7 @@ class AcuPointInfo < ActiveRecord::Base
   accepts_nested_attributes_for :citation, :allow_destroy => true, :reject_if => proc {|a| a['textbook_title'].blank?}
 
   belongs_to :acu_point
-
+  acts_as_cited
   def acu_point_symptoms_text
     FormParser.unparse_symptoms(acu_point_symptoms)
   end

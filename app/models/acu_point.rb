@@ -6,6 +6,9 @@ class AcuPoint < ActiveRecord::Base
   belongs_to :channel
   acts_as_taggable
   acts_as_taggable_on :point_categories
+  
+  default_scope order(:ordinal)
+  acts_as_cited
 
   has_many :acu_point_categories, :dependent => :destroy, :autosave => true
   has_many :categories, :through => :acu_point_categories
