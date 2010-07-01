@@ -9,6 +9,10 @@ class Formula < ActiveRecord::Base
   scope :next_from, lambda {|formula|
     where("formulas.id > #{formula.id}").order("formulas.id").limit(1)
   }
+  
+  def search(str)
+    where(condition("ilike '%#{str}%'")).order("char_length(canonical)")
+  end
 
   ROLES = %w[jūn chén zuǒ shǐ]
 	validates_presence_of :pinyin

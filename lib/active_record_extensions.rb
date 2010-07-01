@@ -108,10 +108,9 @@ module ActiveRecord
     end
 
 
-    private
-      def self.condition(cond)
-         search_columns.map{|c| "trim(lower(#{c})) #{cond}"}.join(" or ")
-      end
+    def self.condition(cond)
+       search_columns.map{|c| "trim(lower(#{c})) #{cond}"}.join(" or ")
+    end
   end
 end
 
