@@ -20,7 +20,7 @@ module ActiveRecord
     
     def self.lookup(params)
       str = params[:id]
-      if str.match(/\w/)
+      if str.match(/\D/)
         named(str)
       else
         find(str)
