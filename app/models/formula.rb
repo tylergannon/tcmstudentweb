@@ -4,8 +4,6 @@ class Formula < ActiveRecord::Base
 
   acts_as_taggable_on :formula_categories
 
-  default_scope :order => 'canonical'
-
   scope :next_from, lambda {|formula|
     where("formulas.id > #{formula.id}").order("formulas.id").limit(1)
   }
