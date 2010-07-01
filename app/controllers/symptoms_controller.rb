@@ -1,19 +1,19 @@
 class SymptomsController < ApplicationController
+  respond_to :html, :js
   def index
     @symptoms = Symptom.search(params[:search])
-    respond_to do |format|
-    	format.html # index.html.erb
-    	format.js   # index.js.erb
-    	format.xml  { render :xml => @patterns }
-    end
+    respond_with @symptoms
+
   end
 
   def show
     @symptom = Symptom.find(params[:id])
+    respond_with @symptom
   end
 
   def new
     @symptom = Symptom.new
+    respond_with @symptom
   end
 
   def create
@@ -28,6 +28,7 @@ class SymptomsController < ApplicationController
 
   def edit
     @symptom = Symptom.find(params[:id])
+    respond_with @symptom
   end
 
   def update

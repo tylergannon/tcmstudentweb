@@ -1,4 +1,5 @@
 %ul
-  - @symptoms.each do |s|
+  - @symptoms.where("name not like 'Tongue%'").where("name not like 'Pulse%'").order("char_length(name)").limit(10) do |s|
     %li><
       = s.name
+
