@@ -38,7 +38,7 @@ class PatternsController < ApplicationController
   # GET /patterns/1
   # GET /patterns/1.xml
   def show
-    @pattern = Pattern.named(params[:id])
+    @pattern = Pattern.lookup(params)
 
     respond_to do |format|
       format.html # show.html.erb
@@ -59,7 +59,7 @@ class PatternsController < ApplicationController
 
   # GET /patterns/1/edit
   def edit
-    @pattern = Pattern.find(params[:id])
+    @pattern = Pattern.lookup(params)
   end
 
   # POST /patterns
