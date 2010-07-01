@@ -1,5 +1,5 @@
 %ul
-  - @symptoms.limit(5).each do |s|
+  - @symptoms.order("char_length(name)").limit(5).each do |s|
     %li><
       = s.name
 
