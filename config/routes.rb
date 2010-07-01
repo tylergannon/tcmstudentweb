@@ -59,6 +59,9 @@ TcmStudentWeb::Application.routes.draw do
   match '/' => 'formulas#index'
   match ':controller/category/:category_id' => '#categoryindex'
   match ':controller/t/:tag_name' => '#index'
-  match '/:controller(/:action(/:id))'
+  match '/:controller/:name(/:action)', :constraints => {:name => /[\w _-]+/ }
+  match '/:controller/:id(/:action)', :constraints => {:id => /\d+/}
+  
+#  match '/:controller(/:action(/:id))'
 end
 

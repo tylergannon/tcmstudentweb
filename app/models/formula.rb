@@ -7,11 +7,10 @@ class Formula < ActiveRecord::Base
   scope :next_from, lambda {|formula|
     where("formulas.id > #{formula.id}").order("formulas.id").limit(1)
   }
+  scope :search, lambda{|str|
+    like_condition(str).order("char_length(canonical)")
+  }
   
-  def self.search(str)
-    where(condition("ilike '%#{str}%'")).order("char_length(canonical)")
-  end
-
   ROLES = %w[jūn chén zuǒ shǐ]
 	validates_presence_of :pinyin
   validates_uniqueness_of :pinyin, :canonical

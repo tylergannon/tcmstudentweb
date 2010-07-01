@@ -29,7 +29,7 @@ module Haml::Filters::TcmTextile
           klass = Article
           "articles"
       end
-      x = klass.search_equals(link_text)
+      x = klass.named(link_text)
       link_text = x.nil? ? link_text : x.name
       arg = x.nil? ? "new?name=#{link_text.titleize.gsub(' ', '%20')}" : x.id
       "\"#{link_text}\":/#{controller}/#{arg}"

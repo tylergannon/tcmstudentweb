@@ -1,6 +1,6 @@
 
 def import_formula(p, ch, cat, eng)
-  f = Formula.search_equals(p)
+  f = Formula.named(p)
   f = Formula.new(:pinyin=>p) unless f
   f.chinese = ch
   f.formula_category_list = cat

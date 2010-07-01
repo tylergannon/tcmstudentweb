@@ -3,6 +3,10 @@ class Herb < ActiveRecord::Base
   acts_as_cited
   acts_as_taggable_on :flavors, :channels, :categories
 
+  scope :search, lambda{|str|
+    like_condition(str).order("char_length(canonical)")
+  }
+
   validates_uniqueness_of :pinyin, :canonical
   def key_attributes
     ["id", "pinyin", "english", "canonical", "herb_category_id", "commentary", "common_name", "short_name", "state_board", ]

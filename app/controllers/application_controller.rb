@@ -3,7 +3,7 @@
 
 class ApplicationController < ActionController::Base
   USER_NAME, PASSWORD = "tyler", "mr.c00l"
-
+  
   before_filter :authenticate
   include Authentication
   helper :all

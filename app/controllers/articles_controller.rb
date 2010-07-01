@@ -5,7 +5,7 @@ class ArticlesController < ApplicationController
     if params.has_key?(:tag_name)
       @articles = Article.tagged_with(params[:tag_name].to_list)
     else
-      @articles = Article.search(params[:search])
+      @articles = Article.lookup(params)
     end
 
     @tags = Article.tag_counts_on(:tags)
@@ -17,19 +17,19 @@ class ArticlesController < ApplicationController
   end
 
   def report
-    @article = Article.find(params[:id])
+    @article = Article.lookup(params)
     @articles, @herbs, @patterns, @symptoms = [[],[],[],[]]
 
     @article.body.scan(/"(\w):([\w\s]+)"/m).each do |match|
       case match[0]
         when 'f'
-          @articles.plus_if(Article.search_equals(match[1]))
+          @articles.plus_if(Article.named(match[1]))
         when 'h'
-          @herbs.plus_if(Herb.search_equals(match[1]))
+          @herbs.plus_if(Herb.named(match[1]))
         when 'p'
-          @patterns.plus_if(Pattern.search_equals[match[1]])
+          @patterns.plus_if(Pattern.named[match[1]])
         when 's'
-          @symptoms.plus_if(Symptom.search_equals[match[1]])
+          @symptoms.plus_if(Symptom.named[match[1]])
       end
     end
 
@@ -43,7 +43,7 @@ class ArticlesController < ApplicationController
   # GET /articles/1
   # GET /articles/1.xml
   def show
-    @article = Article.search_one(params[:id])
+    @article = Article.lookup(params)
 
     respond_to do |format|
       format.html # show.html.erb
@@ -65,7 +65,7 @@ class ArticlesController < ApplicationController
 
   # GET /articles/1/edit
   def edit
-    @article = Article.find(params[:id])
+    @article = Article.lookup(params)
   end
 
   # POST /articles
@@ -87,7 +87,7 @@ class ArticlesController < ApplicationController
   # PUT /articles/1
   # PUT /articles/1.xml
   def update
-    @article = Article.find(params[:id])
+    @article = Article.lookup(params)
 
     respond_to do |format|
       if @article.update_attributes(params[:article])
@@ -103,7 +103,7 @@ class ArticlesController < ApplicationController
   # DELETE /articles/1
   # DELETE /articles/1.xml
   def destroy
-    @article = Article.find(params[:id])
+    @article = Article.lookup(params)
     @article.destroy
 
     respond_to do |format|

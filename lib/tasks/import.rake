@@ -12,7 +12,7 @@ namespace :import do
     dir = Dir.open("#{DIRECTORY}")
     dir.entries.select{|t| t.index("yml") && !t.index("pages")}.each do |file|
       data = YAML::load_file("#{DIRECTORY}/#{file.to_s}")
-      herb = Herb.search_equals(data[:canonical])
+      herb = Herb.named(data[:canonical])
       if herb.nil?
         puts "unable to find #{data[:canonical]}"
       else
@@ -41,7 +41,7 @@ namespace :import do
     dir = Dir.open("#{DIRECTORY}")
     dir.entries.select{|t| t.index("yml") && !t.index("pages")}.each do |file|
       data = YAML::load_file("#{DIRECTORY}/#{file.to_s}")
-      herb = Herb.search_equals(data[:canonical])
+      herb = Herb.named(data[:canonical])
       if herb.nil?
         puts "unable to find #{data[:canonical]}"
       else
@@ -69,7 +69,7 @@ namespace :import do
     dir = Dir.open("lib/herb_data")
     dir.entries.select{|t| t.index("yml")}.each do |file|
       data = YAML::load_file("lib/herb_data/#{file.to_s}")
-      herb = Herb.search_equals(data[:canonical])
+      herb = Herb.named(data[:canonical])
       if herb
         puts "Found #{herb.pinyin}"
       else
@@ -101,7 +101,7 @@ namespace :import do
 #    require 'lib/tasks/scrape/scrape_formulas'
     formulas = YAML::load_file("lib/tasks/formulas.yml")
     formulas.each do |data|
-      formula = Formula.search_equals(data[:canonical])
+      formula = Formula.named(data[:canonical])
       formula = formula ||= Formula.create(:canonical => data[:canonical])
       formula.pinyin = data[:canonical] if formula.pinyin.empty?
       formula.chinese = data[:chinese]
@@ -114,7 +114,7 @@ namespace :import do
     formulas = YAML::load_file("lib/tasks/zhong.yml")
     formulas.each do |info|
       st = (info[:text] == "shang han lun" ? 5 : 2)
-      formula = Formula.search_equals(info[:formula])
+      formula = Formula.named(info[:formula])
       if formula.nil?
         puts "Creating #{info[:formula]}"
         formula = Formula.create(:pinyin => info[:formula].titleize)
@@ -132,7 +132,7 @@ namespace :import do
   task :formula_1 => :environment do
     formulas = YAML::load_file("lib/tasks/list.yml")
     formulas.each_pair do |name, page|
-      f = Formula.search_equals(name)
+      f = Formula.named(name)
       if f.nil?
         puts "Couldn't find #{name}"
       else

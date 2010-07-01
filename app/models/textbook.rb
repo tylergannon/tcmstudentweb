@@ -8,6 +8,9 @@ class Textbook < ActiveRecord::Base
       or lower(textbooks.title) like '%#{name}%'
       or lower(authors.name) like '%#{name}%'")
   }
+  scope :search, lambda{|str|
+    like_condition(str)
+  }
 
   def author_name
     self.author.name if self.author

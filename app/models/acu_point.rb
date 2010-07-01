@@ -6,7 +6,9 @@ class AcuPoint < ActiveRecord::Base
   belongs_to :channel
   acts_as_taggable
   acts_as_taggable_on :point_categories
-  
+  scope :search, lambda{|str|
+    like_condition(str)
+  }
   default_scope order(:ordinal)
   acts_as_cited
 
@@ -15,15 +17,18 @@ class AcuPoint < ActiveRecord::Base
 
   def self.search(str)
     str.strip!
+    point = nil
     if /^\d+$/.match(str)
-      find(str)
+      point = find(str)
     else
       if REGEXP_ABBREV.match(str)
-        self.find_by_abbrev(str)
+        point = self.find_by_abbrev(str)
       else
-        self.find_by_canonical(str.gsub(/[\+_-]/, " ").gsub(//, " ").downcase)
+        point = self.find_by_canonical(str.gsub(/[\+_-]/, " ").gsub(//, " ").downcase)
       end
     end
+    puts "Unable to find point \"#{str}\"" unless point
+    point
   end
 
   has_many :acu_point_infos
@@ -64,13 +69,13 @@ class AcuPoint < ActiveRecord::Base
   def self.search_columns
     ['pinyin', 'canonical']
   end
-
-  def self.search_equals(s)
-    s.strip!
-    if (a = find_by_abbrev(s))
-      a
+  
+  def self.named(str)
+    str.strip!
+    if str.match(REGEXP_ABBREV)
+      find_by_abbrev(str)
     else
-      super(s)
+      super(str)
     end
   end
 
@@ -80,7 +85,7 @@ class AcuPoint < ActiveRecord::Base
       ch = match[1].downcase
       ord = match[2]
       if Channel::ABBREVS.has_key?(ch)
-        find(:first, :conditions => ["channel_id = ? AND ordinal = ?", Channel::ABBREVS[ch], ord ])
+        find_by_channel_id_and_ordinal(Channel::ABBREVS[ch], ord)
       end
     end
   end

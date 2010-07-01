@@ -9,6 +9,13 @@ class PointPrescription < ActiveRecord::Base
 
   belongs_to :pattern
   accepts_nested_attributes_for :pattern, :allow_destroy => false, :reject_if => proc {|a| a['name'].blank?}
+  def point_prescription_acu_points
+    pp_acu_points
+  end
+  
+  def point_prescription_acu_points=(ppap)
+    pp_acu_points = pp
+  end
 
   def pp_acu_points_text
     FormParser.unparse_point_prescription_acu_points(pp_acu_points)

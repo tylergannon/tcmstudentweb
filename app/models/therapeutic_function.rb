@@ -10,8 +10,11 @@ class TherapeuticFunction < ActiveRecord::Base
   def acu_points
     acu_point_infos.map{|a| a.acu_point}
   end
+  
+  scope :search, lambda{|str|
+    like_condition(str).order("char_length(name)")
+  }
 
-  default_scope :order => 'name'
   def self.search_columns
     ["name"]
   end

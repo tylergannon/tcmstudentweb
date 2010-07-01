@@ -11,6 +11,9 @@ class Symptom < ActiveRecord::Base
     end
     a
   end
+  scope :search, lambda{|str|
+    like_condition(str)
+  }
   
   def self.consolidate!(id, condemned_id)
     symptom = find(id)

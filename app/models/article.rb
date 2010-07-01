@@ -4,6 +4,9 @@ class Article < ActiveRecord::Base
   def self.search_columns
     ["title"]
   end
+  scope :search, lambda{|str|
+    like_condition(str)
+  }
 
   def name
     title

@@ -2,6 +2,10 @@ class Pattern < ActiveRecord::Base
   acts_as_taggable
   acts_as_cited
   default_scope :order => 'id'
+  belongs_to :disease
+  scope :search, lambda{|str|
+    like_condition(str).order("char_length(name)")
+  }
 
   has_many :pattern_treatment_principles, :dependent => :destroy
   accepts_nested_attributes_for :pattern_treatment_principles, :allow_destroy => true, \

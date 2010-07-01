@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100626172439) do
+ActiveRecord::Schema.define(:version => 20100630173519) do
 
   create_table "acu_point_categories", :force => true do |t|
     t.integer  "acu_point_id"
@@ -98,6 +98,14 @@ ActiveRecord::Schema.define(:version => 20100626172439) do
 
   create_table "contraindications", :force => true do |t|
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "diseases", :force => true do |t|
+    t.string   "name"
+    t.integer  "citation_id"
+    t.text     "commentary"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -336,6 +344,7 @@ ActiveRecord::Schema.define(:version => 20100626172439) do
     t.integer  "citation_id"
     t.string   "tongue"
     t.string   "pulse"
+    t.integer  "disease_id"
   end
 
   create_table "point_prescription_acu_points", :force => true do |t|
@@ -344,6 +353,7 @@ ActiveRecord::Schema.define(:version => 20100626172439) do
     t.text     "commentary"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "reason"
   end
 
   create_table "point_prescriptions", :force => true do |t|

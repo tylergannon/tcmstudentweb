@@ -1,44 +1,25 @@
 class AcuPointsController < ApplicationController
+  respond_to :html
 
-  # GET /acu_points
-  # GET /acu_points.xml
   def index
     @acu_points = AcuPoint.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @acu_points }
-    end
+    respond_with @acu_points
   end
 
-  # GET /acu_points/1
-  # GET /acu_points/1.xml
   def show
-    @acu_point = AcuPoint.search(params[:id])
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @acu_point }
-    end
+    @acu_point = AcuPoint.lookup(params)
+    respond_with @acu_point
   end
 
-  # GET /acu_points/new
-  # GET /acu_points/new.xml
   def new
     @acu_point = AcuPoint.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @acu_point }
-    end
+    respond_with @acu_point
   end
 
-  # GET /acu_points/1/edit
   def edit
-    @acu_point = AcuPoint.search(params[:id])
+    @acu_point = AcuPoint.lookup(params)
   end
 
-  # POST /acu_points
-  # POST /acu_points.xml
   def create
     AcuPoint.transaction do
       respond_to do |format|
@@ -62,7 +43,7 @@ class AcuPointsController < ApplicationController
     AcuPoint.transaction do
       respond_to do |format|
 #        begin
-          @acu_point = AcuPoint.find(params[:id])
+          @acu_point = AcuPoint.lookup(params)
           @acu_point.update_attributes!(params[:acu_point])
           flash[:notice] = 'Acu Point was successfully updated.'
           format.html { redirect_to(@acu_point) }
@@ -79,7 +60,7 @@ class AcuPointsController < ApplicationController
   # DELETE /acu_points/1
   # DELETE /acu_points/1.xml
   def destroy
-    @acu_point = AcuPoint.find(params[:id])
+    @acu_point = AcuPoint.lookup(params)
     @acu_point.destroy
 
     respond_to do |format|

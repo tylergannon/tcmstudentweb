@@ -38,7 +38,7 @@ class PatternsController < ApplicationController
   # GET /patterns/1
   # GET /patterns/1.xml
   def show
-    @pattern = Pattern.search_one(params[:id])
+    @pattern = Pattern.named(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb

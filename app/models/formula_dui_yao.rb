@@ -6,7 +6,7 @@ class FormulaDuiYao < ActiveRecord::Base
 
 
 	def herb1_pinyin=(pinyin)
-		self.herb1 = Herb.search_equals(pinyin) unless pinyin.blank?
+		self.herb1 = Herb.named(pinyin) unless pinyin.blank?
 	end
 
 	def herb1_pinyin
@@ -14,7 +14,7 @@ class FormulaDuiYao < ActiveRecord::Base
 	end
 
   def herb2_pinyin=(pinyin)
-  	self.herb2 = Herb.search_equals(pinyin) unless pinyin.blank?
+  	self.herb2 = Herb.named(pinyin) unless pinyin.blank?
   end
 
   def herb2_pinyin

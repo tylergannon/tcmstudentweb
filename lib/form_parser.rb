@@ -29,7 +29,7 @@ class FormParser
 
   def self.parse_point_prescription_acu_points(text)
     scan_text(text).map {|match|
-      PointPrescriptionAcuPoint.new(:acu_point => AcuPoint.search_equals(match[1].strip), :commentary => get_commentary(match))
+      PointPrescriptionAcuPoint.new(:acu_point => AcuPoint.named(match[1].strip), :commentary => get_commentary(match))
     }.delete_if{|v| v.acu_point.nil?}
   end
 

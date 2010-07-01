@@ -8,9 +8,6 @@ module ActiveRecord
           tb = Textbook.where("textbooks.abbrev = '#{name}'")
           joins(:citation).where("citations.textbook_id = #{tb[0].id}") unless tb.size==0
         }
-        scope :named, lambda {|name|
-          where(condition("= '#{name}'"))
-        }
       end
     end
     def =~ (other)
@@ -18,6 +15,15 @@ module ActiveRecord
         false
       else
         other.name.downcase == name.downcase
+      end
+    end
+    
+    def self.lookup(params)
+      str = params[:id]
+      if str.match(/\w/)
+        named(str)
+      else
+        find(str)
       end
     end
 
@@ -33,56 +39,20 @@ module ActiveRecord
       self.attributes = attr
     end
 
-    def self.search(str, symbol = :all)
-      return search_one(str) if symbol == :first
+    def self.like_condition(str)
+      where(condition("ilike '%#{str}%'"))
+    end
 
-      str = str.to_s.strip.downcase
-
-      if str.empty?
-        find(:all)
-      elsif /^\d+$/.match(str)
-        find(str)
-      else
-        result = find(:all, :conditions => condition("= '#{str}'"))
-        result.extend(ArrayPlus)
-        [ find(:all, :conditions => condition("like '#{str}%'")),
-          find(:all, :conditions => condition("like '%#{str}%'"))].each do |a|
-          a.each do |b|
-            result << b unless result.include?(b)
-          end
-        end
-
-        result
-      end
+    def self.equals_condition(str)
+      where(condition("= '#{str}'"))
+    end
+    
+    def self.named(str)
+      equals_condition(str)[0]
     end
 
     def self.search_columns
       []
-    end
-
-    def self.search_one(str)
-      str = str.to_s.strip.downcase
-
-      if str.empty?
-        nil
-      elsif /^\d+$/.match(str)
-        find (str)
-      elsif a = find(:first, :conditions => condition("= '#{str}'"))
-        a
-      elsif a = find(:first, :conditions => condition("like '#{str}%'"))
-        a
-      else
-        find(:first, :conditions => condition("like '%#{str}%'"))
-      end
-    end
-
-    def self.search_equals(str)
-      str = str.to_s.strip.downcase
-      if str.empty?
-        nil
-      else
-        find(:first, :conditions => condition("= '#{str}'"))
-      end
     end
 
     def self.find_or_create(field, value)
