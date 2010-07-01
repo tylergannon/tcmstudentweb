@@ -10,7 +10,7 @@ class Formula < ActiveRecord::Base
     where("formulas.id > #{formula.id}").order("formulas.id").limit(1)
   }
   
-  def search(str)
+  def self.search(str)
     where(condition("ilike '%#{str}%'")).order("char_length(canonical)")
   end
 
