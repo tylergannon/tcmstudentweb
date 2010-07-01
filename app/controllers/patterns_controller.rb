@@ -71,7 +71,7 @@ class PatternsController < ApplicationController
           @pattern = Pattern.new(params[:pattern])
           @pattern.save!
           flash[:notice] = 'Pattern was successfully created.'
-          format.html { redirect_to(@pattern) }
+          format.html { redirect_to(new_pattern_path) }
           format.xml  { render :xml => @pattern, :status => :created, :location => @pattern }
         rescue
           format.html { render :action => "new" }
