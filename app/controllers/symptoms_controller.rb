@@ -1,9 +1,8 @@
 class SymptomsController < ApplicationController
   respond_to :html, :js
   def index
-    @symptoms = Symptom.search(params[:search])
+    @symptoms = Symptom.where("name ilike '%#{params[:search]}'")
     respond_with @symptoms
-
   end
 
   def show
