@@ -47,17 +47,13 @@ class FormulasController < ApplicationController
   # GET /formulas/1
   # GET /formulas/1.xml
   def show
-    @formula = Formula.search(params[:id], :first)
+    @formula = Formula.lookup(params)
     if (@taglist = params[:tags]).nil?
       @next = Formula.next_from(@formula)[0]
     else
       @next = Formula.next_from(@formula).tagged_with(@taglist.to_list)[0]
     end
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @formula }
-    end
+    respond_with @formula
   end
 
   # GET /formulas/new
