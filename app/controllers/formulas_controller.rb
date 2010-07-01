@@ -53,7 +53,6 @@ class FormulasController < ApplicationController
     else
       @next = Formula.next_from(@formula).tagged_with(@taglist.to_list)[0]
     end
-    respond_with @formula
   end
 
   # GET /formulas/new
