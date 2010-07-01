@@ -65,7 +65,7 @@ class FormulasController < ApplicationController
 
   # GET /formulas/1/edit
   def edit
-    @formula = Formula.search(params[:id], :first)
+    @formula = Formula.lookup(params)
     @citation = @formula.citation ||= Citation.new
     @source_text_citation = @formula.source_text_citation ||= Citation.new
   end
