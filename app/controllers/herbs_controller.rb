@@ -13,7 +13,7 @@ class HerbsController < ApplicationController
   # GET /herbs/1
   # GET /herbs/1.xml
   def show
-    @herb = Herb.search(params[:id], :first)
+    @herb = Herb.lookup(params)
 
     respond_to do |format|
       format.html # show.html.erb
@@ -34,7 +34,7 @@ class HerbsController < ApplicationController
 
   # GET /herbs/1/edit
   def edit
-    @herb = Herb.search(params[:id], :first)
+    @herb = Herb.lookup(params)
   end
 
   # POST /herbs
