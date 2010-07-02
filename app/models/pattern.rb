@@ -1,5 +1,6 @@
 class Pattern < ActiveRecord::Base
   acts_as_taggable
+  acts_as_taggable_on :disease
   acts_as_cited
   default_scope :order => 'id'
   belongs_to :disease

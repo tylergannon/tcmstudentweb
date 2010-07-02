@@ -6,6 +6,11 @@
     = f.fields_for "pattern_attributes", f.object.pattern ||= Pattern.new do |pf|
       != pf.text_field_with_auto_complete :name, {},  { :url => patterns_path(:format => :js), :method => :get, :skip_style => true, :with => "'search='+element.value" }
       = text_area_with_auto_complete pf, :pattern_symptoms_text, 'symptoms', :rows => 6, :cols => 60
+  %p
+    %b Tags
+    = tag_field(f, :tag_list)
+    %b Disease
+    = tag_field(f, :disease_list)
 
 
   %p
