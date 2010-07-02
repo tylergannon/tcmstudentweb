@@ -44,7 +44,7 @@ module ActiveRecord
     end
 
     def self.equals_condition(str)
-      where(condition("= '#{str}'"))
+      where(condition("= '#{str.downcase}'"))
     end
     
     def self.named(str)
