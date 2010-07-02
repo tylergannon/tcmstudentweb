@@ -1,5 +1,4 @@
 class Herb < ActiveRecord::Base
-  default_scope :order => 'canonical'
   acts_as_cited
   acts_as_taggable_on :flavors, :channels, :categories
 

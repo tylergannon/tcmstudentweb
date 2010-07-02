@@ -8,7 +8,7 @@ class FormulaHerb < ActiveRecord::Base
 
 	def herb_pinyin=(pinyin)
     return if pinyin.blank?
-    a = Herb.search(pinyin, :first)
+    a = Herb.named(pinyin)
     raise "Could not find herb #{pinyin}" unless a
     self.herb = a
 	end
