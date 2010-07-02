@@ -1,7 +1,7 @@
 - formula_herbs.each do |formula_herb|
   %tr
     - if formula_herb == formula_herbs[0] && show_roles
-      %td{'rowspan' => formula_herbs.size}=formula_herb.formula_role.pinyin
+      %td{'rowspan' => formula_herbs.size}= "#{formula_herb.preparation_name} #{formula_herb.formula_role.pinyin}"
     %td{'width' => '100px'}=link_to formula_herb.herb.pinyin, formula_herb.herb
     %td{'width' => '110px'}=formula_herb.herb.herb_category_name
     %td{'width' => '60px'}=formula_herb.dose

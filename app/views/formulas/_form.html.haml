@@ -21,9 +21,6 @@
 = tag_field(f, :tag_list)
 %br/
 
-%h2
-  Category
-!= f.text_field_with_auto_complete :formula_category_name, {},  { :url => formula_categories_path(:format => :js), :method => :get, :skip_style => false,  :with => "'search='+element.value" }
 %hr
 %h2
   Ingredients
