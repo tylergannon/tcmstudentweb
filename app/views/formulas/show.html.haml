@@ -8,6 +8,7 @@
       %h1!= @formula.pinyin
       %h1!= @formula.chinese if @formula.chinese
       %b "#{@formula.english}"
+      %b!= "<br/>Variant of #{link_to @formula.master_formula.pinyin, @formula.master_formula}" if @formula.master_formula
     %td
       %h3= @formula.formula_category.name if @formula.formula_category
       %br/
@@ -102,6 +103,12 @@
         %td
           :tcmtextile
             #{formula_comparison.formula2_commentary}
+
+- if @formula.variations.size > 0
+  %h3 Variations
+  %ul
+    - @formula.variations.each do |t|
+      %li= link_to t.pinyin, t
 
 - if can? :update, @formula
   = link_to 'Edit', edit_formula_path(@formula)

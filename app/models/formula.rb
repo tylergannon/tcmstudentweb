@@ -1,6 +1,16 @@
 class Formula < ActiveRecord::Base
   acts_as_taggable
   acts_as_cited
+  belongs_to :master_formula, :class_name => "Formula"
+  has_many :variations, :class_name => "Formula", :foreign_key => "master_formula_id"
+  
+  def master_formula_name
+    master_formula.pinyin if master_formula
+  end
+  
+  def master_formula_name=(name)
+    self.master_formula = Formula.named(name) unless name.empty?
+  end
 
   acts_as_taggable_on :formula_categories
 

@@ -20,7 +20,8 @@
 %b Tags
 = tag_field(f, :tag_list)
 %br/
-
+= f.label :master_formula_name, "Variant of:"
+!= f.text_field_with_auto_complete :master_formula_name, {}, { :url => formulas_path(:format => :js), :method => :get, :skip_style => true, :with => "'search='+element.value" }
 %hr
 %h2
   Ingredients
