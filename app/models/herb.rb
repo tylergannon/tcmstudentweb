@@ -36,7 +36,7 @@ class Herb < ActiveRecord::Base
   end
   def pinyin=(p)
     super(p)
-    self.canonical = p.normalize.titleize unless p.nil?
+    self.canonical = ActiveSupport::Multibyte::Chars.new(p).mb_chars.normalize(:kd).gsub(/[^\x00-\x7F]/n,'').titleize.to_s
   end
 
   def english=(name)
