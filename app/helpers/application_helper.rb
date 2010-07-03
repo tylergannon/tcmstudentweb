@@ -22,7 +22,6 @@ module ApplicationHelper
   def add_child_link(name, child, form_builder)
     # puts "||#{form_builder}||"
     fields = escape_javascript(new_child_fields(child, form_builder))
-    puts "BLAH: #{fields}  BLAH"
     link_to_function(name, h("add_child(this, \"#{child}\", \"#{fields}\")"))
   end
 
