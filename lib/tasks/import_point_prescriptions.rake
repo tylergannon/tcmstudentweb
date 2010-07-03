@@ -1,6 +1,5 @@
 namespace :import do
   require 'logger'
-  $POINT_LOG = Logger.new('points.log')
   class NilClass
     def [](a)
     end
