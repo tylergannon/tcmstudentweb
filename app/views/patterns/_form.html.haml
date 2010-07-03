@@ -7,6 +7,8 @@
 = tag_field(f, :tag_list)
 %b Disease
 = tag_field(f, :disease_list)
+%b Primary Pattern
+= tag_field(f, :primary_pattern_list)
 %br/
 %h3 Treatment Principles
 = text_area_with_auto_complete f, :pattern_treatment_principles_text, 'therapeutic_functions', :rows => 4, :cols => 60

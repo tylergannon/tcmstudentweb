@@ -90,7 +90,15 @@ class PatternsController < ApplicationController
           @pattern = Pattern.find(params[:id])
           @pattern.update_attributes(params[:pattern])
           flash[:notice] = 'Pattern was successfully updated.'
-          format.html { redirect_to(@pattern) }
+          format.html { 
+            if params[:commit] == "Update and edit next"
+              @next_pattern = Pattern.where("id > #{@pattern.id}").order(:id).limit(1)[0]
+              @next_pattern = @next_pattern ||= Pattern.first
+              redirect_to(edit_pattern_path(@next_pattern))
+            else
+              redirect_to(@pattern) 
+            end
+          }
           format.xml  { head :ok }
         rescue
           format.html { render :action => "edit" }

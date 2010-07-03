@@ -20,12 +20,11 @@ namespace :import do
     end
     diseases.each do |dd|
       puts "Entering disease: #{dd[:disease]}"
-      tb = Textbook.find_by_abbrev("cam")
+      tb = Textbook.find_by_abbrev("CAM")
       where = dd[:page].to_s
       citation = Citation.where("textbook_id = #{tb.id}").select{|t| t.where = where}[0]
       citation = citation ||= Citation.create(:textbook => tb, :where => where)
-      disease = Disease.find_or_create_by_name(dd[:disease])
-      disease.citation = citation
+
       dd[:patterns].each do |pd|
         puts "\tPattern: #{pd[:name]}"
         p = Pattern.where("name = '#{pd[:name]}' and citation_id = #{citation.id}")[0]
@@ -39,6 +38,8 @@ namespace :import do
           pattern = Pattern.create(:name => pd[:name], :citation => citation)
         end
         
+        pattern.disease_list << dd[:disease]
+        
         pd[:symptoms].each do |ps|
           pattern.pattern_symptoms << PatternSymptom.create(:symptom_name => ps.match(/[^\(]*/)[0].strip, :commentary => ps.match(/\(([^\)]+)\)/)[0])          
         end
@@ -47,7 +48,6 @@ namespace :import do
         pd[:supplementary].each {|point_hash| enter_point_hash(point_hash, point_prescription)}
         pattern.save
       end #dd[:patterns]
-      disease.save
     end #diseases.each
   end #task :point_prescriptions
   

@@ -21,6 +21,10 @@ Keys: #{@pattern.pattern_symptoms.select{|x| x.key_symptom}.map{|y| y.symptom_na
             :tcmtextile
               #{s.commentary}
 
+%h3 Primary Pattern
+!= tag_list @pattern.primary_patterns
+%br/
+
 - if can? :update, @pattern
   = sortable_element "pattern_symptoms", :url => sort_pattern_symptoms_path
 
@@ -57,6 +61,13 @@ Keys: #{@pattern.pattern_symptoms.select{|x| x.key_symptom}.map{|y| y.symptom_na
 
 %h3 Tags
 != tag_list @pattern.tags
+%br/
+%h3 Disease
+!= tag_list @pattern.diseases
+%br/
+%h3 Primary Pattern
+!= tag_list @pattern.primary_patterns
+%br/
 
 - if can? :update, @pattern
   = link_to 'Edit', edit_pattern_path(@pattern)
