@@ -54,7 +54,7 @@ Keys: #{@pattern.pattern_symptoms.select{|x| x.key_symptom}.map{|y| y.symptom_na
   - @pattern.point_prescriptions.each do |pp|
     %h2!= "Point Prescription: #{pp.citation.textbook_title if pp.citation} #{link_to "edit", edit_point_prescription_path(pp)}"
     %ul
-      - pp.pp_acu_points.each do |ap|
+      - pp.pp_acu_points.order(:acu_point_id).each do |ap|
         %li
           :tcmtextile
             #{link_to ap.acu_point_abbrev, ap.acu_point} (#{ap.commentary})

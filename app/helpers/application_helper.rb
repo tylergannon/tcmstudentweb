@@ -61,7 +61,7 @@ module ApplicationHelper
     if obj.class == Array
       obj.map{|v| link(v)}.join(", ")
     elsif obj.class == PatternSymptom
-        bold(link(obj.symptom), obj.key_symptom) + (obj.commentary.blank? ? "" : " (#{obj.commentary.slice(0..40)})")
+        bold(link(obj.symptom), obj.key_symptom) + (obj.commentary.blank? ? "" : " (#{obj.commentary})")
     else
       link_to obj.link_name, obj, :title => obj.link_title
     end
