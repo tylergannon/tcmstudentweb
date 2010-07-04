@@ -45,11 +45,23 @@
           != link(pattern.formulas)
           %br/
         %ul
-          - pp.pp_acu_points.order(:acu_point_id).each do |ap|
+          - pp.pp_acu_points.where(:reason => "Primary").order(:acu_point_id).each do |ap|
             %li
-              :tcmtextile
-                #{link_to ap.acu_point_abbrev, ap.acu_point} (#{ap.commentary})
-
+              != link_to ap.acu_point_abbrev, ap.acu_point
+              - unless ap.commentary.nil?
+                :tcmtextile
+                  #{ap.commentary}
+          - reasons = pp.pp_acu_points.where("reason <> 'Primary'").map{|p| p.reason}.uniq
+          - reasons.each do |reason|
+            %li
+              = reason
+              %ul
+                - pp.pp_acu_points.where(:reason => reason).order(:acu_point_id).each do |ap|
+                  %li
+                    != link_to ap.acu_point_abbrev, ap.acu_point
+                    - unless ap.commentary.nil?
+                      :tcmtextile
+                        #{ap.commentary}
 
 #{link_to 'Edit', edit_acu_point_path(@acu_point)} | #{link_to 'Back', acu_points_path}
 
