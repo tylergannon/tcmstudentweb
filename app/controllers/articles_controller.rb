@@ -5,7 +5,7 @@ class ArticlesController < ApplicationController
     if params.has_key?(:tag_name)
       @articles = Article.tagged_with(params[:tag_name].to_list)
     else
-      @articles = Article.lookup(params)
+      @articles = Article.all
     end
 
     @tags = Article.tag_counts_on(:tags)
