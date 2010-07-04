@@ -91,7 +91,7 @@ class PatternsController < ApplicationController
           @pattern.update_attributes(params[:pattern])
           flash[:notice] = 'Pattern was successfully updated.'
           format.html { 
-            if params[:commit] == "Update and edit next"
+            if params[:commit] == "Update"
               @next_pattern = Pattern.where("id > #{@pattern.id}").order(:id).limit(1)[0]
               @next_pattern = @next_pattern ||= Pattern.first
               redirect_to(edit_pattern_path(@next_pattern))

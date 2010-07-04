@@ -2,7 +2,7 @@
 = form_for @pattern do |f|
   = render :partial => "form", :locals => {:f => f}
   %p= f.submit 'Update'
-  %p= f.submit 'Update and edit next'
+  %p= f.submit 'Update and view.'
 
 = link_to('Show', @pattern) + "|" + link_to('Back to Patterns index', patterns_path)
 
