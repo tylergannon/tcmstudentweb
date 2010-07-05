@@ -33,9 +33,8 @@ class Pattern < ActiveRecord::Base
   accepts_nested_attributes_for :point_prescriptions, :allow_destroy => true
 
   has_many :formula_patterns, :dependent => :destroy
-  def formulas
-    formula_patterns.map{|t| t.formula}
-  end
+  has_many :formulas, :through => :formula_patterns
+  
   accepts_nested_attributes_for :formula_patterns, :allow_destroy => true, :reject_if => proc {|a| a['formula_pinyin'].blank?}
 
   belongs_to :citation, :dependent => :destroy
