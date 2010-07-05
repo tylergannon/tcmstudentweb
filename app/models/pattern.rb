@@ -1,9 +1,17 @@
 class Pattern < ActiveRecord::Base
   acts_as_taggable
-  acts_as_taggable_on :diseases, :primary_patterns
-  
+  acts_as_taggable_on :diseases, :primary_patterns  
   acts_as_cited
-  default_scope :order => 'id'
+
+  def save_and_next
+    save
+    order(:id).limit(1).where("id > #{id}")
+  end
+  
+  def set(organ, patterns)
+    tag_list << organ
+    patterns.each {|p| primary_pattern_list << p}
+  end
 
   scope :search, lambda{|str|
     like_condition(str).order("char_length(name)")

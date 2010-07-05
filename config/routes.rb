@@ -55,13 +55,10 @@ TcmStudentWeb::Application.routes.draw do
   match 'signup' => 'users#new'
   match '/register/:activation_code' => 'activations#new', :as => :register
   match '/activate/:id' => 'activations#create', :as => :activate
-  match '/channel/:channel' => 'channels#show'  
+  match '/channel/:channel' => 'channels#show'
   match '/' => 'formulas#index'
-  match ':controller/category/:category_id' => '#categoryindex'
-  match ':controller/t/:tag_name' => '#index'
-  match '/:controller/:name(/:action)', :constraints => {:name => /[\w _-]+/ }
-  match '/:controller/:id(/:action)', :constraints => {:id => /\d+/}
   
-#  match '/:controller(/:action(/:id))'
+  match '/:controller/t/:tag_name' => '#index'
+  
 end
 

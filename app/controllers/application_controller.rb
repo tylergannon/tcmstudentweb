@@ -26,6 +26,16 @@ class ApplicationController < ActionController::Base
     [[nil, nil, nil],[nil, nil, nil],[nil, nil, nil],[nil, nil, nil]]
   end
 
+#  def self.acts_as_taggable(klass)
+#    class_eval "def tag; @#{klass.name.tableize} = #{klass.name}.tagged_with(params[:id], :on => :tags);render :template => \"index\";end;"
+#  end
+#  
+#  def self.acts_as_taggable_on(klass, *contexts)
+#    contexts.each do |context|
+#      class_eval "def #{context.to_s.singularize}; @#{klass.name.tableize} = #{klass.name}.tagged_with(params[:id], :on => :#{context.to_s});render :template => \"index\";end;"
+#    end
+#  end
+
   private
     def authenticate
       authenticate_or_request_with_http_basic do |user_name, password|

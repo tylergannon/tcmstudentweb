@@ -1,12 +1,33 @@
 class PatternsController < ApplicationController
+#  acts_as_taggable Pattern
+#  acts_as_taggable_on Pattern, :diseases, :primary_patterns
+
+  def tag
+    @patterns = Pattern.tagged_with(params[:id])
+    render :template => "index"
+  end
+  
+  def primary_pattern
+    @patterns = Pattern.tagged_with(params[:id], :on => :primary_patterns)
+    render :template => "index"
+  end
+
+  def get_context(params)
+    params[:context] ||= :tags
+  end
+
   # GET /patterns
   # GET /patterns.xml
   def index
-    if params[:text] != nil
-      @patterns = Pattern.find_by_textbook(params[:text])
-    else
-      @patterns = Pattern.find(:all, :conditions => ['name LIKE ?', "%#{params[:search]}%"])
-    end
+    items = Pattern
+    items = items.from_text(params[:text]) if params.has_key?(:text)
+    items = items.tagged_with(params[:tag], :on => get_context(params)) if params.has_key?(:tag)
+    items = items.search(params[:search]) if params.has_key?(:search)
+    
+    @patterns = items.all
+    @tags = items.tag_counts_on(:tags)
+    @primary_patterns = items.tag_counts_on(:primary_patterns)
+    @diseases = items.tag_counts_on(:diseases)
     respond_to do |format|
       format.html # index.html.erb
       format.js

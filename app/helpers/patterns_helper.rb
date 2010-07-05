@@ -1,4 +1,6 @@
 module PatternsHelper
+  include ActsAsTaggableOn::TagsHelper
+
   def display_symptom(p_s)
     if p_s.key_symptom
       s = "<i>#{p_s.symptom_name}</i>"
