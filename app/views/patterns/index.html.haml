@@ -15,8 +15,6 @@
 - tag_cloud(@diseases, %w(css1 css2 css3 css4)) do |tag, css_class|
   = link_to tag.name, "/patterns/?tag=#{tag.name}&context=diseases", :class => css_class
   %br/
-  
-
 
 %ul
   - @patterns.each do |pattern|

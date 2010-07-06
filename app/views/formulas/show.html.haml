@@ -28,7 +28,7 @@
         %br/
       - if formula_pattern = @formula.formula_patterns[0]
         - p = formula_pattern.pattern
-        = "Keys: #{p.key_symptoms.map{|y| y.symptom_name + (y.commentary.blank? ? "" : " (#{y.commentary.slice(0..40)})")}.join(", ")}" unless p.key_symptoms.size==0
+        = "Keys: #{link(p.key_pattern_symptoms)}" unless p.key_pattern_symptoms.size==0
   - @formula.formula_patterns.each do |formula_pattern|
     - p = formula_pattern.pattern
     %tr
@@ -38,13 +38,7 @@
         %p #{show_citation formula_pattern.citation}
       %td{'valign' => 'top'}
         %b Indications:
-        != link_to_pattern_symptoms(p.pattern_symptoms)
-        - unless p.tongue.empty?
-          %b P:
-          = p.pulse
-        - unless p.pulse.empty?
-          %b T:
-          = p.tongue
+        != link(p.pattern_symptoms)
 
 %h2 Herbs
 %table#formula_herbs{'border' => '1', 'cellpadding' => "0", "cellspacing" => "0"}

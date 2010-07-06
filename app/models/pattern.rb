@@ -22,8 +22,9 @@ class Pattern < ActiveRecord::Base
     :reject_if => proc {|a| a['treatment_principle_name'].blank?}
   has_many :pattern_symptoms, :dependent => :destroy
 
-  def symptoms
-    pattern_symptoms.map{|t| t.symptom}
+  has_many :symptoms, :through => :pattern_symptoms
+  def key_pattern_symptoms
+    pattern_symptoms.where(:key_symptom => true)
   end
 
   accepts_nested_attributes_for :pattern_symptoms, :allow_destroy => true, \
