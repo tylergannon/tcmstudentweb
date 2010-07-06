@@ -45,7 +45,7 @@
   - Formula::ROLES.each do |role|
     = render :partial => "show_formula_herbs", :locals => { :formula_herbs => @formula.formula_herbs.select{|a| a.formula_role.pinyin == role}, :show_roles => !@formula.chief_herbs.nil? }
 - unless @formula.preparation.empty?
- .preparation
+  .preparation
     %b Preparation:
     :tcmtextile
       ${@formula.preparation}
