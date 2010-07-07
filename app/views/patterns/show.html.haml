@@ -57,7 +57,7 @@ Keys: #{@pattern.pattern_symptoms.select{|x| x.key_symptom}.map{|y| y.symptom_na
       - pp.pp_acu_points.order(:acu_point_id).each do |ap|
         %li
           :tcmtextile
-            #{link_to ap.acu_point_abbrev, ap.acu_point} (#{ap.commentary})
+            #{link_to ap.acu_point.display_name, ap.acu_point} (#{ap.commentary})
 
 %h3 Tags
 != tag_list @pattern.tags
