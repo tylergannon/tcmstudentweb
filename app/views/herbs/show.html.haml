@@ -67,7 +67,15 @@
     %tr
       %td= herb_comparison.herb2.display_name
       %td= herb_comparison.herb2_commentary
-
+- if @herb.dui_yaos.size > 0
+  %h2 Dui Yaos
+  %br/
+  - @herb.all_dui_yaos.each do |dui_yao|
+    %h3 With #{link_to dui_yao.other_herb(@herb).display_name, dui_yao.other_herb(@herb)}:
+    %br/
+    :tcmtextile
+      #{dui_yao.commentary}
+  
 - if @herb.formula_herbs.size > 0
   %h3 Formulas:
   %ul

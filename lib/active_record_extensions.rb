@@ -13,6 +13,19 @@ module ActiveRecord
         }
       end
     end
+    
+    def self.named_association(member, klass, attribute, create=nil)
+      member = member.to_s
+      klass = klass.name
+      attribute = attribute.to_s
+      if create
+        class_eval "def #{member}_#{attribute}=(#{attribute}); self.#{member} = #{klass}.find_or_create_by_#{attribute}(#{attribute}) unless #{attribute}.blank?; end;"
+      else
+        class_eval "def #{member}_#{attribute}=(#{attribute}); self.#{member} = #{klass}.named(#{attribute}) unless #{attribute}.blank?; end;"
+      end
+      class_eval "def #{member}_#{attribute}; #{member}.#{attribute} if #{member}; end;"
+    end
+    
     def =~ (other)
       if other.nil? || (other.class != self.class)
         false

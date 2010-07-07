@@ -4,20 +4,6 @@ class FormulaDuiYao < ActiveRecord::Base
 	belongs_to :herb2, :class_name => "Herb", :foreign_key => "herb2_id"
   belongs_to :dui_yao
 
-
-	def herb1_pinyin=(pinyin)
-		self.herb1 = Herb.named(pinyin) unless pinyin.blank?
-	end
-
-	def herb1_pinyin
-		herb1.pinyin if herb1
-	end
-
-  def herb2_pinyin=(pinyin)
-  	self.herb2 = Herb.named(pinyin) unless pinyin.blank?
-  end
-
-  def herb2_pinyin
-  	herb2.pinyin if herb2
-  end
+	named_association :herb1, Herb, :pinyin
+	named_association :herb2, Herb, :pinyin
 end

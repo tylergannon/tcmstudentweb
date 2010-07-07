@@ -11,6 +11,11 @@ class AcuPoint < ActiveRecord::Base
   }
   default_scope order(:ordinal)
   acts_as_cited
+  
+  scope :category, lambda {|name|
+    a = AcuPointCategory.named(name)
+    joins(:acu_point_categories).where(:acu_point_categories => {:id => a.id})
+  }
 
   has_many :acu_point_categories, :dependent => :destroy, :autosave => true
   has_many :categories, :through => :acu_point_categories

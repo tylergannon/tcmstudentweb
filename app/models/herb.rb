@@ -1,6 +1,24 @@
 class Herb < ActiveRecord::Base
   acts_as_cited
   acts_as_taggable_on :flavors, :channels, :categories
+  acts_as_taggable
+  
+  scope :state_board, lambda{
+    tagged_with("State Board")
+  }
+  
+  has_many :dui_yaos, :class_name => "DuiYao", :foreign_key => "herb1_id"
+  accepts_nested_attributes_for :dui_yaos, :allow_destroy => true
+
+  has_many :his_dui_yaos, :class_name => "DuiYao", :foreign_key => "herb2_id"
+  
+  def all_dui_yaos
+    DuiYao.with_herb(self)
+  end
+  
+  def f
+    herb_therapeutic_functions
+  end
 
   scope :search, lambda{|str|
     like_condition(str).order("char_length(canonical)")
@@ -37,6 +55,13 @@ class Herb < ActiveRecord::Base
   def pinyin=(p)
     super(p)
     self.canonical = ActiveSupport::Multibyte::Chars.new(p).mb_chars.normalize(:kd).gsub(/[^\x00-\x7F]/n,'').titleize.to_s
+  end
+  
+  def tf(str)
+    unless herb_therapeutic_functions.select{|t| t.therapeutic_function_name.downcase==str.downcase}.size > 0
+      herb_therapeutic_functions << HerbTherapeuticFunction.create(:therapeutic_function_name=>str)
+      self.save
+    end
   end
 
   def english=(name)
