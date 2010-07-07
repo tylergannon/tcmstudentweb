@@ -44,7 +44,8 @@
 
 - unless @herb.contraindications.empty?
   %h3 Contraindications:
-  = h @herb.contraindications
+  :tcmtextile
+    #{@herb.contraindications}
 
 - if @herb.all_comparisons.size > 0
   %h3 Comparisons
