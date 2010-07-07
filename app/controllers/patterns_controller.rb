@@ -24,7 +24,7 @@ class PatternsController < ApplicationController
     items = items.tagged_with(params[:tag], :on => get_context(params)) if params.has_key?(:tag)
     items = items.search(params[:search]) if params.has_key?(:search)
     
-    @patterns = items.all
+    @patterns = items.order_by_text
     @tags = items.tag_counts_on(:tags)
     @primary_patterns = items.tag_counts_on(:primary_patterns)
     @diseases = items.tag_counts_on(:diseases)
