@@ -8,13 +8,9 @@ namespace :update do
   end
   
   task :formula_dui_yao => :environment do
-    DuiYao.find_each(:batch_size=>25) do |dui_yao|
-      Formula.find_each(:batch_size=>25) do |formula|
-        if formula.herbs.exists?(:id=>dui_yao.herb1_id) && formula.herbs.exists?(:id=>dui_yao.herb2_id)
-          formula.dui_yaos << dui_yao
-          formula.save
-        end
-      end
+    Formula.find_each(:batch_size => 50) do |formula|
+      herb_ids = formula.formula_herbs.map{|t| t.herb_id}
+      formula.dui_yaos = DuiYao.where(:herb1_id => herb_ids).where(:herb2_id => herb_ids)
     end
   end
 end

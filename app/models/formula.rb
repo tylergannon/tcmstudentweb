@@ -21,7 +21,7 @@ class Formula < ActiveRecord::Base
 	has_many :formula_comparisons, :foreign_key => :formula1_id, :dependent => :destroy
 	has_many :other_formula_comparisons, :foreign_key => :formula2_id, :class_name => 'FormulaComparison', :dependent => :destroy
   
-  has_and_belongs_to_many :dui_yaos, :autosave => :true
+  has_and_belongs_to_many :dui_yaos, :autosave => :true, :uniq => true
   
   def master_formula_name
     master_formula.pinyin if master_formula
