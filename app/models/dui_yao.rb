@@ -1,7 +1,9 @@
 class DuiYao < ActiveRecord::Base
 	belongs_to :herb1, :foreign_key => "herb1_id", :class_name => "Herb"
 	belongs_to :herb2, :foreign_key => "herb2_id", :class_name => "Herb"
-	
+	after_create {|dui_yao|
+    Formula.joins(:formula_herbs).where("formula_herbs.herb_id = #{dui_yao.id}").each{|f| f.dui_yaos << dui_yao}	  
+	}
 	has_and_belongs_to_many :formulas, :autosave => true, :uniq => true
 	
 	named_association :herb1, Herb, :pinyin
