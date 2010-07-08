@@ -5,13 +5,25 @@ namespace :import do
       import_formula fn[0], fn[1], fn[2], fn[3]
     end
   end
-  DIRECTORY = "/home/tyler/Dropbox/Documents/Projects/tcm_student_web/Herbs"
+  HERBS_DIR = "/home/tyler/Dropbox/Documents/Projects/tcm_student_web/Herbs"
+  task :state_board_herbs => :environment do
+    dir = Dir.open("#{HERBS_DIR}")
+    dir.entries.select{|t| t.index("yml") && !t.index("pages")}.each do |file|
+      herb = Herb.named(file.to_s[0..file.to_s.index(".")-1])
+      if herb.nil?
+        puts "Couldn't find #{file.to_s[0..file.to_s.index(".")-1]}"
+      else
+        herb.tag_list << "State Board"
+        herb.save
+      end
+    end
+  end
   task :herb_functions => :environment do
     require 'yaml'
 
-    dir = Dir.open("#{DIRECTORY}")
+    dir = Dir.open("#{HERBS_DIR}")
     dir.entries.select{|t| t.index("yml") && !t.index("pages")}.each do |file|
-      data = YAML::load_file("#{DIRECTORY}/#{file.to_s}")
+      data = YAML::load_file("#{HERBS_DIR}/#{file.to_s}")
       herb = Herb.named(data[:canonical])
       if herb.nil?
         puts "unable to find #{data[:canonical]}"
@@ -38,9 +50,9 @@ namespace :import do
   task :get_herb_functions => :environment do
     require 'yaml'
 
-    dir = Dir.open("#{DIRECTORY}")
+    dir = Dir.open("#{HERBS_DIR}")
     dir.entries.select{|t| t.index("yml") && !t.index("pages")}.each do |file|
-      data = YAML::load_file("#{DIRECTORY}/#{file.to_s}")
+      data = YAML::load_file("#{HERBS_DIR}/#{file.to_s}")
       herb = Herb.named(data[:canonical])
       if herb.nil?
         puts "unable to find #{data[:canonical]}"
@@ -54,7 +66,7 @@ namespace :import do
         herb.herb_therapeutic_functions.order(:id).each do |htf|
           data[:functions] << {:function => htf.therapeutic_function_name, :discussion => htf.commentary}
         end
-        File.open("#{DIRECTORY}/#{file.to_s}", "w"){|t| t.write(data.to_yaml)}
+        File.open("#{HERBS_DIR}/#{file.to_s}", "w"){|t| t.write(data.to_yaml)}
       end
     end
   end

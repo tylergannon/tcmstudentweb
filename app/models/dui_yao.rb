@@ -2,7 +2,7 @@ class DuiYao < ActiveRecord::Base
 	belongs_to :herb1, :foreign_key => "herb1_id", :class_name => "Herb"
 	belongs_to :herb2, :foreign_key => "herb2_id", :class_name => "Herb"
 	
-	has_many :formula_dui_yaos
+	has_and_belongs_to_many :formulas
 	
 	named_association :herb1, Herb, :pinyin
 	named_association :herb2, Herb, :pinyin

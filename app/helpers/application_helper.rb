@@ -59,7 +59,7 @@ module ApplicationHelper
 
   def link(obj)
     return unless obj
-    if obj.class == Array
+    if (obj.class == Array) || (obj.class == ActiveRecord::Relation)
       obj.map{|v| link(v)}.join(", ")
     elsif obj.class == PatternSymptom
         bold(link(obj.symptom), obj.key_symptom) + (obj.commentary.blank? ? "" : " (#{obj.commentary})")
