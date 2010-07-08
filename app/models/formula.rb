@@ -12,7 +12,7 @@ class Formula < ActiveRecord::Base
   has_many :variations, :class_name => "Formula", :foreign_key => "master_formula_id"
 	has_many :formula_contraindications, :dependent => :destroy
 	has_many :formula_dui_yaos, :dependent => :destroy
-	has_many :formula_herbs, :dependent => :destroy, :after_add => :find_herb_dui_yaos
+	has_many :formula_herbs, :dependent => :destroy
 	has_many :herbs, :through => :formula_herbs
 	has_many :formula_therapeutic_functions, :dependent => :destroy
 	has_many :therapeutic_functions, :through => :formula_therapeutic_functions
@@ -21,16 +21,8 @@ class Formula < ActiveRecord::Base
 	has_many :formula_comparisons, :foreign_key => :formula1_id, :dependent => :destroy
 	has_many :other_formula_comparisons, :foreign_key => :formula2_id, :class_name => 'FormulaComparison', :dependent => :destroy
   
-  has_and_belongs_to_many :dui_yaos, :autosave => :true, :uniq => true, :after_add => :connect_dui_yao
+  has_and_belongs_to_many :dui_yaos, :autosave => :true, :uniq => true
   
-  def connect_dui_yao(dui_yao)
-    Formula.joins(:formula_herbs).where("formula_herbs.herb_id = #{dui_yao.id}").each{|f| f.dui_yaos << dui_yao}
-  end
-  
-  def find_herb_dui_yaos(herb)
-    DuiYao.with_herb(herb).each { |dy| self.dui_yaos << dy }
-  end
-
   def master_formula_name
     master_formula.pinyin if master_formula
   end
