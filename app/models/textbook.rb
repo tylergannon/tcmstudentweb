@@ -8,9 +8,6 @@ class Textbook < ActiveRecord::Base
       or lower(textbooks.title) like '%#{name}%'
       or lower(authors.name) like '%#{name}%'")
   }
-  scope :search, lambda{|str|
-    like_condition(str)
-  }
 
   def author_name
     self.author.name if self.author
@@ -22,10 +19,8 @@ class Textbook < ActiveRecord::Base
     self.author = Author.find_or_create_by_name(name) unless name.blank?
   end
 
-  def self.search_columns
-    ["title", "abbrev"]
-  end
-
+  search_on :title, :abbrev
+  
   def search_result
     "#{title} <i>(#{author.name})</i>"
   end

@@ -3,22 +3,25 @@ class AcuPoint < ActiveRecord::Base
   validates_presence_of :pinyin
   validates_uniqueness_of :pinyin
   validates_uniqueness_of :ordinal, :scope => :channel_id
-  belongs_to :channel
   acts_as_taggable
   acts_as_taggable_on :point_categories
-  scope :search, lambda{|str|
-    like_condition(str)
-  }
-  default_scope order(:ordinal)
+
   acts_as_cited
+
+  belongs_to :channel
+  has_many :acu_point_infos
+  has_many :acu_point_categories, :dependent => :destroy, :autosave => true
+  has_many :categories, :through => :acu_point_categories
+  has_many :point_prescription_acu_points
+  has_many :point_prescriptions, :through => :point_prescription_acu_points
+  
+  search_on :pinyin, :canonical
   
   scope :category, lambda {|name|
     a = AcuPointCategory.named(name)
     joins(:acu_point_categories).where(:acu_point_categories => {:id => a.id})
   }
 
-  has_many :acu_point_categories, :dependent => :destroy, :autosave => true
-  has_many :categories, :through => :acu_point_categories
 
   def self.search(str)
     str.strip!
@@ -36,7 +39,6 @@ class AcuPoint < ActiveRecord::Base
     point
   end
 
-  has_many :acu_point_infos
   accepts_nested_attributes_for :acu_point_infos, :allow_destroy => true
 
   def display_name
@@ -60,8 +62,6 @@ class AcuPoint < ActiveRecord::Base
     display_name
   end
 
-  has_many :point_prescription_acu_points
-  has_many :point_prescriptions, :through => :point_prescription_acu_points
 
   def abbrev
     if channel.id == 15
@@ -71,10 +71,6 @@ class AcuPoint < ActiveRecord::Base
     end
   end
 
-  def self.search_columns
-    ['pinyin', 'canonical']
-  end
-  
   def self.named(str)
     str.strip!
     if str.match(REGEXP_ABBREV)
@@ -92,6 +88,22 @@ class AcuPoint < ActiveRecord::Base
       if Channel::ABBREVS.has_key?(ch)
         find_by_channel_id_and_ordinal(Channel::ABBREVS[ch], ord)
       end
+    end
+  end
+  
+  def self.edit_points(channel, text)
+    c = Channel.named(channel.to_s)
+    t = Textbook.named(text.to_s)
+    AcuPoint.order(:id).where(:channel_id => c.id).each do |ap|
+      puts ap.display_name
+      info = ap.acu_point_infos.from_text(text.to_s)[0]
+      if info.nil?
+        puts "Creating new info source."
+        puts "Page?"
+        c = Citation.create(:textbook => t, :where => gets.strip)
+        info = ap.acu_point_infos.create(:citation = c)
+      end
+      puts 
     end
   end
 end

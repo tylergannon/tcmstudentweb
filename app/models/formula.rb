@@ -23,19 +23,13 @@ class Formula < ActiveRecord::Base
   
   has_and_belongs_to_many :dui_yaos, :autosave => :true, :uniq => true
   
-  def master_formula_name
-    master_formula.pinyin if master_formula
-  end
-  
-  def master_formula_name=(name)
-    self.master_formula = Formula.named(name) unless name.empty?
-  end
+  named_association :master_formula, Formula, :name
+
+  search_on :canonical, :english, :pinyin
+  scope :search_mod, order("char_length(canonical)")
 
   scope :next_from, lambda {|formula|
     where("formulas.id > #{formula.id}").order("formulas.id").limit(1)
-  }
-  scope :search, lambda{|str|
-    like_condition(str).order("char_length(canonical)")
   }
   
   ROLES = %w[jūn chén zuǒ shǐ]
@@ -56,14 +50,6 @@ class Formula < ActiveRecord::Base
 	  formula_comparisons + other_formula_comparisons
 	end
 
-	def formula_category_name=(name)
-		self.formula_category = FormulaCategory.find_or_create_by_name(name) unless name.blank?
-	end
-
-	def formula_category_name
-		formula_category.name if formula_category
-  end
-
   def herbs_from(role)
     formula_herbs.select{|a| a.formula_role.pinyin == role}
   end
@@ -77,9 +63,6 @@ class Formula < ActiveRecord::Base
     herbs_from(Formula::ROLES[1]) + herbs_from(Formula::ROLES[2]) +  herbs_from(Formula::ROLES[3])
   end
 
-  def symptoms
-    formula_symptoms.collect{|n| n.symptom_name}
-  end
   def name
     pinyin
   end
@@ -115,9 +98,6 @@ class Formula < ActiveRecord::Base
     english
   end
 
-  def self.search_columns
-    ["canonical", "english", "pinyin"]
-  end
 end
 
 

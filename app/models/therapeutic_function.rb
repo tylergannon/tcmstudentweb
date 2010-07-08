@@ -7,15 +7,17 @@ class TherapeuticFunction < ActiveRecord::Base
   has_many :acu_point_infos, :through => :acu_point_therapeutic_functions
 #  has_many :acu_points, :through => :acu_point_infos
 
+  def consolidate(tf)
+    tf.herb_therapeutic_functions.each { |htf| herb_therapeutic_functions << htf }
+    tf.acu_point_therapeutic_functions.each { |htf| acu_point_therapeutic_functions << htf }
+    tf.formula_therapeutic_functions.each { |htf| formula_therapeutic_functions << htf }
+    tf.destroy    
+  end
+
   def acu_points
     acu_point_infos.map{|a| a.acu_point}
   end
   
-  scope :search, lambda{|str|
-    like_condition(str).order("char_length(name)")
-  }
-
-  def self.search_columns
-    ["name"]
-  end
+  search_on :name
+  scope :search_mod, order("char_length(name)")
 end

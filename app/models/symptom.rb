@@ -1,6 +1,8 @@
 class Symptom < ActiveRecord::Base
   has_many :pattern_symptoms
   has_many :patterns, :through => :pattern_symptoms
+  
+  search_on :name
 
   def formulas
     a = []
@@ -11,9 +13,6 @@ class Symptom < ActiveRecord::Base
     end
     a
   end
-  scope :search, lambda{|str|
-    like_condition(str)
-  }
   
   def self.consolidate!(id, condemned_id)
     symptom = find(id)
@@ -34,7 +33,4 @@ class Symptom < ActiveRecord::Base
     end
   end
 
-  def self.search_columns
-    ["name"]
-  end
 end

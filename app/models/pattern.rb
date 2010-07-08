@@ -13,9 +13,8 @@ class Pattern < ActiveRecord::Base
     patterns.each {|p| primary_pattern_list << p}
   end
 
-  scope :search, lambda{|str|
-    like_condition(str).order("char_length(name)")
-  }
+  search_on :name
+  scope :search_mod, order("char_length(name)")
 
   has_many :pattern_treatment_principles, :dependent => :destroy
   accepts_nested_attributes_for :pattern_treatment_principles, :allow_destroy => true, \
@@ -77,10 +76,6 @@ class Pattern < ActiveRecord::Base
 
   def link_name
     name
-  end
-
-  def self.search_columns
-    ["name"]
   end
 
   def compare(him)

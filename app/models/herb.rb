@@ -2,7 +2,6 @@ class Herb < ActiveRecord::Base
   acts_as_cited
   acts_as_taggable_on :flavors, :channels, :categories
   acts_as_taggable
-  
   scope :state_board, lambda{
     tagged_with("State Board")
   }
@@ -20,9 +19,8 @@ class Herb < ActiveRecord::Base
     herb_therapeutic_functions
   end
 
-  scope :search, lambda{|str|
-    like_condition(str).order("char_length(canonical)")
-  }
+  search_on :canonical, :latin, :pinyin, :common_name
+  scope :search_mod, order("char_length(canonical)")
 
   validates_uniqueness_of :pinyin, :canonical
   def key_attributes
@@ -75,14 +73,8 @@ class Herb < ActiveRecord::Base
 	def all_comparisons
 		herb_comparisons + other_herb_comparisons
 	end
-
-	def herb_category_name=(name)
-		self.herb_category = HerbCategory.find_or_create_by_name(name) unless name.blank?
-	end
-
-	def herb_category_name
-		herb_category.name if herb_category
-  end
+	
+	named_association :herb_category, HerbCategory, :name, :create
 
   def link_name
     pinyin
@@ -92,8 +84,5 @@ class Herb < ActiveRecord::Base
     english
   end
 
-  def self.search_columns
-    ["canonical", "latin", "pinyin", "common_name"]
-  end
 end
 

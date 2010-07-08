@@ -26,6 +26,19 @@ module ActiveRecord
       class_eval "def #{member}_#{attribute}; #{member}.#{attribute} if #{member}; end;"
     end
     
+    def self.search_on(*cols)
+      class_eval "def self.search_columns; #{cols.map{|t| t.to_s}.to_ary.inspect}; end;"
+      class_eval do
+        scope :search, lambda{|str|
+          items = like_condition(str.downcase)
+          if scopes.has_key?(:search_mod)
+            items = items.search_mod
+          end
+          items
+        }
+      end
+    end
+    
     def =~ (other)
       if other.nil? || (other.class != self.class)
         false
@@ -64,7 +77,7 @@ module ActiveRecord
     end
     
     def self.named(str)
-      equals_condition(str)[0]
+      equals_condition(str.downcase)[0]
     end
 
     def self.search_columns

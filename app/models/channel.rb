@@ -1,5 +1,8 @@
 class Channel < ActiveRecord::Base
   has_many :acu_points
+  
+  search_on :name, :abbreviation
+  
   ABBREVS = {"lu" => 1,
               "lung" => 1,
               "l" => 1,
