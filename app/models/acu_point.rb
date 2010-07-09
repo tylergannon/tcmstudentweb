@@ -99,58 +99,6 @@ class AcuPoint < ActiveRecord::Base
       end
     end
   end
-  
-  def self.edit_points(channel, text)
-    c = Channel.named(channel.to_s)
-    t = Textbook.named(text.to_s)
-    raise "Can't find channel" if c.nil?
-    raise "Can't find book" if t.nil?
-    AcuPoint.order(:id).where(:channel_id => c.id).each do |ap|
-      puts ap.display_name
-      puts "Categories:"
-      ap.acu_point_categories.each{|t| puts "   #{t.category_name} / t.commentary}"}
-      puts "Additional categories?"
-      until (a=gets.strip).empty?
-        strs = a.split("/").map{|t| t.strip}
-        ap.acu_point_categories.create(:category_name=>strs[0], :commentary=>strs[1])
-      end
-      
-      info = ap.acu_point_infos.from_text(text.to_s)[0]
-      if info.nil?
-        puts "Creating new info source."
-        puts "Page?"
-        c = Citation.create(:textbook => t, :where => gets.strip)
-        info = ap.acu_point_infos.create(:citation => c)
-      end
-      
-      puts "Location = #{info.location}"
-      puts "more?"
-      empty = false
-      until (a=gets).strip.empty? && empty
-        empty = a.strip.empty?
-        info.location = info.location.to_s + a
-      end
-      
-      puts "Translation = #{info.english}"
-      puts "change?"
-      info.english = (a=gets.strip) unless a.empty?
-      
-      puts "Symptoms:"
-      puts info.acu_point_symptoms.map{|t| t.symptom_name}.join(", ")
-      puts "Additional symptoms?"
-      until (a=gets.strip).empty?
-        info.acu_point_symptoms.create(:symptom_name => a)
-      end
-      
-      puts "Functions:"
-      puts info.acu_point_therapeutic_functions.map{|t| t.therapeutic_function_name}.join(", ")
-      puts "Additional functions?"
-      until (a=gets.strip).empty?
-        info.acu_point_therapetic_functions.create(:therapeutic_function_name => a)
-      end
-      
-    end
-  end
 end
 
 
