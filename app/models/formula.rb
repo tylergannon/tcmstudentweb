@@ -43,7 +43,8 @@ class Formula < ActiveRecord::Base
 
   anaf_habtm(:patterns) do |params, pattern|
     pattern = pattern ||= Pattern.new
-    pattern.attributes = params.delete("_destroy")
+    p = params.delete("_destroy")
+    pattern.attributes = p
   end
 
   def all_comparisons
