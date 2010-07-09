@@ -49,25 +49,35 @@ class Pattern < ActiveRecord::Base
   end
 
   def pattern_symptoms_text
-    FormParser.unparse_symptoms(self.pattern_symptoms)
+    StringReader.new.write_items(pattern_symptoms) do |ps|
+      [StringReader.decorate_symptom(ps), ps.commentary]
+    end
   end
 
   def pattern_symptoms_text=(text)
-    new_ps = FormParser.parse_symptoms(text, PatternSymptom)
-    FormParser.merge(self.pattern_symptoms, new_ps)
+    return if text.strip.empty?
+    self.pattern_symptoms = StringReader.new.read_items(text) do |symptom, comment|
+      ps = PatternSymptom.new(:commentary => comment)
+      StringReader.parse_symptom(ps, symptom)
+      ps
+    end
   end
 
   def pattern_treatment_principles_text
-    FormParser.unparse_therapeutic_functions(self.pattern_treatment_principles)
+    StringReader.new.write_items(pattern_treatment_principles) do |ps|
+      [ps.treatment_principle_name, ps.commentary]
+    end
   end
 
   def pattern_treatment_principles_text=(text)
-    new_ps = FormParser.parse_therapeutic_functions(text, PatternTreatmentPrinciple)
-    FormParser.merge(self.pattern_treatment_principles, new_ps)
+    return if text.empty?
+    self.pattern_treatment_principles = StringReader.new.read_items(text) do |tp, commentary|
+      PatternTreatmentPrinciple.new(:treatment_principle_name => tp, :commentary => commentary)
+    end
   end
 
   def key_symptoms
-    self.pattern_symptoms.select{|x| x.key_symptom}
+    self.pattern_symptoms.where(:key_symptom => true)
   end
 
   def key_attributes

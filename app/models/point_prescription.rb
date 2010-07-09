@@ -18,12 +18,16 @@ class PointPrescription < ActiveRecord::Base
   end
 
   def pp_acu_points_text
-    FormParser.unparse_point_prescription_acu_points(pp_acu_points)
+    StringReader.new.write_items(pp_acu_points) do |ppap|
+      [ppap.acu_point_abbrev, ppap.commentary]
+    end
   end
 
   def pp_acu_points_text=(text)
-    new_ps = FormParser.parse_point_prescription_acu_points(text)
-    FormParser.merge(self.pp_acu_points, new_ps)
+    return if text.empty?
+    self.pp_acu_points = StringReader.new.read_items(text) do |ap, commentary|
+      PointPrescriptionAcuPoint.new(:acu_point_abbrev=>ap, :commentary=>commentary)
+    end
   end
 end
 

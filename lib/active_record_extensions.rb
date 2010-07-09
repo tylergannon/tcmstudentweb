@@ -19,7 +19,11 @@ module ActiveRecord
       klass = klass.name
       attribute = attribute.to_s
       if create
-        class_eval "def #{member}_#{attribute}=(#{attribute}); self.#{member} = #{klass}.find_or_create_by_#{attribute}(#{attribute}) unless #{attribute}.blank?; end;"
+        class_eval "def #{member}_#{attribute}=(#{attribute}); 
+        return if #{attribute}.blank?
+        self.#{member} = #{klass}.named(#{attribute})
+        self.#{member} = self.#{member} ||= #{klass}.create(:#{attribute} => #{attribute})
+        end;"
       else
         class_eval "def #{member}_#{attribute}=(#{attribute}); self.#{member} = #{klass}.named(#{attribute}) unless #{attribute}.blank?; end;"
       end

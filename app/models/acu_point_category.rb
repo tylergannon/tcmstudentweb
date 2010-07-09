@@ -5,21 +5,11 @@ class AcuPointCategory < ActiveRecord::Base
   def name
     category_name
   end
-
-  def category_name
-    category.name if category
-  end
+  
+  named_association :category, Category, :name, :create
 
   def key_attributes
     ["id", "category_name","commentary", "position"]
-  end
-
-  def category_name=(name)
-    return if name.blank?
-    self.category = Category.where("lower(name) = '#{name.downcase}'")[0]
-    unless self.category
-      self.category = Category.create(:name => name)
-    end
   end
 end
 

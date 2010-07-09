@@ -73,21 +73,16 @@ class Formula < ActiveRecord::Base
   end
 
   def formula_therapeutic_functions_text
-    FormParser.unparse_therapeutic_functions(formula_therapeutic_functions)
+    StringReader.new.write_items(formula_therapeutic_functions) do |ps|
+      [ps.therapeutic_function_name, ps.commentary]
+    end
   end
 
   def formula_therapeutic_functions_text=(text)
-    new_ps = FormParser.parse_therapeutic_functions(text, FormulaTherapeuticFunction)
-    FormParser.merge(self.formula_therapeutic_functions, new_ps)
-  end
-
-  def formula_symptoms_text
-    FormParser.unparse_symptoms(formula_symptoms)
-  end
-
-  def formula_symptoms_text=(text)
-    new_ps = FormParser.parse_symptoms(text, FormulaSymptom)
-    FormParser.merge(self.formula_symptoms, new_ps)
+    return if text.empty?
+    self.formula_therapeutic_functions = StringReader.new.read_items(text) do |tp, commentary|
+      FormulaTherapeuticFunctions.new(:therapeutic_function_name => tp, :commentary => commentary)
+    end
   end
 
   def link_name

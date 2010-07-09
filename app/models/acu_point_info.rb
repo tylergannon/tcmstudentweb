@@ -11,20 +11,30 @@ class AcuPointInfo < ActiveRecord::Base
   accepts_nested_attributes_for :acu_point_therapeutic_functions, :allow_destroy => true, :reject_if => proc {|a| a['therapeutic_function_name'].blank?}
 
   def acu_point_symptoms_text
-    FormParser.unparse_symptoms(acu_point_symptoms)
+    StringReader.new.write_items(acu_point_symptoms) do |ps|
+      [StringReader.decorate_symptom(ps), ps.commentary]
+    end
   end
 
   def acu_point_symptoms_text=(text)
-    new_ps = FormParser.parse_symptoms(text, AcuPointSymptom)
-    FormParser.merge(self.acu_point_symptoms, new_ps)
+    return if text.empty?
+    self.acu_point_symptoms = StringReader.new.read_items(text) do |symptom, commentary|
+      aps = AcuPointSymptom.new(:commentary => comment)
+      StringReader.parse_symptom(aps, symptom)
+      aps
+    end
   end
 
   def acu_point_therapeutic_functions_text
-    FormParser.unparse_therapeutic_functions(acu_point_therapeutic_functions)
+    StringReader.new.write_items(acu_point_therapeutic_functions) do |atf|
+      [atf.therapeutic_function_name, atf.commentary]
+    end
   end
 
   def acu_point_therapeutic_functions_text=(text)
-    new_ps = FormParser.parse_therapeutic_functions(text, AcuPointTherapeuticFunction)
-    FormParser.merge(self.acu_point_therapeutic_functions, new_ps)
+    return if text.empty?
+    self.acu_point_therapeutic_functions = StringReader.new.read_items(text) do |tfn, commentary|
+      AcuPointTherapeuticFunction.new(:therapeutic_function_name=>tfn, :commentary => commentary)
+    end
   end
 end

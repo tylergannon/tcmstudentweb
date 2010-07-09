@@ -5,14 +5,8 @@ class PointPrescriptionAcuPoint < ActiveRecord::Base
   def name
     acu_point_abbrev
   end
-
-  def acu_point_abbrev
-    acu_point.abbrev if acu_point
-  end
-
-  def acu_point_abbrev=(abbrev)
-    self.acu_point = AcuPoint.find_by_abbrev(abbrev) unless abbrev.blank?
-  end
+  
+  named_association :acu_point, AcuPoint, :abbrev
 
   def key_attributes
     ["acu_point_abbrev", "commentary"]
