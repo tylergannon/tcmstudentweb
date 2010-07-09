@@ -42,15 +42,15 @@ class Formula < ActiveRecord::Base
   accepts_nested_attributes_for :source_text_citation, :allow_destroy => true, :reject_if => proc {|a| a['textbook_title'].blank?}
 
   anaf_habtm(:patterns) do |params, pattern|
-    log.error "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
-    log.error pattern.nil? ? "NIL" : pattern.name
-    log.error params
+    logger.error "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+    logger.error pattern.nil? ? "NIL" : pattern.name
+    logger.error params
     
     pattern = pattern ||= Pattern.new
         
     pattern.attributes= params
-    log.error "Symptoms:"
-    log.error pattern.pattern_symptoms_text
+    logger.error "Symptoms:"
+    logger.error pattern.pattern_symptoms_text
     pattern
   end
 
