@@ -44,6 +44,23 @@ module ActiveRecord
         }
       end
     end
+    
+    def self.anaf_habtm(association, &block)
+      class_eval do
+        finder = proc {|id| association.to_s.singularize.camelize.constantize.where(:id=>id).first
+        }
+        set_coll = proc {|me, coll| me.send("#{association.to_s.tableize}=", coll)}
+        define_method "#{association.to_s.tableize}_attributes=", lambda{|coll_params|
+          coll = []
+          coll_params.each_value do |params|
+            next if params["_destroy"] == "1"
+            obj = finder.call(params["id"]) if params.has_key?("id")
+            coll << block.call(params, obj)
+          end
+          set_coll.call(self, coll)
+        }
+      end
+    end
 
     def self.lookup(params)
       str = params[:id]

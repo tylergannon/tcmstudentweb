@@ -37,11 +37,14 @@ class Formula < ActiveRecord::Base
 	accepts_nested_attributes_for :formula_contraindications, :allow_destroy => true, :reject_if => proc {|a| a['contraindication_name'].blank?}
 	accepts_nested_attributes_for :formula_herbs, :allow_destroy => true, :reject_if => proc {|a| a['herb_pinyin'].blank?}
   accepts_nested_attributes_for :formula_therapeutic_functions, :allow_destroy => true, :reject_if => proc {|a| a['therapeutic_function_name'].blank?}
-	accepts_nested_attributes_for :patterns, :allow_destroy => true
 	accepts_nested_attributes_for :dui_yaos, :allow_destroy => true
 	accepts_nested_attributes_for :formula_comparisons, :allow_destroy => true, :reject_if => proc {|a| a['formula2_pinyin'].blank?}
   accepts_nested_attributes_for :source_text_citation, :allow_destroy => true, :reject_if => proc {|a| a['textbook_title'].blank?}
 
+  anaf_habtm(:patterns) do |params, pattern|
+    pattern = pattern ||= Pattern.new
+    pattern.attributes = params.delete("_destroy")
+  end
 
   def all_comparisons
 	  formula_comparisons + other_formula_comparisons

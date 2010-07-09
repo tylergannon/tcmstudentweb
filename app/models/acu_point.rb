@@ -8,11 +8,13 @@ class AcuPoint < ActiveRecord::Base
   acts_as_cited
 
   belongs_to :channel
-  has_many :acu_point_infos
+  has_many :acu_point_infos, :dependent => :destroy, :autosave => true
   has_many :acu_point_categories, :dependent => :destroy, :autosave => true
   has_many :categories, :through => :acu_point_categories
   has_many :point_prescription_acu_points
   has_many :point_prescriptions, :through => :point_prescription_acu_points
+
+  accepts_nested_attributes_for :acu_point_infos, :allow_destroy => true
   
   search_on :pinyin, :canonical
   
@@ -38,7 +40,6 @@ class AcuPoint < ActiveRecord::Base
     point
   end
 
-  accepts_nested_attributes_for :acu_point_infos, :allow_destroy => true
 
   def display_name
     pinyin.empty? ? abbrev : "#{abbrev} #{pinyin}"

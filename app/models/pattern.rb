@@ -3,8 +3,6 @@ class Pattern < ActiveRecord::Base
   acts_as_taggable_on :diseases, :primary_patterns  
   acts_as_cited
 
-  
-
   def save_and_next
     save
     order(:id).limit(1).where("id > #{id}")
@@ -28,10 +26,14 @@ class Pattern < ActiveRecord::Base
   def key_pattern_symptoms
     pattern_symptoms.where(:key_symptom => true)
   end
+  
+  anaf_habtm(:formulas) do |params, formula|
+    obj ||= Formula.named(params["pinyin"])
+  end
 
   accepts_nested_attributes_for :pattern_symptoms, :allow_destroy => true, \
     :reject_if => proc {|a| a['symptom_name'].blank?}
-
+#	accepts_nested_attributes_for :formulas, :allow_destroy => true
   accepts_nested_attributes_for :point_prescriptions, :allow_destroy => true
   accepts_nested_attributes_for :citation, :allow_destroy => true, :reject_if => proc {|a| a['textbook_title'].blank?}
 
@@ -43,11 +45,13 @@ class Pattern < ActiveRecord::Base
 
   def pattern_symptoms_text=(text)
     return if text.strip.empty?
-    self.pattern_symptoms = StringReader.new.read_items(text) do |symptom, comment|
-      ps = PatternSymptom.new(:commentary => comment)
-      StringReader.parse_symptom(ps, symptom)
-      ps
+    foo = StringReader.new.read_items(text) do |symptom, comment|
+      pattern_symptoms.build(:commentary => comment, :symptom_name=>symptom)
+#      StringReader.parse_symptom(ps, symptom)
+#      ps
     end
+    self.pattern_symptoms = foo
+
   end
 
   def therapeutic_functions_text
@@ -65,10 +69,6 @@ class Pattern < ActiveRecord::Base
 
   def key_symptoms
     self.pattern_symptoms.where(:key_symptom => true)
-  end
-
-  def key_attributes
-    ["name", "id", "pattern_symptoms_text", "pattern_treatment_principles_text", "commentary"]
   end
 
   def link_name

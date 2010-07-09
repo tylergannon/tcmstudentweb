@@ -1,6 +1,6 @@
 class AcuPointInfo < ActiveRecord::Base
-  has_many :acu_point_therapeutic_functions
-  has_many :acu_point_symptoms
+  has_many :acu_point_therapeutic_functions, :autosave => true
+  has_many :acu_point_symptoms, :autosave => true
   belongs_to :acu_point
 
   acts_as_cited
@@ -17,7 +17,7 @@ class AcuPointInfo < ActiveRecord::Base
   def acu_point_symptoms_text=(text)
     return if text.empty?
     self.acu_point_symptoms = StringReader.new.read_items(text) do |symptom, commentary|
-      aps = AcuPointSymptom.new(:commentary => commentary)
+      aps = AcuPointSymptom.new(:commentary => commentary, :symptom_name => symptom)
       StringReader.parse_symptom(aps, symptom)
       aps
     end

@@ -100,7 +100,6 @@ class StringReader
     else
       obj.symptom_name = symptom
     end
-    
   end
   
   def self.decorate_symptom(obj)

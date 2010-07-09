@@ -121,9 +121,9 @@ class PatternsController < ApplicationController
             end
           }
           format.xml  { head :ok }
-        rescue
-          format.html { render :action => "edit" }
-          format.xml  { render :xml => @pattern.errors, :status => :unprocessable_entity }
+#        rescue
+#          format.html { render :action => "edit" }
+#          format.xml  { render :xml => @pattern.errors, :status => :unprocessable_entity }
         end
       end
     end

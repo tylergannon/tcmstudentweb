@@ -23,7 +23,7 @@
 
 = add_child_link 'Add a Formula', 'formula', f
 #formula_children
-  - f.fields_for :formulas do |formula_form|
+  = f.fields_for :formulas do |formula_form|
     = render :partial => 'formula', :locals => { :f => formula_form }
 
 %h3 Comments
