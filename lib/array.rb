@@ -17,7 +17,6 @@ class Array
   def strip_all
     map!{|t| t.strip}
   end
-
 end
 
 module ArrayPlus
