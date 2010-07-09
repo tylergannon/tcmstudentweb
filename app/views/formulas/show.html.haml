@@ -30,7 +30,6 @@
         - p = @formula.patterns.first
         != "Keys: #{link(p.key_pattern_symptoms)}" unless p.key_pattern_symptoms.size==0
   - @formula.patterns.each do |p|
-    - p = formula_pattern.pattern
     %tr
       %td{'valign' => 'top'}
         %b Diagnosis:
