@@ -44,15 +44,7 @@ module ActiveRecord
         }
       end
     end
-    
-    def =~ (other)
-      if other.nil? || (other.class != self.class)
-        false
-      else
-        other.name.downcase == name.downcase
-      end
-    end
-    
+
     def self.lookup(params)
       str = params[:id]
       if str.match(/\D/)

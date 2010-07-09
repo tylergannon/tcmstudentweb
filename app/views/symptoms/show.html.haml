@@ -13,10 +13,10 @@
       - if !ps.commentary.empty?
         %ul
           %li= ps.commentary
-      - if ps.pattern.formula_patterns.size > 0
+      - unless ps.patterns.empty?
         %ul
-          - ps.pattern.formula_patterns.each do |fp|
-            %li= link_to fp.formula.pinyin, fp.formula
+          - ps.pattern.formulas.each do |fp|
+            %li= link_to fp.pinyin, fp
 
 %p
   = link_to "Edit", edit_symptom_path(@symptom)
