@@ -47,9 +47,11 @@ module ActiveRecord
     
     def self.anaf_habtm(association, &block)
       class_eval do
+        # Define a proc that will look up the (potentially) existing object
         finder = proc {|id| association.to_s.singularize.camelize.constantize.where(:id=>id).first
         }
         
+        # Define a proc that will set the association collection
         set_collection = proc {|me, coll| me.send("#{association.to_s.tableize}=", coll)}
         # Define the actual association setter.
         define_method "#{association.to_s.tableize}_attributes=", lambda{|attributes_for_association|
