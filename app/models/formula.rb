@@ -51,6 +51,7 @@ class Formula < ActiveRecord::Base
     pattern.attributes= params
     logger.error "Symptoms:"
     logger.error pattern.pattern_symptoms_text
+    pattern.save
     pattern
   end
 
