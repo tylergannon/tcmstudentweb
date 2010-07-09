@@ -45,6 +45,7 @@ class Formula < ActiveRecord::Base
     pattern = pattern ||= Pattern.new
     params.delete("_destroy")
     pattern.attributes = params
+    pattern
   end
 
   def all_comparisons

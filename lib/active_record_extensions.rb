@@ -49,15 +49,18 @@ module ActiveRecord
       class_eval do
         finder = proc {|id| association.to_s.singularize.camelize.constantize.where(:id=>id).first
         }
-        set_coll = proc {|me, coll| me.send("#{association.to_s.tableize}=", coll)}
-        define_method "#{association.to_s.tableize}_attributes=", lambda{|coll_params|
+        
+        set_collection = proc {|me, coll| me.send("#{association.to_s.tableize}=", coll)}
+        # Define the actual association setter.
+        define_method "#{association.to_s.tableize}_attributes=", lambda{|attributes_for_association|
           coll = []
-          coll_params.each_value do |params|
+          
+          attributes_for_association.each_value do |params|
             next if params["_destroy"] == "1"
             obj = finder.call(params["id"]) if params.has_key?("id")
             coll << block.call(params, obj)
           end
-          set_coll.call(self, coll)
+          set_collection.call(self, coll)
         }
       end
     end
