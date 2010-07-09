@@ -60,7 +60,9 @@ module ActiveRecord
           attributes_for_association.each_value do |params|
             next if params["_destroy"] == "1"
             obj = finder.call(params["id"]) if params.has_key?("id")
-            coll << block.call(params, obj)
+            params.extend(HashExtension)
+            # ActiveRecord::Base.attributes=() doesn't like extra parameters.
+            coll << block.call(params.copy_without_destroy, obj)
           end
           set_collection.call(self, coll)
         }

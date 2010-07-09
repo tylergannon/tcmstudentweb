@@ -47,7 +47,6 @@ class Formula < ActiveRecord::Base
     log.error params
     
     pattern = pattern ||= Pattern.new
-    params.delete("_destroy")
         
     pattern.attributes= params
     log.error "Symptoms:"
