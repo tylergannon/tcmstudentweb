@@ -17,8 +17,7 @@ gem 'acts-as-taggable-on'
 gem 'prawn'
 #gem 'prawnto', :git => 'git://github.com/bryanl/prawnto.git', :branch => 'rails3'
 
-gem "anaf_habtm"
-
+gem "anaf_habtm"  #reinstall
 
 group :development do
   gem 'scrapi'

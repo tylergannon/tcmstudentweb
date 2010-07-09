@@ -1,4 +1,4 @@
-module ActiveRecordExtensions
+module TcmStudentWeb::ActiveRecordExtensions
   def acts_as_cited
     class_eval do
       belongs_to :citation, :dependent => :destroy
