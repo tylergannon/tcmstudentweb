@@ -26,16 +26,16 @@
       - if (a = @formula.chief_herbs)
         %h3!= "Chief Herb#{'s' unless a.size==1}: #{a.map{|v| link_to_herb(v.herb)}.join(", ")}"
         %br/
-      - if formula_pattern = @formula.formula_patterns[0]
-        - p = formula_pattern.pattern
+      - unless @formula.patterns.empty?
+        - p = @formula.patterns.first
         != "Keys: #{link(p.key_pattern_symptoms)}" unless p.key_pattern_symptoms.size==0
-  - @formula.formula_patterns.each do |formula_pattern|
+  - @formula.patterns.each do |p|
     - p = formula_pattern.pattern
     %tr
       %td{'valign' => 'top'}
         %b Diagnosis:
         #{link_to p.name, p}
-        %p #{show_citation formula_pattern.citation}
+        %p #{show_citation p.citation}
       %td{'valign' => 'top'}
         %b Indications:
         != link(p.pattern_symptoms)
