@@ -28,7 +28,7 @@ end
 
 group :test do
   gem "mocha", :git => "git://github.com/floehopper/mocha.git"
-  gem "factory_girl", :git => "git://github.com/thoughtbot/factory_girl.git", :branch => "rails3"
+  gem "factory_girl_rails"
   gem "shoulda", :git => "git://github.com/bmaddy/shoulda.git", :branch => "rails3"
 end
 
