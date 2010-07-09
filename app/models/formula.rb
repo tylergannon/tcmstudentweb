@@ -15,12 +15,11 @@ class Formula < ActiveRecord::Base
 	has_many :herbs, :through => :formula_herbs
 	has_many :formula_therapeutic_functions, :dependent => :destroy
 	has_many :therapeutic_functions, :through => :formula_therapeutic_functions
-	has_many :pattern_formulas, :autosave => true
-	has_many :patterns, :through => :formula_patterns
 	has_many :formula_comparisons, :foreign_key => :formula1_id, :dependent => :destroy
 	has_many :other_formula_comparisons, :foreign_key => :formula2_id, :class_name => 'FormulaComparison', :dependent => :destroy
   
   has_and_belongs_to_many :dui_yaos, :autosave => :true, :uniq => true
+  has_and_belongs_to_many :patterns, :autosave => :true, :uniq => true
   
   named_association :master_formula, Formula, :name
 

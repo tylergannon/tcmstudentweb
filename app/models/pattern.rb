@@ -19,8 +19,7 @@ class Pattern < ActiveRecord::Base
   scope :search_mod, order("char_length(name)")
   
   has_and_belongs_to_many :therapeutic_functions
-#  has_and_belongs_to_many :formulas
-  has_many :pattern_formulas
+  has_and_belongs_to_many :formulas, :autosave => :true, :uniq => true
 
   has_many :pattern_symptoms, :dependent => :destroy
   has_many :symptoms, :through => :pattern_symptoms
