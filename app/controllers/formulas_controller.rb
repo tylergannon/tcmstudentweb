@@ -96,9 +96,9 @@ class FormulasController < ApplicationController
           flash[:notice] = 'Formula was successfully updated.'
           format.html { redirect_to(@formula) }
           format.xml  { head :ok }
-        rescue
-          format.html { render :action => "edit" }
-          format.xml  { render :xml => @formula.errors, :status => :unprocessable_entity }
+#        rescue
+#          format.html { render :action => "edit" }
+#          format.xml  { render :xml => @formula.errors, :status => :unprocessable_entity }
         end
       end
     end
