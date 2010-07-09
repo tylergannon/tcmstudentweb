@@ -47,10 +47,10 @@
 %hr
 %h2
   Diagnosis
-= add_child_link 'Add a Pattern of Disharmony', 'formula_pattern', f
-#formula_pattern_children
-  = f.fields_for :formula_patterns do |formula_pattern_form|
-    = render :partial => 'formula_pattern', :locals => { :f => formula_pattern_form }
+= add_child_link 'Add a Pattern of Disharmony', 'pattern', f
+#pattern_children
+  = f.fields_for :patterns do |pattern_form|
+    = render :partial => 'pattern', :locals => { :f => pattern_form }
 
 %hr
 %h2

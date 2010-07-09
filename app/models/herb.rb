@@ -23,9 +23,6 @@ class Herb < ActiveRecord::Base
   scope :search_mod, order("char_length(canonical)")
 
   validates_uniqueness_of :pinyin, :canonical
-  def key_attributes
-    ["id", "pinyin", "english", "canonical", "herb_category_id", "commentary", "common_name", "short_name", "state_board", ]
-  end
 
   belongs_to :herb_category
 
@@ -41,8 +38,7 @@ class Herb < ActiveRecord::Base
 
 	has_many :other_herb_comparisons, :foreign_key => :herb2_id, :class_name => "HerbComparison"
 
-  belongs_to :citation
-  accepts_nested_attributes_for :citation, :allow_destroy => true, :reject_if => proc {|a| a['textbook_title'].blank?}
+  
 
   belongs_to :source_text_citation, :class_name => "Citation"
   accepts_nested_attributes_for :source_text_citation, :allow_destroy => true, :reject_if => proc {|a| a['textbook_title'].blank?}

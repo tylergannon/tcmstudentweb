@@ -1,12 +1,10 @@
 class AcuPointInfo < ActiveRecord::Base
   has_many :acu_point_therapeutic_functions
   has_many :acu_point_symptoms
-  belongs_to :citation
   belongs_to :acu_point
 
   acts_as_cited
 
-  accepts_nested_attributes_for :citation, :allow_destroy => true, :reject_if => proc {|a| a['textbook_title'].blank?}
   accepts_nested_attributes_for :acu_point_symptoms, :allow_destroy => true, :reject_if => proc {|a| a['symptom_name'].blank?}
   accepts_nested_attributes_for :acu_point_therapeutic_functions, :allow_destroy => true, :reject_if => proc {|a| a['therapeutic_function_name'].blank?}
 
@@ -19,7 +17,7 @@ class AcuPointInfo < ActiveRecord::Base
   def acu_point_symptoms_text=(text)
     return if text.empty?
     self.acu_point_symptoms = StringReader.new.read_items(text) do |symptom, commentary|
-      aps = AcuPointSymptom.new(:commentary => comment)
+      aps = AcuPointSymptom.new(:commentary => commentary)
       StringReader.parse_symptom(aps, symptom)
       aps
     end

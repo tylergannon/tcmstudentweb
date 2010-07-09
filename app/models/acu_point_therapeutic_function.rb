@@ -6,8 +6,4 @@ class AcuPointTherapeuticFunction < ActiveRecord::Base
     therapeutic_function_name
   end
 	named_association :therapeutic_function, TherapeuticFunction, :name, :create
-
-  def key_attributes
-    ["id", "therapeutic_function_name"]
-  end
 end

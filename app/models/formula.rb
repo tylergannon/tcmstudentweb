@@ -7,7 +7,6 @@ class Formula < ActiveRecord::Base
   belongs_to :master_formula, :class_name => "Formula"
   belongs_to :source_text_citation, :class_name => "Citation", :dependent => :destroy
 	belongs_to :formula_category
-  belongs_to :citation, :dependent => :destroy
 
   has_many :variations, :class_name => "Formula", :foreign_key => "master_formula_id"
 	has_many :formula_contraindications, :dependent => :destroy
@@ -16,7 +15,7 @@ class Formula < ActiveRecord::Base
 	has_many :herbs, :through => :formula_herbs
 	has_many :formula_therapeutic_functions, :dependent => :destroy
 	has_many :therapeutic_functions, :through => :formula_therapeutic_functions
-	has_many :formula_patterns, :dependent => :destroy
+	has_many :pattern_formulas, :autosave => true
 	has_many :patterns, :through => :formula_patterns
 	has_many :formula_comparisons, :foreign_key => :formula1_id, :dependent => :destroy
 	has_many :other_formula_comparisons, :foreign_key => :formula2_id, :class_name => 'FormulaComparison', :dependent => :destroy
@@ -39,10 +38,9 @@ class Formula < ActiveRecord::Base
 	accepts_nested_attributes_for :formula_contraindications, :allow_destroy => true, :reject_if => proc {|a| a['contraindication_name'].blank?}
 	accepts_nested_attributes_for :formula_herbs, :allow_destroy => true, :reject_if => proc {|a| a['herb_pinyin'].blank?}
   accepts_nested_attributes_for :formula_therapeutic_functions, :allow_destroy => true, :reject_if => proc {|a| a['therapeutic_function_name'].blank?}
-	accepts_nested_attributes_for :formula_patterns, :allow_destroy => true
+	accepts_nested_attributes_for :patterns, :allow_destroy => true
 	accepts_nested_attributes_for :dui_yaos, :allow_destroy => true
 	accepts_nested_attributes_for :formula_comparisons, :allow_destroy => true, :reject_if => proc {|a| a['formula2_pinyin'].blank?}
-  accepts_nested_attributes_for :citation, :allow_destroy => true, :reject_if => proc {|a| a['textbook_title'].blank?}
   accepts_nested_attributes_for :source_text_citation, :allow_destroy => true, :reject_if => proc {|a| a['textbook_title'].blank?}
 
 
@@ -81,7 +79,7 @@ class Formula < ActiveRecord::Base
   def formula_therapeutic_functions_text=(text)
     return if text.empty?
     self.formula_therapeutic_functions = StringReader.new.read_items(text) do |tp, commentary|
-      FormulaTherapeuticFunctions.new(:therapeutic_function_name => tp, :commentary => commentary)
+      FormulaTherapeuticFunction.new(:therapeutic_function_name => tp, :commentary => commentary)
     end
   end
 

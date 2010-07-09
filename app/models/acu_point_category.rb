@@ -8,8 +8,5 @@ class AcuPointCategory < ActiveRecord::Base
   
   named_association :category, Category, :name, :create
 
-  def key_attributes
-    ["id", "category_name","commentary", "position"]
-  end
 end
 

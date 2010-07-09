@@ -30,25 +30,19 @@ Keys: #{@pattern.pattern_symptoms.select{|x| x.key_symptom}.map{|y| y.symptom_na
 
 %h2 Treatment Principles
 %ul
-  - @pattern.pattern_treatment_principles.each do |p|
-    %li
-      = p.treatment_principle_name
-      - unless p.commentary.blank?
-        %ul
-          %li
-            :tcmtextile
-              #{p.commentary}
+  - @pattern.therapeutic_functions.each do |p|
+    %li= p.name
 
 - unless @pattern.commentary.blank?
   %h2 Commentary
   :tcmtextile
     #{@pattern.commentary}
 
-- unless @pattern.pattern_formulas.blank?
+- unless @pattern.formulas.empty?
   %h2 Formulas
   %ul
-    - @pattern.pattern_formulas.each do |pf|
-      %li!= "#{link_to pf.formula_pinyin, pf.formula} (#{pf.citation.textbook.title if pf.citation})"
+    - @pattern.formulas.each do |f|
+      %li!= "#{link_to f.pinyin, f} (#{f.citation.textbook.title if f.citation})"
 
 - unless @pattern.point_prescriptions.blank?
   - @pattern.point_prescriptions.each do |pp|

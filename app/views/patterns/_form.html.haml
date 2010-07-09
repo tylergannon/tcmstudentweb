@@ -11,7 +11,7 @@
 = tag_field(f, :primary_pattern_list)
 %br/
 %h3 Treatment Principles
-= text_area_with_auto_complete f, :pattern_treatment_principles_text, 'therapeutic_functions', :rows => 4, :cols => 60
+= text_area_with_auto_complete f, :therapeutic_functions_text, 'therapeutic_functions', :rows => 4, :cols => 60
 
 %h3 Source
 = render :partial => 'citations/edit_citation', :locals => {:f => f, :field => :citation}

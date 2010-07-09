@@ -2,6 +2,8 @@ module ActiveRecord
   class Base
     def self.acts_as_cited
       class_eval do
+        belongs_to :citation, :dependent => :destroy
+        accepts_nested_attributes_for :citation, :allow_destroy => true, :reject_if => proc {|a| a['textbook_title'].blank?}
         scope :bensky, lambda {joins(:citation).where("citations.textbook_id = 2")}
         scope :gio, lambda {joins(:citation).where("citations.textbook_id = 20")}
         
@@ -58,18 +60,6 @@ module ActiveRecord
       else
         find(str)
       end
-    end
-
-    def incorporate(new_obj)
-      return if new_obj.nil? || (new_obj.class != self.class) || !(self =~ new_obj)
-      attr = {}
-      key_attributes.each do |attribute|
-        new_val = new_obj.attributes[attribute]
-        unless new_val.to_s.nil?
-          attr[attribute] = new_val
-        end
-      end
-      self.attributes = attr
     end
 
     def self.like_condition(str)
