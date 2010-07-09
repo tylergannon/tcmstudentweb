@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100709010323) do
+ActiveRecord::Schema.define(:version => 20100709030759) do
 
   create_table "acu_point_categories", :force => true do |t|
     t.integer  "acu_point_id"
@@ -102,14 +102,6 @@ ActiveRecord::Schema.define(:version => 20100709010323) do
     t.datetime "updated_at"
   end
 
-  create_table "diseases", :force => true do |t|
-    t.string   "name"
-    t.integer  "citation_id"
-    t.text     "commentary"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "dui_yaos", :force => true do |t|
     t.text     "commentary"
     t.datetime "created_at"
@@ -123,21 +115,6 @@ ActiveRecord::Schema.define(:version => 20100709010323) do
     t.integer  "dui_yao_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "flavors", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "formula_categories", :force => true do |t|
-    t.string   "name"
-    t.text     "commentary"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "position"
-    t.integer  "parent_category"
   end
 
   create_table "formula_comparisons", :force => true do |t|
@@ -170,22 +147,6 @@ ActiveRecord::Schema.define(:version => 20100709010323) do
     t.integer  "preparation_id"
   end
 
-  create_table "formula_patterns", :force => true do |t|
-    t.integer  "formula_id"
-    t.integer  "pattern_id"
-    t.text     "commentary"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "citation_id"
-  end
-
-  create_table "formula_pulse_qualities", :force => true do |t|
-    t.integer  "formula_id"
-    t.integer  "pulse_quality_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "formula_roles", :force => true do |t|
     t.string   "pinyin"
     t.string   "english"
@@ -193,29 +154,12 @@ ActiveRecord::Schema.define(:version => 20100709010323) do
     t.datetime "updated_at"
   end
 
-  create_table "formula_symptoms", :force => true do |t|
-    t.integer  "formula_id"
-    t.integer  "symptom_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.boolean  "maybe"
-    t.boolean  "key_symptom"
-    t.text     "commentary"
-  end
-fo
   create_table "formula_therapeutic_functions", :force => true do |t|
     t.integer  "formula_id"
     t.integer  "therapeutic_function_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "commentary"
-  end
-
-  create_table "formula_tongue_qualities", :force => true do |t|
-    t.integer  "formula_id"
-    t.integer  "tongue_quality_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "formulas", :force => true do |t|
@@ -236,6 +180,13 @@ fo
     t.integer  "master_formula_id"
   end
 
+  create_table "formulas_patterns", :id => false, :force => true do |t|
+    t.integer  "formula_id"
+    t.integer  "pattern_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "herb_categories", :force => true do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -243,13 +194,6 @@ fo
     t.integer  "parent_category_id"
     t.integer  "position"
     t.integer  "parent_category"
-  end
-
-  create_table "herb_channels", :force => true do |t|
-    t.integer  "herb_id"
-    t.integer  "channel_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "herb_comparisons", :force => true do |t|
@@ -267,13 +211,6 @@ fo
   create_table "herb_flavors", :force => true do |t|
     t.integer  "herb_id"
     t.integer  "flavor_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "herb_preparations", :force => true do |t|
-    t.string   "name"
-    t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -362,13 +299,6 @@ fo
     t.datetime "updated_at"
   end
 
-  create_table "pulse_qualities", :force => true do |t|
-    t.string   "name"
-    t.text     "commentary"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "roles", :force => true do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -408,13 +338,6 @@ fo
 
   create_table "therapeutic_functions", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "tongue_qualities", :force => true do |t|
-    t.string   "name"
-    t.text     "commentary"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
