@@ -16,22 +16,6 @@ module ActiveRecord
       end
     end
     
-    def self.named_association(member, klass, attribute, create=nil)
-      member = member.to_s
-      klass = klass.name
-      attribute = attribute.to_s
-      if create
-        class_eval "def #{member}_#{attribute}=(#{attribute}); 
-        return if #{attribute}.blank?
-        self.#{member} = #{klass}.named(#{attribute})
-        self.#{member} = self.#{member} ||= #{klass}.create(:#{attribute} => #{attribute})
-        end;"
-      else
-        class_eval "def #{member}_#{attribute}=(#{attribute}); self.#{member} = #{klass}.named(#{attribute}) unless #{attribute}.blank?; end;"
-      end
-      class_eval "def #{member}_#{attribute}; #{member}.#{attribute} if #{member}; end;"
-    end
-    
     def self.search_on(*cols)
       class_eval "def self.search_columns; #{cols.map{|t| t.to_s}.to_ary.inspect}; end;"
       class_eval do
@@ -45,30 +29,6 @@ module ActiveRecord
       end
     end
     
-    def self.anaf_habtm(association, &block)
-      class_eval do
-        # Define a proc that will look up the (potentially) existing object
-        finder = proc {|id| association.to_s.singularize.camelize.constantize.where(:id=>id).first
-        }
-        
-        # Define a proc that will set the association collection
-        set_collection = proc {|me, coll| me.send("#{association.to_s.tableize}=", coll)}
-        # Define the actual association setter.
-        define_method "#{association.to_s.tableize}_attributes=", lambda{|attributes_for_association|
-          coll = []
-          
-          attributes_for_association.each_value do |params|
-            next if params["_destroy"] == "1"
-            obj = finder.call(params["id"]) if params.has_key?("id")
-            params.extend(HashExtension)
-            # ActiveRecord::Base.attributes=() doesn't like extra parameters.
-            coll << block.call(params.copy_without_destroy, obj)
-          end
-          set_collection.call(self, coll)
-        }
-      end
-    end
-
     def self.lookup(params)
       str = params[:id]
       if str.match(/\D/)

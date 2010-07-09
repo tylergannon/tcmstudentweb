@@ -11,3 +11,4 @@ function remove_child(element) {
   }
   $(element).up(".child").hide();
 }
+

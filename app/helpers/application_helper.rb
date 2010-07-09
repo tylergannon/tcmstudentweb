@@ -20,21 +20,6 @@ module ApplicationHelper
     form_builder.hidden_field(:_destroy) + link_to_function(name, "remove_child(this)", :tabindex => "0")
   end
 
-  def add_child_link(name, child, form_builder)
-    # puts "||#{form_builder}||"
-    fields = escape_javascript(new_child_fields(child, form_builder))
-    link_to_function(name, h("add_child(this, \"#{child}\", \"#{fields}\")"))
-  end
-
-  def new_child_fields(child, form_builder)
-    output = ""
-    form_builder.fields_for(child.pluralize.to_sym, child.camelize.constantize.new, :child_index => 'NEW_RECORD') do |f|
-      output += render(:partial => child.underscore, :locals => { :f => f })
-    end
-    output
-  end
-
-
   def text_area_with_auto_complete(form, field, search_path, options = {})
     render(:partial => 'layouts/auto_complete',
            :locals => {:f => form,  :path => search_path, :field => field, :html_options => options})
