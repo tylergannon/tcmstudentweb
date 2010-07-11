@@ -32,6 +32,8 @@ class AcuPoint < ActiveRecord::Base
     a = AcuPointCategory.named(name)
     joins(:acu_point_categories).where(:acu_point_categories => {:id => a.id})
   }
+  
+  scope :join_therapeutic_function, joins([{:acu_point_infos=>{:acu_point_therapeutic_functions=>:therapeutic_function}}])
 
 
   def self.search(str)

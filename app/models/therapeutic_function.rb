@@ -6,6 +6,13 @@ class TherapeuticFunction < ActiveRecord::Base
   has_many :acu_point_therapeutic_functions
   has_many :acu_point_infos, :through => :acu_point_therapeutic_functions
 #  has_many :acu_points, :through => :acu_point_infos
+  acts_as_taggable
+  
+  scope :join_acu_point, joins([{:acu_point_therapeutic_functions=>{:acu_point_info=>:acu_point}}])
+
+  scope :by_channel, lambda {|channel_id|
+    join_acu_point.where(:acu_points=>{:channel_id=>channel_id})
+  }
 
   acts_as_linkable :name=>:name
 

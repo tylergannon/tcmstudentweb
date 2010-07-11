@@ -55,7 +55,6 @@ TcmStudentWeb::Application.routes.draw do
   match 'signup' => 'users#new'
   match '/register/:activation_code' => 'activations#new', :as => :register
   match '/activate/:id' => 'activations#create', :as => :activate
-  match '/channel/:channel' => 'channels#show'
   match '/' => 'formulas#index'
   
   match '/:controller/t/:tag_name' => '#index'

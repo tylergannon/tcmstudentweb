@@ -17,6 +17,17 @@
     %br/
   != info.acu_point_symptoms.map{|t| link_to t.symptom_name, t.symptom}.join(", ")
   %br/
-  %br/
   %hr/
   %br/
+
+%h1 By Tag:
+%ul
+  - @tag_acu_points.each do |tag, contents|
+    %li
+      %h3= tag.name
+      - contents.each do |tf, acu_points|
+        %ul
+          - acu_points.each do |acu_point|
+            %li!= "#{link(acu_point)} -- #{link(tf)}"
+
+

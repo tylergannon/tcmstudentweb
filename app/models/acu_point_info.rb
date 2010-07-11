@@ -25,14 +25,18 @@ class AcuPointInfo < ActiveRecord::Base
 
   def acu_point_therapeutic_functions_text
     StringReader.new.write_items(acu_point_therapeutic_functions) do |atf|
-      [atf.therapeutic_function_name, atf.commentary]
+      tag_list = atf.therapeutic_function.tag_list if atf.therapeutic_function
+      [atf.therapeutic_function_name, tag_list]
     end
   end
 
   def acu_point_therapeutic_functions_text=(text)
     return if text.empty?
-    self.acu_point_therapeutic_functions = StringReader.new.read_items(text) do |tfn, commentary|
-      AcuPointTherapeuticFunction.new(:therapeutic_function_name=>tfn, :commentary => commentary)
+    self.acu_point_therapeutic_functions = StringReader.new.read_items(text) do |tfn, tag_list|
+      a = AcuPointTherapeuticFunction.new(:therapeutic_function_name=>tfn)
+      a.therapeutic_function.tag_list = tag_list
+      a.therapeutic_function.save
+      a
     end
   end
 end
