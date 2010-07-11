@@ -63,5 +63,10 @@
                       :tcmtextile
                         #{ap.commentary}
 
-#{link_to 'Edit', edit_acu_point_path(@acu_point)} | #{link_to 'Back', acu_points_path} | #{link_to 'Edit next', edit_acu_point_path(AcuPoint.order(:id).where("id > #{@acu_point.id}").limit(1).first}
+#{link_to 'Edit', edit_acu_point_path(@acu_point)} | #{link_to 'Back', acu_points_path} | #{link_to 'Edit next', edit_acu_point_path(AcuPoint.order(:id).where("id > #{@acu_point.id}").limit(1).first)}
+
+
+
+
+
 
