@@ -1,6 +1,8 @@
 class Formula < ActiveRecord::Base
   acts_as_taggable
   acts_as_taggable_on :formula_categories
+  
+  acts_as_linkable :name => :pinyin, :title=>:english
 
   acts_as_cited
 
@@ -21,7 +23,7 @@ class Formula < ActiveRecord::Base
   has_and_belongs_to_many :dui_yaos, :autosave => :true, :uniq => true
   has_and_belongs_to_many :patterns, :autosave => :true, :uniq => true
   
-  named_association :master_formula, Formula, :name
+  named_association :master_formula, :name, :class_name => "Formula"
 
   search_on :canonical, :english, :pinyin
   scope :search_mod, order("char_length(canonical)")
@@ -65,13 +67,9 @@ class Formula < ActiveRecord::Base
     herbs_from(Formula::ROLES[1]) + herbs_from(Formula::ROLES[2]) +  herbs_from(Formula::ROLES[3])
   end
 
-  def name
-    pinyin
-  end
-
   def pinyin=(p)
     super(p)
-    self.canonical = p.normalize.titleize
+    self.canonical = ActiveSupport::Multibyte::Chars.new(p).mb_chars.normalize(:kd).gsub(/[^\x00-\x7F]/n,'').titleize.to_s
   end
 
   def formula_therapeutic_functions_text
@@ -86,15 +84,6 @@ class Formula < ActiveRecord::Base
       FormulaTherapeuticFunction.new(:therapeutic_function_name => tp, :commentary => commentary)
     end
   end
-
-  def link_name
-    pinyin
-  end
-
-  def link_title
-    english
-  end
-
 end
 
 

@@ -6,7 +6,7 @@ class AcuPointCategory < ActiveRecord::Base
     category_name
   end
   
-  named_association :category, Category, :name, :create
+  named_association :category, :name, :create => true
 
 end
 

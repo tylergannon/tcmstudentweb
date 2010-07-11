@@ -1,4 +1,4 @@
-- title @acu_point.display_name
+- title "#{@acu_point.abbrev} #{@acu_point.pinyin}"
 %h2 #{@acu_point.pinyin} // #{@acu_point.chinese}
 %br/
 %h3 Point Categories:
@@ -39,7 +39,7 @@
         %br/
         - pp = ppap.point_prescription
         %b Symptoms
-        != link(pattern.pattern_symptoms)
+        != link pattern.pattern_symptoms
         - if pattern.formulas.size > 0
           %b= "Formulas"
           != link(pattern.formulas)

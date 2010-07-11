@@ -7,6 +7,8 @@ class TherapeuticFunction < ActiveRecord::Base
   has_many :acu_point_infos, :through => :acu_point_therapeutic_functions
 #  has_many :acu_points, :through => :acu_point_infos
 
+  acts_as_linkable :name=>:name
+
   def consolidate(tf)
     tf.herb_therapeutic_functions.each { |htf| herb_therapeutic_functions << htf }
     tf.acu_point_therapeutic_functions.each { |htf| acu_point_therapeutic_functions << htf }

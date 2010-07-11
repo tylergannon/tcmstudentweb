@@ -1,12 +1,6 @@
 class HerbTherapeuticFunction < ActiveRecord::Base
 	belongs_to :herb
 	belongs_to :therapeutic_function
-	
-	def therapeutic_function_name=(name)
-		self.therapeutic_function = TherapeuticFunction.find_or_create_by_name(name) unless name.blank?
-	end
-	
-	def therapeutic_function_name
-		therapeutic_function.name if therapeutic_function
-	end
+	named_association :therapeutic_function, :name, :create=>true
+	acts_as_linkable :name=>:therapeutic_function_name
 end

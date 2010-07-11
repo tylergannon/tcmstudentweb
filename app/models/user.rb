@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
 	acts_as_authentic
   attr_accessible :login, :email, :password, :password_confirmation, :openid_identifier, :first_name, :last_name, :roles
 
-  named_scope :with_role, lambda { |role| {:conditions => "roles_mask & #{2**ROLES.index(role.to_s)} > 0"} }
+  scope :with_role, lambda { |role| {:conditions => "roles_mask & #{2**ROLES.index(role.to_s)} > 0"} }
 
   ROLES = %w[admin moderator user]
   

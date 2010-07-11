@@ -1,6 +1,7 @@
 class PatternSymptom < ActiveRecord::Base
   belongs_to :pattern
   belongs_to :symptom
+  acts_as_linkable :partial => 'symptoms/object_symptom', :object_name => 'object_symptom'
 
   default_scope order("position")
 

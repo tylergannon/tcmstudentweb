@@ -2,7 +2,7 @@
 module ApplicationHelper
 
   def textile(str)
-    RedCloth.new(str).to_html unless str.nil?
+    Haml::Filters::TcmTextile.render(str)
   end
 
   def short_citation(cit)
@@ -15,9 +15,6 @@ module ApplicationHelper
 
   def tfwac(f, field, url)
     f.text_field_with_auto_complete field, {}, { :url => url, :method => :get, :skip_style => true,	:with => "'search='+element.value" }
-  end
-  def remove_child_link(name, form_builder)
-    form_builder.hidden_field(:_destroy) + link_to_function(name, "remove_child(this)", :tabindex => "0")
   end
 
   def text_area_with_auto_complete(form, field, search_path, options = {})
@@ -34,39 +31,12 @@ module ApplicationHelper
     tl.map{|t| link_to t, t.name}.join(", ")
   end
 
-  def link_to_herb(herb)
-    link_to herb.pinyin, herb, :title => herb.latin
-  end
-
-  def link_to_formula(formula)
-    link_to formula.pinyin, formula, :title => formula.english
-  end
-
-  def link(obj)
-    return unless obj
-    if (obj.class == Array) || (obj.class == ActiveRecord::Relation)
-      obj.map{|v| link(v)}.join(", ")
-    elsif obj.class == PatternSymptom
-        bold(link(obj.symptom), obj.key_symptom) + (obj.commentary.blank? ? "" : " (#{obj.commentary})")
-    else
-      link_to obj.link_name, obj, :title => obj.link_title
-    end
-  end
-
   def show_citation(citation, short = false)
     return if citation.nil?
     if short
       "(#{citation.textbook.abbrev})"
     else
       render :partial => 'citations/show', :locals => {:citation => citation} unless citation.nil?
-    end
-  end
-
-  def bold(text, bool)
-    if bool
-      "<b>#{text}</b>"
-    else
-      text
     end
   end
 

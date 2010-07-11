@@ -2,6 +2,7 @@ class Channel < ActiveRecord::Base
   has_many :acu_points
   
   search_on :name, :abbreviation
+  acts_as_linkable :name => :name
   
   ABBREVS = {"lu" => 1,
               "lung" => 1,

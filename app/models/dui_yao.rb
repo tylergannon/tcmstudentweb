@@ -4,8 +4,8 @@ class DuiYao < ActiveRecord::Base
 
 	has_and_belongs_to_many :formulas, :autosave => true, :uniq => true
 	
-	named_association :herb1, Herb, :pinyin
-	named_association :herb2, Herb, :pinyin
+	named_association :herb1, :pinyin, :class_name => "Herb"
+	named_association :herb2, :pinyin, :class_name => "Herb"
 
 	scope :with_herb, lambda {|herb|
 	  if herb.class == Fixnum

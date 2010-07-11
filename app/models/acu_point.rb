@@ -6,7 +6,17 @@ class AcuPoint < ActiveRecord::Base
   acts_as_taggable
 
   acts_as_cited
-
+  acts_as_linkable :name => :display_name, :title => :english
+  
+  def display_name
+    pinyin.empty? ? abbrev : "#{abbrev} #{pinyin}"
+  end
+  
+  def english
+    a = acu_point_infos.where('char_length(english) > 0').first
+    a.nil? ? "" : a.english
+  end
+  
   belongs_to :channel
   has_many :acu_point_infos, :dependent => :destroy, :autosave => true
   has_many :acu_point_categories, :dependent => :destroy, :autosave => true
@@ -36,13 +46,7 @@ class AcuPoint < ActiveRecord::Base
         point = self.find_by_canonical(str.gsub(/[\+_-]/, " ").gsub(//, " ").downcase)
       end
     end
-    puts "Unable to find point \"#{str}\"" unless point
     point
-  end
-
-
-  def display_name
-    pinyin.empty? ? abbrev : "#{abbrev} #{pinyin}"
   end
 
   def pinyin=(p)
@@ -51,13 +55,9 @@ class AcuPoint < ActiveRecord::Base
   end
 
   def acu_point_categories_text=(text)
-    puts text
     items = StringReader.new.read_items(text) do |item, comment|
-      puts item
-      puts comment
       AcuPointCategory.new(:commentary => comment, :category_name => item)
     end
-    puts items.inspect
     self.acu_point_categories=(items)
   end
 
@@ -67,11 +67,6 @@ class AcuPoint < ActiveRecord::Base
       [cat.category_name, cat.commentary]
     end
   end
-
-  def name
-    display_name
-  end
-
 
   def abbrev
     if channel.id == 15

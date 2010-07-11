@@ -2,6 +2,7 @@ class Pattern < ActiveRecord::Base
   acts_as_taggable
   acts_as_taggable_on :diseases, :primary_patterns  
   acts_as_cited
+  acts_as_linkable :name=>:name
 
   def save_and_next
     save
@@ -69,10 +70,6 @@ class Pattern < ActiveRecord::Base
 
   def key_symptoms
     self.pattern_symptoms.where(:key_symptom => true)
-  end
-
-  def link_name
-    name
   end
 
   def compare(him)

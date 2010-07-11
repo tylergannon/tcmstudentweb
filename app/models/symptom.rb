@@ -1,7 +1,7 @@
 class Symptom < ActiveRecord::Base
   has_many :pattern_symptoms
   has_many :patterns, :through => :pattern_symptoms
-  
+  acts_as_linkable :name=>:name
   search_on :name
 
   def formulas
