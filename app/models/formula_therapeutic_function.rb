@@ -1,16 +1,13 @@
 class FormulaTherapeuticFunction < ActiveRecord::Base
 	belongs_to :formula
 	belongs_to :therapeutic_function
+	
+	named_association :therapeutic_function, :name, :create=>true
+	scope :with_tf_name, lambda{|name| 
+	  tf = TherapeuticFunction.named(name)
+	  id = tf.id if tf
+	  joins(:therapeutic_function).where(
+	    :therapeutic_functions=>{:id=>id})
+  }
 
-	def therapeutic_function_name=(name)
-		self.therapeutic_function = TherapeuticFunction.find_or_create(:name, name) unless name.blank?
-	end
-
-	def therapeutic_function_name
-		therapeutic_function.name if therapeutic_function
-  end
-
-  def name
-    therapeutic_function_name
-  end
 end

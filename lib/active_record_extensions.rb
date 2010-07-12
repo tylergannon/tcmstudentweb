@@ -15,44 +15,6 @@ module TcmStudentWeb
         }
       end
     end
-    
-    def search_on(*cols)
-      class_eval "def self.search_columns; #{cols.map{|t| t.to_s}.to_ary.inspect}; end;"
-      class_eval do
-        scope :search, lambda{|str|
-          items = like_condition(str.downcase)
-          if scopes.has_key?(:search_mod)
-            items = items.search_mod
-          end
-          items
-        }
-      end
-    end
-    
-    def lookup(params)
-      str = params[:id]
-      if str.match(/\D/)
-        named(str)
-      else
-        find(str)
-      end
-    end
-
-    def like_condition(str)
-      where(condition("ilike '%#{str}%'"))
-    end
-
-    def equals_condition(str)
-      where(condition("= '#{str.downcase}'"))
-    end
-    
-    def named(str)
-      equals_condition(str.downcase)[0]
-    end
-
-    def condition(cond)
-       search_columns.map{|c| "trim(lower(#{c})) #{cond}"}.join(" or ")
-    end
   end
 end
 

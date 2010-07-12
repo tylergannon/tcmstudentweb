@@ -4,26 +4,13 @@ class PatternSymptom < ActiveRecord::Base
   acts_as_linkable :partial => 'symptoms/object_symptom', :object_name => 'object_symptom'
 
   default_scope order("position")
-
-  def symptom_name
-    symptom.name if symptom
-  end
-
-  def symptom_name=(sn)
-    return if sn.blank?
-    self.symptom = Symptom.find(:first, :conditions => ['lower(name) = ?', sn.downcase])
-    unless self.symptom
-      self.symptom = Symptom.create(:name => sn)
-    end
-  end
-
-  def name
-    symptom_name
-  end
-
-
-  def key_attributes
-    ["id", "key_symptom", "maybe", "commentary", "symptom_name"]
-  end
+  
+  named_association :symptom, :name, :create=>true
+  scope :with_symptom_name, lambda{|name| joins(:symptom).where(
+    :symptoms=>{:name=> name}
+  )}
+      
+  require 'decorations'
+  include TcmStudentWeb::Decorations  
 end
 

@@ -18,27 +18,10 @@ class PointPrescription < ActiveRecord::Base
   def point_prescription_acu_points=(ppap)
     pp_acu_points = ppap
   end
-
-  def pp_acu_points_text
-    StringReader.new.write_items(pp_acu_points) do |ppap|
-      [ppap.acu_point_abbrev, ppap.commentary]
-    end
-  end
-
-  def pp_acu_points_text=(text)
-    return if text.empty?
-    logger.error "Called with " + text
-    self.pp_acu_points = StringReader.new.read_items(text) do |abbrev, commentary|
-      logger.error "StringReader got abbrev: #{abbrev}"
-      acu_point = AcuPoint.named(abbrev)
-      ppap = self.pp_acu_points.where(:acu_point_id => acu_point.id).first
-      ppap = ppap ||= PointPrescriptionAcuPoint.new(:acu_point_abbrev=>abbrev)
-      ppap.commentary = commentary unless commentary.empty?
-      logger.error "NIL!!!" if ppap.acu_point.nil?
-      ppap unless ppap.acu_point.nil?
-    end
-    save
-  end
+  
+  association_text :pp_acu_points, :name=>:acu_point_abbrev, 
+      :commentary=>:commentary, :scope=>:with_acu_point_abbrev,
+      :class_name=>"PointPrescriptionAcuPoint"
   
   def copy_citation
     return if citation.nil? || pattern.nil?

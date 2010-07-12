@@ -18,7 +18,7 @@ gem 'prawn'
 #gem 'prawnto', :git => 'git://github.com/bryanl/prawnto.git', :branch => 'rails3'
 
 gem "anaf_habtm"  # Again
-gem "acts_as_linkable"
+gem "acts_as_linkable" # fast
 
 group :development do
   gem 'scrapi'

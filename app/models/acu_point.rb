@@ -26,11 +26,15 @@ class AcuPoint < ActiveRecord::Base
 
   accepts_nested_attributes_for :acu_point_infos, :allow_destroy => true
   
+  anaf_habtm :point_combinations, :create=>true, :find=>{:with_name=>:name},
+    :ar_options =>{ :autosave => true }
+  
   search_on :pinyin, :canonical
   
   scope :category, lambda {|name|
-    a = AcuPointCategory.named(name)
-    joins(:acu_point_categories).where(:acu_point_categories => {:id => a.id})
+    a = Category.named(name)
+    id = a.id if a
+    joins([{:acu_point_categories=>:category}]).where(:categories => {:id=>id})
   }
   
   scope :join_therapeutic_function, joins([{:acu_point_infos=>{:acu_point_therapeutic_functions=>:therapeutic_function}}])
@@ -73,20 +77,9 @@ class AcuPoint < ActiveRecord::Base
     super(p)
     self.canonical = p.normalize.titleize
   end
-
-  def acu_point_categories_text=(text)
-    items = StringReader.new.read_items(text) do |item, comment|
-      AcuPointCategory.new(:commentary => comment, :category_name => item)
-    end
-    self.acu_point_categories=(items)
-  end
-
-  def acu_point_categories_text
-    a = StringReader.new
-    a.write_items(acu_point_categories) do |cat|
-      [cat.category_name, cat.commentary]
-    end
-  end
+  
+  association_text :acu_point_categories, :name=>:category_name,
+          :commentary => :commentary, :scope=>:with_category_name
 
   def abbrev
     if channel.id == 15
@@ -98,22 +91,27 @@ class AcuPoint < ActiveRecord::Base
 
   def self.named(str)
     str.strip!
+    
     if str.match(REGEXP_ABBREV)
       find_by_abbrev(str)
     else
       super(str)
     end
   end
-
-  def self.find_by_abbrev(abbrev)
+  
+  scope :with_abbrev, lambda {|abbrev|
     abbrev.strip!
     if match = abbrev.to_s.match(REGEXP_ABBREV)
       ch = match[1].downcase
       ord = match[2]
-      if Channel::ABBREVS.has_key?(ch)
-        find_by_channel_id_and_ordinal(Channel::ABBREVS[ch], ord)
-      end
+      ch_id = Channel::ABBREVS[ch]
+      raise "invalid abbreviation #{abbrev}" unless ord && ch_id
     end
+    joins(:channel).where(:channels=>{:id=>ch_id}).where(:ordinal=>ord).limit(1)  
+  }
+  
+  def self.find_by_abbrev(abbrev)
+    with_abbrev(abbrev).first
   end
 end
 

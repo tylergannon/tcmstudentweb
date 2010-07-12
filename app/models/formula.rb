@@ -43,12 +43,8 @@ class Formula < ActiveRecord::Base
 	accepts_nested_attributes_for :formula_comparisons, :allow_destroy => true, :reject_if => proc {|a| a['formula2_pinyin'].blank?}
   accepts_nested_attributes_for :source_text_citation, :allow_destroy => true, :reject_if => proc {|a| a['textbook_title'].blank?}
 
-  anaf_habtm(:patterns) do |params, pattern|
-    pattern = pattern ||= Pattern.new
-    pattern.attributes= params
-    pattern.save
-    pattern
-  end
+  anaf_habtm :patterns, :create=>true, :find=>{:with_name=>:name, :from_text=>{:citation_attributes => :textbook_title}}
+  
 
   def all_comparisons
 	  formula_comparisons + other_formula_comparisons
@@ -71,19 +67,10 @@ class Formula < ActiveRecord::Base
     super(p)
     self.canonical = ActiveSupport::Multibyte::Chars.new(p).mb_chars.normalize(:kd).gsub(/[^\x00-\x7F]/n,'').titleize.to_s
   end
+  
+  association_text :formula_therapeutic_functions, 
+    :name=>:therapeutic_function_name, :commentary=>:commentary, :scope=>:with_tf_name
 
-  def formula_therapeutic_functions_text
-    StringReader.new.write_items(formula_therapeutic_functions) do |ps|
-      [ps.therapeutic_function_name, ps.commentary]
-    end
-  end
-
-  def formula_therapeutic_functions_text=(text)
-    return if text.empty?
-    self.formula_therapeutic_functions = StringReader.new.read_items(text) do |tp, commentary|
-      FormulaTherapeuticFunction.new(:therapeutic_function_name => tp, :commentary => commentary)
-    end
-  end
 end
 
 

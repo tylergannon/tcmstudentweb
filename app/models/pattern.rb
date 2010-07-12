@@ -28,45 +28,18 @@ class Pattern < ActiveRecord::Base
     pattern_symptoms.where(:key_symptom => true)
   end
   
-  anaf_habtm(:formulas) do |params, formula|
-    obj ||= Formula.named(params["pinyin"])
-  end
-
+  anaf_habtm :formulas, :find=> {:with_name => :pinyin}
+ 
   accepts_nested_attributes_for :pattern_symptoms, :allow_destroy => true, \
     :reject_if => proc {|a| a['symptom_name'].blank?}
 #	accepts_nested_attributes_for :formulas, :allow_destroy => true
   accepts_nested_attributes_for :point_prescriptions, :allow_destroy => true
   accepts_nested_attributes_for :citation, :allow_destroy => true, :reject_if => proc {|a| a['textbook_title'].blank?}
 
-  def pattern_symptoms_text
-    StringReader.new.write_items(pattern_symptoms) do |ps|
-      [StringReader.decorate_symptom(ps), ps.commentary]
-    end
-  end
+  association_text :pattern_symptoms, :name=>:symptom_name,
+    :commentary => :commentary, :scope=>:with_symptom_name
 
-  def pattern_symptoms_text=(text)
-    return if text.strip.empty?
-    foo = StringReader.new.read_items(text) do |symptom, comment|
-      pattern_symptoms.build(:commentary => comment, :symptom_name=>symptom)
-#      StringReader.parse_symptom(ps, symptom)
-#      ps
-    end
-    self.pattern_symptoms = foo
-
-  end
-
-  def therapeutic_functions_text
-    StringReader.new.write_items(therapeutic_functions) do |ps|
-      [ps.name, nil]
-    end
-  end
-
-  def therapeutic_functions_text=(text)
-    return if text.empty?
-    self.therapeutic_functions = StringReader.new.read_items(text) do |tp, commentary|
-      TherapeuticFunction.new(:name => tp)
-    end
-  end
+  association_text :therapeutic_functions, :name=>:name, :scope=>:with_name
 
   def key_symptoms
     self.pattern_symptoms.where(:key_symptom => true)

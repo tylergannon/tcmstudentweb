@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100709030759) do
+ActiveRecord::Schema.define(:version => 20100712052330) do
 
   create_table "acu_point_categories", :force => true do |t|
     t.integer  "acu_point_id"
@@ -60,6 +60,11 @@ ActiveRecord::Schema.define(:version => 20100709030759) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "canonical"
+  end
+
+  create_table "acu_points_point_combinations", :id => false, :force => true do |t|
+    t.integer "point_combination_id"
+    t.integer "acu_point_id"
   end
 
   create_table "articles", :force => true do |t|
@@ -279,6 +284,19 @@ ActiveRecord::Schema.define(:version => 20100709030759) do
     t.integer  "therapeutic_function_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "point_combinations", :force => true do |t|
+    t.string   "name"
+    t.integer  "citation_id"
+    t.integer  "source_text_citation_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "point_combinations_symptoms", :id => false, :force => true do |t|
+    t.integer "point_combination_id"
+    t.integer "symptom_id"
   end
 
   create_table "point_prescription_acu_points", :force => true do |t|

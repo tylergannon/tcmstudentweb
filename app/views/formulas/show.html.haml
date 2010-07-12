@@ -23,8 +23,8 @@
       - @formula.formula_therapeutic_functions.each do |formula_therapeutic_function|
         .child= formula_therapeutic_function.therapeutic_function_name
     %td{'valign' => 'top'}
-      - if (a = @formula.chief_herbs)
-        %h3!= "Chief Herb#{'s' unless a.size==1}: #{a.map{|v| link_to_herb(v.herb)}.join(", ")}"
+      - if (a = @formula.chief_herbs.map{|fh| fh.herb})
+        %h3!= "Chief Herb#{'s' unless a.size==1}: #{link(a)}"
         %br/
       - unless @formula.patterns.empty?
         - p = @formula.patterns.first
@@ -72,7 +72,7 @@
   %h2 Dui Yao's
   #dui_yaos
     - @formula.dui_yaos.each do |fdy|
-      %b!= "#{link_to_herb fdy.herb1} and #{link_to_herb fdy.herb2}"
+      %b!= "#{link fdy.herb1} and #{link fdy.herb2}"
       %br/
       :tcmtextile
         bq.. #{fdy.commentary}
@@ -81,7 +81,7 @@
   %h2 Comparisons
   %br/
   - a.each do |formula_comparison|
-    %h3!= "vs #{link_to formula_comparison.other_formula(@formula).pinyin, formula_comparison.other_formula(@formula)}"
+    %h3!= "vs #{link formula_comparison.other_formula(@formula)}"
     %table.formula_comparison
       %tr
         %td Both Formulas
