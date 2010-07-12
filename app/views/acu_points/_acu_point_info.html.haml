@@ -2,10 +2,12 @@
   %h3 Source
   = render :partial => 'citations/edit_citation', :locals => {:f => f, :field => :citation}
   %br/
-  %b English:
-  = f.text_field(:english, :autocomplete => "off")
-  %h2 Location
-  = f.text_area :location
+  .field
+    %b English:
+    = f.text_field(:english, :autocomplete => "off")
+  .field
+    %h2 Location
+    = f.text_area :location, :rows=>4, :cols=>60
   %hr/
   %h2 Functions
   = text_area_with_auto_complete f, :acu_point_therapeutic_functions_text, "therapeutic_functions", :rows => 2, :cols => 50
