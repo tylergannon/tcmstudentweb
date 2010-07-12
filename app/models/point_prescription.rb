@@ -34,7 +34,8 @@ class PointPrescription < ActiveRecord::Base
       ppap = self.pp_acu_points.where(:acu_point_id => acu_point.id).first
       ppap = ppap ||= PointPrescriptionAcuPoint.new(:acu_point_abbrev=>abbrev)
       ppap.commentary = commentary unless commentary.empty?
-      ppap unless ppap	.acu_point.nil?
+      logger.error "NIL!!!" if ppap.acu_point.nil?
+      ppap unless ppap.acu_point.nil?
     end
     save
   end
