@@ -48,11 +48,10 @@ class StringReader
     state = NAME
 
     str.chars.each do |char|
-      if char == "/"
+      if (char == "/") && (state != MULTI_LINE)
         @item = buffer.strip
         buffer = ""
         state = ONE_LINE
-        
       elsif char == "{"
         @item = buffer.strip
         buffer = ""
@@ -64,11 +63,11 @@ class StringReader
         state = NAME
       elsif char == "\n"
         if state == NAME
-          @item = buffer
+          @item = buffer.strip
           buffer = ""
           save(block)
         elsif state == ONE_LINE
-          @comment = buffer
+          @comment = buffer.strip
           state = NAME
           buffer = ""
           save(block)
