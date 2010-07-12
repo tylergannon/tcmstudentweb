@@ -30,9 +30,15 @@ module Haml::Filters::TcmTextile
           "articles"
       end
       x = klass.named(link_text)
-      link_text = x.nil? ? link_text : x.name
-      arg = x.nil? ? "new?name=#{link_text.titleize.gsub(' ', '%20')}" : x.id
-      "\"#{link_text}\":/#{controller}/#{arg}"
+      unless x.nil?
+        link_attr = x.link_attr
+        link_attr.each {|name, val| link_attr[name] = x.send(val) if val.class == Symbol}
+        
+        link = "\"#{link_attr[:name]}\":/#{controller}/#{x.id}"
+      else
+        link = "\"#{link_text}\":/#{controller}/new?name=#{link_text.titleize.gsub(' ', '%20')}"
+      end
+      link
     }
     RedCloth.new(text).to_html
 
