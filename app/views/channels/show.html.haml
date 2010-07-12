@@ -16,6 +16,9 @@
     = t.therapeutic_function_name
     %br/
   != info.acu_point_symptoms.map{|t| link_to t.symptom_name, t.symptom}.join(", ")
+  %ul
+    - p.point_prescriptions.each do |pp|
+      %li!= "#{link(pp.pattern)}: #{link pp.pp_acu_points.reject{|t|t.id==p.id}}"
   %br/
   %hr/
   %br/
