@@ -6,6 +6,7 @@ class ChannelsController < ApplicationController
   def show
     @channel = Channel.lookup(params)
     @acu_points = AcuPoint.where(:channel_id=>@channel.id)
+    @point_categories = AcuPointCategory.joins([{:acu_point=>:chaannel}]).where(:channels=>{:id=>@channel.id}).order("categories.id, acu_points.id")
 
     tags = TherapeuticFunction.by_channel(@channel.id).tag_counts_on(:tags)
     @tag_acu_points = {}
