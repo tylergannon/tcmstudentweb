@@ -69,6 +69,7 @@ class StringReader
           save(block)
         elsif state == ONE_LINE
           @comment = buffer
+          state = NAME
           buffer = ""
           save(block)
         else

@@ -34,6 +34,24 @@ class AcuPoint < ActiveRecord::Base
   }
   
   scope :join_therapeutic_function, joins([{:acu_point_infos=>{:acu_point_therapeutic_functions=>:therapeutic_function}}])
+  
+  def point_prescriptions_attributes=(attribs)
+    pp = attribs.map do |num, pp_attr|
+      if pp_attr["_destroy"]=="1"
+        PointPrescription.destroy(pp_attr["id"]) if pp_attr.has_key?("id")
+        next
+      end
+      clean_attr = {}
+      pp_attr.each{|x,y| clean_attr[x]=y unless ["id", "_destroy"].include?(x)}
+      if pp_attr.has_key?("id")
+        pp = PointPrescription.find(pp_attr["id"])
+        pp.update_attributes(clean_attr)
+      else
+        pp = PointPrescription.new(clean_attr)
+      end
+      pp
+    end
+  end
 
 
   def self.search(str)

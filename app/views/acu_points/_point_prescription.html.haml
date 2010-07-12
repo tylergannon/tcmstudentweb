@@ -1,0 +1,34 @@
+.child
+  .field
+    = f.label :pattern_name, "Pattern"
+    = f.text_field :pattern_name
+  - if f.object.new_record?
+    .field
+      = f.label :commentary, "Commentary"
+      %br
+      = f.text_area :commentary
+    .field
+      = f.label :pp_acu_points_text, "Point Prescription Acu Points"
+      %br/
+      = f.text_area :pp_acu_points_text, :rows => 12, :cols => 100
+    .field
+      = f.label :citation
+      = render :partial => 'citations/edit_citation', :locals => {:f => f, :field => :citation}  
+  - else
+    = show_box_for f, :link_name => "Edit Details"
+    = detail_box_for f do
+      %b= hide_box_for f
+      .field
+        = f.label :commentary, "Commentary"
+        %br
+        = f.text_area :commentary
+      .field
+        = f.label :pp_acu_points_text, "Point Prescription Acu Points"
+        %br/
+        = f.text_area :pp_acu_points_text, :rows => 12, :cols => 100
+      .field
+        = f.label :citation
+        = render :partial => 'citations/edit_citation', :locals => {:f => f, :field => :citation}
+  = f.hidden_field :_destroy, :class => 'delete'
+  = remove_child_link 'remove', f
+
