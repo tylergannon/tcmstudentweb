@@ -14,7 +14,7 @@ class ChannelsController < ApplicationController
       contents = {}
       # For each tag, find the therapeutic functions and the associated acu_points.
       TherapeuticFunction.by_channel(@channel.id).tagged_with(tag.name).each do |tf|
-        contents[tf] = AcuPoint.join_therapeutic_function.where(:therapeutic_functions=>{:id=>tf.id}).where(:channel_id=>@channel.id).all
+        contents[tf] = AcuPoint.join_therapeutic_function.order("acu_points.id").where(:therapeutic_functions=>{:id=>tf.id}).where(:channel_id=>@channel.id).all
       end
       @tag_acu_points[tag] = contents
       
