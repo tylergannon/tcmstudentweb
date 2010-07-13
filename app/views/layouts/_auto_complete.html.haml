@@ -1,9 +1,0 @@
-.auto_complete_parent
-  = f.text_area field, html_options
-  .auto_complete{'id' => "#{field_id(f, field)}_auto_complete" }
-  %script{'type' => 'text/javascript'}
-    \//<![CDATA[
-    new Ajax.Autocompleter('#{field_id(f, field)}','#{field_id(f, field)}_auto_complete', '/#{path}.js',
-    { tokens: new Array('\n'), fullSearch: true, partialSearch: true
-    , callback:function(element, value) { return 'search='+value.split('=')[1]; }, method:'get'});
-    \//]]>

@@ -2,11 +2,11 @@ class AuthorsController < ApplicationController
   # GET /authors
   # GET /authors.xml
   def index
-    @authors = Author.find(:all, :conditions => ['name LIKE ?', "%#{params[:search]}%"])
+    @authors = Author.search(params[:term])
 
     respond_to do |format|
       format.html # index.html.erb
-      format.js
+      format.json { render :json => Author.to_autocomplete(@authors) }
       format.xml  { render :xml => @authors }
     end
   end
@@ -84,3 +84,4 @@ class AuthorsController < ApplicationController
     end
   end
 end
+

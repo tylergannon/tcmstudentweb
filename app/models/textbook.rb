@@ -8,14 +8,16 @@ class Textbook < ActiveRecord::Base
       or lower(textbooks.title) like '%#{name}%'
       or lower(authors.name) like '%#{name}%'")
   }
-  
+
+  autocomplete_format do |tb|
+    lbl = tb.title
+    lbl += " (#{tb.author.name})" if tb.author
+    {:value=>tb.title, :label=>lbl}
+  end
+
   named_association :author, :name, :create => true
   acts_as_linkable :name=>:title, :title=>:author_name
 
   search_on :title, :abbrev
-  
-  def search_result
-    "#{title} <i>(#{author.name})</i>"
-  end
 end
 

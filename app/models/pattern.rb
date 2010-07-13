@@ -1,6 +1,6 @@
 class Pattern < ActiveRecord::Base
   acts_as_taggable
-  acts_as_taggable_on :diseases, :primary_patterns  
+  acts_as_taggable_on :diseases, :primary_patterns
   acts_as_cited
   acts_as_linkable :name=>:name
 
@@ -8,7 +8,12 @@ class Pattern < ActiveRecord::Base
     save
     order(:id).limit(1).where("id > #{id}")
   end
-  
+  autocomplete_format do |pattern|
+    lbl = pattern.name
+    lbl += " #{pattern.citation.textbook_title}" if pattern.citation
+    {:value=>pattern.name, :label=>lbl}
+  end
+
   def set(organ, patterns)
     tag_list << organ
     patterns.each {|p| primary_pattern_list << p}
@@ -16,7 +21,7 @@ class Pattern < ActiveRecord::Base
 
   search_on :name
   scope :search_mod, order("char_length(name)")
-  
+
   has_and_belongs_to_many :therapeutic_functions
   has_and_belongs_to_many :formulas, :autosave => :true, :uniq => true
 
@@ -27,9 +32,9 @@ class Pattern < ActiveRecord::Base
   def key_pattern_symptoms
     pattern_symptoms.where(:key_symptom => true)
   end
-  
+
   anaf_habtm :formulas, :find=> {:with_name => :pinyin}
- 
+
   accepts_nested_attributes_for :pattern_symptoms, :allow_destroy => true, \
     :reject_if => proc {|a| a['symptom_name'].blank?}
 #	accepts_nested_attributes_for :formulas, :allow_destroy => true

@@ -2,6 +2,6 @@
   %p
     = f.label :pinyin, "Formula"
     %br
-    != tfwac f, :pinyin, '/formulas.json'
+    != raw(tfwac f, :pinyin, 'formulas')
     = remove_child_link 'remove', f
 

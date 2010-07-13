@@ -1,9 +1,14 @@
 class SymptomsController < ApplicationController
-  respond_to :html, :js
+  respond_to :html
+  respond_to :json, :only => :create
+
   def index
-    @symptoms = Symptom.where("name ilike '%#{params[:search]}%'")
-    respond_with @symptoms
+    @symptoms = Symptom.search(params[:term])
+    respond_with @symptoms do |format|
+      format.json {render :json=> Symptom.to_autocomplete(@symptoms)}
+    end
   end
+
 
   def show
     @symptom = Symptom.find(params[:id])
@@ -17,12 +22,8 @@ class SymptomsController < ApplicationController
 
   def create
     @symptom = Symptom.new(params[:symptom])
-    if @symptom.save
-      flash[:notice] = "Successfully created symptom."
-      redirect_to @symptom
-    else
-      render :action => 'new'
-    end
+    @symptom.save
+    respond_with @symptom
   end
 
   def edit
@@ -32,18 +33,14 @@ class SymptomsController < ApplicationController
 
   def update
     @symptom = Symptom.find(params[:id])
-    if @symptom.update_attributes(params[:symptom])
-      flash[:notice] = "Successfully updated symptom."
-      redirect_to @symptom
-    else
-      render :action => 'edit'
-    end
+    @symptom.update_attributes(params[:symptom])
+    respond_with @symptom
   end
 
   def destroy
     @symptom = Symptom.find(params[:id])
     @symptom.destroy
-    flash[:notice] = "Successfully destroyed symptom."
-    redirect_to symptoms_url
+    respond_with @symptom
   end
 end
+

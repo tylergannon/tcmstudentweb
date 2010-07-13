@@ -64,7 +64,7 @@ function setTextAreaAutoComplete($el) {
 			terms.pop();  // remove the current input
 			terms.push( ui.item.value );	// add the selected item
 			// add placeholder to get the comma-and-space at the end
-			terms.push("");
+			// terms.push("");
 			this.value = terms.join(text_area_delimiter);
 			return false;
 		}

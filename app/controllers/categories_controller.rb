@@ -1,7 +1,6 @@
 class CategoriesController < ApplicationController
   def index
-    @categories = Category.where("name like '#{params[:search]}%'")
+    @categories = Category.search(params[:name])
   end
-
 end
 

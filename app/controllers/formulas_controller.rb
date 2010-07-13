@@ -1,4 +1,8 @@
 class FormulasController < ApplicationController
+  respond_to :html, :except => [:cards]
+  respond_to :prawn, :only=>:cards
+  respond_to :json, :only=>:index
+
   def index
     if params.has_key?(:tag_name)
       @formulas = Formula.tagged_with(params[:tag_name].to_list)
@@ -7,13 +11,8 @@ class FormulasController < ApplicationController
     end
 
     @tags = Formula.tag_counts_on(:tags)
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.js
-      format.json { 
-      render :json => @formulas.map{|f| {:label=>"#{f.pinyin} (#{f.english})", :value=>f.pinyin}} }
-      format.xml  { render :xml => @formulas }
+    respond_with(@formulas, @tags) do |format|
+      format.json { render :json => Formula.to_autocomplete(@formulas) }
     end
   end
 
@@ -36,14 +35,10 @@ class FormulasController < ApplicationController
       @q << newq
       @a << newa
     end
+    respond_with(@q, @a)
   end
 
   def tag_cloud
-  end
-
-  def categoryindex
-    @category = FormulaCategory.find(params[:category_id])
-    @formulas = Formula.find_all_by_formula_category_id(@category.id)
   end
 
   # GET /formulas/1
@@ -55,14 +50,14 @@ class FormulasController < ApplicationController
     else
       @next = Formula.next_from(@formula).tagged_with(@taglist.to_list)[0]
     end
+    respond_with(@formula, @next)
   end
 
   # GET /formulas/new
   # GET /formulas/new.xml
   def new
     @formula = Formula.new(:citation => Citation.new)
-    @citation = Citation.new
-    @source_text_citation = Citation.new
+    respond_with(@formula)
   end
 
   # GET /formulas/1/edit
@@ -70,40 +65,19 @@ class FormulasController < ApplicationController
     @formula = Formula.lookup(params)
     @citation = @formula.citation ||= Citation.new
     @source_text_citation = @formula.source_text_citation ||= Citation.new
+    respond_with(@formula)
   end
 
   def create
-    Formula.transaction do
-      respond_to do |format|
-        begin
-          @formula = Formula.new(params[:formula])
-          @formula.save!
-          flash[:notice] = 'Formula was successfully created.'
-          format.html { redirect_to(@formula) }
-          format.xml  { render :xml => @formula, :status => :created, :location => @formula }
-        rescue
-          format.html { render :action => "new" }
-          format.xml  { render :xml => @formula.errors, :status => :unprocessable_entity }
-        end
-      end
-    end
+    @formula = Formula.new(params[:formula])
+    @formula.save
+    respond_with @formula
   end
 
   def update
-    Formula.transaction do
-      respond_to do |format|
-        begin
-          @formula = Formula.find(params[:id])
-          @formula.update_attributes(params[:formula])
-          flash[:notice] = 'Formula was successfully updated.'
-          format.html { redirect_to(@formula) }
-          format.xml  { head :ok }
-#        rescue
-#          format.html { render :action => "edit" }
-#          format.xml  { render :xml => @formula.errors, :status => :unprocessable_entity }
-        end
-      end
-    end
+    @formula = Formula.find(params[:id])
+    @formula.update_attributes(params[:formula])
+    respond_with @formula
   end
 
   def sort
@@ -118,11 +92,7 @@ class FormulasController < ApplicationController
   def destroy
     @formula = Formula.find(params[:id])
     @formula.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(formulas_url) }
-      format.xml  { head :ok }
-    end
+    respond_with @formula
   end
 end
 

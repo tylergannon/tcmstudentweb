@@ -1,9 +1,12 @@
 class Channel < ActiveRecord::Base
   has_many :acu_points
-  
+
   search_on :name, :abbreviation
+  autocomplete_format do |channel|
+    {:value=>channel.name}
+  end
   acts_as_linkable :name => :name
-  
+
   ABBREVS = {"lu" => 1,
               "lung" => 1,
               "l" => 1,
@@ -35,3 +38,4 @@ class Channel < ActiveRecord::Base
               "re" => 14,
               "cv" => 14}
 end
+

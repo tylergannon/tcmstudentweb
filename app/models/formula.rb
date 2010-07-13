@@ -1,10 +1,12 @@
 class Formula < ActiveRecord::Base
   acts_as_taggable
   acts_as_taggable_on :formula_categories
-  
   acts_as_linkable :name => :pinyin, :title=>:english
-
   acts_as_cited
+
+  autocomplete_format do |f|
+    {:label=>"#{f.pinyin} (#{f.english})", :value=>f.pinyin}
+  end
 
   belongs_to :master_formula, :class_name => "Formula"
   belongs_to :source_text_citation, :class_name => "Citation", :dependent => :destroy
@@ -19,10 +21,10 @@ class Formula < ActiveRecord::Base
 	has_many :therapeutic_functions, :through => :formula_therapeutic_functions
 	has_many :formula_comparisons, :foreign_key => :formula1_id, :dependent => :destroy
 	has_many :other_formula_comparisons, :foreign_key => :formula2_id, :class_name => 'FormulaComparison', :dependent => :destroy
-  
+
   has_and_belongs_to_many :dui_yaos, :autosave => :true, :uniq => true
   has_and_belongs_to_many :patterns, :autosave => :true, :uniq => true
-  
+
   named_association :master_formula, :name, :class_name => "Formula"
 
   search_on :canonical, :english, :pinyin
@@ -31,7 +33,7 @@ class Formula < ActiveRecord::Base
   scope :next_from, lambda {|formula|
     where("formulas.id > #{formula.id}").order("formulas.id").limit(1)
   }
-  
+
   ROLES = %w[jūn chén zuǒ shǐ]
 	validates_presence_of :pinyin
   validates_uniqueness_of :pinyin, :canonical
@@ -44,7 +46,7 @@ class Formula < ActiveRecord::Base
   accepts_nested_attributes_for :source_text_citation, :allow_destroy => true, :reject_if => proc {|a| a['textbook_title'].blank?}
 
   anaf_habtm :patterns, :create=>true, :find=>{:with_name=>:name, :from_text=>{:citation_attributes => :textbook_title}}
-  
+
 
   def all_comparisons
 	  formula_comparisons + other_formula_comparisons
@@ -67,10 +69,9 @@ class Formula < ActiveRecord::Base
     super(p)
     self.canonical = ActiveSupport::Multibyte::Chars.new(p).mb_chars.normalize(:kd).gsub(/[^\x00-\x7F]/n,'').titleize.to_s
   end
-  
-  association_text :formula_therapeutic_functions, 
+
+  association_text :formula_therapeutic_functions,
     :name=>:therapeutic_function_name, :commentary=>:commentary, :scope=>:with_tf_name
 
 end
-
 

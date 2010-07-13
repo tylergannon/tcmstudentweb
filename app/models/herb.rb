@@ -3,12 +3,17 @@ class Herb < ActiveRecord::Base
   acts_as_taggable_on :flavors, :channels, :categories
   acts_as_taggable
   acts_as_linkable :name => :pinyin, :title=>:latin
-  
+
   search_on :canonical, :latin, :pinyin, :common_name
   scope :search_mod, order("char_length(canonical)")
   scope :state_board, lambda{
     tagged_with("State Board")
   }
+
+  autocomplete_format do |herb|
+    {:label=>"#{herb.pinyin} (#{herb.latin})", :value=>herb.pinyin}
+  end
+
 
   validates_uniqueness_of :pinyin, :canonical
 
@@ -35,15 +40,15 @@ class Herb < ActiveRecord::Base
     super(p)
     self.canonical = ActiveSupport::Multibyte::Chars.new(p).mb_chars.normalize(:kd).gsub(/[^\x00-\x7F]/n,'').titleize.to_s
   end
-  
+
   def all_dui_yaos
     DuiYao.with_herb(self)
   end
-  
+
   def f
     herb_therapeutic_functions
   end
-  
+
   def tf(str)
     unless herb_therapeutic_functions.select{|t| t.therapeutic_function_name.downcase==str.downcase}.size > 0
       herb_therapeutic_functions << HerbTherapeuticFunction.create(:therapeutic_function_name=>str)

@@ -1,4 +1,7 @@
 .child
+  %hr/
+  %h2 AcuPoint Info
+  %br/
   %h3 Source
   = render :partial => 'citations/edit_citation', :locals => {:f => f, :field => :citation}
   %br/
@@ -7,15 +10,18 @@
     = f.text_field(:english, :autocomplete => "off")
   .field
     %h2 Location
-    = f.text_area :location, :rows=>4, :cols=>60
+    = f.text_area :location, :rows=>2, :cols=>60
   %hr/
-  %h2 Functions
-  != text_area_with_auto_complete f, :acu_point_therapeutic_functions_text, "therapeutic_functions", :rows => 2, :cols => 50
+  %h3 Functions
+  != text_area_with_auto_complete f, :acu_point_therapeutic_functions_text, "therapeutic_functions", :rows => 4, :cols => 50
 
   %hr/
-  %h2 Symptoms
-  != text_area_with_auto_complete f, :acu_point_symptoms_text, "symptoms", :rows => 2, :cols => 50
+  %h3 Symptoms
+  != text_area_with_auto_complete f, :acu_point_symptoms_text, "symptoms", :rows => 4, :cols => 50
+  %hr/
 
-  %b Commentary
+  %h3 Commentary
   = f.text_area :commentary, :rows => '2', :cols => '40'
   %br/
+  = remove_child_link 'remove source', f
+

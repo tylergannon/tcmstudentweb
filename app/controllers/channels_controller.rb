@@ -1,8 +1,13 @@
 class ChannelsController < ApplicationController
+  respond_to :html
+  respond_to :json, :only => :index
   def index
-		@channels = Channel.find(:all, :conditions => ['name LIKE ?', "%#{params[:search]}%"])
+		@channels = Channel.search(params[:term])
+		respond_with @channels do |format|
+		  format.json {render :json=> Channel.to_autocomplete(@channels)}
+		end
   end
-  
+
   def show
     @channel = Channel.lookup(params)
     @acu_points = AcuPoint.where(:channel_id=>@channel.id)
@@ -18,9 +23,9 @@ class ChannelsController < ApplicationController
         contents[tf] = AcuPoint.join_therapeutic_function.order("acu_points.id").where(:therapeutic_functions=>{:id=>tf.id}).where(:channel_id=>@channel.id).all
       end
       @tag_acu_points[tag] = contents
-      
+
     end
-    logger.error @tag_acu_points.inspect
+    respond_with @channel, @acu_points, @point_categories, @tag_acu_points
   end
 end
 
