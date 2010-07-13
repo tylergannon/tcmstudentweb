@@ -3,10 +3,10 @@
     %tr
       %td{'width' => '50%'}
         %b Herb 1:
-        != f.text_field_with_auto_complete :herb1_pinyin, {}, { :url => herbs_path(:format => :js), :method => :get, :skip_style => true,	:with => "'search='+element.value" }
+        != tfwac f, :herb1_pinyin, 'herbs'
       %td{'width' => '50%'}
         %b Herb 2:
-        != f.text_field_with_auto_complete :herb2_pinyin, {}, { :url => herbs_path(:format => :js), :method => :get, :skip_style => true,	:with => "'search='+element.value" }
+        != tfwac f, :herb2_pinyin, 'herbs'
     %tr
       %td{'colspal' => '2', 'width' => '100%'}
         %b Commentary

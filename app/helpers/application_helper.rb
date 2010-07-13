@@ -1,5 +1,23 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
+  def remove_child_link(name, form_builder)
+    form_builder.hidden_field(:_destroy) + link_to_function(name, "remove_child(this)", :tabindex => "0")
+  end
+
+  def add_child_link(name, child, form_builder)
+    # puts "||#{form_builder}||"
+    new_form = new_child_fields(child, form_builder)
+    content_for :templates, raw("<div id=\"#{child}_template\">#{new_form}</div>")
+    link_to name, options={}, html_options={"href"=>"#", "class"=>"add-child-link", "data-class-name"=>child}
+  end
+
+  def new_child_fields(child, form_builder)
+    output = ""
+    form_builder.fields_for(child.pluralize.to_sym, child.camelize.constantize.new, :child_index => 'NEW_RECORD') do |f|
+      output += render(:partial => child.underscore, :locals => { :f => f })
+    end
+    output
+  end  
 
   def textile(str)
     Haml::Filters::TcmTextile.render(str)
@@ -13,13 +31,9 @@ module ApplicationHelper
     end
   end
 
-  def tfwac(f, field, url)
-    f.text_field_with_auto_complete field, {}, { :url => url, :method => :get, :skip_style => true,	:with => "'search='+element.value" }
-  end
-
-  def text_area_with_auto_complete(form, field, search_path, options = {})
-    render(:partial => 'layouts/auto_complete',
-           :locals => {:f => form,  :path => search_path, :field => field, :html_options => options})
+  def text_area_with_auto_complete(form, field, controller, options = {})
+      f.text_area field, "data-auto-complete"=>true, 
+        "data-auto-complete-url"=> eval("#{controller.to_s.underscore.tableize}_path(:format=>:json)")
   end
 
   def tag_field(form, field)

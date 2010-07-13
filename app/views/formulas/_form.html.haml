@@ -21,16 +21,17 @@
 = tag_field(f, :tag_list)
 %br/
 = f.label :master_formula_name, "Variant of:"
-!= f.text_field_with_auto_complete :master_formula_name, {}, { :url => formulas_path(:format => :js), :method => :get, :skip_style => true, :with => "'search='+element.value" }
+!= tfwac f, :master_formula_name, 'formulas'
 %hr
-%h2
-  Ingredients
-= add_child_link 'Add an Herb', 'formula_herb', f
-%ul#formula_herb_children
-  = f.fields_for :formula_herbs do |formula_herb_form|
-    = render :partial => 'formula_herb', :locals => { :f => formula_herb_form }
+.child
+  %h2
+    Ingredients
+  != add_child_link 'Add an Herb', 'formula_herb', f
+  %ul{:class=>'formula_herb_children', :id=>'formula_herb_children'}
+    = f.fields_for :formula_herbs do |formula_herb_form|
+      = render :partial => 'formula_herb', :locals => { :f => formula_herb_form }
 
-= sortable_element "formula_herb_children", :url => sort_formulas_path
+  = sortable_element "formula_herb_children", :url => sort_formulas_path
 %hr
 %h2 Source
 %table
@@ -43,22 +44,22 @@
 %hr
 %h2 Therapeutic Functions
 = text_area_with_auto_complete f, :formula_therapeutic_functions_text, "therapeutic_functions", :rows => 2, :cols => 50
-
-%hr
-%h2
-  Diagnosis
-= add_child_link 'Add a Pattern of Disharmony', 'pattern', f
-#pattern_children
-  = f.fields_for :patterns do |pattern_form|
-    = render :partial => 'pattern', :locals => { :f => pattern_form }
-
-%hr
-%h2
-  Cautions and Contraindications
-= add_child_link 'Add a FormulaContraindication', 'formula_contraindication', f
-#formula_contraindication_children
-  = f.fields_for :formula_contraindications do |formula_contraindication_form|
-    = render :partial => 'formula_contraindication', :locals => { :f => formula_contraindication_form }
+.child
+  %hr
+  %h2
+    Diagnosis
+  != add_child_link 'Add a Pattern of Disharmony', 'pattern', f
+  .pattern_children
+    = f.fields_for :patterns do |pattern_form|
+      = render :partial => 'pattern', :locals => { :f => pattern_form }
+.child
+  %hr
+  %h2
+    Cautions and Contraindications
+  != add_child_link 'Add a FormulaContraindication', 'formula_contraindication', f
+  .formula_contraindication_children
+    = f.fields_for :formula_contraindications do |formula_contraindication_form|
+      = render :partial => 'formula_contraindication', :locals => { :f => formula_contraindication_form }
 
 %hr
 %h2
@@ -69,19 +70,18 @@
   Commentary
 = f.text_area :commentary
 %hr/
-%h2 Comparisons
-#formula_comparison_children
-  = f.fields_for :formula_comparisons do |formula_comparison_form|
-    = render :partial => 'formula_comparison', :locals => { :f => formula_comparison_form }
-
-%p
-  = add_child_link 'Add a Comparison', 'formula_comparison', f
+.child
+  %h2 Comparisons
+  != add_child_link 'Add a Comparison', 'formula_comparison', f
+  .formula_comparison_children
+    = f.fields_for :formula_comparisons do |formula_comparison_form|
+      = render :partial => 'formula_comparison', :locals => { :f => formula_comparison_form }
 
 %hr/
-%h2 Dui Yao
-#dui_yao_children
-  = f.fields_for :dui_yaos do |dui_yao_form|
-    = render :partial => 'dui_yao', :locals => { :f => dui_yao_form }
-%p
-  = add_child_link 'Add a Dui Yao', 'dui_yao', f
+.child
+  %h2 Dui Yao
+  != add_child_link 'Add a Dui Yao', 'dui_yao', f
+  .dui_yao_children
+    = f.fields_for :dui_yaos do |dui_yao_form|
+      = render :partial => 'dui_yao', :locals => { :f => dui_yao_form }
 

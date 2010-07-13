@@ -5,8 +5,11 @@
     %title= h(yield(:title) || "TCM Website")
     = stylesheet_link_tag 'scaffold'
     = javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js", "rails.js"
-    = javascript_include_tag 'nested_attributes.js'
-    = stylesheet_link_tag 'styleMain'
+    = javascript_include_tag 'nested_attributes.js', 'jquery-ui-1.8.2.custom.min.js', 'application.js'
+    = stylesheet_link_tag 'styleMain', 
+        'ui-lightness/jquery-ui-1.8.2.custom.css',
+        'textAttributes.css'
+
 
   %body
     #container
@@ -56,4 +59,6 @@
         #footerBottom
           .left
           .right
+    .templates
+      != yield :templates
 

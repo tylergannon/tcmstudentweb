@@ -13,7 +13,7 @@
         %td
           .field
             = f.label :symptoms_text, "Symptoms"
-            = text_area_with_auto_complete f, :symptoms_text, 'symptoms', :rows => 3, :cols => 50
+            != text_area_with_auto_complete f, :symptoms_text, 'symptoms', :rows => 3, :cols => 50
       %tr
         %td{:colspan=>"2"}
           .field
@@ -33,12 +33,11 @@
           %td
             .field
               = f.label :symptoms_text, "Symptoms"
-              = text_area_with_auto_complete f, :symptoms_text, 'symptoms', :rows => 3, :cols => 50
+              != text_area_with_auto_complete f, :symptoms_text, 'symptoms', :rows => 3, :cols => 50
         %tr
           %td{:colspan=>"2"}
             .field
               = f.label :source_text_citation
               = render :partial => 'citations/edit_citation', :locals => {:f => f, :field => :source_text_citation}  
-  = f.hidden_field :_destroy, :class => 'delete'
   = remove_child_link 'remove', f
 

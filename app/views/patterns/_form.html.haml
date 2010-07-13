@@ -15,16 +15,16 @@
 
 %h3 Source
 = render :partial => 'citations/edit_citation', :locals => {:f => f, :field => :citation}
-
-= add_child_link 'Add a Point Prescription', 'point_prescription', f
-#point_prescription_children
-  - f.fields_for :point_prescriptions do |point_prescription_form|
-    = render :partial => 'point_prescription', :locals => { :f => point_prescription_form }
-
-= add_child_link 'Add a Formula', 'formula', f
-#formula_children
-  = f.fields_for :formulas do |formula_form|
-    = render :partial => 'formula', :locals => { :f => formula_form }
+.child
+  != add_child_link 'Add a Point Prescription', 'point_prescription', f
+  #point_prescription_children
+    = f.fields_for :point_prescriptions do |point_prescription_form|
+      = render :partial => 'point_prescription', :locals => { :f => point_prescription_form }
+.child
+  != add_child_link 'Add a Formula', 'formula', f
+  #formula_children
+    = f.fields_for :formulas do |formula_form|
+      = render :partial => 'formula', :locals => { :f => formula_form }
 
 %h3 Comments
 = f.text_area :commentary, :rows => 6, :cols => 60

@@ -3,7 +3,7 @@
     %tr
       %td
         %b Herb 2:
-        != f.text_field_with_auto_complete :herb2_pinyin, {}, { :url => herbs_path(:format => :js), :method => :get, :skip_style => true,	:with => "'search='+element.value" }
+        != tfwac f, :herb2_pinyin, 'herbs'
     %tr
       %td
         %b Commentary

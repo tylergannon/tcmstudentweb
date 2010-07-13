@@ -3,7 +3,7 @@ class FormulasController < ApplicationController
     if params.has_key?(:tag_name)
       @formulas = Formula.tagged_with(params[:tag_name].to_list)
     else
-      @formulas = Formula.search(params[:search])
+      @formulas = Formula.search(params[:term])
     end
 
     @tags = Formula.tag_counts_on(:tags)
@@ -11,6 +11,8 @@ class FormulasController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.js
+      format.json { 
+      render :json => @formulas.map{|f| {:label=>"#{f.pinyin} (#{f.english})", :value=>f.pinyin}} }
       format.xml  { render :xml => @formulas }
     end
   end

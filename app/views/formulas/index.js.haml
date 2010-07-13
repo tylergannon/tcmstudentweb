@@ -1,7 +1,1 @@
-%ul
-  - @formulas.limit(3).each do |f|
-    %li><
-      = f.pinyin
-      - unless f.english.blank?
-        %span.informal>
-          %i (#{f.english})
+= render :text => @formulas.map(&:pinyin)

@@ -21,21 +21,21 @@
 %br/
 
 %b Point Categories
-= text_area_with_auto_complete f, :acu_point_categories_text, 'categories', :rows => 4, :cols => 100
+!= text_area_with_auto_complete f, :acu_point_categories_text, 'categories', :rows => 4, :cols => 100
 %br/
-
-= add_child_link 'Add a source', 'acu_point_info', f
-#acu_point_info_children
-  = f.fields_for :acu_point_infos do |acu_point_info_form|
-    = render :partial => 'acu_point_info', :locals => { :f => acu_point_info_form }
-
-= add_child_link 'Add a Point Prescription', 'point_prescription', f
-#point_prescription_children
-  = f.fields_for :point_prescriptions do |point_prescription_form|
-    = render :partial => 'point_prescription', :locals => {:f => point_prescription_form}
-
-= add_child_link 'Add a Point Combination', 'point_combination', f
-#point_combination_children
-  = f.fields_for :point_combinations do |point_combination_form|
-    = render :partial => 'point_combination', :locals => {:f => point_combination_form}
+.child
+  != add_child_link 'Add a source', 'acu_point_info', f
+  .acu_point_info_children
+    = f.fields_for :acu_point_infos do |acu_point_info_form|
+      = render :partial => 'acu_point_info', :locals => { :f => acu_point_info_form }
+.child
+  != add_child_link 'Add a Point Prescription', 'point_prescription', f
+  .point_prescription_children
+    = f.fields_for :point_prescriptions do |point_prescription_form|
+      = render :partial => 'point_prescription', :locals => {:f => point_prescription_form}
+.child
+  != add_child_link 'Add a Point Combination', 'point_combination', f
+  .point_combination_children
+    = f.fields_for :point_combinations do |point_combination_form|
+      = render :partial => 'point_combination', :locals => {:f => point_combination_form}
         

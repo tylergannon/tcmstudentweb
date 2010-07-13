@@ -11,6 +11,5 @@
     = f.label :citation
     = render :partial => 'citations/edit_citation', :locals => {:f => f, :field => :citation}
   %p
-    = f.hidden_field :_destroy, :class => 'delete'
     = remove_child_link 'remove', f
 
