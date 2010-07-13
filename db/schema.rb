@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100712052330) do
+ActiveRecord::Schema.define(:version => 20100713231255) do
 
   create_table "acu_point_categories", :force => true do |t|
     t.integer  "acu_point_id"
@@ -20,6 +20,9 @@ ActiveRecord::Schema.define(:version => 20100712052330) do
     t.datetime "updated_at"
   end
 
+  add_index "acu_point_categories", ["acu_point_id"], :name => "index_acu_point_categories_on_acu_point_id"
+  add_index "acu_point_categories", ["category_id"], :name => "index_acu_point_categories_on_category_id"
+
   create_table "acu_point_infos", :force => true do |t|
     t.integer  "acu_point_id"
     t.string   "english"
@@ -29,6 +32,9 @@ ActiveRecord::Schema.define(:version => 20100712052330) do
     t.datetime "updated_at"
     t.string   "location"
   end
+
+  add_index "acu_point_infos", ["acu_point_id"], :name => "index_acu_point_infos_on_acu_point_id"
+  add_index "acu_point_infos", ["citation_id"], :name => "index_acu_point_infos_on_citation_id"
 
   create_table "acu_point_symptoms", :force => true do |t|
     t.integer  "symptom_id"
@@ -41,6 +47,9 @@ ActiveRecord::Schema.define(:version => 20100712052330) do
     t.integer  "position"
   end
 
+  add_index "acu_point_symptoms", ["acu_point_info_id"], :name => "index_acu_point_symptoms_on_acu_point_info_id"
+  add_index "acu_point_symptoms", ["symptom_id"], :name => "index_acu_point_symptoms_on_symptom_id"
+
   create_table "acu_point_therapeutic_functions", :force => true do |t|
     t.integer  "therapeutic_function_id"
     t.text     "commentary"
@@ -49,6 +58,8 @@ ActiveRecord::Schema.define(:version => 20100712052330) do
     t.integer  "acu_point_info_id"
     t.integer  "position"
   end
+
+  add_index "acu_point_therapeutic_functions", ["acu_point_info_id"], :name => "index_acu_point_therapeutic_functions_on_acu_point_info_id"
 
   create_table "acu_points", :force => true do |t|
     t.integer  "channel_id"
@@ -62,10 +73,15 @@ ActiveRecord::Schema.define(:version => 20100712052330) do
     t.string   "canonical"
   end
 
+  add_index "acu_points", ["channel_id", "ordinal"], :name => "index_acu_points_on_channel_id_and_ordinal"
+
   create_table "acu_points_point_combinations", :id => false, :force => true do |t|
     t.integer "point_combination_id"
     t.integer "acu_point_id"
   end
+
+  add_index "acu_points_point_combinations", ["acu_point_id"], :name => "index_acu_points_point_combinations_on_acu_point_id"
+  add_index "acu_points_point_combinations", ["point_combination_id"], :name => "index_acu_points_point_combinations_on_point_combination_id"
 
   create_table "articles", :force => true do |t|
     t.string   "title"
@@ -73,6 +89,8 @@ ActiveRecord::Schema.define(:version => 20100712052330) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "articles", ["title"], :name => "index_articles_on_title"
 
   create_table "authors", :force => true do |t|
     t.string   "name"
@@ -85,6 +103,8 @@ ActiveRecord::Schema.define(:version => 20100712052330) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "categories", ["name"], :name => "index_categories_on_name"
 
   create_table "channels", :force => true do |t|
     t.string   "name"
@@ -101,6 +121,8 @@ ActiveRecord::Schema.define(:version => 20100712052330) do
     t.datetime "updated_at"
   end
 
+  add_index "citations", ["textbook_id"], :name => "index_citations_on_textbook_id"
+
   create_table "contraindications", :force => true do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -115,12 +137,18 @@ ActiveRecord::Schema.define(:version => 20100712052330) do
     t.integer  "herb2_id"
   end
 
+  add_index "dui_yaos", ["herb1_id"], :name => "index_dui_yaos_on_herb1_id"
+  add_index "dui_yaos", ["herb2_id"], :name => "index_dui_yaos_on_herb2_id"
+
   create_table "dui_yaos_formulas", :id => false, :force => true do |t|
     t.integer  "formula_id"
     t.integer  "dui_yao_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "dui_yaos_formulas", ["dui_yao_id"], :name => "index_dui_yaos_formulas_on_dui_yao_id"
+  add_index "dui_yaos_formulas", ["formula_id"], :name => "index_dui_yaos_formulas_on_formula_id"
 
   create_table "formula_comparisons", :force => true do |t|
     t.integer  "formula1_id"
@@ -132,6 +160,9 @@ ActiveRecord::Schema.define(:version => 20100712052330) do
     t.datetime "updated_at"
     t.integer  "citation_id"
   end
+
+  add_index "formula_comparisons", ["formula1_id"], :name => "index_formula_comparisons_on_formula1_id"
+  add_index "formula_comparisons", ["formula2_id"], :name => "index_formula_comparisons_on_formula2_id"
 
   create_table "formula_contraindications", :force => true do |t|
     t.integer  "formula_id"
@@ -152,6 +183,9 @@ ActiveRecord::Schema.define(:version => 20100712052330) do
     t.integer  "preparation_id"
   end
 
+  add_index "formula_herbs", ["formula_id"], :name => "index_formula_herbs_on_formula_id"
+  add_index "formula_herbs", ["herb_id"], :name => "index_formula_herbs_on_herb_id"
+
   create_table "formula_roles", :force => true do |t|
     t.string   "pinyin"
     t.string   "english"
@@ -166,6 +200,9 @@ ActiveRecord::Schema.define(:version => 20100712052330) do
     t.datetime "updated_at"
     t.text     "commentary"
   end
+
+  add_index "formula_therapeutic_functions", ["formula_id"], :name => "index_formula_therapeutic_functions_on_formula_id"
+  add_index "formula_therapeutic_functions", ["therapeutic_function_id"], :name => "index_formula_therapeutic_functions_on_therapeutic_function_id"
 
   create_table "formulas", :force => true do |t|
     t.string   "pinyin"
@@ -185,12 +222,19 @@ ActiveRecord::Schema.define(:version => 20100712052330) do
     t.integer  "master_formula_id"
   end
 
+  add_index "formulas", ["canonical"], :name => "index_formulas_on_canonical"
+  add_index "formulas", ["citation_id"], :name => "index_formulas_on_citation_id"
+  add_index "formulas", ["pinyin"], :name => "index_formulas_on_pinyin"
+
   create_table "formulas_patterns", :id => false, :force => true do |t|
     t.integer  "formula_id"
     t.integer  "pattern_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "formulas_patterns", ["formula_id"], :name => "index_formulas_patterns_on_formula_id"
+  add_index "formulas_patterns", ["pattern_id"], :name => "index_formulas_patterns_on_pattern_id"
 
   create_table "herb_categories", :force => true do |t|
     t.string   "name"
@@ -212,6 +256,9 @@ ActiveRecord::Schema.define(:version => 20100712052330) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "herb_comparisons", ["herb1_id"], :name => "index_herb_comparisons_on_herb1_id"
+  add_index "herb_comparisons", ["herb2_id"], :name => "index_herb_comparisons_on_herb2_id"
 
   create_table "herb_flavors", :force => true do |t|
     t.integer  "herb_id"
@@ -258,6 +305,9 @@ ActiveRecord::Schema.define(:version => 20100712052330) do
     t.string   "temperature"
   end
 
+  add_index "herbs", ["canonical"], :name => "index_herbs_on_canonical"
+  add_index "herbs", ["pinyin"], :name => "index_herbs_on_pinyin"
+
   create_table "pattern_symptoms", :force => true do |t|
     t.integer  "symptom_id"
     t.integer  "pattern_id"
@@ -269,6 +319,9 @@ ActiveRecord::Schema.define(:version => 20100712052330) do
     t.integer  "position"
   end
 
+  add_index "pattern_symptoms", ["pattern_id"], :name => "index_pattern_symptoms_on_pattern_id"
+  add_index "pattern_symptoms", ["symptom_id"], :name => "index_pattern_symptoms_on_symptom_id"
+
   create_table "patterns", :force => true do |t|
     t.string   "name"
     t.text     "commentary"
@@ -279,12 +332,18 @@ ActiveRecord::Schema.define(:version => 20100712052330) do
     t.string   "pulse"
   end
 
+  add_index "patterns", ["citation_id"], :name => "index_patterns_on_citation_id"
+  add_index "patterns", ["name"], :name => "index_patterns_on_name"
+
   create_table "patterns_therapeutic_functions", :id => false, :force => true do |t|
     t.integer  "pattern_id"
     t.integer  "therapeutic_function_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "patterns_therapeutic_functions", ["pattern_id"], :name => "index_patterns_therapeutic_functions_on_pattern_id"
+  add_index "patterns_therapeutic_functions", ["therapeutic_function_id"], :name => "index_patterns_therapeutic_functions_on_therapeutic_function_id"
 
   create_table "point_combinations", :force => true do |t|
     t.string   "name"
@@ -294,10 +353,15 @@ ActiveRecord::Schema.define(:version => 20100712052330) do
     t.datetime "updated_at"
   end
 
+  add_index "point_combinations", ["citation_id"], :name => "index_point_combinations_on_citation_id"
+
   create_table "point_combinations_symptoms", :id => false, :force => true do |t|
     t.integer "point_combination_id"
     t.integer "symptom_id"
   end
+
+  add_index "point_combinations_symptoms", ["point_combination_id"], :name => "index_point_combinations_symptoms_on_point_combination_id"
+  add_index "point_combinations_symptoms", ["symptom_id"], :name => "index_point_combinations_symptoms_on_symptom_id"
 
   create_table "point_prescription_acu_points", :force => true do |t|
     t.integer  "point_prescription_id"
@@ -308,6 +372,9 @@ ActiveRecord::Schema.define(:version => 20100712052330) do
     t.string   "reason"
   end
 
+  add_index "point_prescription_acu_points", ["acu_point_id"], :name => "index_point_prescription_acu_points_on_acu_point_id"
+  add_index "point_prescription_acu_points", ["point_prescription_id"], :name => "index_point_prescription_acu_points_on_point_prescription_id"
+
   create_table "point_prescriptions", :force => true do |t|
     t.integer  "pattern_id"
     t.string   "name"
@@ -316,6 +383,9 @@ ActiveRecord::Schema.define(:version => 20100712052330) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "point_prescriptions", ["citation_id"], :name => "index_point_prescriptions_on_citation_id"
+  add_index "point_prescriptions", ["pattern_id"], :name => "index_point_prescriptions_on_pattern_id"
 
   create_table "roles", :force => true do |t|
     t.string   "name"
@@ -329,6 +399,8 @@ ActiveRecord::Schema.define(:version => 20100712052330) do
     t.datetime "updated_at"
   end
 
+  add_index "symptoms", ["name"], :name => "index_symptoms_on_name"
+
   create_table "taggings", :force => true do |t|
     t.integer  "tag_id"
     t.integer  "taggable_id"
@@ -340,10 +412,13 @@ ActiveRecord::Schema.define(:version => 20100712052330) do
   end
 
   add_index "taggings", ["tag_id"], :name => "index_taggings_on_tag_id"
+  add_index "taggings", ["taggable_id", "taggable_type", "context"], :name => "index_taggings_on_taggable_id_and_taggable_type_and_context"
 
   create_table "tags", :force => true do |t|
     t.string "name"
   end
+
+  add_index "tags", ["name"], :name => "index_tags_on_name"
 
   create_table "textbooks", :force => true do |t|
     t.string   "title"
@@ -354,11 +429,15 @@ ActiveRecord::Schema.define(:version => 20100712052330) do
     t.string   "abbrev"
   end
 
+  add_index "textbooks", ["title"], :name => "index_textbooks_on_title"
+
   create_table "therapeutic_functions", :force => true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "therapeutic_functions", ["name"], :name => "index_therapeutic_functions_on_name"
 
   create_table "users", :force => true do |t|
     t.string   "login",                                  :null => false

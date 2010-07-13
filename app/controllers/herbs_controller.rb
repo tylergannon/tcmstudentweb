@@ -32,13 +32,13 @@ class HerbsController < ApplicationController
 
   def create
     @herb = Herb.new(params[:herb])
-    @herb.save
+    flash[:notice] = 'Successfully created new Herb.' if @herb.save
     respond_with @herb
   end
 
   def update
     @herb = Herb.find(params[:id])
-    @herb.update_attributes(params[:herb])
+    flash[:notice] = 'Herb was successfully updated.' if @herb.update_attributes(params[:herb])
     respond_with @herb
   end
 

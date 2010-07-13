@@ -27,7 +27,7 @@
   %h2
     Ingredients
   != add_child_link 'Add an Herb', 'formula_herb', f
-  %ul{:class=>'formula_herb_children', :id=>'formula_herb_children'}
+  %ul{:class=>'formula_herb_chiltdren', :id=>'formula_herb_children'}
     = f.fields_for :formula_herbs do |formula_herb_form|
       = render :partial => 'formula_herb', :locals => { :f => formula_herb_form }
 

@@ -65,13 +65,16 @@ class PatternsController < ApplicationController
 
   def create
     @pattern = Pattern.new(params[:pattern])
-    @pattern.save
+    flash[:notice] = "Successfully created pattern." if @pattern.save
     respond_with @pattern
   end
 
   def update
     @pattern = Pattern.find(params[:id])
-    @pattern.update_attributes(params[:pattern])
+    if @pattern.update_attributes(params[:pattern])
+      flash[:notice] = "Successfully updated pattern of disharmony."
+    end
+
 
     respond_with @pattern do |wants|
       if params[:commit] == "Update"

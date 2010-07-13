@@ -70,13 +70,13 @@ class FormulasController < ApplicationController
 
   def create
     @formula = Formula.new(params[:formula])
-    @formula.save
+    flash[:notice] = 'Formula was successfully created.' if @formula.save
     respond_with @formula
   end
 
   def update
     @formula = Formula.find(params[:id])
-    @formula.update_attributes(params[:formula])
+    flash[:notice] = 'Formula was successfully updated.' if @formula.update_attributes(params[:formula])
     respond_with @formula
   end
 
