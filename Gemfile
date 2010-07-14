@@ -17,8 +17,8 @@ gem 'acts-as-taggable-on'
 gem 'prawn'
 #gem 'prawnto', :git => 'git://github.com/bryanl/prawnto.git', :branch => 'rails3'
 
-gem "anaf_habtm"  # Again!!!
-gem "acts_as_linkable" # fast
+gem "anaf_habtm"  
+gem "acts_as_linkable" 
 
 group :development do
   gem 'scrapi'
