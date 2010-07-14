@@ -3,6 +3,22 @@ class Array
     map { |e| yield e }.inject({}) { |carry, e| carry.merge! e }
   end
 
+  def strip_each
+    self.map{|t| t.strip}
+  end
+  def strip_each!
+    self.each{|t| t.strip!}
+  end
+
+  def to_sentence
+    i = size
+    if size<=2
+      self.join(" and ")
+    else
+      [self[0..size-2].join(", "), self[size-1]].join(" and ")
+    end
+  end
+
   def map_with_index
     result = []
     self.each_with_index do |elt, idx|

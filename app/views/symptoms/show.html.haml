@@ -1,4 +1,4 @@
-- title "Symptom"
+t- title "Symptom"
 %p
   %strong
     Name:
@@ -13,10 +13,15 @@
       - if !ps.commentary.empty?
         %ul
           %li= ps.commentary
-      - unless ps.patterns.empty?
+      - unless ps.pattern.formulas.empty?
         %ul
           - ps.pattern.formulas.each do |fp|
             %li= link_to fp.pinyin, fp
+- unless @symptom.acu_point_therapeutic_functions.empty?
+  #h3 Associated AcuPoint Therapeutic Functions
+  %ul
+    - @symptom.acu_point_therapeutic_functions.each do |actf|
+      %li #{link actf.acu_point_info.acu_point} #{link actf.therapeutic_function}
 
 %p
   = link_to "Edit", edit_symptom_path(@symptom)

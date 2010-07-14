@@ -11,7 +11,7 @@ class SymptomsController < ApplicationController
 
 
   def show
-    @symptom = Symptom.find(params[:id])
+    @symptom = Symptom.lookup(params)
     respond_with @symptom
   end
 

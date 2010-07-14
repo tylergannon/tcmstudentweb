@@ -4,13 +4,14 @@ class AcuPointInfo < ActiveRecord::Base
   belongs_to :acu_point
 
   acts_as_cited
-  
-  association_text :acu_point_symptoms, :name=>:symptom_name, 
+
+  association_text :acu_point_symptoms, :name=>:symptom_name,
     :commentary=>:commentary, :scope=>:with_symptom_name
 
-  association_text :acu_point_therapeutic_functions, 
+  association_text :acu_point_therapeutic_functions,
     :name=>:therapeutic_function_name,
-    :commentary=>:tag_list,
+    :commentary=>:commentary,
     :scope=>:with_tf_name
 
 end
+

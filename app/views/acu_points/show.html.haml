@@ -19,7 +19,15 @@
 
   %h2 Therapeutic Functions
   %ul
-    %li!= acu_point_info.acu_point_therapeutic_functions.collect{|a| link_to a.therapeutic_function_name, a.therapeutic_function}.join(", ")
+    - acu_point_info.acu_point_therapeutic_functions.each do |actf|
+      %li
+        %h3= link actf.therapeutic_function
+        - unless actf.commentary.empty?
+          = show_box_for actf, "Show details"
+          = detail_box_for actf do
+            = hide_box_for actf, "Hide"
+            :tcmtextile
+              #{actf.commentary}
   %h2 Commentary
   :tcmtextile
     #{acu_point_info.commentary}

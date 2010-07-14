@@ -1,6 +1,7 @@
 class Symptom < ActiveRecord::Base
   has_many :pattern_symptoms
   has_many :patterns, :through => :pattern_symptoms
+  has_and_belongs_to_many :acu_point_therapeutic_functions, :autosave=>false
   acts_as_linkable :name=>:name
   search_on :name
 
