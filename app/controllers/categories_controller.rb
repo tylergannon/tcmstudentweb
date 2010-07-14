@@ -7,6 +7,5 @@ class CategoriesController < ApplicationController
       format.json {render :json=> Category.to_autocomplete(@categories)}
     end
   end
-
 end
 
