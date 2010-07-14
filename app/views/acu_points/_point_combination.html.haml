@@ -18,11 +18,11 @@
         %td{:colspan=>"2"}
           .field
             = f.label :source_text_citation
-            = render :partial => 'citations/edit_citation', :locals => {:f => f, :field => :source_text_citation}  
+            = render :partial => 'citations/edit_citation', :locals => {:f => f, :field => :source_text_citation}
   - else
-    = show_box_for f, :link_name => "Edit Details"
-    = detail_box_for f do
-      %b= hide_box_for f
+    = show_box_for f.object, "Edit Details"
+    = detail_box_for f.object do
+      %b= hide_box_for f.object
       %table
         %tr
           %td
@@ -38,6 +38,6 @@
           %td{:colspan=>"2"}
             .field
               = f.label :source_text_citation
-              = render :partial => 'citations/edit_citation', :locals => {:f => f, :field => :source_text_citation}  
+              = render :partial => 'citations/edit_citation', :locals => {:f => f, :field => :source_text_citation}
   = remove_child_link 'remove', f
 

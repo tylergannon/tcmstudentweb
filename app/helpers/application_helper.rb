@@ -1,5 +1,30 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
+  def show_box_for(obj, name="Show details")
+    check_active_record obj
+    link_to(name, options={}, html_options={"href"=>"#", "class"=>"show-element-link", "data-id"=>id_for_show_box(obj)})
+  end
+
+  def hide_box_for(obj, name="Hide details")
+    check_active_record obj
+    link_to(name, options={}, html_options={"href"=>"#", "class"=>"hide-element-link", "data-id"=>id_for_show_box(obj)})
+  end
+
+  def detail_box_for(obj, &block)
+    check_active_record obj
+    raise ArgumentError, 'Missing block in showhide.detail_box_for call' unless block_given?
+    concat content_tag(:div, capture(&block), :id=>id_for_show_box(obj), :class=>'hideable-hidden')
+    nil
+  end
+
+  def id_for_show_box(obj)
+    "detail_for_#{obj.class.name.underscore}#{obj.id}"
+  end
+
+  def check_active_record(obj)
+    raise "I can only handle ActiveRecords" unless obj.kind_of?(ActiveRecord::Base)
+  end
+
   def textile(str)
     Haml::Filters::TcmTextile.render(str)
   end

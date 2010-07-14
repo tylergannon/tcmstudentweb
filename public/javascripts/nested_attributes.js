@@ -7,6 +7,16 @@ function setUpDocument($jq) {
     });
   });
 
+  $jq.find("a.show-element-link").click(function(){
+    $('#'+$(this).attr('data-id')).show();
+    return false;
+  });
+
+  $jq.find("a.hide-element-link").click(function(){
+    $('#'+$(this).attr('data-id')).hide();
+    return false;
+  });
+
   $jq.find("textarea[data-auto-complete|=ta]").each( function(idx, el){
     setTextAreaAutoComplete($(el));
   });

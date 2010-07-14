@@ -26,25 +26,22 @@
 %p
   = f.label :contraindications
   = f.text_area :contraindications
-%hr
+%hr/
 
 
 %h2 Therapeutic Functions
-= text_area_with_auto_complete f, :formula_therapeutic_functions_text, "therapeutic_functions", :rows => 2, :cols => 50
+= text_area_with_auto_complete f, :herb_therapeutic_functions_text, "therapeutic_functions", :rows => 2, :cols => 50
 
-  != add_child_link 'Add a HerbTherapeuticFunction', 'herb_therapeutic_function', f
-.herb_therapeutic_function_children
-  - f.fields_for :herb_therapeutic_functions do |herb_therapeutic_function_form|
-    = render :partial => 'herb_therapeutic_function', :locals => { :f => herb_therapeutic_function_form }
-%p
+.child
   != add_child_link 'Add a Comparison', 'herb_comparison', f
-.herb_comparison_children
-  - f.fields_for :herb_comparisons do |herb_comparison_form|
-    = render :partial => 'herb_comparison', :locals => { :f => herb_comparison_form }
+  .herb_comparison_children
+    - f.fields_for :herb_comparisons do |herb_comparison_form|
+      = render :partial => 'herb_comparison', :locals => { :f => herb_comparison_form }
 
-%p
-!= add_child_link 'Add a Dui Yao', 'dui_yao', f
-.dui_yao_children
-  - f.fields_for :dui_yaos do |dui_yao_form|
-    = render :partial => 'dui_yao', :locals => { :f => dui_yao_form }
+%hr/
+.child
+  != add_child_link 'Add a Dui Yao', 'dui_yao', f
+  .dui_yao_children
+    = f.fields_for :dui_yaos do |dui_yao_form|
+      = render :partial => 'dui_yao', :locals => { :f => dui_yao_form }
 

@@ -27,7 +27,7 @@ class Formula < ActiveRecord::Base
 
   named_association :master_formula, :name, :class_name => "Formula"
 
-  search_on :canonical, :english, :pinyin
+  search_on :canonical, :pinyin
   scope :search_mod, order("char_length(canonical)")
 
   scope :next_from, lambda {|formula|

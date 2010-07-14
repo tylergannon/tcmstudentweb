@@ -13,11 +13,11 @@
       = f.text_area :pp_acu_points_text, :rows => 12, :cols => 100
     .field
       = f.label :citation
-      = render :partial => 'citations/edit_citation', :locals => {:f => f, :field => :citation}  
+      = render :partial => 'citations/edit_citation', :locals => {:f => f, :field => :citation}
   - else
-    = show_box_for f, :link_name => "Edit Details"
-    = detail_box_for f do
-      %b= hide_box_for f
+    = show_box_for f.object, "Edit Details"
+    = detail_box_for f.object do
+      %b= hide_box_for f.object
       .field
         = f.label :commentary, "Commentary"
         %br

@@ -34,7 +34,7 @@
         != link_to "#{pattern.name} #{show_citation(pp.citation, :short)}", pattern
       - else
         = "#{pp.commentary} #{show_citation(pp.citation, :short)}"
-      = show_box_for ppap, :link_name => "Show"
+      = show_box_for ppap, "Show"
       - unless ppap.commentary.empty?
         :tcmtextile
           #{ppap.commentary}

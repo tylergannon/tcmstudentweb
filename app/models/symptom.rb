@@ -3,9 +3,12 @@ class Symptom < ActiveRecord::Base
   has_many :patterns, :through => :pattern_symptoms
   acts_as_linkable :name=>:name
   search_on :name
+
   autocomplete_format do |symptom|
     {:value=>symptom.name}
   end
+
+  scope :search_mod, order('char_length(name)')
 
 
   def formulas

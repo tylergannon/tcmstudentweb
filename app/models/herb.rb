@@ -4,7 +4,7 @@ class Herb < ActiveRecord::Base
   acts_as_taggable
   acts_as_linkable :name => :pinyin, :title=>:latin
 
-  search_on :canonical, :latin, :pinyin, :common_name
+  search_on :canonical, :pinyin
   scope :search_mod, order("char_length(canonical)")
   scope :state_board, lambda{
     tagged_with("State Board")
@@ -30,6 +30,10 @@ class Herb < ActiveRecord::Base
 
   belongs_to :source_text_citation, :class_name => "Citation"
   belongs_to :herb_category
+
+  association_text :herb_therapeutic_functions,
+    :name=>:therapeutic_function_name, :commentary=>:commentary, :scope=>:with_tf_name
+
 
   accepts_nested_attributes_for :source_text_citation, :allow_destroy => true, :reject_if => proc {|a| a['textbook_title'].blank?}
 	accepts_nested_attributes_for :herb_comparisons, :allow_destroy => true, :reject_if => proc {|a| a['herb2_pinyin'].blank?}

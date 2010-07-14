@@ -17,7 +17,7 @@
       = @herb.temperature
       %br/
       = @herb.channel_list
-    
+
 %br/
 - unless @herb.citation.nil?
   Reference: #{render :partial => 'citations/show', :locals => {:citation => @herb.citation}}
@@ -31,7 +31,7 @@
     %li
       %b= h htf.therapeutic_function_name
       - unless htf.commentary.empty?
-        = show_box_for htf, :link_name => "Details"
+        = show_box_for htf, "Details"
         = detail_box_for htf do
           :tcmtextile
             #{htf.commentary}
@@ -75,7 +75,7 @@
     %br/
     :tcmtextile
       #{dui_yao.commentary}
-  
+
 - if @herb.formula_herbs.size > 0
   %h3 Formulas:
   %ul
