@@ -1,14 +1,13 @@
 class TagsController < ApplicationController
+  respond_to :json, :only => :index
+
   def index
     @tags = ActsAsTaggableOn::Tag.named_like(params[:search])
-    respond_to do |format|
-      format.html # index.html.erb
-      format.js
-      format.xml  { render :xml => @formulas }
-    end
-  end
+      .map{|t|
+        {:value=>t.name}
+      }.to_json
 
-  def show
-    
+    respond_with @tags
   end
 end
+

@@ -1,6 +1,6 @@
 class SymptomsController < ApplicationController
   respond_to :html
-  respond_to :json, :only => :create
+  respond_to :json, :only => :index
 
   def index
     @symptoms = Symptom.search(params[:term])

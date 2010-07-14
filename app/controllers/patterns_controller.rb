@@ -1,6 +1,6 @@
 class PatternsController < ApplicationController
   respond_to :html, :except=> [:cards]
-  respond_to :json, :only => :create
+  respond_to :json, :only => :index
   respond_to :prawn, :only => :cards
 
   def index

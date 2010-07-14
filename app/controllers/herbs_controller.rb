@@ -1,6 +1,6 @@
 class HerbsController < ApplicationController
   respond_to :html
-  respond_to :json, :only => :create
+  respond_to :json, :only => :index
 
   def index
     @herbs = Herb.search(params[:term])
