@@ -3,5 +3,8 @@
   = render :partial => 'form', :locals => { :f => f }
   %p= f.submit 'Update'
 
+= render :partial => "show_point_combinations"
+= link_to "Add a point combination", new_point_combination_path, :remote=>true
+
 #{link_to 'Show', @acu_point} | #{link_to 'Back', acu_points_path}
 

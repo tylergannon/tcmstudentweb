@@ -1,8 +1,0 @@
-- title @herb_category.name
-= render :partial => "herbs/index", :locals => { :herbs => @herb_category.herbs }
-%p
-  = link_to "Edit", edit_herb_category_path(@herb_category)
-  |
-  = link_to "Destroy", @herb_category, :confirm => 'Are you sure?', :method => :delete
-  |
-  = link_to "View All", herb_categories_path

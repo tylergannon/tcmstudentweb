@@ -1,0 +1,3 @@
+$('#point_combination_new').remove();
+$('#point_combinations').append('<li id="point_combination_#{@point_combination.id}">#{escape_javascript(render(:partial=>'point_combination', :locals=>{:point_combination=>@point_combination}))}</li>');
+

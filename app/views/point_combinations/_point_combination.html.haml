@@ -1,0 +1,7 @@
+with #{raw link(point_combination.acu_points)}
+%br/
+for #{raw link(point_combination.symptoms)}
+%br/
+from #{point_combination.source_text_citation.textbook_title} (#{point_combination.citation.textbook_title}, #{point_combination.citation.where})
+= link_to 'Edit', edit_point_combination_path(point_combination), :remote=>true
+

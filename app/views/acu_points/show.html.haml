@@ -32,47 +32,9 @@
   :tcmtextile
     #{acu_point_info.commentary}
   %hr/
+= render :partial => "show_point_prescriptions", :locals => {:acu_point=>@acu_point}
 
-%ul
-  - @acu_point.point_prescription_acu_points.each do |ppap|
-    %li
-      - pp = ppap.point_prescription
-      - pattern = pp.pattern
-      - if pattern
-        != link_to "#{pattern.name} #{show_citation(pp.citation, :short)}", pattern
-      - else
-        = "#{pp.commentary} #{show_citation(pp.citation, :short)}"
-      = show_box_for ppap, "Show"
-      - unless ppap.commentary.empty?
-        :tcmtextile
-          #{ppap.commentary}
-      = detail_box_for ppap do
-        %b= hide_box_for ppap
-        %br/
-        %b Symptoms
-        != link pattern.pattern_symptoms
-        - if pattern.formulas.size > 0
-          %b= "Formulas"
-          != link(pattern.formulas)
-          %br/
-        %ul
-          - pp.pp_acu_points.where(:reason => "Primary").order(:acu_point_id).each do |ap|
-            %li
-              != link_to ap.acu_point_abbrev, ap.acu_point
-              - unless ap.commentary.nil?
-                :tcmtextile
-                  #{ap.commentary}
-          - reasons = pp.pp_acu_points.where("reason <> 'Primary'").map{|p| p.reason}.uniq
-          - reasons.each do |reason|
-            %li
-              = reason
-              %ul
-                - pp.pp_acu_points.where(:reason => reason).order(:acu_point_id).each do |ap|
-                  %li
-                    != link_to ap.acu_point_abbrev, ap.acu_point
-                    - unless ap.commentary.nil?
-                      :tcmtextile
-                        #{ap.commentary}
+= render :partial => "show_point_combinations"
 
 #{link_to 'Edit', edit_acu_point_path(@acu_point)} | #{link_to 'Back', acu_points_path} | #{link_to 'Edit next', edit_acu_point_path(AcuPoint.order(:id).where("id > #{@acu_point.id}").limit(1).first)}
 

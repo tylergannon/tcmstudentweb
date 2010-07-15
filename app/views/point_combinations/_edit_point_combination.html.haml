@@ -1,0 +1,26 @@
+= form_for @point_combination, :remote=>true do |f|
+  .field
+    = f.label :name, "Name"
+    = f.text_field :name
+  %table
+    %tr
+      %td
+        .field
+          = f.label :acu_points_text, "Acu Points"
+          %br/
+          = f.text_area :acu_points_text, :rows => 3, :cols => 50
+      %td
+        .field
+          = f.label :symptoms_text, "Symptoms"
+          != text_area_with_auto_complete f, :symptoms_text, 'symptoms', :rows => 3, :cols => 50
+    %tr
+      %td
+        .field
+          = f.label :citation
+          = render :partial => 'citations/edit_citation', :locals => {:f => f, :field => :citation}
+      %td
+        .field
+          = f.label :source_text_citation
+          = render :partial => 'citations/edit_citation', :locals => {:f => f, :field => :source_text_citation}
+  = f.submit :disable_with => "Please wait..."
+

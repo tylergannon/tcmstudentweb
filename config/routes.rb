@@ -14,6 +14,7 @@ TcmStudentWeb::Application.routes.draw do
 
   resources :tongue_qualities
   resources :therapeutic_functions
+  resources :point_combinations
   resources :symptoms
   resources :pulse_qualities
   resources :contraindications
@@ -56,8 +57,8 @@ TcmStudentWeb::Application.routes.draw do
   match '/register/:activation_code' => 'activations#new', :as => :register
   match '/activate/:id' => 'activations#create', :as => :activate
   match '/' => 'formulas#index'
-  
+
   match '/:controller/t/:tag_name' => '#index'
-  
+
 end
 

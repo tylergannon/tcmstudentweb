@@ -6,7 +6,6 @@ gem "rails", "3.0.0.beta4"
 
 source 'http://gems.github.com'
 source 'http://rubygems.org'
-#gem 'repeated_auto_complete', :git => "git://github.com/patshaughnessy/auto_complete.git"
 
 gem "authlogic", :git => "git://github.com/odorcicd/authlogic.git", :branch => "rails3"
 gem "acts-as-list"
@@ -17,8 +16,9 @@ gem 'acts-as-taggable-on'
 gem 'prawn'
 #gem 'prawnto', :git => 'git://github.com/bryanl/prawnto.git', :branch => 'rails3'
 
-gem "anaf_habtm"  
-gem "acts_as_linkable" 
+gem 'da_huangs_ruby_extensions'
+gem "anaf_habtm"
+gem "acts_as_linkable"  # Trigger heroku
 
 group :development do
   gem 'scrapi'
