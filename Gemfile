@@ -17,8 +17,9 @@ gem 'prawn'
 #gem 'prawnto', :git => 'git://github.com/bryanl/prawnto.git', :branch => 'rails3'
 
 gem 'da_huangs_ruby_extensions'
-gem "anaf_habtm"
-gem "acts_as_linkable"  # Trigger heroku
+gem "anaf_habtm"  # Trigger heroku
+gem "acts_as_linkable"
+
 
 group :development do
   gem 'scrapi'
