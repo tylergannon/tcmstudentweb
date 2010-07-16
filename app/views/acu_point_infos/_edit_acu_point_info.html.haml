@@ -12,18 +12,12 @@
     %tr
       %td.fieldName Location
       %td= f.text_area :location, :rows=>2, :cols=>50
-  %hr/
-  %table
     %tr
       %td.fieldName Functions
       %td!= text_area_with_auto_complete f, :acu_point_therapeutic_functions_text, "therapeutic_functions", :rows => 4, :cols => 50
-  %hr/
-  %table
     %tr
       %td.fieldName Symptoms
       %td!= text_area_with_auto_complete f, :acu_point_symptoms_text, "symptoms", :rows => 4, :cols => 50
-  %hr/
-  %table
     %tr
       %td.fieldName Commentary
       %td= f.text_area :commentary, :rows => '2', :cols => '40'
