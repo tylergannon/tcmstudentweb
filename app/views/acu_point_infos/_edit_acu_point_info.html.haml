@@ -3,26 +3,29 @@
   %h2 AcuPoint Info
   %br/
   = error_messages_for f.object
-  %h3 Source
-  = render :partial => 'citations/edit_citation', :locals => {:f => f, :field => :citation}
-  %br/
-  .field
-    %b English:
-    = f.text_field(:english, :autocomplete => "off")
-  .field
-    %h2 Location
-    = f.text_area :location, :rows=>2, :cols=>60
+  %table
+    %tr
+      %td{:colspan=>2}= render :partial => 'citations/edit_citation', :locals => {:f => f, :field => :citation}
+    %tr
+      %td.fieldName English
+      %td= f.text_field(:english, :autocomplete => "off")
+    %tr
+      %td.fieldName Location
+      %td= f.text_area :location, :rows=>2, :cols=>50
   %hr/
-  %h3 Functions
-  != text_area_with_auto_complete f, :acu_point_therapeutic_functions_text, "therapeutic_functions", :rows => 4, :cols => 50
-
+  %table
+    %tr
+      %td.fieldName Functions
+      %td!= text_area_with_auto_complete f, :acu_point_therapeutic_functions_text, "therapeutic_functions", :rows => 4, :cols => 50
   %hr/
-  %h3 Symptoms
-  != text_area_with_auto_complete f, :acu_point_symptoms_text, "symptoms", :rows => 4, :cols => 50
+  %table
+    %tr
+      %td.fieldName Symptoms
+      %td!= text_area_with_auto_complete f, :acu_point_symptoms_text, "symptoms", :rows => 4, :cols => 50
   %hr/
-
-  %h3 Commentary
-  = f.text_area :commentary, :rows => '2', :cols => '40'
-  %br/
+  %table
+    %tr
+      %td.fieldName Commentary
+      %td= f.text_area :commentary, :rows => '2', :cols => '40'
   = f.submit :disable_with=>"Saving..."
 

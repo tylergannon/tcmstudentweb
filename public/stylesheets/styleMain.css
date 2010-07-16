@@ -392,7 +392,8 @@ img {
   font-style: italic; }
 
 .fieldName {
-  font-weight: bold; }
+  font-weight: bold;
+  font-size: 14px; }
 
 #formula_herbs p {
   float: none;

@@ -1,4 +1,9 @@
 - obj = f.object.send(field)
 = f.fields_for field, obj ||= Citation.new do |cf|
-  != "Reference: #{tfwac cf, :textbook_title, 'textbooks'} At: #{cf.text_field :where, :size => 10, :autocomplete => "off"}"
+  %table
+    %tr
+      %td.fieldName Text:
+      %td!=tfwac cf, :textbook_title, 'textbooks'
+      %td.fieldName Ad:
+      %td!=cf.text_field :where, :size => 10, :autocomplete => "off"
 

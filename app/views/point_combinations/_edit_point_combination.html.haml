@@ -2,23 +2,16 @@
   = f.hidden_field :acu_point_id, :value=>@acu_point_id
   %table
     %tr
-      %td
-        .field
-          = f.label :acu_points_text, "Acu Points"
-          %br/
-          = f.text_area :acu_points_text, :rows => 1, :cols => 50, "data-auto-complete-delim"=>','
-      %td
-        .field
-          = f.label :symptoms_text, "Symptoms"
-          != text_area_with_auto_complete f, :symptoms_text, 'symptoms', :rows => 1, :cols => 50, "data-auto-complete-delim"=>','
+      %td.fieldName
+        Acu Points
+        = f.text_area :acu_points_text, :rows => 1, :cols => 50, "data-auto-complete-delim"=>','
+      %td.fieldName
+        "Symptoms"
+        != text_area_with_auto_complete f, :symptoms_text, 'symptoms', :rows => 1, :cols => 50, "data-auto-complete-delim"=>','
     %tr
-      %td
-        .field
-          = f.label :citation
-          = render :partial => 'citations/edit_citation', :locals => {:f => f, :field => :citation}
-      %td
-        .field
-          = f.label :source_text_citation
-          = render :partial => 'citations/edit_citation', :locals => {:f => f, :field => :source_text_citation}
+      %td.fieldName= render :partial => 'citations/edit_citation', :locals => {:f => f, :field => :citation}
+      %td.fieldName
+        Src
+        = render :partial => 'citations/edit_citation', :locals => {:f => f, :field => :source_text_citation}
   = f.submit :disable_with => "Please wait..."
 
