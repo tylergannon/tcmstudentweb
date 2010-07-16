@@ -4,4 +4,5 @@ $tag.html('#{escape_javascript(render(:partial=>'edit_point_combination'))}');
 $tag.show('scale', {percent: 100});
 setUpDocument($tag);
 $tag.find('textarea').first().focus();
+$.scrollTo('#point_combination_#{@point_combination.id}');
 
