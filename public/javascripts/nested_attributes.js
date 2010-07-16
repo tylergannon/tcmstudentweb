@@ -75,7 +75,9 @@ function setTextAreaAutoComplete($el) {
 			terms.push( ui.item.value );	// add the selected item
 			// add placeholder to get the comma-and-space at the end
 			terms.push("");
-			this.value = terms.join($el.attr('data-auto-complete-delim'));
+			delim = $el.attr('data-auto-complete-delim');
+			if (delim=='nl') {delim='\n';}
+			this.value = terms.join(delim);
 			return false;
 		}
 	});
