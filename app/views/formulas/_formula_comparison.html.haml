@@ -13,6 +13,6 @@
     != tfwac f, :formula2_pinyin, 'formulas'
     = f.text_area :formula2_commentary, :rows => 3, :cols => 60
   %b
+  != edit_citation f
   = remove_child_link 'remove', f
-  = render :partial => 'citations/edit_citation', :locals => {:f => f, :field => :citation}
 

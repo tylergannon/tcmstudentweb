@@ -5,7 +5,7 @@
   = error_messages_for f.object
   %table
     %tr
-      %td{:colspan=>2}= render :partial => 'citations/edit_citation', :locals => {:f => f, :field => :citation}
+      %td!= edit_citation f
     %tr
       %td.fieldName English
       %td= f.text_field(:english, :autocomplete => "off")

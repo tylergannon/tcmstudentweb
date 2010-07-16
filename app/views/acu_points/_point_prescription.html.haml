@@ -12,8 +12,7 @@
       %br/
       = f.text_area :pp_acu_points_text, :rows => 12, :cols => 100
     .field
-      = f.label :citation
-      = render :partial => 'citations/edit_citation', :locals => {:f => f, :field => :citation}
+      != edit_citation f
   - else
     = show_box_for f.object, "Edit Details"
     = detail_box_for f.object do
@@ -26,8 +25,7 @@
         = f.label :pp_acu_points_text, "Point Prescription Acu Points"
         %br/
         = f.text_area :pp_acu_points_text, :rows => 12, :cols => 100
-      .field
-        = f.label :citation
-        = render :partial => 'citations/edit_citation', :locals => {:f => f, :field => :citation}
+      .field!= edit_citation f
+
   = remove_child_link 'remove', f
 

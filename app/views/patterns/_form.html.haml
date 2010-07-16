@@ -14,7 +14,8 @@
 = text_area_with_auto_complete f, :therapeutic_functions_text, 'therapeutic_functions', :rows => 4, :cols => 60
 
 %h3 Source
-= render :partial => 'citations/edit_citation', :locals => {:f => f, :field => :citation}
+!= edit_citation f
+
 .child
   != add_child_link 'Add a Point Prescription', 'point_prescription', f
   .point_prescription_children

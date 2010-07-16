@@ -37,6 +37,10 @@ module ApplicationHelper
     Haml::Filters::TcmTextile.render(str)
   end
 
+  def edit_citation(form, field=:citation, caption="Text:")
+    render :partial => 'citations/edit_citation', :locals => {:f => form, :field => field, :caption=>caption}
+  end
+
   def short_citation(cit)
     if cit.nil? || cit.textbook.nil?
       nil

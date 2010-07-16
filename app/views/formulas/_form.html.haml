@@ -36,10 +36,8 @@
 %h2 Source
 %table
   %tr
-    %td
-      = render :partial => 'citations/edit_citation', :locals => {:f => f, :field => :citation}
-    %td
-      = render :partial => 'citations/edit_citation', :locals => {:f => f, :field => :source_text_citation}
+    %td!= edit_citation f
+    %td!= edit_citation f, :source_text_citation, "Source"
 
 %hr
 %h2 Therapeutic Functions

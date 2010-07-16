@@ -6,12 +6,11 @@
         Acu Points
         = f.text_area :acu_points_text, :rows => 1, :cols => 50, "data-auto-complete-delim"=>','
       %td.fieldName
-        "Symptoms"
+        Symptoms
         != text_area_with_auto_complete f, :symptoms_text, 'symptoms', :rows => 1, :cols => 50, "data-auto-complete-delim"=>','
     %tr
-      %td.fieldName= render :partial => 'citations/edit_citation', :locals => {:f => f, :field => :citation}
-      %td.fieldName
-        Src
-        = render :partial => 'citations/edit_citation', :locals => {:f => f, :field => :source_text_citation}
+      %td!= edit_citation f
+      %td!= edit_citation f, :source_text_citation, "Source:"
+
   = f.submit :disable_with => "Please wait..."
 

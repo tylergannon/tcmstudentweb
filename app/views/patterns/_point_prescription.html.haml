@@ -9,7 +9,7 @@
     = f.text_area :commentary, :rows => 2, :cols => 100
   .field
     = f.label :citation
-    = render :partial => 'citations/edit_citation', :locals => {:f => f, :field => :citation}
+    != edit_citation f
   %p
     = remove_child_link 'remove', f
 
