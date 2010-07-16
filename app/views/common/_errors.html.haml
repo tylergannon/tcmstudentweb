@@ -1,0 +1,8 @@
+#error_explanation
+  %h2
+    = pluralize(for_object.errors.count, "error")
+    prohibited this #{for_object.class.name.titleize} from being saved:
+  %ul
+    - for_object.errors.full_messages.each do |msg|
+    %li= msg
+
