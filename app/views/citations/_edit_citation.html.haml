@@ -2,7 +2,8 @@
 = f.fields_for field, obj ||= Citation.new do |cf|
   %table
     %tr
-      %td.fieldName= caption
+      - unless caption.empty?
+        %td.fieldName= caption
       %td!=tfwac cf, :textbook_title, 'textbooks'
       %td.fieldName At:
       %td!=cf.text_field :where, :size => 10, :autocomplete => "off"
