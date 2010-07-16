@@ -9,8 +9,8 @@ module ApplicationHelper
     "'"+escape_javascript(render(options))+"'"
   end
 
-  def current_action(action)
-    request.parameters[:action]==action.to_s
+  def current_action(*action)
+    action.map{|t| t.to_s}.include?(request.parameters[:action])
   end
 
   def hide_box_for(obj, name="Hide details")

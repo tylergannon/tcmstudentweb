@@ -1,6 +1,7 @@
 $el = $('#point_combination_new');
+//alert($el.html());
 $el.hide('scale', {percent: 0});
 $el.attr('id', 'point_combination_#{@point_combination.id}');
-$el.html(#{escape_javascript(render(:partial=>'point_combination', :locals=>{:point_combination=>@point_combination, :acu_point_id=>@acu_point_id}))});
+$el.html(#{raw render_js(:partial=>'point_combination', :locals=>{:point_combination=>@point_combination, :acu_point_id=>@acu_point_id})});
 $el.show('scale', {percent: 100});
 
