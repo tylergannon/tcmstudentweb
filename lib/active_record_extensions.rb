@@ -3,16 +3,22 @@ module TcmStudentWeb
     def simple_association_text(association, options={})
       delim = options[:delim] ||= ','
       association = association.to_s.tableize
+      find_by = showby = options[:find_by].to_s
       klass = association.to_s.singularize.camelize
-      create_str = "a = a ||= #{klass}.create(#{options[:find_by]}=>name)" if options[:create]
-      showby = options[:find_by].to_s
-      class_eval "    def #{association}_text=(text)
+      create_str = "a = a ||= #{klass}.create(:#{find_by}=>name)" if options[:create]
+
+      class_eval \
+       "    def #{association}_text=(text)
               delim = '#{delim}'
-              items = text.split('#{delim}').strip_each.reject{|t|t.empty?}
-              self.#{association} = items.map{|name|
-                 a = #{klass}.named(name)
-                 #{create_str}
-              }.reject{|t|t.nil?}
+              self.#{association} = text \
+                 .split('#{delim}') \
+                 .strip_each \
+                 .reject{|t|t.empty?} \
+                 .map{|name|
+                    a = #{klass}.named(name)
+                    #{create_str}
+                 } \
+                 .reject{|t|t.nil?}
             end
             def #{association}_text
               #{association}.map{|t| t.#{showby}}.join('#{delim}')
