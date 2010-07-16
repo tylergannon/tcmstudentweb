@@ -5,6 +5,14 @@ module ApplicationHelper
     link_to(name, options={}, html_options={"href"=>"#", "class"=>"show-element-link", "data-id"=>id_for_show_box(obj)})
   end
 
+  def render_js(options={})
+    "'"+escape_javascript(render(options))+"'"
+  end
+
+  def current_action(action)
+    request.parameters[:action]==action.to_s
+  end
+
   def hide_box_for(obj, name="Hide details")
     check_active_record obj
     link_to(name, options={}, html_options={"href"=>"#", "class"=>"hide-element-link", "data-id"=>id_for_show_box(obj)})

@@ -6,33 +6,7 @@
   - @acu_point.acu_point_categories.each do |cat|
     %li= "#{cat.category_name} (#{cat.commentary})"
 
-- @acu_point.acu_point_infos.each do |acu_point_info|
-  %h2 Source: #{acu_point_info.citation.textbook_title}
-  English Translation: #{acu_point_info.english}
-  %h2 Location
-  :tcmtextile
-    #{acu_point_info.location}
-
-  %h2 Signs and Symptoms
-  %ul
-    %li= acu_point_info.acu_point_symptoms.collect{|a| a.symptom_name}.join(", ")
-
-  %h2 Therapeutic Functions
-  %ul
-    - acu_point_info.acu_point_therapeutic_functions.each do |actf|
-      %li
-        %h3= link actf.therapeutic_function
-        - unless actf.commentary.empty?
-          = show_box_for actf, "Show details"
-          = detail_box_for actf do
-            = hide_box_for actf, "Hide"
-            :tcmtextile
-              #{actf.commentary}
-  %h2 Commentary
-  :tcmtextile
-    #{acu_point_info.commentary}
-  %hr/
-= render :partial => "show_point_prescriptions", :locals => {:acu_point=>@acu_point}
+= render :partial => "acu_point_infos/acu_point_info", :collection=>@acu_point.acu_point_infos
 
 = render :partial => "show_point_combinations"
 

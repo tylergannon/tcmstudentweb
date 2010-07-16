@@ -1,22 +1,14 @@
 
 TcmStudentWeb::Application.routes.draw do
-  resources :authors
-  resources :textbooks
-  resources :categories
-  resources :articles
-  resources :patterns do
-    collection do
-      get :cards
-    end
-  end
 
+  resource :account
+  resources :acu_point_infos
   resources :acu_points
-
-  resources :tongue_qualities
-  resources :therapeutic_functions
-  resources :point_combinations
-  resources :symptoms
-  resources :pulse_qualities
+  resources :articles
+  resources :authors
+  resources :categories
+  resources :channels
+  resources :citations
   resources :contraindications
   resources :formulas do
     collection do
@@ -24,33 +16,26 @@ TcmStudentWeb::Application.routes.draw do
       post :sort
     end
   end
+  resources :herbs
+  resources :patterns do
+    collection do
+      get :cards
+    end
+  end
   resources :pattern_symptoms do
     collection do
       post :sort
     end
   end
-
-  resources :formula_categories do
-    collection do
-      post :sortformula
-    end
-  end
-  resources :formula_comparisons
-  resources :herbs
-  resources :herb_categories
-  resources :channels
-  resources :formula_dui_yaos
-  resources :patterns
-  resources :point_prescriptions
-  resources :point_prescription_acu_points
-  resources :flavors
-  resources :textbooks
-  resource :user_session
-  resource :account
-  resources :users
-  resources :tags
+  resources :point_combinations
   resources :searches
-  match 'treatment_principles' => 'therapeutic_functions#index'
+  resources :symptoms
+  resources :tags
+  resources :textbooks
+  resources :therapeutic_functions
+  resources :users
+  resource :user_session
+
   match 'login' => 'user_sessions#new'
   match 'logout' => 'user_sessions#destroy'
   match 'signup' => 'users#new'

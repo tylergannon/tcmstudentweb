@@ -1,32 +1,28 @@
-= error_messages_for f.object
+= form_for(@acu_point) do |f|
+  = error_messages_for f.object
 
-%h2 Name
-%b Channel:
-= f.collection_select(:channel_id, Channel.find(:all), :id, :name)
-%br/
-%b Point Number:
-= f.text_field(:ordinal, :autocomplete => "off")
-%br/
+  %h2 Name
+  %b Channel:
+  = f.collection_select(:channel_id, Channel.find(:all), :id, :name)
+  %br/
+  %b Point Number:
+  = f.text_field(:ordinal, :autocomplete => "off")
+  %br/
 
-%b Pinyin:
-= f.text_field(:pinyin, :autocomplete => "off")
-%br/
+  %b Pinyin:
+  = f.text_field(:pinyin, :autocomplete => "off")
+  %br/
 
-%b Chinese
-= f.text_field(:chinese, :autocomplete => "off")
-%br/
+  %b Chinese
+  = f.text_field(:chinese, :autocomplete => "off")
+  %br/
 
-%b Tags
-= tag_field(f, :tag_list)
-%br/
+  %b Tags
+  = tag_field(f, :tag_list)
+  %br/
 
-%b Point Categories
-!= text_area_with_auto_complete f, :acu_point_categories_text, 'categories', :rows => 4, :cols => 100
+  %b Point Categories
+  != text_area_with_auto_complete f, :acu_point_categories_text, 'categories', :rows => 4, :cols => 100
 
-%br/
-.child
-  != add_child_link 'Add a source', 'acu_point_info', f
-  .acu_point_info_children
-    = f.fields_for :acu_point_infos do |acu_point_info_form|
-      = render :partial => 'acu_point_info', :locals => { :f => acu_point_info_form }
+  %p= f.submit
 

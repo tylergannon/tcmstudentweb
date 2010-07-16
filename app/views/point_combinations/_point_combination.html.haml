@@ -3,5 +3,5 @@ with #{raw link(point_combination.acu_points.reject{|t| t.id==acu_point_id})}
 for #{raw link(point_combination.symptoms)}
 %br/
 from #{point_combination.source_text_citation.textbook_title} (#{point_combination.citation.textbook_title}, #{point_combination.citation.where})
-= link_to 'Edit', edit_point_combination_path(point_combination, :acu_point_id=>acu_point_id), :remote=>true
+= link_to('Edit', edit_point_combination_path(point_combination, :acu_point_id=>acu_point_id), :remote=>true) if current_action(:edit)
 

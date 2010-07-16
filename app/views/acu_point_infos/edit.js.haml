@@ -1,0 +1,6 @@
+$el = $('#acu_point_info_#{@acu_point_info.id}');
+$el.hide('slide');
+$el.html(#{raw render_js(:partial=>'edit_acu_point_info')});
+setUpDocument($el);
+$el.show('slide');
+

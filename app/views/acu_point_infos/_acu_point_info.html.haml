@@ -1,0 +1,33 @@
+%div[acu_point_info]
+  %h2 Source: #{link acu_point_info.citation}
+  = link_to('Edit', edit_acu_point_info_path(acu_point_info), :remote=>true) unless current_action(:show)
+  - unless acu_point_info.english.empty?
+    .acuPointEnglish English Translation: #{acu_point_info.english}
+  - unless acu_point_info.location.empty?
+    .acuPointLocation
+      %h2 Location
+      :tcmtextile
+        #{acu_point_info.location}
+
+  - unless acu_point_info.acu_point_symptoms.empty?
+    %h2 Signs and Symptoms
+    %ul
+      %li= acu_point_info.acu_point_symptoms.collect{|a| a.symptom_name}.join(", ")
+  - unless acu_point_info.acu_point_therapeutic_functions.empty?
+    %h2 Therapeutic Functions
+    %ul
+      - acu_point_info.acu_point_therapeutic_functions.each do |actf|
+        %li
+          %h3= link actf.therapeutic_function
+          - unless actf.commentary.empty?
+            = show_box_for actf, "Show details"
+            = detail_box_for actf do
+              = hide_box_for actf, "Hide"
+              :tcmtextile
+                #{actf.commentary}
+  - unless acu_point_info.commentary.empty?
+    %h2 Commentary
+    :tcmtextile
+      #{acu_point_info.commentary}
+  %hr/
+

@@ -1,0 +1,2 @@
+module AcuPointInfosHelper
+end

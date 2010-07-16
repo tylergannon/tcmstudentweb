@@ -52,7 +52,7 @@ $(function () {
         return split(term, delim).pop();
     }
 function setTextAreaAutoComplete($el) {
-    $el.tabOverride();
+    // $el.tabOverride();
     $el.autocomplete({
 		source: function(request, response) {
 			$.getJSON($el.attr('data-auto-complete-url'), {
