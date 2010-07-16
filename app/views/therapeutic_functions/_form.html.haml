@@ -1,8 +1,9 @@
 = form_for @therapeutic_function do |f|
-  = f.error_messages
+  = error_messages_for @therapeutic_function
   %p
     = f.label :name
     %br
     = f.text_field :name
   %p
     = f.submit "Submit"
+

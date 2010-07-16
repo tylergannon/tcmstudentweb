@@ -1,5 +1,5 @@
-- tag_id = "#point_combination_#{@point_combination.id}"
-$('#{tag_id}').html('#{escape_javascript(render(:partial=>'edit_point_combination'))}');
-setUpDocument($('#{tag_id}'));
-$('#{tag_id}').find('textarea').first().focus();
+$tag = $('#point_combination_#{@point_combination.id}');
+$tag.html('#{escape_javascript(render(:partial=>'edit_point_combination'))}');
+setUpDocument($tag);
+$tag.find('textarea').first().focus();
 

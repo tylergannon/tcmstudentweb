@@ -1,8 +1,9 @@
 %h1
   Edit My Account
 = form_for @user do |f|
-  = f.error_messages
+  = error_messages_for @user
   = render :partial => "form", :object => f
   = f.submit "Update"
 %br
 = link_to "My Profile", account_path
+

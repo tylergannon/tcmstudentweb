@@ -7,11 +7,11 @@ gem "rails", "3.0.0.beta4"
 source 'http://gems.github.com'
 source 'http://rubygems.org'
 
-gem "authlogic", :git => "git://github.com/odorcicd/authlogic.git", :branch => "rails3"
+gem "authlogic" #, :git => "git://github.com/odorcicd/authlogic.git", :branch => "rails3"
 gem "acts-as-list"
 gem 'cancan', :git => "git://github.com/ryanb/cancan.git"
 gem 'RedCloth'
-gem "haml"
+gem 'haml'
 gem 'acts-as-taggable-on'
 gem 'prawn'
 #gem 'prawnto', :git => 'git://github.com/bryanl/prawnto.git', :branch => 'rails3'
@@ -28,8 +28,8 @@ group :development do
 end
 
 group :test do
-  gem "mocha", :git => "git://github.com/floehopper/mocha.git"
+  gem "mocha"  #, :git => "git://github.com/floehopper/mocha.git"
   gem "factory_girl_rails"
-  gem "shoulda", :git => "git://github.com/bmaddy/shoulda.git", :branch => "rails3"
+  gem "shoulda"
 end
 

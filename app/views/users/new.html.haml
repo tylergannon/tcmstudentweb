@@ -1,7 +1,7 @@
 %h1
   Register
 = form_for @user, :url => account_path do |f|
-  = f.error_messages
+  = error_messages_for @user
   = negative_captcha(@captcha)
   = f.label :first_name
   %br
@@ -33,3 +33,4 @@
   = negative_text_field_tag @captcha, :password_confirmation
   %br
   = f.submit "Register"
+
