@@ -1,28 +1,14 @@
 = form_for(@acu_point) do |f|
   = error_messages_for f.object
-
-  %h2 Name
-  %b Channel:
-  = f.collection_select(:channel_id, Channel.find(:all), :id, :name)
-  %br/
-  %b Point Number:
-  = f.text_field(:ordinal, :autocomplete => "off")
-  %br/
-
-  %b Pinyin:
-  = f.text_field(:pinyin, :autocomplete => "off")
-  %br/
-
-  %b Chinese
-  = f.text_field(:chinese, :autocomplete => "off")
-  %br/
-
-  %b Tags
-  = tag_field(f, :tag_list)
-  %br/
-
-  %b Point Categories
-  != text_area_with_auto_complete f, :acu_point_categories_text, 'categories', :rows => 4, :cols => 100
-
+  %table
+    %tr
+      %td.fieldName Pinyin:
+      %td= f.text_field(:pinyin, :autocomplete => "off")
+    %tr
+      %td.fieldName Chinese:
+      %td= f.text_field(:chinese, :autocomplete => "off")
+    %tr
+      %td.fieldName Point Categories:
+      %td!= text_area_with_auto_complete f, :acu_point_categories_text, 'categories', :rows => 4, :cols => 50
   %p= f.submit
 
