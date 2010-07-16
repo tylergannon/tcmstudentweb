@@ -2,6 +2,6 @@ $('#point_combinations').append('<li id="point_combination_new" />');
 $tag = $('#point_combination_new');
 $tag.html('#{escape_javascript(render(:partial=>'edit_point_combination'))}');
 setUpDocument($tag);
-$tag.show('scale', {percent: 100})
+$tag.show('scale', {percent: 100});
 $tag.find('textarea').first().focus();
 
