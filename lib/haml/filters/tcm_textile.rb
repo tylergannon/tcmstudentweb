@@ -3,7 +3,7 @@ module Haml::Filters::TcmTextile
 
   # copied from Haml::Filters::Markdown
 
-  MY_PATTERN = /"(\w):([, -_\w\[\]]*)"/m
+  MY_PATTERN = /"(\w):([, -_\w\[\]]+?)"/m
   def render(text)
     text = text.gsub(MY_PATTERN) {|m|
       link_text = $2
