@@ -1,2 +1,5 @@
-$('#point_combination_#{@point_combination.id}').html('#{escape_javascript(render(:partial=>'point_combination', :locals=>{:point_combination=>@point_combination, :acu_point_id=>@acu_point_id}))}');
+$el = $('#point_combination_#{@point_combination.id}');
+$el.hide('scale', {percent: 0});
+$el.html('#{escape_javascript(render(:partial=>'point_combination', :locals=>{:point_combination=>@point_combination, :acu_point_id=>@acu_point_id}))}');
+$el.show('scale', {percent: 100});
 

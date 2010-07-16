@@ -1,3 +1,6 @@
-$('#point_combination_new').remove();
-$('#point_combinations').append('<li id="point_combination_#{@point_combination.id}">#{escape_javascript(render(:partial=>'point_combination', :locals=>{:point_combination=>@point_combination, :acu_point_id=>@acu_point_id}))}</li>');
+$el = $('#point_combination_new');
+$el.hide('scale', {percent: 0});
+$el.attr('id', 'point_combination_#{@point_combination.id}');
+$el.html(#{escape_javascript(render(:partial=>'point_combination', :locals=>{:point_combination=>@point_combination, :acu_point_id=>@acu_point_id}))});
+$el.show('scale', {percent: 100});
 
