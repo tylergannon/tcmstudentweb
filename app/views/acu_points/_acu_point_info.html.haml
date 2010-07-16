@@ -2,6 +2,7 @@
   %hr/
   %h2 AcuPoint Info
   %br/
+  = error_messages_for f.object
   %h3 Source
   = render :partial => 'citations/edit_citation', :locals => {:f => f, :field => :citation}
   %br/

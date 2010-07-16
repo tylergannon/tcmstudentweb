@@ -2,6 +2,7 @@ class AcuPointInfo < ActiveRecord::Base
   has_many :acu_point_therapeutic_functions, :autosave => true
   has_many :acu_point_symptoms, :autosave => true
   belongs_to :acu_point
+  validates_length_of :location, :maximum=>255
 
   acts_as_cited
 
