@@ -5,7 +5,8 @@
   = error_messages_for f.object
   %table
     %tr
-      %td!= edit_citation f
+      %td.fieldName Citation
+      %td!= edit_citation f, :citation, ""
     %tr
       %td.fieldName English
       %td= f.text_field(:english, :autocomplete => "off")
