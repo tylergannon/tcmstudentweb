@@ -7,7 +7,7 @@ class PointCombination < ActiveRecord::Base
   search_on :name
   accepts_nested_attributes_for :source_text_citation
 
-  simple_association_text :acu_points, ','
-  simple_association_text :symptoms, '\n'
+  simple_association_text :acu_points, :find_by=>:abbrev, :delim=>','
+  simple_association_text :symptoms, :find_by=>:name, :create=>true, :delim=>','
 end
 

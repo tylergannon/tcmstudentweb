@@ -1,13 +1,25 @@
 module TcmStudentWeb
   module ActiveRecordExtensions
-    def simple_association_text(association, delim=',')
-      class_eval "    def #{association.to_s.tableize}_text=(text)
+    def simple_association_text(association, options={})
+      delim = options[:delim] ||= ','
+      association = association.to_s.tableize
+      klass = association.to_s.singularize.camelize
+      create_str = "a = a ||= #{klass}.create(#{options[:find_by]}=>name)" if options[:create]
+      showby = options[:find_by].to_s
+      class_eval "    def #{association}_text=(text)
               delim = '#{delim}'
-              items = text.split(delim).strip_each.reject{|t|t.empty?}
-              association = items.map{|t| #{association.to_s.singularize.camelize}.named(t)}.reject{|t|t.empty?}
+              items = text.split('#{delim}').strip_each.reject{|t|t.empty?}
+              self.#{association} = items.map{|name|
+                 a = #{klass}.named(name)
+                 #{create_str}
+              }.reject{|t|t.nil?}
+            end
+            def #{association}_text
+              #{association}.map{|t| t.#{showby}}.join('#{delim}')
             end
         "
     end
+
 
     def acts_as_cited
       class_eval do

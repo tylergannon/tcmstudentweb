@@ -44,6 +44,7 @@ module ApplicationHelper
 
     def text_area_with_auto_complete(f, field, controller, opts={})
       opts["data-auto-complete"]='ta'
+      opts["data-auto-complete-delim"]='nl' unless opts.has_key?("data-auto-complete-delim")
       opts["data-auto-complete-url"]=eval("#{controller.to_s.underscore.tableize}_path(:format=>:json)")
       f.text_area field, opts
     end

@@ -44,23 +44,23 @@ $(function () {
   setUpDocument($("body"));
 
 });
-  var text_area_delimiter = '\n';
-    function split(val) {
-        return val.split(new RegExp(text_area_delimiter+'\s*'));
+    function split(val, delim) {
+        if (delim=='nl') {delim = '\n';}
+        return val.split(new RegExp(delim+'\s*'));
     }
-    function extractLast(term) {
-        return split(term).pop();
+    function extractLast(term, delim) {
+        return split(term, delim).pop();
     }
 function setTextAreaAutoComplete($el) {
     $el.autocomplete({
 		source: function(request, response) {
 			$.getJSON($el.attr('data-auto-complete-url'), {
-				term: extractLast(request.term)
+				term: extractLast(request.term, $el.attr('data-auto-complete-delim'))
 			}, response);
 		},
 		search: function() {
 			// custom minLength
-			var term = extractLast(this.value);
+			var term = extractLast(this.value, $el.attr('data-auto-complete-delim'));
 			if (term.length < 2) {
 				return false;
 			}
@@ -70,12 +70,12 @@ function setTextAreaAutoComplete($el) {
 			return false;
 		},
 		select: function(event, ui) {
-			var terms = split( this.value );
+			var terms = split( this.value, $el.attr('data-auto-complete-delim') );
 			terms.pop();  // remove the current input
 			terms.push( ui.item.value );	// add the selected item
 			// add placeholder to get the comma-and-space at the end
-			// terms.push("");
-			this.value = terms.join(text_area_delimiter);
+			terms.push("");
+			this.value = terms.join($el.attr('data-auto-complete-delim'));
 			return false;
 		}
 	});
