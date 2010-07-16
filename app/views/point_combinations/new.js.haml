@@ -1,4 +1,5 @@
-$('#point_combinations').append('<li id="point_combination_new">#{escape_javascript(render(:partial=>'edit_point_combination'))}</li>');
-setUpDocument($('#point_combination_new'));
-$('#point_combination_new').find('input:text:visible:first').focus();
+- tag_id = "#point_combination_new"
+$('#point_combinations').append('<li id="#{tag_id}">#{escape_javascript(render(:partial=>'edit_point_combination'))}</li>');
+setUpDocument($('#{tag_id}'));
+$('#{tag_id}').find('textarea').first().focus();
 
