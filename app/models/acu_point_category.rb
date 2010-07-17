@@ -1,9 +1,6 @@
 class AcuPointCategory < ActiveRecord::Base
   belongs_to :acu_point
   belongs_to :category
-  validates_each :channels do |model, attr, value|
-    model.errors.add(attr, 'collection can\'t be empty.') if value.size==0
-  end
   validates_presence_of :acu_point, :category
 
   named_association :category, :name, :create => true

@@ -1,8 +1,15 @@
 = select("channels", "channels", Channel.all.collect {|p| [ p.name, p.html_id ] }, {}, :id=>"cs_#{@acu_point_category.html_id}")
-!= js_link_to 'Add', :id=>"cs_link_#{@acu_point_category.html_id}"
+!= js_link_to 'Add Selected Channel', :id=>"cs_link_#{@acu_point_category.html_id}"
 = form_for @acu_point_category, :remote=>true do |f|
   = f.hidden_field :acu_point_id
-  = tfwac f, :category_name, 'categories'
+  %table
+    %tr
+      %td.fieldName Category
+      %td= tfwac f, :category_name, 'categories'
+    %tr
+      %td.fieldName Commentary
+      %td= f.text_field :commentary
+
   %ul[@acu_point_category, 'channels']
     = f.fields_for :channels do |cf|
       %li[cf.object]
