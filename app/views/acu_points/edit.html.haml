@@ -8,8 +8,9 @@
   = render :partial=>'acu_point_infos/acu_point_info', :collection=>@acu_point.acu_point_infos
 = link_to "Add an Info Source", new_acu_point_info_path(:acu_point_id=>@acu_point.id), :remote=>true
 
-= render :partial => "show_point_combinations"
-= link_to "Add a point combination", new_point_combination_path(:acu_point_id=>@acu_point.id), :remote=>true
+.point_combinations
+  = render :partial => "show_point_combinations"
+  = link_to "Add a point combination", new_point_combination_path(:acu_point_id=>@acu_point.id), :remote=>true
 
 
 #{link_to 'Show', @acu_point} | #{link_to 'Back', acu_points_path} | #{link_to 'Edit next', edit_acu_point_path(AcuPoint.order(:id).where("id > #{@acu_point.id}").limit(1).first)}
