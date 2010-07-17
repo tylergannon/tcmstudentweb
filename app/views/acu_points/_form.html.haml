@@ -1,4 +1,4 @@
-= form_for(@acu_point) do |f|
+= form_for @acu_point, :remote=>true do |f|
   = error_messages_for f.object
   %table
     %tr

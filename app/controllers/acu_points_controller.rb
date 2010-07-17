@@ -1,5 +1,5 @@
 class AcuPointsController < ApplicationController
-  respond_to :html
+  respond_to :html, :js
 
   def index
     @acu_points = AcuPoint.all
