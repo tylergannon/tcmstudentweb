@@ -7,8 +7,10 @@
     %tr
       %td.fieldName Chinese:
       %td= f.text_field(:chinese, :autocomplete => "off")
-    %tr
-      %td.fieldName Point Categories:
-      %td!= text_area_with_auto_complete f, :acu_point_categories_text, 'categories', :rows => 4, :cols => 50
   %p= f.submit
+
+
+%ul#acu_point_categories
+  = render :partial=>'acu_point_categories/acu_point_category', :collection=>@acu_point.acu_point_categories
+= link_to 'Add point category', new_acu_point_category_path(:acu_point_id=>@acu_point.id), :remote=>true
 

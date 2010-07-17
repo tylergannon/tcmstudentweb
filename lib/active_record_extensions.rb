@@ -1,4 +1,9 @@
 module TcmStudentWeb
+  class ActiveRecord::Base
+    def html_id
+      new_record? ? "new" : id.to_s
+    end
+  end
   module ActiveRecordExtensions
     def simple_association_text(association, options={})
       delim = options[:delim] ||= ','

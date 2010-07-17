@@ -1,0 +1,5 @@
+$el = $('#acu_point_category_#{@acu_point_category.html_id}');
+$el.hide('slide');
+$el.html(#{raw render_js(:partial=>'acu_point_category', :locals=>{:acu_point_category=>@acu_point_category})});
+$el.show('slide');
+

@@ -1,11 +1,6 @@
 class PointCombinationsController < ApplicationController
   respond_to :js
 
-  def index
-    @point_combinations = PointCombination.all
-    respond_with @point_combination
-  end
-
   def new
     @point_combination = PointCombination.new
     @acu_point_id = params[:acu_point_id]

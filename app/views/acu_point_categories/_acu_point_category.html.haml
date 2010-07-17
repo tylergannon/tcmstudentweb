@@ -1,0 +1,2 @@
+%li[acu_point_category]!= "#{acu_point_category.category_name} of #{raw link( acu_point_category.channels)} #{acu_point_category.channels.size>1 ? 'channels' : 'channel'} " + link_to('Edit', edit_acu_point_category_path(acu_point_category), :remote=>true) if current_action(:edit, :update, :create)
+

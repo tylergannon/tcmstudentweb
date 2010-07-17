@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100717011450) do
+ActiveRecord::Schema.define(:version => 20100717160331) do
 
   create_table "acu_point_categories", :force => true do |t|
     t.integer  "acu_point_id"
@@ -22,6 +22,14 @@ ActiveRecord::Schema.define(:version => 20100717011450) do
 
   add_index "acu_point_categories", ["acu_point_id"], :name => "index_acu_point_categories_on_acu_point_id"
   add_index "acu_point_categories", ["category_id"], :name => "index_acu_point_categories_on_category_id"
+
+  create_table "acu_point_categories_channels", :id => false, :force => true do |t|
+    t.integer "acu_point_category_id"
+    t.integer "channel_id"
+  end
+
+  add_index "acu_point_categories_channels", ["acu_point_category_id"], :name => "index_acu_point_categories_channels_on_acu_point_category_id"
+  add_index "acu_point_categories_channels", ["channel_id"], :name => "index_acu_point_categories_channels_on_channel_id"
 
   create_table "acu_point_infos", :force => true do |t|
     t.integer  "acu_point_id"

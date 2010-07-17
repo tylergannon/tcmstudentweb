@@ -1,16 +1,16 @@
-class AddAcuPointTherapeuticFunctionsSymptomsJoinTable < ActiveRecord::Migration
-  def self.up
-    create_table :acu_point_therapeutic_functions_symptoms, :id => false do |t|
-      t.integer :acu_point_therapeutic_function_id
-      t.integer :symptom_id
-    end
-    add_index :acu_point_therapeutic_functions_symptoms, :symptom_id
-    add_index :acu_point_therapeutic_functions_symptoms,
-                :acu_point_therapeutic_function_id
+class AddAcuPointTherapeuticFunctions${2}sJoinTable < ActiveRecord::Migration
+def self.up
+  create_table :${1}s_${2}s, :id => false do |t|
+    t.integer :${1}_id
+    t.integer :${2}_id
   end
+  add_index :${1}s_${2}s, :${2}_id
+  add_index :${1}s_${2}s,
+              :${1}_id
+end
 
-  def self.down
-    drop_table :acu_point_therapeutic_functions_symptoms
-  end
+def self.down
+  drop_table :${1}s_${2}s
+end
 end
 

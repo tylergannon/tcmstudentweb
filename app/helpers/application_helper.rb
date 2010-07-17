@@ -5,6 +5,11 @@ module ApplicationHelper
     link_to(name, options={}, html_options={"href"=>"#", "class"=>"show-element-link", "data-id"=>id_for_show_box(obj)})
   end
 
+  def js_link_to(name, html_opts={})
+    html_opts[:href] = '#'
+    link_to(name, options={}, html_options=html_opts)
+  end
+
   def render_js(options={})
     "'"+escape_javascript(render(options))+"'"
   end
