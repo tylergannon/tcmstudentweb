@@ -1,6 +1,12 @@
 %h1 Editing AcuPoint #{link @acu_point}
 = render :partial => 'form'
 
+
+.fieldName Point Categories
+%ul#acu_point_categories
+  = render :partial=>'acu_point_categories/acu_point_category', :collection=>@acu_point.acu_point_categories
+= link_to 'Add point category', new_acu_point_category_path(:acu_point_id=>@acu_point.id), :remote=>true
+
 %br/
 %h2 Info Sources
 

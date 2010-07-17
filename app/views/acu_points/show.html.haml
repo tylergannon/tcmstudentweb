@@ -1,10 +1,9 @@
 - title "#{@acu_point.abbrev} #{@acu_point.pinyin}"
 %h2 #{@acu_point.pinyin} // #{@acu_point.chinese}
-%br/
-%h3 Point Categories:
-%ul
-  - @acu_point.acu_point_categories.each do |cat|
-    %li= "#{cat.category_name} (#{cat.commentary})"
+
+.fieldName Point Categories
+%ul#acu_point_categories
+  = render :partial=>'acu_point_categories/acu_point_category', :collection=>@acu_point.acu_point_categories
 
 = render :partial => "acu_point_infos/acu_point_info", :collection=>@acu_point.acu_point_infos
 
