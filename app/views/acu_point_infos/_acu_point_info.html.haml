@@ -13,6 +13,11 @@
       %h2 Needling Instructions
       :tcmtextile
         #{acu_point_info.needling}
+  - unless acu_point_info.contraindications.empty?
+    .showField
+      .fieldName Needling Instructions
+      :tcmtextile
+        #{acu_point_info.contraindications}
   - unless acu_point_info.acu_point_symptoms.empty?
     %h2 Signs and Symptoms
     %ul

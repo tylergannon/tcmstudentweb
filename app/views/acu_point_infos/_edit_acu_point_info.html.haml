@@ -17,6 +17,9 @@
       %td.fieldName Needling
       %td= f.text_area :needling, :rows=>2, :cols=>50
     %tr
+      %td.fieldName Contraindications
+      %td= f.text_area :contraindications, :rows=>2, :cols=>50
+    %tr
       %td.fieldName Functions
       %td!= text_area_with_auto_complete f, :acu_point_therapeutic_functions_text, "therapeutic_functions", :rows => 4, :cols => 50
     %tr
