@@ -6,7 +6,7 @@ class AcuPoint < ActiveRecord::Base
   acts_as_taggable
 
   acts_as_cited
-  acts_as_linkable :name => :display_name, :title => :english
+  acts_as_linkable :name => :display_name, :title => :chinese
 
   def display_name
     pinyin.empty? ? abbrev : "#{abbrev} #{pinyin}"
