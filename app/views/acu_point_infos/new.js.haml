@@ -2,7 +2,6 @@ $('#acu_point_infos').append('<div id="acu_point_info_new" />');
 $el = $('#acu_point_info_new');
 $el.append(#{raw render_js(:partial=>'edit_acu_point_info')});
 setUpDocument($el);
-$el.show('slide');
 $.scrollTo('#acu_point_info_new');
-$el.find('input:visible:first').focus();
+$el.show('slide', {}, 500, function(){$el.find('input:visible:first').focus();});
 

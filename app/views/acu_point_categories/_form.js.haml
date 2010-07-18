@@ -2,8 +2,7 @@ $el = $('#acu_point_category_#{@acu_point_category.html_id}');
 $el.hide('slide');
 $el.html(#{raw render_js(:partial=>'edit_acu_point_category')});
 setUpDocument($el);
-$el.show('slide');
-$el.find('input:visible:first').focus();
+$el.show('slide', {}, 500, function(){$el.find('input:visible:first').focus();});
 
 $('#cs_link_#{@acu_point_category.html_id}').click( function(){
 $sel = $('#cs_#{@acu_point_category.html_id} :selected');

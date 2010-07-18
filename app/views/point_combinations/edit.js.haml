@@ -1,8 +1,7 @@
 $tag = $('#point_combination_#{@point_combination.id}');
 $tag.hide('scale', {percent: 0});
 $tag.html('#{escape_javascript(render(:partial=>'edit_point_combination'))}');
-$tag.show('scale', {percent: 100});
 setUpDocument($tag);
 $.scrollTo('#point_combination_#{@point_combination.id}');
-$tag.find('textarea').first().focus();
+$tag.show('scale', {percent: 100}, 500, function(){$tag.find('textarea').first().focus();});
 
