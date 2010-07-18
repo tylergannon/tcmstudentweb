@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100717160331) do
+ActiveRecord::Schema.define(:version => 20100718144254) do
 
   create_table "acu_point_categories", :force => true do |t|
     t.integer  "acu_point_id"
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(:version => 20100717160331) do
     t.datetime "updated_at"
     t.string   "location"
     t.string   "needling"
+    t.string   "contraindications"
   end
 
   add_index "acu_point_infos", ["acu_point_id"], :name => "index_acu_point_infos_on_acu_point_id"
