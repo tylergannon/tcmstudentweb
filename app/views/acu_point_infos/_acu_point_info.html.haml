@@ -25,7 +25,7 @@
       %li= acu_point_info.acu_point_symptoms.collect{|a| a.symptom_name}.join(", ")
   - unless acu_point_info.acu_point_therapeutic_functions.empty?
     %h2 Therapeutic Functions
-    %ul{:id=>"acu_point_info_#{@acu_point_info.id}_therapeutic_functions"}
+    %ul{:id=>"acu_point_info_#{acu_point_info.id}_therapeutic_functions"}
       - acu_point_info.acu_point_therapeutic_functions.each do |actf|
         %li[actf]= render :partial=>'acu_point_therapeutic_functions/acu_point_therapeutic_function', :locals=>{:acu_point_therapeutic_function=>actf}
   - unless acu_point_info.commentary.empty?
