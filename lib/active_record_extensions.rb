@@ -3,6 +3,9 @@ module TcmStudentWeb
     def html_id
       new_record? ? "new" : id.to_s
     end
+    def element_id(prefix=nil)
+      (prefix ? "#{prefix.to_s}_" : "") + "#{self.class.name.underscore}_#{html_id}"
+    end
   end
   module ActiveRecordExtensions
     def simple_association_text(association, options={})

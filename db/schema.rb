@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100718144254) do
+ActiveRecord::Schema.define(:version => 20100719224548) do
 
   create_table "acu_point_categories", :force => true do |t|
     t.integer  "acu_point_id"
@@ -368,6 +368,7 @@ ActiveRecord::Schema.define(:version => 20100718144254) do
     t.integer  "source_text_citation_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "commentary"
   end
 
   add_index "point_combinations", ["citation_id"], :name => "index_point_combinations_on_citation_id"

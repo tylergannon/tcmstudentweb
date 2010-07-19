@@ -12,8 +12,11 @@
       %td!= edit_citation f
       %td!= edit_citation f, :source_text_citation, "Source:"
     %tr
-      %td{:colspan=>"2"}= f.submit :disable_with => "Please wait..."
-    %tr
-      %td.fieldName Commentary
-      %td= f.text_area :commentary, :rows=>1, :cols=>50
+      %td= f.submit :disable_with => "Please wait..."
+      %td= show_box_for @point_combination, 'Show commentary', 'Hide commentary'
+  = detail_box_for @point_combination do
+    %table
+      %tr
+        %td.fieldName Commentary
+        %td= f.text_area :commentary, :rows=>1, :cols=>50
 
