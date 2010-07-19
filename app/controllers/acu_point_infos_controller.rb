@@ -2,8 +2,7 @@ class AcuPointInfosController < ApplicationController
   respond_to :js
 
   def new
-    @acu_point_info = AcuPointInfo.new(:acu_point_id=>params[:acu_point_id])
-    respond_with @acu_point_info
+    @acu_point_info = AcuPointInfo.create(:acu_point_id=>params[:acu_point_id])
   end
 
   def show

@@ -6,11 +6,22 @@ function setUpDocument($jq) {
       minLength: 2
     });
   });
-
-  $jq.find("a.show-element-link").click(function(){
-    $('#'+$(this).attr('data-id')).show();
-    return false;
-  });
+  $('a.show-element-link').toggle(
+    function () {
+      $(this).text($(this).attr('data-hide-text'));
+      $('#'+$(this).attr('data-id')).show();
+      return false;
+    },
+    function () {
+      $(this).text($(this).attr('data-show-text'));
+      $('#'+$(this).attr('data-id')).hide();
+      return false;
+    }
+  );
+//  $jq.find("a.show-element-link").click(function(){
+//    $('#'+$(this).attr('data-id')).show();
+//    return false;
+//  });
 
   $jq.find("a.hide-element-link").click(function(){
     $('#'+$(this).attr('data-id')).hide();

@@ -1,7 +1,7 @@
-$('#acu_point_infos').append('<div id="acu_point_info_new" />');
-$el = $('#acu_point_info_new');
+$('#acu_point_infos').append('<div id="acu_point_info_#{@acu_point_info.html_id}" />');
+$el = $('#acu_point_info_#{@acu_point_info.html_id}');
 $el.append(#{raw render_js(:partial=>'edit_acu_point_info')});
 setUpDocument($el);
-$.scrollTo('#acu_point_info_new');
+$.scrollTo('#acu_point_info_#{@acu_point_info.html_id}');
 $el.show('slide', {}, 500, function(){$el.find('input:visible:first').focus();});
 

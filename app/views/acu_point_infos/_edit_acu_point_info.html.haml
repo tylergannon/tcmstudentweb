@@ -20,13 +20,15 @@
       %td.fieldName Contraindications
       %td= f.text_area :contraindications, :rows=>2, :cols=>50
     %tr
-      %td.fieldName Functions
-      %td!= text_area_with_auto_complete f, :acu_point_therapeutic_functions_text, "therapeutic_functions", :rows => 4, :cols => 50
-    %tr
       %td.fieldName Symptoms
       %td!= text_area_with_auto_complete f, :acu_point_symptoms_text, "symptoms", :rows => 4, :cols => 50
     %tr
       %td.fieldName Commentary
       %td= f.text_area :commentary, :rows => '2', :cols => '40'
   = f.submit :disable_with=>"Saving..."
+.fieldName Therapeutic Functions
+%ul#acu_point_therapeutic_functions
+  - @acu_point_info.acu_point_therapeutic_functions.each do |aptf|
+    %li[aptf]= render :partial=>'acu_point_therapeutic_functions/acu_point_therapeutic_function', :locals=>{:acu_point_therapeutic_function=>aptf}
+= link_to 'New Therapeutic Function', new_acu_point_therapeutic_function_path(:acu_point_info_id=>@acu_point_info.id), :remote=>true, :id=>'new_function_path'
 

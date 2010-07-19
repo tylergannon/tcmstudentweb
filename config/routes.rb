@@ -4,6 +4,7 @@ TcmStudentWeb::Application.routes.draw do
   resource :account
   resources :acu_point_infos
   resources :acu_point_categories
+  resources :acu_point_therapeutic_functions
   resources :acu_points
   resources :articles
   resources :authors

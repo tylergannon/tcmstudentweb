@@ -1,0 +1,19 @@
+= acu_point_therapeutic_function.therapeutic_function_name
+= link_to('Edit', edit_acu_point_therapeutic_function_path(acu_point_therapeutic_function), :remote=>true) if current_action(:edit, :update, :create)
+- unless acu_point_therapeutic_function.commentary.empty? && acu_point_therapeutic_function.therapeutic_function.tags.empty? && acu_point_therapeutic_function.symptoms.empty?
+  = show_box_for acu_point_therapeutic_function, 'Detail'
+  = detail_box_for acu_point_therapeutic_function do
+    %table
+      - unless acu_point_therapeutic_function.symptoms.empty?
+        %tr
+          %td.fieldName Symptoms
+          %td!= link acu_point_therapeutic_function.symptoms
+      - unless acu_point_therapeutic_function.therapeutic_function.tags.empty?
+        %tr
+          %td.fieldName Tags
+          %td= acu_point_therapeutic_function.therapeutic_function.tag_list
+      - unless acu_point_therapeutic_function.commentary.empty?
+        %tr
+          %td.fieldName Commentary
+          %td= acu_point_therapeutic_function.commentary
+

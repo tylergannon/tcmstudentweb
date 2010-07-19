@@ -1,8 +1,11 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
-  def show_box_for(obj, name="Show details")
+  def show_box_for(obj, show="Show details", hide="Hide Details")
     check_active_record obj
-    link_to(name, options={}, html_options={"href"=>"#", "class"=>"show-element-link", "data-id"=>id_for_show_box(obj)})
+    opts = {:href=>"#", :class=>"show-element-link", "data-id"=>id_for_show_box(obj)}
+    opts["data-show-text"] = show
+    opts["data-hide-text"] = hide
+    link_to(show, options={}, opts)
   end
 
   def js_link_to(name, html_opts={})
@@ -18,10 +21,10 @@ module ApplicationHelper
     action.map{|t| t.to_s}.include?(request.parameters[:action])
   end
 
-  def hide_box_for(obj, name="Hide details")
-    check_active_record obj
-    link_to(name, options={}, html_options={"href"=>"#", "class"=>"hide-element-link", "data-id"=>id_for_show_box(obj)})
-  end
+#  def hide_box_for(obj, name="Hide details")
+#    check_active_record obj
+#    link_to(name, options={}, html_options={"href"=>"#", "class"=>"hide-element-link", "data-id"=>id_for_show_box(obj)})
+#  end
 
   def detail_box_for(obj, &block)
     check_active_record obj

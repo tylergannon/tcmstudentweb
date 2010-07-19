@@ -3,9 +3,12 @@ class AcuPointTherapeuticFunction < ActiveRecord::Base
   belongs_to :therapeutic_function
   acts_as_linkable :name => :therapeutic_function_name
 	named_association :therapeutic_function, :name, :create => true
+  simple_association_text :symptoms, :find_by=>:name, :create=>true, :delim=>','
+	attr_accessor :tag_list
+
 	has_and_belongs_to_many :symptoms, :autosave=>true
 
-	after_save :scan_commentary
+	after_save :set_tf_tags
 
 	def scan_commentary
 	  return unless commentary
@@ -22,7 +25,13 @@ class AcuPointTherapeuticFunction < ActiveRecord::Base
     set_tf_tags(match[1]) if match
   end
 
-	def set_tf_tags(tag_list)
+  def tf_tags
+	  self.therapeutic_function.tag_list if therapeutic_function
+  end
+  def tf_tags=(str)
+    self.tag_list = str
+  end
+	def set_tf_tags
 	  self.therapeutic_function.tag_list = tag_list if therapeutic_function
 	  self.therapeutic_function.save if therapeutic_function
   end
