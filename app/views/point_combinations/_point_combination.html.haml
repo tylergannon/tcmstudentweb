@@ -1,7 +1,7 @@
 with #{raw link(point_combination.acu_points.reject{|t| t.id==acu_point_id})}
 %br/
 for #{raw link(point_combination.symptoms)}
-= show_box_for point_combination, 'Show commentary', 'Hide commentary' unless point_combination.commentary.empty?
+= show_box_for point_combination, '(Show commentary)', '(Hide commentary)' unless point_combination.commentary.empty?
 %br/
 - unless point_combination.commentary.empty?
   = detail_box_for point_combination do

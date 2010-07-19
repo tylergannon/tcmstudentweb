@@ -2,12 +2,13 @@
 module ApplicationHelper
   def show_box_for(obj, show="Show details", hide="Hide Details")
     check_active_record obj
-    opts[:href] = "#"
-    opts[:class] = "show-element-link"
-    opts["data-id"] = id_for_show_box(obj)
-    opts["data-show-text"] = show
-    opts["data-hide-text"] = hide
-    link_to(show, options={}, opts)
+    link_to show, options={}, {
+        :href     =>"#",
+        :class    =>"show-element-link",
+        "data-id" =>id_for_show_box(obj),
+        "data-show-text" => show,
+        "data-hide-text" => hide
+    }
   end
 
   def js_link_to(name, html_opts={})
