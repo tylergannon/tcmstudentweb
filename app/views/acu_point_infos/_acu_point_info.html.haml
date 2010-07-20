@@ -22,7 +22,7 @@
   - unless acu_point_info.acu_point_symptoms.empty?
     %h2 Signs and Symptoms
     %ul
-      %li= acu_point_info.acu_point_symptoms.collect{|a| a.symptom_name}.join(", ")
+      %li= link acu_point_info.acu_point_symptoms
   - unless acu_point_info.acu_point_therapeutic_functions.empty?
     %h2 Therapeutic Functions
     %ul{:id=>"acu_point_info_#{acu_point_info.id}_therapeutic_functions"}
