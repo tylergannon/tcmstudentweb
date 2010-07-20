@@ -1,4 +1,4 @@
-title @symptom.name
+-title @symptom.name
 
 %p
   %br/
@@ -13,6 +13,7 @@ title @symptom.name
         %ul
           - ps.pattern.formulas.each do |fp|
             %li= link_to fp.pinyin, fp
+
 - unless @symptom.acu_point_therapeutic_functions.empty?
   #h3 Associated AcuPoint Therapeutic Functions
   %ul
