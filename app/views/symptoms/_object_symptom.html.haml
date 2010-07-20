@@ -1,5 +1,4 @@
-%a{:href=>symptoms_path(symptoms_path(object_symptom.symptom)), :class=>object_symptom.key_symptom ? "keySymptom" :""}
-  = object_symptom.symptom_name
+= link_to object_symptom.symptom_name, symptoms_path(object_symptom.symptom), options={}, {:class=>(object_symptom.key_symptom ? "keySymptom" :"")}
 - unless object_symptom.commentary.empty?
   = "(#{object_symptom.commentary})"
 
