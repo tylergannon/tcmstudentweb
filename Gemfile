@@ -18,7 +18,7 @@ gem 'prawn'
 
 gem 'da_huangs_ruby_extensions'
 gem "anaf_habtm"  # Trigger heroku
-gem "acts_as_linkable"  #update
+gem "acts_as_linkable"  #update MEEEE!!!
 
 
 group :development do
