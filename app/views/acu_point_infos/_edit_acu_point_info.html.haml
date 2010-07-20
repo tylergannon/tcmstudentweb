@@ -30,5 +30,5 @@
 %ul{:id=>"acu_point_info_#{@acu_point_info.id}_therapeutic_functions"}
   - @acu_point_info.acu_point_therapeutic_functions.each do |aptf|
     %li[aptf]= render :partial=>'acu_point_therapeutic_functions/acu_point_therapeutic_function', :locals=>{:acu_point_therapeutic_function=>aptf}
-= link_to 'New Therapeutic Function', new_acu_point_therapeutic_function_path(:acu_point_info_id=>@acu_point_info.id), :remote=>true, :id=>'new_function_path'
+= link_to 'New Therapeutic Function', new_acu_point_therapeutic_function_path(:acu_point_info_id=>@acu_point_info.id), :remote=>true, :id=>'new_function_link'
 
