@@ -4,14 +4,15 @@ class PatternsController < ApplicationController
   respond_to :prawn, :only => :cards
 
   def index
-    @patterns = Pattern.search(params[:term])
+    @patterns = Pattern
+    @patterns = @patterns.search(params[:term]) if params.has_key?(:term)
     @patterns = @patterns.from_text(params[:text]) if params.has_key?(:text)
     @patterns = @patterns.tagged_with(params[:tag], :on => get_context(params)) if params.has_key?(:tag)
-    @patterns = items.order_by_text
+    @patterns = @patterns.order_by_text
 
-    @tags = items.tag_counts_on(:tags)
-    @primary_patterns = items.tag_counts_on(:primary_patterns)
-    @diseases = items.tag_counts_on(:diseases)
+    @tags = @patterns.tag_counts_on(:tags)
+    @primary_patterns = @patterns.tag_counts_on(:primary_patterns)
+    @diseases = @patterns.tag_counts_on(:diseases)
 
     respond_with @patterns, @tags, @primary_patterns, @diseases do |format|
       format.json {render :json=> Pattern.to_autocomplete(@patterns)}

@@ -23,7 +23,7 @@
       - @formula.formula_therapeutic_functions.each do |formula_therapeutic_function|
         .child= formula_therapeutic_function.therapeutic_function_name
     %td{'valign' => 'top'}
-      - if (a = @formula.chief_herbs.map{|fh| fh.herb})
+      - unless (a = @formula.chiefs.map{|fh| fh.herb}).empty?
         %h3!= "Chief Herb#{'s' unless a.size==1}: #{link(a)}"
         %br/
       - unless @formula.patterns.empty?
@@ -41,8 +41,8 @@
 
 %h2 Herbs
 %table#formula_herbs{'border' => '1', 'cellpadding' => "0", "cellspacing" => "0"}
-  - Formula::ROLES.each do |role|
-    = render :partial => "show_formula_herbs", :locals => { :formula_herbs => @formula.formula_herbs.select{|a| a.formula_role.pinyin == role}, :show_roles => !@formula.chief_herbs.nil? }
+  - (0..3).each do |role|
+    = render :partial => "show_formula_herbs", :locals => { :formula_herbs => @formula.formula_herbs.with_role(role), :show_roles => !@formula.chiefs.nil? }
 - unless @formula.preparation.empty?
   .preparation
     %b Preparation:

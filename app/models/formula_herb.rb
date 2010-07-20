@@ -7,12 +7,23 @@ class FormulaHerb < ActiveRecord::Base
   def preparation_name
     self.herb_preparation.name if herb_preparation
   end
-  
+
   def preparation_name=(name)
     self.herb_preparation = HerbPreparation.find_or_create_by_name(name) unless name.empty?
   end
 
   default_scope order("position")
+	scope :with_role, lambda{|*roles|
+	  where :formula_role_id=>roles
+	}
+
+	scope :chief, lambda{
+	  with_role 0
+	}
+
+	scope :non_chief, lambda{
+	  with_role 1..3
+	}
 
 
 	def herb_pinyin=(pinyin)

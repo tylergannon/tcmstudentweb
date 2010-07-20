@@ -47,23 +47,17 @@ class Formula < ActiveRecord::Base
 
   anaf_habtm :patterns, :create=>true, :find=>{:with_name=>:name, :from_text=>{:citation_attributes => :textbook_title}}
 
+  def chiefs
+    if formula_herbs.chief.size==formula_herbs.size
+      []
+    else
+      formula_herbs.chief
+    end
+  end
 
   def all_comparisons
 	  formula_comparisons + other_formula_comparisons
 	end
-
-  def herbs_from(role)
-    formula_herbs.select{|a| a.formula_role.pinyin == role}
-  end
-
-  def chief_herbs
-    a = herbs_from(Formula::ROLES[0])
-    a unless a.size == formula_herbs.size
-  end
-
-  def non_chief_herbs
-    herbs_from(Formula::ROLES[1]) + herbs_from(Formula::ROLES[2]) +  herbs_from(Formula::ROLES[3])
-  end
 
   def pinyin=(p)
     super(p)

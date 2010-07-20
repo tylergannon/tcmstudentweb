@@ -4,14 +4,18 @@ class FormulasController < ApplicationController
   respond_to :json, :only=>:index
 
   def index
-    if params.has_key?(:tag_name)
-      @formulas = Formula.tagged_with(params[:tag_name].to_list)
-    else
-      @formulas = Formula.search(params[:term])
+    @formulas = Formula
+    @formulas = @formulas.tagged_with(params[:tag_name].to_list) if params.has_key?(:tag_name)
+    @formulas = @formulas.search(params[:term]) if params.has_key?(:term)
+    @formulas = @formulas.order(:canonical)
+    @categories = @formulas.tag_counts_on(:formula_categories)
+    @formulas_by_cat={}
+    @categories.each do |cat_tag|
+      @formulas_by_cat[cat_tag.name] = @formulas.tagged_with cat_tag.name, :on=>:formula_categories
     end
 
-    @tags = Formula.tag_counts_on(:tags)
-    respond_with(@formulas, @tags) do |format|
+    @tags = @formulas.tag_counts_on(:tags)
+    respond_with(@formulas_by_cat, @tags) do |format|
       format.json { render :json => Formula.to_autocomplete(@formulas) }
     end
   end

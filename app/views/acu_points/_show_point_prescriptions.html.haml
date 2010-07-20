@@ -1,7 +1,7 @@
-- unless acu_point.point_prescription_acu_points.empty?
-  .fieldName= "#{link acu_point} is found in these point prescriptions:"
+- unless @acu_point.point_prescription_acu_points.empty?
+  .fieldName!= "#{link @acu_point} is found in these point prescriptions:"
   %ul
-    - acu_point.point_prescription_acu_points.each do |ppap|
+    - @acu_point.point_prescription_acu_points.each do |ppap|
       %li
         - pp = ppap.point_prescription
         - pattern = pp.pattern
