@@ -37,6 +37,16 @@ class AcuPoint < ActiveRecord::Base
     joins([{:acu_point_categories=>:category}]).where(:categories => {:id=>id})
   }
 
+  def points_with_names_like_mine
+    AcuPoint.named_like self
+  end
+
+  scope :named_like, lambda{|acu_point|
+    chars = acu_point.chinese.chars.to_a
+    where = chars.map{|char| "chinese like '%#{char}%'"}.join(" or ")
+    where(where)
+  }
+
   scope :join_therapeutic_function, joins([{:acu_point_infos=>{:acu_point_therapeutic_functions=>:therapeutic_function}}])
 
 #  def point_prescriptions_attributes=(attribs)
