@@ -4,7 +4,11 @@ class SearchesController < ApplicationController
     redirect_to "/" unless params.has_key?(:term)
 
     con,name,action = params[:term].split("/")
-    controller = CONTROLLERS[con] unless con.size>1
+    if con.size>1
+      controller = con.tableize
+    else
+      controller = CONTROLLERS[con]
+    end
     unless controller
       flash[:notice] = "I don't understand the search term"
       redirect_to '/'

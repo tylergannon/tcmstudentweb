@@ -53,7 +53,7 @@ function setUpDocument($jq) {
 
 $(function () {
   setUpDocument($("body"));
-
+  $('#term').val('');
 });
     function split(val, delim) {
         if (delim=='nl') {delim = '\n';}

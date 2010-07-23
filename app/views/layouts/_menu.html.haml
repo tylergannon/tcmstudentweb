@@ -11,6 +11,6 @@
               != menu_link(channel.name, channel)
       %li
         %span
-          = form_tag(searches_path, :method=>'get', :remote=>true) do
+          = form_tag(searches_path, :id=>"search_form", :method=>'get', :remote=>true) do
             = text_field_tag(:term)+submit_tag("Search", :disable_with=>'Searching...')
 
