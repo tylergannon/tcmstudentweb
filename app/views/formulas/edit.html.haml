@@ -1,17 +1,3 @@
 - title "Editing #{@formula.pinyin}"
-= form_for(@formula) do |f|
-  = render :partial => 'form', :locals => { :f => f }
-  %p
-    = f.submit 'Update'
-
-.child
-  != add_child_link 'Add a Point Combination', 'point_combination', f
-  .point_combination_children
-    = f.fields_for :point_combinations do |point_combination_form|
-      = render :partial => 'point_combination', :locals => {:f => point_combination_form}
-
-
-= link_to 'Show', @formula
-|
-= link_to 'Back', formulas_path
+= render :partial => 'form', :locals => { :f => f }
 

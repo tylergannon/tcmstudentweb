@@ -1,14 +1,13 @@
 class ArticlesController < ApplicationController
-  respond_to :html
+  your_basic_controller :except=>[:index, :report]
+
+  load_and_authorize_resource :only=>[:index], :controller_resource => 'load_behind/controller_resource'
 
   def index
-    if params.has_key?(:tag_name)
-      @articles = Article.tagged_with(params[:tag_name].to_list)
-    else
-      @articles = Article.all
-    end
+    @articles = @articles.tagged_with(params[:tag_name].to_list) if params[:tag_name]
+    @articles = @articles.search(params[:term]) if params[:term]
 
-    @tags = Article.tag_counts_on(:tags)
+    @tags = @articles.tag_counts_on(:tags)
     respond_with @articles, @tags
   end
 
@@ -37,48 +36,5 @@ class ArticlesController < ApplicationController
     respond_with @article, @articles, @herbs, @patterns, @symptoms, @articles_by_category
   end
 
-  # GET /articles/1
-  # GET /articles/1.xml
-  def show
-    @article = Article.lookup(params)
-    respond_with @article
-  end
-
-  # GET /articles/new
-  # GET /articles/new.xml
-  def new
-    @article = Article.new
-    @article.title = params[:name]
-    respond_with @article
-  end
-
-  # GET /articles/1/edit
-  def edit
-    @article = Article.lookup(params)
-  end
-
-  # POST /articles
-  # POST /articles.xml
-  def create
-    @article = Article.new(params[:article])
-    @article.save
-    respond_with @article
-  end
-
-  # PUT /articles/1
-  # PUT /articles/1.xml
-  def update
-    @article = Article.lookup(params)
-    @article.update_attributes(params[:article])
-    respond_with @article
-  end
-
-  # DELETE /articles/1
-  # DELETE /articles/1.xml
-  def destroy
-    @article = Article.lookup(params)
-    @article.destroy
-    respond_with @article
-  end
 end
 

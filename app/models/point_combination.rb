@@ -9,5 +9,11 @@ class PointCombination < ActiveRecord::Base
 
   simple_association_text :acu_points, :find_by=>:abbrev, :delim=>','
   simple_association_text :symptoms, :find_by=>:name, :create=>true, :delim=>','
+  attr_accessor :acu_point_id
+  before_save :check_acu_point_id
+
+  def check_acu_point_id
+    self.acu_points << AcuPoint.find(acu_point_id) if acu_point_id
+  end
 end
 

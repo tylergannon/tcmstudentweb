@@ -55,7 +55,7 @@
   - else
     - other_herb = @herb
   %h3
-    Vs #{link_to other_herb.display_name, other_herb}
+    Vs #{link_to other_herb.display_name, other_herb, :remote => true}
   %table.herb_comparison
     %tr
       %td Both Herbs
@@ -70,7 +70,7 @@
   %h2 Dui Yaos
   %br/
   - @herb.all_dui_yaos.each do |dui_yao|
-    %h3 With #{link_to dui_yao.other_herb(@herb).display_name, dui_yao.other_herb(@herb)}:
+    %h3 With #{link_to dui_yao.other_herb(@herb).display_name, dui_yao.other_herb(@herb), :remote => true}:
     %br/
     :tcmtextile
       #{dui_yao.commentary}
@@ -80,12 +80,12 @@
   %ul
     - @herb.formula_herbs.each do |fh|
       %li
-        = link_to fh.formula.pinyin, fh.formula
+        = link_to fh.formula.pinyin, fh.formula, :remote => true
         - if fh.formula.chief_herbs
           (#{fh.formula_role.pinyin})
         - unless fh.commentary.empty?
           :tcmtextile
             #{fh.commentary}
 
-#{link_to 'Edit', edit_herb_path(@herb)} | #{link_to 'Back to Herbs', herbs_path} | #{link_to 'New Herb', new_herb_path}
+#{link_to 'Edit', edit_herb_path(@herb), :remote => true} | #{link_to 'Back to Herbs', herbs_path, ::remote => true} | #{link_to 'New Herb', new_herb_path, :remote => true}
 

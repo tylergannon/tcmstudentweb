@@ -1,0 +1,24 @@
+%h1 Articles
+
+%h2 Tag Cloud
+= tag_cloud(@tags, %w(css1 css2 css3 css4)) do |tag, css_class|
+  = link_to tag.name, "/articles/t/#{tag.name}", :class => css_class, :remote => true
+
+= @articles.order('date_created desc').limit(5).each do |article|
+  .article
+    .title= link_to article.title, article, :remote=>true
+    .articleBody
+      :tcmtextile
+        #{article.body[0..1000]}
+    %h3 Tags
+    %br/
+    != tag_list article.tags
+    .commentBox
+      Posted on
+      %i= article.created_at
+      by Tyler Gannon
+      %a{'href' => 'index.html'} Comments (5)
+
+%br
+= link_to 'New article', new_article_path, :remote => true
+

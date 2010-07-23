@@ -1,0 +1,4 @@
+%ul
+  - @channels.each do |channel|
+    %li= link_to channel.name, :remote=>true
+

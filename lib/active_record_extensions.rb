@@ -37,7 +37,7 @@ module TcmStudentWeb
 
     def acts_as_cited
       class_eval do
-        belongs_to :citation, :dependent => :destroy
+        belongs_to :citation
         accepts_nested_attributes_for :citation, :allow_destroy => true, :reject_if => proc {|a| a['textbook_title'].blank?}
         scope :bensky, lambda {joins(:citation).where("citations.textbook_id = 2")}
         scope :gio, lambda {joins(:citation).where("citations.textbook_id = 20")}

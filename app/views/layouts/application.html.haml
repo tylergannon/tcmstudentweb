@@ -6,12 +6,16 @@
     = stylesheet_link_tag 'scaffold'
     = javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.js", "rails.js"
     = javascript_include_tag  'jquery-ui-1.8.2.custom.min.js'
-    = stylesheet_link_tag 'styleMain',
-        'ui-lightness/jquery-ui-1.8.2.custom.css',
-        'nested_attributes.css'
+    = javascript_include_tag 'menu.js'
     = javascript_include_tag 'jquery.scrollTo-min.js'
+    = javascript_include_tag 'jquery.growl.js'
+    = javascript_include_tag 'loadbehind.js'
     = javascript_include_tag 'shortKeys.js' if current_action(:edit)
     = javascript_include_tag 'nested_attributes.js', 'application.js'
+
+    = stylesheet_link_tag 'styleMain',
+        'ui-lightness/jquery-ui-1.8.2.custom.css',
+        'nested_attributes.css', 'menu.css'
 
   %body
     #container
@@ -26,15 +30,8 @@
               Welcome #{h current_user.login}! Not you? #{link_to "Log out", '/logout'}
             - else
               #{link_to "Sign up", '/signup'} or #{link_to "log in", '/login'}
+            = render :partial=>'layouts/menu'
           .headRight
-          #navigation
-            .naviLeft
-            .link= link_to 'New Article','/article/new'
-            .link= link_to 'Study Guide','/articles/15'
-            .link= link_to 'Herbs', herbs_path
-            .link= link_to 'Formulas', '/articles/1'
-            .link= link_to 'New Formula', '/formulas/new'
-            .link= link_to 'New Pattern','/patterns/new'
 
         #content
           .top
@@ -46,7 +43,7 @@
           .middle
             - flash.each do |name, msg|
               = content_tag :div, msg, :id => "flash_#{name}"
-            = yield
+            #main_container= yield
 
             .bottom
               .bottomLeft
@@ -61,6 +58,5 @@
         #footerBottom
           .left
           .right
-    .templates
-      != yield :templates
+            <div id="copyright">Copyright &copy; 2010 <a href="http://apycom.com/">Apycom jQuery Menus</a></div>
 

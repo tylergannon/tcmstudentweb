@@ -1,17 +1,5 @@
 - title "#{@acu_point.abbrev} #{@acu_point.pinyin}"
 %h2 #{@acu_point.pinyin} // #{@acu_point.chinese}
 
-.fieldName Point Categories
-%ul#acu_point_categories
-  = render :partial=>'acu_point_categories/acu_point_category', :collection=>@acu_point.acu_point_categories
-
-= render :partial => "acu_point_infos/acu_point_info", :collection=>@acu_point.acu_point_infos
-%h2 Points with similar names
-%ul
-  %li!= link @acu_point.points_with_names_like_mine
-
-= render :partial => 'show_point_prescriptions'
-= render :partial => "show_point_combinations"
-
-#{link_to 'Edit', edit_acu_point_path(@acu_point)} | #{link_to 'Back', acu_points_path} | #{link_to 'Edit next', edit_acu_point_path(AcuPoint.order(:id).where("id > #{@acu_point.id}").limit(1).first)}
+= render :partial => "show"
 

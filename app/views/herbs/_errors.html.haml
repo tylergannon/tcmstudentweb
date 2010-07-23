@@ -1,0 +1,5 @@
+.errorTitle= "#{pluralize(@herb.errors.count, 'error')} prohibited this herb from being saved:"
+%ul
+- @herb.errors.full_messages.each do |msg|
+  %li= msg
+

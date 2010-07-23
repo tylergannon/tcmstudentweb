@@ -37,15 +37,22 @@ class AcuPoint < ActiveRecord::Base
     joins([{:acu_point_categories=>:category}]).where(:categories => {:id=>id})
   }
 
-  def points_with_names_like_mine
-    AcuPoint.named_like self
-  end
+  has_many :points_with_similar_names, :class_name=>'AcuPoint', :readonly=>true,
+    :finder_sql=>
+    "with characters AS (
+      select regexp_split_to_table(chinese, E'\\s*') as char
+      from acu_points where id=#{id})
+    select a.*
+    from acu_points a
+      inner join characters c
+      on position(c.char in a.chinese) is not null
+    where a.id <> #{id};"
 
-  scope :named_like, lambda{|acu_point|
-    chars = acu_point.chinese.chars.to_a
-    where = chars.map{|char| "chinese like '%#{char}%'"}.join(" or ")
-    where(where)
-  }
+#  scope :named_like, lambda{|acu_point|
+#    chars = acu_point.chinese.chars.to_a
+#    where = chars.map{|char| "chinese like '%#{char}%'"}.join(" or ")
+#    where(where)
+#  }
 
   scope :join_therapeutic_function, joins([{:acu_point_infos=>{:acu_point_therapeutic_functions=>:therapeutic_function}}])
 

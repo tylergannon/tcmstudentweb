@@ -1,0 +1,64 @@
+%h2 Signs and Symptoms
+Keys: #{link @pattern.pattern_symptoms.key_symptoms}
+
+%ul#pattern_symptoms
+  - @pattern.pattern_symptoms.each do |s|
+    - l = link_to s.symptom_name, s.symptom, :remote => true
+    = content_tag_for :li, s do
+      - if can? :update, @pattern
+        %span.handle [drag]
+      - if s.maybe
+        (possibly)
+      - if s.key_symptom
+        %i= l
+      - else
+        = l
+      - unless s.commentary.blank?
+        %ul
+          %li
+            :tcmtextile
+              #{s.commentary}
+
+%h3 Primary Pattern
+!= tag_list @pattern.primary_patterns
+%br/
+
+- if can? :update, @pattern
+  = sortable_element "pattern_symptoms", :url => sort_pattern_symptoms_path
+
+%h2 Treatment Principles
+%ul
+  - @pattern.therapeutic_functions.each do |p|
+    %li= p.name
+
+- unless @pattern.commentary.blank?
+  %h2 Commentary
+  :tcmtextile
+    #{@pattern.commentary}
+
+- unless @pattern.formulas.empty?
+  %h2 Formulas
+  %ul
+    - @pattern.formulas.each do |f|
+      %li!= "#{link_to f.pinyin, f, :remote => true} (#{f.citation.textbook.title if f.citation})"
+
+- unless @pattern.point_prescriptions.blank?
+  - @pattern.point_prescriptions.each do |pp|
+    %h2!= "Point Prescription: #{pp.citation.textbook_title if pp.citation} #{link_to "edit", edit_point_prescription_path(pp), :remote => true}"
+    %ul
+      - pp.pp_acu_points.order(:acu_point_id).each do |ap|
+        %li= link(ap)
+
+%h3 Tags
+!= tag_list @pattern.tags
+%br/
+%h3 Disease
+!= tag_list @pattern.diseases
+%br/
+%h3 Primary Pattern
+!= tag_list @pattern.primary_patterns
+%br/
+
+- if can? :update, @pattern
+  = link_to 'Edit', edit_pattern_path(@pattern), :remote => true
+

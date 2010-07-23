@@ -1,8 +1,9 @@
 class ChannelsController < ApplicationController
   respond_to :html
   respond_to :json, :only => :index
+  load_and_authorize_resource :controller_resource => 'load_behind/controller_resource'
   def index
-		@channels = Channel.search(params[:term])
+		@channels = @channels.search(params[:term]) if params.has_key?(:term)
 		respond_with @channels do |format|
 		  format.json {render :json=> Channel.to_autocomplete(@channels)}
 		end

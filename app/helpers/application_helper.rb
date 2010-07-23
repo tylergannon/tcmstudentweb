@@ -11,6 +11,18 @@ module ApplicationHelper
     }
   end
 
+  def menu_link(name, href, parent=false)
+    options = {:remote=>true}
+    options[:class] = parent if parent
+    link_to href, options do
+      raw "<span>#{name}</span>"
+    end
+  end
+
+  def growl(title, msg, type=:info)
+    "$.growl('#{title}', '#{msg}', '/images/growl/#{type}.png');"
+  end
+
   def js_link_to(name, html_opts={})
     html_opts[:href] = '#'
     link_to(name, options={}, html_options=html_opts)
@@ -59,18 +71,6 @@ module ApplicationHelper
       cit.textbook.abbrev ||= cit.textbook.title
     end
   end
-    def tfwac(f, field, controller, opts={})
-      opts["data-auto-complete"]='tf'
-      opts["data-auto-complete-url"]=eval("#{controller.to_s.underscore.tableize}_path(:format=>:json)")
-      f.text_field field, opts
-    end
-
-    def text_area_with_auto_complete(f, field, controller, opts={})
-      opts["data-auto-complete"]='ta'
-      opts["data-auto-complete-delim"]='nl' unless opts.has_key?("data-auto-complete-delim")
-      opts["data-auto-complete-url"]=eval("#{controller.to_s.underscore.tableize}_path(:format=>:json)")
-      f.text_area field, opts
-    end
   def tag_field(form, field)
     render(:partial => 'layouts/tag_field',
            :locals => {:f => form, :field => field})

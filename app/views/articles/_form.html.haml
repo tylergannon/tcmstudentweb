@@ -1,4 +1,6 @@
-= form_for(@article) do |f|
+%h1 Editing article
+
+= form_for(@article, :remote => true) do |f|
   = error_messages_for @article
 
   .field
@@ -15,4 +17,6 @@
 
   .actions
     = f.submit
+
+#{ link_to 'Show', @article, :remote => true } | #{ link_to 'Back', articles_path, :remote => true }
 

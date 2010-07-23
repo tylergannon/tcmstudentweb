@@ -31,7 +31,7 @@ TcmStudentWeb::Application.routes.draw do
   end
   resources :point_combinations
   resources :point_prescriptions
-  resources :searches
+  resources :searches, :only=>[:index]
   resources :symptoms
   resources :tags
   resources :textbooks

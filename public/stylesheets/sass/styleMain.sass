@@ -68,28 +68,19 @@ img
 
 
 #header
-  height: 144px
+  height: 80px
   display: block
-  background-image: url("/images/header_middle.gif")
   background-repeat: repeat-x
   margin-bottom: 24px
-
-  .headLeft
-    width: 16px
-    height: 144px
-    float: left
-    background-image: url("/images/header_left.gif")
 
   .headMiddle
     float: left
     margin-left: 8px
-    margin-top: 58px
+    width: 100%
 
-  .headRight
-    width: 16px
-    height: 144px
-    float: right
-    background-image: url("/images/header_right.gif")
+  #menuContainer
+    float: bottom right
+    horizontal-align: right
 
   h1
     margin: 0
@@ -106,132 +97,7 @@ img
     color: #000000
 
 
-#navigation
-  height: 44px
-  float: right
-  background-image: url("/images/navigation_middle.gif")
-  background-position: bottom left
-  background-repeat: repeat-x
-  margin-top: 100px
 
-  .naviLeft
-    height: 44px
-    width: 20px
-    float: left
-    background-image: url("/images/navigation_left.gif")
-    background-position: bottom left
-    background-repeat: no-repeat
-
-  .link
-    height: 44px
-    float: left
-    background-image: url("/images/navigation_link.gif")
-    background-position: right -44px
-    background-repeat: no-repeat
-
-    a
-      height: 32px
-      display: block
-      text-align: left
-      font-size: 12px
-      font-weight: bold
-      text-decoration: none
-      background-image: url("/images/navigation_link.gif")
-      background-position: right 0
-      color: #446937
-      padding-top: 10px
-      padding-right: 12px
-      padding-left: 12px
-
-
-* html #navigation .link a
-  width: 112px
-  text-align: center
-  padding-left: 0
-  padding-right: 0
-
-
-#navigation .link a:hover
-  background-image: none
-  color: #5e784f
-
-
-#sidebar
-  float: right
-  width: 144px
-
-  .top
-    width: 144px
-    height: 20px
-    background-image: url("/images/sidebar_top.gif")
-    text-align: center
-    font-size: 12px
-    color: #575757
-    font-weight: bold
-    padding-top: 4px
-
-  .middle
-    background-color: #ededed
-    width: 144px
-    font-size: 11px
-
-  .bottom
-    width: 144px
-    height: 8px
-    background-image: url("/images/sidebar_bottom.gif")
-    margin-bottom: 16px
-    background-repeat: no-repeat
-
-  p
-    margin: 0
-    padding: 4px
-
-  h1
-    color: #b6b6b6
-    margin: 0
-    font-size: 11px
-    font-weight: bold
-    text-align: center
-
-  .divider
-    margin-top: 4px
-    margin-bottom: 0
-    height: 2px
-    background-image: url("/images/sidebar_divider.gif")
-    background-repeat: repeat-x
-
-  img
-    padding: 1px
-    background-color: #ffffff
-    border: 1px solid #a5a5a5
-    margin-top: 8px
-
-  .subtitle
-    font-size: 10px
-
-  .link
-    width: 144px
-    height: 32px
-    background-image: url("/images/sidebar_link.gif")
-
-    a
-      display: block
-      height: 24px
-      padding-left: 16px
-      padding-top: 8px
-      background-image: url("/images/sidebar_link.gif")
-      font-size: 12px
-      font-weight: bold
-      text-decoration: none
-      color: #b6b6b6
-
-      &:hover
-        color: #b4c3d2
-        background-position: 0 -32px
-
-
-#content
-  margin-right: 160px
 
 
 #contentEnd
@@ -494,4 +360,20 @@ img
     padding-top: 0
     margin-bottom: 0
     padding-bottom: 0
+
+#searchBlock
+  vertical-align: bottom
+  margin : 0
+  padding : 0
+  border-bottom-width: 0px
+  border-left-width: 0
+  border-right-width: 0
+  border-top-width: 0
+  margin-bottom: 0
+  margin-left: 0
+  margin-right: 0
+  margin-top: 0
+  outline-width: 0
+  padding-bottom: 0
+  padding-top: 0
 

@@ -1,10 +1,11 @@
 class FormulasController < ApplicationController
-  respond_to :html, :except => [:cards]
+  respond_to :html, :js, :except => [:cards]
   respond_to :prawn, :only=>:cards
   respond_to :json, :only=>:index
 
+  load_and_authorize_resource :controller_resource => 'load_behind/controller_resource'
+
   def index
-    @formulas = Formula
     @formulas = @formulas.tagged_with(params[:tag_name].to_list) if params.has_key?(:tag_name)
     @formulas = @formulas.search(params[:term]) if params.has_key?(:term)
     @formulas = @formulas.order(:canonical)
@@ -48,7 +49,6 @@ class FormulasController < ApplicationController
   # GET /formulas/1
   # GET /formulas/1.xml
   def show
-    @formula = Formula.lookup(params)
     if (@taglist = params[:tags]).nil?
       @next = Formula.next_from(@formula)[0]
     else
@@ -60,26 +60,22 @@ class FormulasController < ApplicationController
   # GET /formulas/new
   # GET /formulas/new.xml
   def new
-    @formula = Formula.new(:citation => Citation.new)
     respond_with(@formula)
   end
 
   # GET /formulas/1/edit
   def edit
-    @formula = Formula.lookup(params)
     @citation = @formula.citation ||= Citation.new
     @source_text_citation = @formula.source_text_citation ||= Citation.new
     respond_with(@formula)
   end
 
   def create
-    @formula = Formula.new(params[:formula])
     flash[:notice] = 'Formula was successfully created.' if @formula.save
     respond_with @formula
   end
 
   def update
-    @formula = Formula.find(params[:id])
     flash[:notice] = 'Formula was successfully updated.' if @formula.update_attributes(params[:formula])
     respond_with @formula
   end
@@ -94,7 +90,6 @@ class FormulasController < ApplicationController
   # DELETE /formulas/1
   # DELETE /formulas/1.xml
   def destroy
-    @formula = Formula.find(params[:id])
     @formula.destroy
     respond_with @formula
   end

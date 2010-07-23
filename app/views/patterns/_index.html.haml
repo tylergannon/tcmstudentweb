@@ -1,0 +1,29 @@
+%h1 Patterns of Disharmony
+
+%h2 Tags
+
+- tag_cloud(@tags, %w(css1 css2 css3 css4)) do |tag, css_class|
+  = link_to tag.name, "/patterns/?tag=#{tag.name}", :class => css_class
+  %br/
+%hr/
+%h2 Primary Patterns
+- tag_cloud(@primary_patterns, %w(css1 css2 css3 css4)) do |tag, css_class|
+  = link_to tag.name, "/patterns/?tag=#{tag.name}&context=primary_patterns", :class => css_class
+  %br/
+%hr/
+%h2 Diseases
+- tag_cloud(@diseases, %w(css1 css2 css3 css4)) do |tag, css_class|
+  = link_to tag.name, "/patterns/?tag=#{tag.name}&context=diseases", :class => css_class
+  %br/
+
+%ul
+  - @patterns.each do |pattern|
+    %li
+      (#{short_citation(pattern.citation)})
+      = link_to pattern.name, pattern
+      - if can? :update, @pattern
+        "#{link_to('Edit', edit_pattern_path(pattern), :remote=>true)} | #{link_to 'Destroy', pattern, 'data-confirm' => 'Are you sure?', :remote=>true}"
+%br/
+
+= link_to 'New pattern', new_pattern_path, :remote=>true
+

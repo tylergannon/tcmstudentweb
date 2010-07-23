@@ -1,5 +1,4 @@
 class FormulaComparisonsController < ApplicationController
-  def index
-    @formula_comparisons = FormulaComparison.all
-  end
+  your_basic_controller
 end
+

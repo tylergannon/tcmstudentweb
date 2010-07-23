@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100719224548) do
+ActiveRecord::Schema.define(:version => 20100722175823) do
 
   create_table "acu_point_categories", :force => true do |t|
     t.integer  "acu_point_id"
@@ -198,6 +198,7 @@ ActiveRecord::Schema.define(:version => 20100719224548) do
     t.datetime "updated_at"
     t.integer  "position"
     t.integer  "preparation_id"
+    t.string   "preparation_name"
   end
 
   add_index "formula_herbs", ["formula_id"], :name => "index_formula_herbs_on_formula_id"

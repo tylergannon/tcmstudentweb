@@ -1,5 +1,3 @@
 - title "New Pattern of Disharmony"
-= form_for @pattern do |f|
-  = render :partial => "form", :locals => {:f => f}
-  %p= f.submit 'Create'
-= link_to 'Back', patterns_path
+= render :partial => "form"
+

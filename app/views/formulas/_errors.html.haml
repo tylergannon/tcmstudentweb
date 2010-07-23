@@ -1,0 +1,5 @@
+.errorTitle= "#{pluralize(@formula.errors.count, 'error')} prohibited this formula from being saved:"
+%ul
+- @formula.errors.full_messages.each do |msg|
+  %li= msg
+

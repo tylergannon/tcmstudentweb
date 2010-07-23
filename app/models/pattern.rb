@@ -4,6 +4,51 @@ class Pattern < ActiveRecord::Base
   acts_as_cited
   acts_as_linkable :name=>:name
 
+  @scope_specs = nil
+
+  def formulas
+    logger.error "OK..."
+    super
+  end
+
+
+  def self.scope_spec
+    @scope_specs
+  end
+  def self.scope_spec=(scope_spect)
+    @scope_specs = scope_spect
+  end
+
+  # e.g.: [{:where=>{:id=>1}},
+  #        {:where=>{:citation=>{:textbook_id=>20}}},
+  #        {:where=>"name like '%Liver Qi%'"}]
+  #    [:equals, "id", 1, 3, 5, 6]
+  #    [:like, "name", "Liver Qi", "Spleen-Qi"]
+  #    [:scope, "from_text_id", 20]
+  scope :filter, lambda{
+    return where('1=1') if @scope_specs.nil?
+    relation = self
+    @scope_specs.each do |scope_def|
+      scope_type, spec, args = scope_def[0].to_sym, scope_def[1], scope_def[2..scope_def.size-1]
+      raise ArgumentError.new "Something's wrong" if spec.size > 50
+
+      relation = case scope_type
+        when :equals
+          relation.where(spec=>args)
+        when :like
+          sql = args.map{|t| "\"#{self.name.tableize}\".\"#{spec}\" ilike ?"}.join(" and ")
+          relation.where([sql, *args.map{|a| "%#{a}%"}])
+        when :scope
+          relation.scopes[spec].call(*args)
+        when :order
+          relation.order(args[0].to_sym)
+        else raise "I can't handle this scope spec: #{scope_def.inspect}"
+      end # switch
+    end # scopes.each
+    relation
+  }
+
+
   def save_and_next
     save
     order(:id).limit(1).where("id > #{id}")

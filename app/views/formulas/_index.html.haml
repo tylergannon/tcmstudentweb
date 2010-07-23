@@ -1,0 +1,30 @@
+%h1
+  Listing formulas
+  - tag_cloud(@tags, %w(css1 css2 css3 css4)) do |tag, css_class|
+    = link_to tag.name, "/formulas/t/#{tag.name}", :class => css_class, :remote => true
+- @formulas_by_cat.each do |cat, formulas|
+  %h2= cat
+  %table
+    %tr
+      %th
+        Pinyin
+      %th
+        Page
+      %th
+        Tags
+    - formulas.each do |formula|
+      %tr
+        %td= h formula.pinyin
+        %td= h formula.citation.where if formula.citation
+        %td= formula.tag_list
+        %td= link_to 'Show', formula, :remote => true
+        - if can? :update, formula
+          %td
+            = link_to 'Edit', edit_formula_path(formula), :remote => true
+        - if can? :destroy, formula
+          %td
+            = link_to 'Destroy', formula, "data-confirm" => 'Are you sure?', :remote => true
+%br/
+- if can? :create, Formula
+  = link_to 'New formula', new_formula_path, :remote => true
+

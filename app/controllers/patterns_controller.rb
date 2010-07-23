@@ -1,10 +1,12 @@
 class PatternsController < ApplicationController
-  respond_to :html, :except=> [:cards]
-  respond_to :json, :only => :index
+  respond_to :html, :json, :only => :index
   respond_to :prawn, :only => :cards
 
+  your_basic_controller :except=>[:index, :cards, :update]
+
+  load_and_authorize_resource :only=>[:index,:update], :controller_resource => 'load_behind/controller_resource'
+
   def index
-    @patterns = Pattern
     @patterns = @patterns.search(params[:term]) if params.has_key?(:term)
     @patterns = @patterns.from_text(params[:text]) if params.has_key?(:text)
     @patterns = @patterns.tagged_with(params[:tag], :on => get_context(params)) if params.has_key?(:tag)
@@ -44,51 +46,16 @@ class PatternsController < ApplicationController
     respond_with @q, @a
   end
 
-  # GET /patterns/1
-  # GET /patterns/1.xml
-  def show
-    @pattern = Pattern.lookup(params)
-    respond_with @pattern
-  end
-
-  # GET /patterns/new
-  # GET /patterns/new.xml
-  def new
-    @pattern = Pattern.new
-    respond_with @pattern
-  end
-
-  # GET /patterns/1/edit
-  def edit
-    @pattern = Pattern.lookup(params)
-    respond_with @pattern
-  end
-
-  def create
-    @pattern = Pattern.new(params[:pattern])
-    flash[:notice] = "Successfully created pattern." if @pattern.save
-    respond_with @pattern
-  end
-
   def update
-    @pattern = Pattern.find(params[:id])
     if @pattern.update_attributes(params[:pattern])
       flash[:notice] = "Successfully updated pattern of disharmony."
     end
-
-
     respond_with @pattern do |wants|
       if params[:commit] == "Update"
         @next_pattern = Pattern.where("id > #{@pattern.id}").order(:id).limit(1)[0]
         wants.html {redirect_to edit_pattern_path(@next_pattern ||= Pattern.first)}
       end
     end
-  end
-
-  def destroy
-    @pattern = Pattern.find(params[:id])
-    @pattern.destroy
-    respond_with @pattern
   end
 end
 
