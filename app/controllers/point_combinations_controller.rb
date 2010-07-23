@@ -1,6 +1,6 @@
 class PointCombinationsController < ApplicationController
   respond_to :js, :only=>[:create, :update]
-  load_and_authorize_resource :only=>[:create, :update] :controller_resource => 'load_behind/controller_resource'
+  load_and_authorize_resource :only=>[:create, :update], :controller_resource => 'load_behind/controller_resource'
   your_basic_controller :respond_to => :js, :except=>[:index, :create, :update]
 
   def create
