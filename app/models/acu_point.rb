@@ -32,9 +32,13 @@ class AcuPoint < ActiveRecord::Base
   search_on :pinyin, :canonical
 
   scope :category, lambda {|name|
-    a = Category.named(name)
-    id = a.id if a
-    joins([{:acu_point_categories=>:category}]).where(:categories => {:id=>id})
+    a = Category.named(name).try(:id)
+    if a
+      joins([{:acu_point_categories=>:category}]).
+        where(:categories => {:id=>id})
+    else
+      where('1=0')
+    end
   }
 
   has_many :points_with_similar_names, :class_name=>'AcuPoint', :readonly=>true,
@@ -55,25 +59,6 @@ class AcuPoint < ActiveRecord::Base
 #  }
 
   scope :join_therapeutic_function, joins([{:acu_point_infos=>{:acu_point_therapeutic_functions=>:therapeutic_function}}])
-
-#  def point_prescriptions_attributes=(attribs)
-#    pp = attribs.map do |num, pp_attr|
-#      if pp_attr["_destroy"]=="1"
-#        PointPrescription.destroy(pp_attr["id"]) if pp_attr.has_key?("id")
-#        next
-#      end
-#      clean_attr = {}
-#      pp_attr.each{|x,y| clean_attr[x]=y unless ["id", "_destroy"].include?(x)}
-#      if pp_attr.has_key?("id")
-#        pp = PointPrescription.find(pp_attr["id"])
-#        pp.update_attributes(clean_attr)
-#      else
-#        pp = PointPrescription.new(clean_attr)
-#      end
-#      pp
-#    end
-#  end
-
 
   def self.search(str)
     str.strip!
@@ -111,7 +96,6 @@ class AcuPoint < ActiveRecord::Base
 
   def self.named(str)
     str.strip!
-
     if str.match(REGEXP_ABBREV)
       find_by_abbrev(str)
     else

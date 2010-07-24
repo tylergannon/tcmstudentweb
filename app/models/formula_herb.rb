@@ -4,17 +4,17 @@ class FormulaHerb < ActiveRecord::Base
   belongs_to :formula_role
 
   default_scope order("position")
-	scope :with_role, lambda{|*roles|
-	  where :formula_role_id=>roles
-	}
+#	scope :with_role, lambda{|*roles|
+#	  where :formula_role_id=>roles
+#	}
 
-	scope :chief, lambda{
-	  with_role 0
-	}
+#	scope :chief, lambda{
+#	  with_role 0
+#	}
 
-	scope :non_chief, lambda{
-	  with_role 1..3
-	}
+#	scope :non_chief, lambda{
+#	  with_role 1..3
+#	}
 
 
 	def herb_pinyin=(pinyin)

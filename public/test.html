@@ -1,19 +1,16 @@
 <!DOCTYPE HTML>
 <html lang='en' xml:lang='en' xmlns='http://www.w3.org/1999/xhtml'>
   <head>
-	  <link rel="stylesheet" href="stylesheets/show_box.css" />
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.js"></script>
+    <script type="text/javascript" src="javascripts/jquery-1.4.2.min.js"></script>
     <script type="text/javascript">
       $(function(){
-        $('a.show-element-link').toggle(
+        $('.toggle').click(
           function () {
-            $(this).text($(this).attr('data-hide-text'));
-            $('#'+$(this).attr('data-id')).show();
-            return false;
-          },
-          function () {
-            $(this).text($(this).attr('data-show-text'));
-            $('#'+$(this).attr('data-id')).hide();
+              $(this).toggleClass('showHide_hidden');
+              $(this).toggleClass('showHide_expanded');
+              //alert($(this.parent().html()));
+             //$('#showBox').toggleClass('showHide_expanded');
+              $('#showBox .displayArea').toggleClass('showHide_hidden');
             return false;
           }
         );
@@ -23,45 +20,22 @@
       body {
         background-color: #a89cf0;
       }
-      .showBox {
-        width: 490px;
-      }
 
-      .showBox .row1 > .col2 {
-        border-bottom-style : dotted;
-        border-bottom-width : 1px;
-        border-bottom-color : #000000;
-      }
-
-      .showBox .row2 {
-        display : none;
-      }
-
-      .showBox .row2 > .col1 {
-        background-image : url('images/folding_box_dot.gif');
-        background-repeat:repeat-y;
-      }
-
-      .showBox .col1 {
-        width: 17px;
-
-      }
     </style>
   </head>
   <body>
-
-    <div class="showBox">
+    <a class="toggle" href="#">Click Me</a>
+    <div id="showBox" class="showBox">
       <table>
         <tr class="row1">
-          <td class="col1">
-            <img src="images/shrink_box.gif" alt="Shrink" class="show-hide-image" />
+          <td class="col1 toggle showHide_hidden">
           </td>
           <td class="col2">Point Prescriptions</td>
         </tr>
-        <tr class="row2">
+        <tr class="row2 displayArea showHide_hidden">
           <td class="col1">
           </td>
-          <td class="col2">
+          <td class="col2 contentPane">
             <p>
 	            Eros class auctor hymenaeos habitant quis. Euismod lorem ve aenean. Nunc, pede posuere ac, leo penatibus nibh, leo nisi faucibus. Eni. Hac justo. Nulla ridiculus fusce phasellus sed nunc, volutpat sapien, tellus eros erat nibh. Lorem at magna consectetuer venenatis velit sem pede. Tristique fames nec class eni duis dui non at duis. Vivamus, magnis ve tincidunt urna, arcu pretium amet, diam. Vestibulum nisl ornare laoreet aenean nunc eros risus in phasellus blandit, tellus. Ligula lobortis erat habitant justo consectetuer, faucibus fusce interdum dis, eros. Nec ad placerat diam tempor. Neque. Mi massa diam. Platea. Nostra at per ad netus platea porttitor suscipit libero feugiat.
             </p>

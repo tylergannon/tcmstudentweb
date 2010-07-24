@@ -10,7 +10,7 @@ class PatternSymptom < ActiveRecord::Base
     :symptoms=>{:name=> name}
   )}
 
-  scope :key_symptoms, where(:key_symptom=>true)
+#  scope :key_symptoms, where(:key_symptom=>true)
 
   require 'decorations'
   include TcmStudentWeb::Decorations

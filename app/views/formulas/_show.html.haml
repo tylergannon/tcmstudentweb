@@ -23,12 +23,12 @@
       - @formula.formula_therapeutic_functions.each do |formula_therapeutic_function|
         .child= formula_therapeutic_function.therapeutic_function_name
     %td{'valign' => 'top'}
-      - unless (a = @formula.chiefs.map{|fh| fh.herb}).empty?
+      - unless (a = @formula.formula_herbs.chief.try(:map_attr, :herb))
         %h3!= "Chief Herb#{'s' unless a.size==1}: #{link(a)}"
         %br/
       - unless @formula.patterns.empty?
-        - p = @formula.patterns.first
-        != "Keys: #{link(p.key_pattern_symptoms)}" unless p.key_pattern_symptoms.size==0
+        - keys = @formula.patterns.pattern_symptoms.key
+        != "Keys: #{link(keys)}" unless keys.empty?
   - @formula.patterns.each do |p|
     %tr
       %td{'valign' => 'top'}

@@ -1,0 +1,25 @@
+.showBox
+  width: 490px
+  .row1 > .col2
+    border-bottom-style: dotted
+    border-bottom-width: 1px
+    border-bottom-color: #000000
+  .displayArea
+    &.showHide_hidden
+      display: none
+    &.showHide_expanded
+
+.toggle
+  &.showHide_hidden
+    background-image: url('images/showHide_show_box.gif')
+    background-repeat: no-repeat
+  &.showHide_expanded
+    background-image: url('images/showHide_hide_box.gif')
+    background-repeat: no-repeat
+
+.showBox
+  .row2 > .col1
+    background-image: url('images/folding_box_dot.gif')
+    background-repeat: repeat-y
+  .col1
+    width: 17px

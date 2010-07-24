@@ -40,13 +40,13 @@ Keys: #{link @pattern.pattern_symptoms.key_symptoms}
   %h2 Formulas
   %ul
     - @pattern.formulas.each do |f|
-      %li!= "#{link_to f.pinyin, f, :remote => true} (#{f.citation.textbook.title if f.citation})"
+      %li!= "#{link_to f.pinyin, f, :remote => true} (#{f.citation.try(:textbook_title)})"
 
 - unless @pattern.point_prescriptions.blank?
   - @pattern.point_prescriptions.each do |pp|
-    %h2!= "Point Prescription: #{pp.citation.textbook_title if pp.citation} #{link_to "edit", edit_point_prescription_path(pp), :remote => true}"
+    %h2!= "Point Prescription: #{pp.citation.try(:textbook_title)} #{link_to "edit", edit_point_prescription_path(pp), :remote => true}"
     %ul
-      - pp.pp_acu_points.order(:acu_point_id).each do |ap|
+      - pp.pp_acu_points.sort_by_acu_point.each do |ap|
         %li= link(ap)
 
 %h3 Tags

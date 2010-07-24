@@ -22,21 +22,21 @@
             != link(pattern.formulas)
             %br/
           %ul
-            - pp.pp_acu_points.where(:reason => "Primary").order(:acu_point_id).each do |ap|
+            - pp.pp_acu_points.primary.each do |ap|
               %li
                 != link_to ap.acu_point_abbrev, ap.acu_point
                 - unless ap.commentary.nil?
                   :tcmtextile
                     #{ap.commentary}
-            - reasons = pp.pp_acu_points.where("reason <> 'Primary'").map{|p| p.reason}.uniq
-            - reasons.each do |reason|
+            - pp.pp_acu_points.each_reason do |reason, pp_acu_points|
+              next if reason=="Primary"
               %li
                 = reason
                 %ul
-                  - pp.pp_acu_points.where(:reason => reason).order(:acu_point_id).each do |ap|
+                  - pp_acu_points.each do |ppap|
                     %li
-                      != link_to ap.acu_point_abbrev, ap.acu_point
-                      - unless ap.commentary.nil?
+                      != link_to ppap.acu_point_abbrev, ppap.acu_point
+                      - unless ppap.commentary.nil?
                         :tcmtextile
-                          #{ap.commentary}
+                          #{ppap.commentary}
 

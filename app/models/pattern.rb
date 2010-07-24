@@ -70,13 +70,13 @@ class Pattern < ActiveRecord::Base
   has_and_belongs_to_many :therapeutic_functions
   has_and_belongs_to_many :formulas, :autosave => :true, :uniq => true
 
-  has_many :pattern_symptoms, :dependent => :destroy
+  has_many :pattern_symptoms, :dependent => :destroy do
+    def key
+      select{|t| t.key_symptom}
+    end
+  end
   has_many :symptoms, :through => :pattern_symptoms
   has_many :point_prescriptions
-
-  def key_pattern_symptoms
-    pattern_symptoms.where(:key_symptom => true)
-  end
 
   anaf_habtm :formulas, :find=> {:with_name => :pinyin}
 
@@ -90,10 +90,6 @@ class Pattern < ActiveRecord::Base
     :commentary => :commentary, :scope=>:with_symptom_name
 
   association_text :therapeutic_functions, :name=>:name, :scope=>:with_name
-
-  def key_symptoms
-    self.pattern_symptoms.where(:key_symptom => true)
-  end
 
   def compare(him)
 

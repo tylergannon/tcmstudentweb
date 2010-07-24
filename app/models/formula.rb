@@ -15,7 +15,18 @@ class Formula < ActiveRecord::Base
   has_many :variations, :class_name => "Formula", :foreign_key => "master_formula_id"
 	has_many :formula_contraindications, :dependent => :destroy
 	has_many :formula_dui_yaos, :dependent => :destroy
-	has_many :formula_herbs, :dependent => :destroy
+	has_many :formula_herbs, :dependent => :destroy do
+    def with_role(*roles)
+      select{|t| roles.include? t.formula_role_id}
+    end
+    def chief
+      with_role(0) unless with_role.size == size
+    end
+    def non_chief
+      self unless chief
+      with_role 1,2,3 if chief
+    end
+  end
 	has_many :herbs, :through => :formula_herbs
 	has_many :formula_therapeutic_functions, :dependent => :destroy
 	has_many :therapeutic_functions, :through => :formula_therapeutic_functions

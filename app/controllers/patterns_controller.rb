@@ -1,10 +1,9 @@
 class PatternsController < ApplicationController
-  respond_to :html, :json, :only => :index
+  respond_to :html, :js
   respond_to :prawn, :only => :cards
+  respond_to :json, :only => :index
 
-  your_basic_controller :except=>[:index, :cards, :update]
-
-  load_and_authorize_resource :only=>[:index,:update], :controller_resource => 'load_behind/controller_resource'
+  load_and_authorize_resource  :controller_resource => 'load_behind/controller_resource'
 
   def index
     @patterns = @patterns.search(params[:term]) if params.has_key?(:term)
@@ -57,5 +56,28 @@ class PatternsController < ApplicationController
       end
     end
   end
+
+  def new
+    respond_with @pattern
+  end
+
+  def show
+    respond_with @pattern
+  end
+
+  def edit
+    respond_with @pattern
+  end
+
+  def create
+    flash[:notice] = "Successfully created new #{@pattern.class.name.titleize}." if @pattern.save
+    respond_with @pattern
+  end
+
+  def destroy
+    @pattern.destroy
+    respond_with @pattern
+  end
+
 end
 
