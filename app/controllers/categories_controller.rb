@@ -1,4 +1,6 @@
 class CategoriesController < ApplicationController
-  your_basic_controller :only=>:index, :respond_to=>:json
+  respond_to :html, :js
+  inherit_resources
+  json_search
 end
 

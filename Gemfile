@@ -11,11 +11,9 @@ gem "authlogic"
 gem 'RedCloth'
 gem 'haml'
 gem 'acts-as-taggable-on'
-gem 'prawn'
-#gem 'prawnto', :git => 'git://github.com/bryanl/prawnto.git', :branch => 'rails3'
 gem 'da_huangs_ruby_extensions'
-gem 'cancan', :git => "git://github.com/tylergannon/cancan.git"
+gem 'cancan'
 gem 'casey_jones'
-
-
+gem 'inherited_resources', '1.1.2'
+gem 'has_scope'
 

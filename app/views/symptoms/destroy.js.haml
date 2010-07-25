@@ -1,0 +1,4 @@
+$('##{@container}').remove;
+- if @symptom.errors.any?
+  = growl('Error', raw(render_js('errors')), :error)
+

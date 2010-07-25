@@ -1,0 +1,5 @@
+.errorTitle= "#{pluralize(@symptom.errors.count, 'error')} prohibited this symptom from being saved:"
+%ul
+- @symptom.errors.full_messages.each do |msg|
+  %li= msg
+

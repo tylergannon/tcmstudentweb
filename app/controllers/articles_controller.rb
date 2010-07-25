@@ -1,14 +1,12 @@
 class ArticlesController < ApplicationController
-  your_basic_controller :except=>[:index, :report]
-
-  load_and_authorize_resource :only=>[:index], :controller_resource => 'load_behind/controller_resource'
+  respond_to :js, :html
+  has_scope :tagged_with, :as=>:tag_name
+  inherit_resources
 
   def index
     @articles = @articles.tagged_with(params[:tag_name].to_list) if params[:tag_name]
-    @articles = @articles.search(params[:term]) if params[:term]
-
     @tags = @articles.tag_counts_on(:tags)
-    respond_with @articles, @tags
+    index!
   end
 
   def report

@@ -1,16 +1,9 @@
 class ChannelsController < ApplicationController
-  respond_to :html
-  respond_to :json, :only => :index
-  load_and_authorize_resource :controller_resource => 'load_behind/controller_resource'
-  def index
-		@channels = @channels.search(params[:term]) if params.has_key?(:term)
-		respond_with @channels do |format|
-		  format.json {render :json=> Channel.to_autocomplete(@channels)}
-		end
-  end
+  respond_to :html, :js
+  inherit_resources
+  json_search
 
   def show
-    @channel = Channel.lookup(params)
     @acu_points = AcuPoint.where(:channel_id=>@channel.id)
     @point_categories = AcuPointCategory.joins([{:acu_point=>:chaannel}]).where(:channels=>{:id=>@channel.id}).order("categories.id, acu_points.id")
 
@@ -26,7 +19,7 @@ class ChannelsController < ApplicationController
       @tag_acu_points[tag] = contents
 
     end
-    respond_with @channel, @acu_points, @point_categories, @tag_acu_points
+    show!
   end
 end
 

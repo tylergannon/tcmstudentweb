@@ -1,0 +1,5 @@
+.errorTitle= "#{pluralize(@point_combination.errors.count, 'error')} prohibited this point_combination from being saved:"
+%ul
+- @point_combination.errors.full_messages.each do |msg|
+  %li= msg
+

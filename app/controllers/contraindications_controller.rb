@@ -1,4 +1,6 @@
 class ContraindicationsController < ApplicationController
-  your_basic_controller :only => :index, :respond_to=>[:html, :json]
+  respond_to :html, :js
+  inherit_resources :only => :index
+  json_search
 end
 

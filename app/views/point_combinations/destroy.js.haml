@@ -1,0 +1,4 @@
+$('##{@container}').remove;
+- if @point_combination.errors.any?
+  = growl('Error', raw(render_js('errors')), :error)
+

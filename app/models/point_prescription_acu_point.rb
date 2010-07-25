@@ -3,6 +3,7 @@ class PointPrescriptionAcuPoint < ActiveRecord::Base
   belongs_to :acu_point
   acts_as_linkable :name => :acu_point_abbrev
   before_save :default_values
+  delegate :pattern, :to => :point_prescription
 
   scope :with_acu_point_abbrev, lambda{|abbrev|
     ap = AcuPoint.named(abbrev)

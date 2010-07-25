@@ -1,4 +1,6 @@
 class HerbsController < ApplicationController
-  your_basic_controller :respond_to => [:html, :js, :json]
+  respond_to :html, :js
+  inherit_resources
+  json_search
 end
 

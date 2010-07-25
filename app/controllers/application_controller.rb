@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   USER_NAME, PASSWORD = "tyler", "mr.c00l"
 
   before_filter :authenticate
+  before_filter :set_container
   include Authentication
   helper :all
   protect_from_forgery
@@ -13,72 +14,43 @@ class ApplicationController < ActionController::Base
     redirect_to root_url
   end
 
-  def self.your_basic_controller(options={})
-    actions = options[:only] ? [options[:only]].flatten :
-         [:index, :edit, :show, :new, :update, :create, :destroy]
-    [options[:except]].flatten.each{|o| actions.delete(o)} if options[:except]
-    class_name = self.name.gsub(/Controller/, '').underscore.split('/').last.singularize
-    unless options[:controller_resource]
-      options[:controller_resource] = TcmStudentWeb::Application::APP_CONFIG[:controller_resource]
+  def self.json_search
+    class_eval "
+      respond_to :json, :only => :index
+      has_scope :search, :as => :term
+      def index
+        index! do |format|
+          format.json { render :json => resource_class.to_autocomplete(collection) }
+        end
+      end"
+  end
+
+  def self.authorized
+    class_eval "
+    def resource
+      authorize! super, params[:action]
     end
-
-    valid_formats = options[:respond_to] ? [options[:respond_to]].flatten : [:html, :js]
-
-    args = [valid_formats.reject{|t| t==:json}, options.slice(:only, :except)].flatten
-    respond_to *args
-    respond_to :json, :only => :index if valid_formats.include?(:json)
-    load_and_authorize_resource options.slice(:only, :except, :controller_resource)
-
-    json_response = "do |format|
-      format.json { render :json => #{class_name.camelize}.to_autocomplete(@#{class_name.tableize}) }
-    end" if valid_formats.include?(:json)
-
-    class_eval "def index
-      @#{class_name.tableize} = @#{class_name.tableize}.search(params[:term]) if params[:term]
-      respond_with @#{class_name.tableize}
-      respond_with(@#{class_name.tableize}) #{json_response}
-    end" if actions.include?(:index)
-
-    class_eval "def new
-      respond_with @#{class_name.underscore}
-    end" if actions.include?(:new)
-
-    class_eval "def show
-      respond_with @#{class_name.underscore}
-    end" if actions.include?(:show)
-
-    class_eval "def edit
-      respond_with @#{class_name.underscore}
-    end" if actions.include? :edit
-
-    class_eval "def create
-      logger.error \"@#{class_name.underscore}.save\"
-      flash[:notice] = \"Successfully created new #{class_name.titleize}.\" if @#{class_name.underscore}.save
-      respond_with @#{class_name.underscore}
-    end" if actions.include? :create
-
-    class_eval "def update
-      flash[:notice] = \"#{class_name.titleize} was successfully updated.\" if @#{class_name.underscore}.update_attributes(params[:#{class_name.underscore}])
-      respond_with @#{class_name.underscore}
-    end" if actions.include? :update
-
-    class_eval "def destroy
-      flash[:notice] = \"Successfully destroyed the #{class_name.titleize}\" if @#{class_name.underscore}.destroy
-      respond_with @#{class_name.underscore}
-    end" if actions.include? :destroy
+    protected :resource
+    "
   end
 
   helper_method :current_user_session, :current_user
 
-  require "prawn/measurement_extensions"
-  prawnto :prawn => {
-              :left_margin => 8.mm,
-              :right_margin => 8.mm,
-              :top_margin => 5.mm,
-              :bottom_margin => 5.mm}
-  def page
-    [[nil, nil, nil],[nil, nil, nil],[nil, nil, nil],[nil, nil, nil]]
+  def set_container
+    @container = params[:container] || 'main_container'
+    @ajax_function = params[:ajax_function] || 'html'
   end
+
+
+#  require "prawn/measurement_extensions"
+#  prawnto :prawn => {
+#              :left_margin => 8.mm,
+#              :right_margin => 8.mm,
+#              :top_margin => 5.mm,
+#              :bottom_margin => 5.mm}
+#  def page
+#    [[nil, nil, nil],[nil, nil, nil],[nil, nil, nil],[nil, nil, nil]]
+#  end
 
 #  def self.acts_as_taggable(klass)
 #    class_eval "def tag; @#{klass.name.tableize} = #{klass.name}.tagged_with(params[:id], :on => :tags);render :template => \"index\";end;"

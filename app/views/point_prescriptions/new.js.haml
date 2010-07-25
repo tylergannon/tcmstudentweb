@@ -1,5 +1,5 @@
 $('##{@container}').#{@ajax_function}(#{raw render_js('form')});
 setUpDocument($('##{@container}'));
-- if @point_combination.errors.any?
+- if @point_prescription.errors.any?
   = growl('Error', raw(render_js('errors')), :error)
 

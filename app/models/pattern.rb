@@ -91,6 +91,10 @@ class Pattern < ActiveRecord::Base
 
   association_text :therapeutic_functions, :name=>:name, :scope=>:with_name
 
+  def next_from(pattern)
+    where("id > #{pattern.id}").order(:id).limit(1).first
+  end
+
   def compare(him)
 
     mine = self.pattern_symptoms.map{|x| x.symptom.name}

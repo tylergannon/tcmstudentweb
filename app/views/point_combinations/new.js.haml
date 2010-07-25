@@ -1,7 +1,5 @@
-$('#point_combinations').append('<li id="point_combination_new" />');
-$tag = $('#point_combination_new');
-$tag.html('#{escape_javascript(render(:partial=>'edit_point_combination'))}');
-setUpDocument($tag);
-$.scrollTo('#point_combination_new');
-$tag.show('scale', {percent: 100}, 500, function(){$tag.find('textarea').first().focus();});
+$('##{@container}').#{@ajax_function}(#{raw render_js('form')});
+setUpDocument($('##{@container}'));
+- if @point_combination.errors.any?
+  = growl('Error', raw(render_js('errors')), :error)
 

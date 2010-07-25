@@ -1,2 +1,6 @@
-$('##{@container}').html(#{raw render_js('show')});
+$('##{@container}').#{@ajax_function}(#{raw render_js('show')});
+setUpDocument($('##{@container}'));
+- unless flash[:notice].empty?
+  = growl("Success", flash[:notice])
+  - flash.discard
 

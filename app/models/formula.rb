@@ -58,14 +58,6 @@ class Formula < ActiveRecord::Base
 
   anaf_habtm :patterns, :create=>true, :find=>{:with_name=>:name, :from_text=>{:citation_attributes => :textbook_title}}
 
-  def chiefs
-    if formula_herbs.chief.size==formula_herbs.size
-      []
-    else
-      formula_herbs.chief
-    end
-  end
-
   def all_comparisons
 	  formula_comparisons + other_formula_comparisons
 	end

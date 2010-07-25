@@ -1,5 +1,5 @@
 %h2 Signs and Symptoms
-Keys: #{link @pattern.pattern_symptoms.key_symptoms}
+Keys: #{raw link @pattern.pattern_symptoms.key}
 
 %ul#pattern_symptoms
   - @pattern.pattern_symptoms.each do |s|
@@ -46,7 +46,7 @@ Keys: #{link @pattern.pattern_symptoms.key_symptoms}
   - @pattern.point_prescriptions.each do |pp|
     %h2!= "Point Prescription: #{pp.citation.try(:textbook_title)} #{link_to "edit", edit_point_prescription_path(pp), :remote => true}"
     %ul
-      - pp.pp_acu_points.sort_by_acu_point.each do |ap|
+      - pp.pp_acu_points.sort_by_acu_point.map_to(:acu_point).each do |ap|
         %li= link(ap)
 
 %h3 Tags

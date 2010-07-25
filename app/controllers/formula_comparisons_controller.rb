@@ -1,4 +1,5 @@
 class FormulaComparisonsController < ApplicationController
-  your_basic_controller
+  respond_to :html, :js
+  inherit_resources
 end
 
