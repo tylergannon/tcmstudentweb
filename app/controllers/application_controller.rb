@@ -23,6 +23,7 @@ class ApplicationController < ActionController::Base
         end
       end"
   end
+  ALL_ACTIONS = [:index, :new, :create, :edit, :update, :destroy, :show]
 
   def self.has_instance_variable(name, options={})
     as = options[:as] || "#{name}_id".to_sym
@@ -35,6 +36,17 @@ class ApplicationController < ActionController::Base
           instance_variable_set("@#{name}", obj)
         end
       }
+      if options[:for_resource]
+        actions = ALL_ACTIONS.minus([:index, options[:except]].flatten)
+        actions.only! options[:only] if options[:only]
+        actions.each do |action|
+          define_method action, lambda {
+            self.send "#{action}!".to_sym do |format|
+              resource.send("#{name}=", instance_variable_get("@#{name}"))
+            end
+          }
+        end
+      end
     end
   end
 
