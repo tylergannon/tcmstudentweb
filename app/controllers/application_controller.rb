@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   before_filter :authenticate_user!, :only => [:create, :edit, :update, :destroy]
 
   before_filter :set_container
-  before_filter :set_next, :only => [:create, :edit, :update, :show]
+  before_filter :set_next, :except => [:index, :new]
   helper :all
   protect_from_forgery
   rescue_from CanCan::AccessDenied do |exception|
@@ -66,6 +66,7 @@ class ApplicationController < ActionController::Base
 
   def set_next
     @next = resource_class.where("id > #{params[:id]}").order(:id).limit(1).first if params[:id]
+    @next ||= resource_class.first
   end
 
 

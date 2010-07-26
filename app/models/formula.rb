@@ -8,6 +8,10 @@ class Formula < ActiveRecord::Base
     {:label=>"#{f.pinyin} (#{f.english})", :value=>f.pinyin}
   end
 
+  scope :by_category, lambda {|category_name|
+    tagged_with(category_name, :on=>:formula_categories)
+  }
+
   belongs_to :master_formula, :class_name => "Formula"
   belongs_to :source_text_citation, :class_name => "Citation", :dependent => :destroy
 	belongs_to :formula_category

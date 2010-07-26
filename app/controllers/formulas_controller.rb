@@ -1,44 +1,28 @@
 class FormulasController < ApplicationController
   respond_to :html, :js
+  has_scope :tagged_with, :as => :tag
+  has_scope :by_category, :as => :category
   inherit_resources
-  json_search
-  has_scope :tagged_with, :as => :tag_name
-
 
   def index
-    index! do |format|
-      format.json {render :json => resource_class.to_autocomplete(collection)}
-      format.html {
-        @categories = collection.tag_counts_on(:formula_categories)
-        @formulas_by_cat={}
-        @categories.each do |cat_tag|
-          @formulas_by_cat[cat_tag.name] = collection.tagged_with cat_tag.name, :on=>:formula_categories
-        end
+    @categories = Formula.tag_counts_on(:formula_categories)
+    @tags = Formula.tag_counts_on(:tags)
 
-        @tags = collection.tag_counts_on(:tags)
-      }
+    index! do |format|
+      def collection.each_category(&block)
+        return unless self
+        cats = self.tag_counts_on(:formula_categories)
+        cats.each {|cat| block.call cat, self.tagged_with(cat, :on=>:formula_categories)}
+      end
+      format.json {render :json => resource_class.to_autocomplete(collection)}
     end
   end
 
   def collection
-    @collection ||= end_of_association_chain.order(:canonical)
+    @formulas ||= end_of_association_chain.order(:canonical )
   end
 
   def tag_cloud
-  end
-
-  # GET /formulas/1
-  # GET /formulas/1.xml
-  def show
-    show! do |format|
-      format.html {
-        if (@taglist = params[:tags]).nil?
-          @next = Formula.next_from(resource).first
-        else
-          @next = Formula.next_from(resource).tagged_with(@taglist.to_list).first
-        end
-      }
-    end
   end
 
   def sort

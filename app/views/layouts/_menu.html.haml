@@ -17,6 +17,12 @@
             %li
               != menu_link(channel.name, channel)
       %li
+        != menu_link('Formulas', formulas_path, true)
+        %ul
+          - Formula.tag_counts_on(:formula_categories).each do |category|
+            %li
+              %span!= index_link 'formulas', category.to_s, :category=>category.to_s
+      %li
         %span
           = form_tag(searches_path, :id=>"search_form", :method=>'get', :remote=>true) do
             = text_field_tag(:term)+submit_tag("Search", :disable_with=>'Searching...')

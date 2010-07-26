@@ -1,8 +1,6 @@
 %h1
   Listing formulas
-  - tag_cloud(@tags, %w(css1 css2 css3 css4)) do |tag, css_class|
-    != index_link 'formulas', tag.name, {:tag=>tag.name}, :class=>css_class
-- @formulas_by_cat.each do |cat, formulas|
+- @formulas.each_category do |cat, formulas|
   %h2= cat
   %table
     %tr
@@ -25,6 +23,15 @@
           %td
             != destroy_link formula
 %br/
+%h2 Categories
+%ul
+  - @categories.each do |category|
+    %li!= index_link 'formulas', category.to_s, :category=>category.to_s
+
+- tag_cloud(@tags, %w(css1 css2 css3 css4)) do |tag, css_class|
+  != index_link 'formulas', tag.name, {:tag=>tag.name}, :class=>css_class
+
+
 - if can? :create, Formula
   != new_link Formula
 
