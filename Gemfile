@@ -7,7 +7,7 @@ gem "rails", "3.0.0.beta4"
 source 'http://gems.github.com'
 source 'http://rubygems.org'
 
-gem "authlogic" 
+gem 'devise', '1.1.rc2'
 gem 'RedCloth'
 gem 'haml'
 gem 'acts-as-taggable-on'

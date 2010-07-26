@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100722175823) do
+ActiveRecord::Schema.define(:version => 20100726015845) do
 
   create_table "acu_point_categories", :force => true do |t|
     t.integer  "acu_point_id"
@@ -458,33 +458,42 @@ ActiveRecord::Schema.define(:version => 20100722175823) do
 
   add_index "therapeutic_functions", ["name"], :name => "index_therapeutic_functions_on_name"
 
-  create_table "users", :force => true do |t|
-    t.string   "login",                                  :null => false
-    t.string   "email",                                  :null => false
-    t.string   "crypted_password",                       :null => false
-    t.string   "password_salt",                          :null => false
-    t.string   "persistence_token",                      :null => false
-    t.string   "single_access_token",                    :null => false
-    t.string   "perishable_token",                       :null => false
-    t.integer  "login_count",         :default => 0,     :null => false
-    t.integer  "failed_login_count",  :default => 0,     :null => false
-    t.datetime "last_request_at"
-    t.datetime "current_login_at"
-    t.datetime "last_login_at"
-    t.string   "current_login_ip"
-    t.string   "last_login_ip"
-    t.string   "first_name"
-    t.string   "last_name"
-    t.boolean  "active",              :default => false, :null => false
-    t.boolean  "verified",            :default => false, :null => false
+  create_table "user_roles", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "role_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "roles_mask"
   end
 
-  create_table "users_roles", :id => false, :force => true do |t|
-    t.integer "user_id"
-    t.integer "role_id"
+  add_index "user_roles", ["role_id"], :name => "index_user_roles_on_role_id"
+  add_index "user_roles", ["user_id"], :name => "index_user_roles_on_user_id"
+
+  create_table "users", :force => true do |t|
+    t.string   "email",                               :default => "", :null => false
+    t.string   "encrypted_password",   :limit => 128, :default => "", :null => false
+    t.string   "password_salt",                       :default => "", :null => false
+    t.string   "reset_password_token"
+    t.string   "remember_token"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",                       :default => 0
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.integer  "failed_attempts",                     :default => 0
+    t.string   "unlock_token"
+    t.datetime "locked_at"
+    t.string   "authentication_token"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
+
+  add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true
+  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+  add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+  add_index "users", ["unlock_token"], :name => "index_users_on_unlock_token", :unique => true
 
 end

@@ -2,11 +2,10 @@
 # Likewise, all the methods added will be available for all controllers.
 
 class ApplicationController < ActionController::Base
-  USER_NAME, PASSWORD = "tyler", "mr.c00l"
+  before_filter :authenticate_user!, :only => [:create, :edit, :update, :destroy]
 
-  before_filter :authenticate
   before_filter :set_container
-  include Authentication
+  before_filter :set_next, :only => [:create, :edit, :update, :show]
   helper :all
   protect_from_forgery
   rescue_from CanCan::AccessDenied do |exception|
@@ -34,11 +33,13 @@ class ApplicationController < ActionController::Base
     "
   end
 
-  helper_method :current_user_session, :current_user
-
   def set_container
     @container = params[:container] || 'main_container'
     @ajax_function = params[:ajax_function] || 'html'
+  end
+
+  def set_next
+    @next = resource_class.where("id > #{params[:id]}").order(:id).limit(1).first if params[:id]
   end
 
 
@@ -63,46 +64,5 @@ class ApplicationController < ActionController::Base
 #  end
 
   private
-    def authenticate
-      authenticate_or_request_with_http_basic do |user_name, password|
-        user_name == USER_NAME && password == PASSWORD
-      end
-    end
-    def current_user_session
-      return @current_user_session if defined?(@current_user_session)
-      @current_user_session = UserSession.find
-    end
-
-    def current_user
-      return @current_user if defined?(@current_user)
-      @current_user = current_user_session && current_user_session.record
-    end
-
-    def require_user
-      unless current_user
-        store_location
-        flash[:notice] = "You must be logged in to access this page"
-        redirect_to new_user_session_url
-        return false
-      end
-    end
-
-    def require_no_user
-      if current_user
-        store_location
-        flash[:notice] = "You must be logged out to access this page"
-        redirect_to account_url
-        return false
-      end
-    end
-
-    def store_location
-      session[:return_to] = request.request_uri
-    end
-
-    def redirect_back_or_default(default)
-      redirect_to(session[:return_to] || default)
-      session[:return_to] = nil
-    end
 end
 

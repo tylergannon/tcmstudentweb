@@ -36,17 +36,12 @@ TcmStudentWeb::Application.routes.draw do
   resources :tags
   resources :textbooks
   resources :therapeutic_functions
-  resources :users
-  resource :user_session
+#  match "login" => "users#login"
+#  match "logout" => "users#logout"
+#  match "sign_up" => "users#sign_up"
+#  match "register" => "users#register"
 
-  match 'login' => 'user_sessions#new'
-  match 'logout' => 'user_sessions#destroy'
-  match 'signup' => 'users#new'
-  match '/register/:activation_code' => 'activations#new', :as => :register
-  match '/activate/:id' => 'activations#create', :as => :activate
-  match '/' => 'formulas#index'
-
-  match '/:controller/t/:tag_name' => '#index'
-
+  root :to => 'formulas#index'
+  devise_for :users
 end
 

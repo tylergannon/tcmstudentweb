@@ -2,6 +2,13 @@
   #menu
     %ul.menu
       %li
+        %span
+          - if user_signed_in?
+            #{link_to('Logout', destroy_user_session_path)}
+          - else
+            = link_to('Log in', new_user_session_path)
+
+      %li
         != menu_link("Home", "/", true)
       %li
         != menu_link('Channels', channels_path, true)
