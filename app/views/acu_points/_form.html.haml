@@ -1,4 +1,5 @@
 - title @acu_point.new_record? ? "New AcuPoint" : "Editing #{@acu_point.display_name}"
+%h1 "Editing #{@acu_point.display_name}"
 = form_for @acu_point, :remote=>true do |f|
   = error_messages_for f.object
   %table

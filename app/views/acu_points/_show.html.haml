@@ -1,4 +1,5 @@
 - title "#{@acu_point.display_name} / #{@acu_point.chinese}"
+%h1 "#{@acu_point.display_name} / #{@acu_point.chinese}"
 .fieldName Point Categories
 %ul#acu_point_categories
   = render :partial=>'acu_point_categories/acu_point_category', :collection=>@acu_point.acu_point_categories
