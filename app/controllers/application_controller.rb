@@ -28,9 +28,12 @@ class ApplicationController < ActionController::Base
     as = options[:as] || "#{name}_id".to_sym
     klass = (options[:class_name] || name.to_s.camelize).constantize
     class_eval do
-      before_filter "load_#{name}".to_sym, options.except(:class_name, :as)
+      before_filter "load_#{name}".to_sym, options.slice(:except, :only)
       define_method "load_#{name}", lambda {
-        instance_variable_set("@#{name}", klass.find(params[as])) if params[as]
+        if params[as]
+          obj = klass.find(params[as])
+          instance_variable_set("@#{name}", obj)
+          resource.send(name, obj) if params[:for_resource]
       }
     end
   end
