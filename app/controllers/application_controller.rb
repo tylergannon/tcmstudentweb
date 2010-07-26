@@ -24,6 +24,17 @@ class ApplicationController < ActionController::Base
       end"
   end
 
+  def self.has_instance_variable(name, options={})
+    as = options[:as] || "#{name}_id".to_sym
+    klass = (options[:class_name] || name.to_s.camelize).constantize
+    class_eval do
+      before_filter "load_#{name}".to_sym, options.except(:class_name, :as)
+      define_method "load_#{name}", lambda {
+        instance_variable_set("@#{name}", klass.find(params[as])) if params[as]
+      }
+    end
+  end
+
   def self.authorized
     class_eval "
     def resource

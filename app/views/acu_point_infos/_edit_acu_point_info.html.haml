@@ -27,8 +27,8 @@
       %td= f.text_area :commentary, :rows => '2', :cols => '40'
   = f.submit :disable_with=>"Saving..."
 .fieldName Therapeutic Functions
-%ul{:id=>"acu_point_info_#{@acu_point_info.id}_therapeutic_functions"}
+%ul{:id=>@acu_point_info.element_id(:therapeutic_functions)}
   - @acu_point_info.acu_point_therapeutic_functions.each do |aptf|
     %li[aptf]= render :partial=>'acu_point_therapeutic_functions/acu_point_therapeutic_function', :locals=>{:acu_point_therapeutic_function=>aptf}
-!= new_link TherapeuticFunction, nil, {}, :id=>'new_function_link'
+!= new_link AcuPointTherapeuticFunction, nil, {:acu_point_info_id=>@acu_point_info.id}, :id=>'new_function_link'
 
