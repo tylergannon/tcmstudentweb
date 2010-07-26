@@ -6,6 +6,13 @@ class PointCombination < ActiveRecord::Base
               :foreign_key=>"source_text_citation_id"
   search_on :name
   accepts_nested_attributes_for :source_text_citation
+  scope :by_acu_point, lambda {|acu_point_id|
+    joins(:acu_points).where(:acu_points=>{:id=>acu_point_id})
+  }
+
+  scope :by_symptom, lambda {|symptom_id|
+    joins(:symptoms).where(:symptoms=>{:id=>symptom_id})
+  }
 
   simple_association_text :acu_points, :find_by=>:abbrev, :delim=>','
   simple_association_text :symptoms, :find_by=>:name, :create=>true, :delim=>','

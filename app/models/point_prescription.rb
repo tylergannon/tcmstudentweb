@@ -9,7 +9,7 @@ class PointPrescription < ActiveRecord::Base
   accepts_nested_attributes_for :pattern, :allow_destroy => false, :reject_if => proc {|a| a['name'].blank?}
 
   scope :by_acu_point, lambda {|acu_point_id|
-    joins(:pp_acu_points).where(:point_prescription_acu_points=>{:acu_point_id=>acu_point_id})
+    joins(:acu_points).where(:acu_points=>{:id=>acu_point_id})
   }
 
   scope :by_pattern, lambda {|pattern_id| where(:pattern_id => pattern_id)}

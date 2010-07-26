@@ -12,5 +12,6 @@
             #{@point_combination.commentary}
           %br/
       from #{@point_combination.source_text_citation.textbook_title} (#{@point_combination.citation.textbook_title}, #{@point_combination.citation.where})
-      != edit_link @point_combination, 'Edit', :acu_point_id=>@acu_point.try(:id)
+      != edit_link @point_combination, 'Edit', :acu_point_id=>@acu_point.try(:id), |
+        :container=>@point_combination.element_id
 
