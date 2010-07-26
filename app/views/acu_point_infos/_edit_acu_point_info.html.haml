@@ -1,5 +1,5 @@
 = form_for @acu_point_info, :remote=>true do |f|
-  = f.hidden_field :acu_point_id
+  = f.text_field :acu_point_id
   %h2 AcuPoint Info
   %br/
   = error_messages_for f.object

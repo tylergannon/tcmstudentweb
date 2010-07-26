@@ -33,7 +33,7 @@ class ApplicationController < ActionController::Base
         if params[as]
           obj = klass.find(params[as])
           instance_variable_set("@#{name}", obj)
-          resource.send(name, obj) if params[:for_resource]
+        end
       }
     end
   end
