@@ -3,22 +3,22 @@
 - @acu_points.each do |p|
   - info = p.acu_point_infos.from_text("ellis")[0]
   - info = info ||= AcuPointInfo.new
-  %h2= link_to p.display_name, p
-  = link_to "Edit", edit_acu_point_path(p)
+  %h2= link p
+  != edit_link p
   %br/
   - unless info.location.empty?
     :tcmtextile
       h3. Location
-     
+
       #{info.location}
 
   - info.acu_point_therapeutic_functions.each do |t|
     = t.therapeutic_function_name
     %br/
-  != info.acu_point_symptoms.map{|t| link_to t.symptom_name, t.symptom}.join(", ")
+  != link info.acu_point_symptoms
   %ul
     - p.point_prescriptions.limit(4).each do |pp|
-      %li!= "#{link(pp.pattern)}: #{link pp.pp_acu_points.map{|ppap| ppap.acu_point}.reject{|t|t.id==p.id}}"
+      %li!= "#{link(pp.pattern)}: #{link pp.pp_acu_points.map_to(:acu_point).minus(p)"
   %br/
   %hr/
   %br/
@@ -32,5 +32,4 @@
         %ul
           - acu_points.each do |acu_point|
             %li!= "#{link(acu_point)} -- #{link(tf)}"
-
 

@@ -11,6 +11,7 @@
 = ajax_association_link("Show point combinations", @acu_point, :point_combinations)
 %div{:id=>@acu_point.element_id(:point_combinations)}
 
-
-#{link_to 'Edit', edit_acu_point_path(@acu_point), :remote=>true} | #{link_to 'Back', acu_points_path, :remote=>true} | #{link_to 'Edit next', edit_acu_point_path(AcuPoint.order(:id).where("id > #{@acu_point.id}").limit(1).first), :remote=>true}
+#{raw edit_link @acu_point} |
+#{raw index_link 'acu_points'} |
+#{raw edit_link @next, 'Edit Next'}
 

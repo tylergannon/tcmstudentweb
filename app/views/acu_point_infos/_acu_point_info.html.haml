@@ -1,7 +1,7 @@
 %div[acu_point_info]
   %h2 Source: #{link acu_point_info.citation}
-  = link_to('Edit', edit_acu_point_info_path(acu_point_info), :remote=>true) if current_action(:edit, :update, :create)
-  = link_to 'Destroy', acu_point_info, :remote=>true, :method=>:delete, "data-confirm"=>"Are you sure?" if current_action(:edit, :update, :delete)
+  != edit_link acu_point_info
+  != destroy_link acu_point_info
   - unless acu_point_info.english.empty?
     .showField English Translation: #{acu_point_info.english}
   - unless acu_point_info.location.empty?

@@ -2,4 +2,5 @@
 = form_for(@acu_point) do |f|
   = render :partial => 'form', :locals => { :f => f }
   %p=f.submit 'Create'
-= link_to 'Back', acu_points_path
+!= index_link 'acu_points'
+

@@ -105,8 +105,7 @@
     - @formula.variations.each do |t|
       %li= link_to t.pinyin, t, :remote => true
 
-- if can? :update, @formula
-  = link_to 'Edit', edit_formula_path(@formula), :remote => true
-  = link_to "Edit Next: #{@next.pinyin}", edit_formula_path(@next), :remote => true, :tags=>@taglist unless @next.nil?
-- link_to 'Back', formulas_path, :remote => true
+!= edit_link @formula
+!= edit_link @next, 'Edit Next Formula - #{@next.pinyin}'
+!= index_link 'formulas', 'Back'
 

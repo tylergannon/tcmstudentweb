@@ -12,7 +12,7 @@
       %b
         Textbook Year:
       = h textbook.year
-
-= link_to 'Edit', edit_author_path(@author)
+!= edit_link @author
 |
-= link_to 'Back', authors_path
+!= index_link 'authors', 'Back'
+

@@ -6,8 +6,9 @@
   - @authors.each do |author|
     %tr
       %td= h author.name
-      %td= link_to 'Show', author
-      %td= link_to 'Edit', edit_author_path(author)
-      %td= link_to 'Destroy', author, :confirm => 'Are you sure?', :method => :delete
+      %td!= link author
+      %td!= edit_link author
+      %td!= destroy_link author
 %br
-= link_to 'New author', new_author_path
+!= new_link Author
+

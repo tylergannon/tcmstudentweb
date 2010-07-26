@@ -13,11 +13,11 @@
       %td= h herb.pinyin
       %td= h herb.english
       %td= h herb.latin
-      %td= link_to 'Show', herb
+      %td!= show_link herb
       - if can? :update, herb
-        %td= link_to 'Edit', edit_herb_path(herb), :remote => true
+        %td!= edit_link herb
       - if can? :destroy, herb
-        %td= link_to 'Destroy', herb, "data-confirm" => 'Are you sure?', :remote => true
+        %td!= destroy_link herb
 
-= link_to 'New herb', new_herb_path, :remote => true
+!= new_link Herb
 

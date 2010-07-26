@@ -18,5 +18,5 @@
   .actions
     = f.submit
 
-#{ link_to 'Show', @article, :remote => true } | #{ link_to 'Back', articles_path, :remote => true }
+#{raw show_link @article,'Show'} | #{raw index_link 'articles'}
 

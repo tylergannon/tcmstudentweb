@@ -5,14 +5,14 @@
   %h3 Patterns
   %ul
     - @symptom.pattern_symptoms.each do |ps|
-      %li!= link_to ps.pattern.name, ps.pattern
+      %li!= link ps.pattern
       - if !ps.commentary.empty?
         %ul
           %li= ps.commentary
       - unless ps.pattern.formulas.empty?
         %ul
           - ps.pattern.formulas.each do |fp|
-            %li= link_to fp.pinyin, fp
+            %li= link fp
 
 - unless @symptom.acu_point_therapeutic_functions.empty?
   #h3 Associated AcuPoint Therapeutic Functions
@@ -21,9 +21,9 @@
       %li #{link actf.acu_point_info.acu_point} #{link actf.therapeutic_function}
 
 %p
-  = link_to "Edit", edit_symptom_path(@symptom)
-  |
-  = link_to "Destroy", @symptom, :confirm => 'Are you sure?', :method => :delete
-  |
-  = link_to "View All", symptoms_path
+!= edit_link @symptom
+|
+!= destroy_link @symptom
+|
+!= index_link 'symptoms'
 

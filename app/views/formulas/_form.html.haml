@@ -86,7 +86,7 @@
   %p
     = f.submit :disable_with=>'Saving...'
 
-= link_to 'Show', @formula, :remote => true
+!= show_link @formula
 |
-= link_to 'Back', formulas_path, :remote => true
+!= index_link 'formulas', 'Back'
 

@@ -1,6 +1,7 @@
 - title "Edit Therapeutic Function"
 = render :partial => 'form'
 %p
-  = link_to "Show", @therapeutic_function
+  != show_link @therapeutic_function
   |
-  = link_to "View All", therapeutic_functions_path
+  != index_link 'therapeutic_functions', 'View All'
+

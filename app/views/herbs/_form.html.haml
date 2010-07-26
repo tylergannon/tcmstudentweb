@@ -45,7 +45,7 @@
       = f.fields_for :dui_yaos do |dui_yao_form|
         = render :partial => 'dui_yao', :locals => { :f => dui_yao_form }
   %p= f.submit :disable_with => 'Salvation...'
-= link_to 'Show', @herb, :remote => true
+!= show_link @herb
 |
-= link_to 'Back', herbs_path, :remote => true
+!= index_link 'herbs'
 

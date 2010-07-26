@@ -13,6 +13,7 @@ if ENV['RAILS_ENV'] == "production"
 
 else
 
+
 #  #setup tlsmail so we can send email through SSLed SMTP
 #  require 'tlsmail'
 #  Net::SMTP.enable_tls(OpenSSL::SSL::VERIFY_NONE)
@@ -29,3 +30,4 @@ else
 #  ActionMailer::Base.default_content_type = "text/html"
 
 end #end if
+

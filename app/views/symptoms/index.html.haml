@@ -6,12 +6,11 @@
   - for symptom in @symptoms
     %tr
       %td
-        = h symptom.name
+        != link symptom
       %td
-        = link_to "Show", symptom
+        != edit_link symptom
       %td
-        = link_to "Edit", edit_symptom_path(symptom)
-      %td
-        = link_to "Destroy", symptom, :confirm => 'Are you sure?', :method => :delete
+        != destroy_link symptom
 %p
-  = link_to "New Symptom", new_symptom_path
+  != new_link Symptom
+

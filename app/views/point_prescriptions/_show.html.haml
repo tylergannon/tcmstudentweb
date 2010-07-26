@@ -1,6 +1,6 @@
 %div{:id=>@point_prescription.element_id}
   - if (pattern = @point_prescription.pattern)
-    != link_to "#{pattern.name} #{show_citation(@point_prescription.citation, :short)}", pattern
+    != show_link pattern, "#{pattern.name} #{show_citation(@point_prescription.citation, :short)}"
   - else
     = "#{@point_prescription.commentary} #{show_citation(@point_prescription.citation, :short)}"
   = show_box_for @point_prescription, "Show"
@@ -18,7 +18,7 @@
     %ul
       - @point_prescription.pp_acu_points.primary.each do |ap|
         %li
-          != link_to ap.acu_point_abbrev, ap.acu_point
+          != link ap.acu_point
           - unless ap.commentary.nil?
             :tcmtextile
               #{ap.commentary}
@@ -29,7 +29,7 @@
           %ul
             - pp_acu_points.each do |ppap|
               %li
-                != link_to ppap.acu_point_abbrev, ppap.acu_point
+                != link ppap.acu_point
                 - unless ppap.commentary.nil?
                   :tcmtextile
                     #{ppap.commentary}

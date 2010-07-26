@@ -11,16 +11,15 @@
   - @textbooks.each do |textbook|
     %tr
       %td
-        = h textbook.title
+        = link textbook
       %td
         = h textbook.year
       %td
         = h textbook.author_name
       %td
-        = link_to 'Show', textbook
+        != edit_link textbook
       %td
-        = link_to 'Edit', edit_textbook_path(textbook)
-      %td
-        = link_to 'Destroy', textbook, :confirm => 'Are you sure?', :method => :delete
+        != destroy_link textbook
 %br
-= link_to 'New textbook', new_textbook_path
+!= new_link Textbook
+

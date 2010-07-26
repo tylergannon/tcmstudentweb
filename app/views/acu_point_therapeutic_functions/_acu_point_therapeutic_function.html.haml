@@ -1,5 +1,5 @@
 = acu_point_therapeutic_function.therapeutic_function_name
-= link_to('Edit', edit_acu_point_therapeutic_function_path(acu_point_therapeutic_function), :remote=>true) if current_action(:edit, :update, :create)
+!= edit_link acu_point_therapeutic_function
 - unless acu_point_therapeutic_function.commentary.empty? && acu_point_therapeutic_function.therapeutic_function.tags.empty? && acu_point_therapeutic_function.symptoms.empty?
   = show_box_for acu_point_therapeutic_function, 'Detail'
   = detail_box_for acu_point_therapeutic_function do

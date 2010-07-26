@@ -11,5 +11,5 @@
   by Tyler Gannon
   %a{'href' => 'index.html'} Comments (5)
 
-#{ link_to 'Edit', edit_article_path(@article), :remote => true } | #{ link_to 'Back', articles_path, :remote => true }
+#{raw edit_link @article} | #{raw index_link 'patterns', 'Back to Patterns'}
 

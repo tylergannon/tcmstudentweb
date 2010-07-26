@@ -1,22 +1,21 @@
 %h3= h therapeutic_function.name
-= link_to "Edit", edit_therapeutic_function_path(therapeutic_function)
+!= edit_link therapeutic_function
 |
-= link_to "Destroy", therapeutic_function, :confirm => 'Are you sure?', :method => :delete
+!= destroy_link therapeutic_function
 
 %br/
 %ul
   - if therapeutic_function.herbs.size > 0
     %li
       %b Herbs:
-      != therapeutic_function.herbs.map{|h| link_to h.pinyin, h}.join(", ")
+      != link(therapeutic_function.herbs)
   - if therapeutic_function.formulas.size > 0
     %li
       %b Formulas:
-      != therapeutic_function.formulas.map{|f| link_to f.pinyin, f}.join(", ")
+      != link therapeutic_function.formulas
 
   - if therapeutic_function.acu_points.size > 0
     %li
       %b AcuPoints:
-      != therapeutic_function.acu_points.map{|a| link_to a.display_name, a}.join(", ")
-
+      != link therapeutic_function.acu_points
 

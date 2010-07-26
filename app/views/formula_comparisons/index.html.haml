@@ -1,10 +1,10 @@
 - @formula_comparisons.each do |comparison|
   :tcmtextile
-    h3. #{link_to_formula(comparison.formula1)} vs #{link_to_formula(comparison.formula2)}
+    h3. #{raw link(comparison.formula1)} vs #{raw link(comparison.formula2)}
 
     - Both Formulas := #{comparison.commentary}
-    - #{link_to_formula(comparison.formula1)} := #{comparison.formula1_commentary}
-    - #{link_to_formula(comparison.formula2)} := #{comparison.formula2_commentary}
+    - #{raw link(comparison.formula1)} := #{comparison.formula1_commentary}
+    - #{raw link(comparison.formula2)} := #{comparison.formula2_commentary}
 
 
   %hr/
