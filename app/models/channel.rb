@@ -1,4 +1,5 @@
 class Channel < ActiveRecord::Base
+
   find_by_name
   has_many :acu_points do
     def with_tf(tf)
@@ -17,10 +18,12 @@ class Channel < ActiveRecord::Base
   acts_as_linkable :name => :name
 
   def each_tag(&block)
-    tfs = TherapeuticFunction.by_channel(id)
-    tags = tfs.tag_counts_on(:tags)
+
+    tfs = acu_points.map{|ap| ap.acu_point_infos.map{|api| api.therapeutic_functions}}.flatten.uniq
+    tags = tfs.map{|tf| tf.tags}.flatten.uniq
+
     tags.each do |tag|
-      tf = tfs.tagged_with(tag.name).uniq
+      tf = tfs.select{|f| f.tags.include?(tag)}.uniq
       block.call(tag, tf)
     end
   end

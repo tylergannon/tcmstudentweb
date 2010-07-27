@@ -42,3 +42,15 @@
       = ajax_association_link("Load point combinations", p, :point_combinations)
       %div{:id=>p.element_id(:point_combinations)}
 
+
+%h1 By Tag:
+%ul
+  - @channel.each_tag do |tag, therapeutic_functions|
+    %li
+      %h3= tag.name
+      - therapeutic_functions.each do |tf|
+        %ul
+          %li
+            .fieldName!= "#{link tf}:"
+            != link @channel.acu_points.with_tf(tf)
+

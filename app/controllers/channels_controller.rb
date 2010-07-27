@@ -3,13 +3,24 @@ class ChannelsController < ApplicationController
   inherit_resources
   json_search
 
+  INCLUDE_ALL = [{
+            :acu_points=>{
+              :acu_point_infos=>[
+                :symptoms,
+                { :therapeutic_functions => :tags,
+                  :acu_point_therapeutic_functions=>[
+                    {:therapeutic_function=>:tags},
+                    :symptoms
+                    ],
+                  :acu_point_symptoms=>:symptom
+                }
+              ]
+            }
+          }]
+
   def resource
     if params[:action] == :show
-      @channel ||= Channel.find(params[:id],
-        :include=>[{:acu_points=>{:acu_point_infos=>{
-          :acu_point_therapeutic_functions=>:therapeutic_function,
-          :acu_point_symptoms=>:symptom
-          }}}])
+      @channel ||= Channel.find(params[:id],:include=>INCLUDE_ALL)
     else
       super
     end
