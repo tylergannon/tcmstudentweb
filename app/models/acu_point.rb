@@ -6,6 +6,7 @@ class AcuPoint < ActiveRecord::Base
   validates_uniqueness_of :ordinal, :scope => :channel_id
   acts_as_taggable
 
+
   acts_as_cited
   acts_as_linkable :name => :display_name, :title => :chinese
 
