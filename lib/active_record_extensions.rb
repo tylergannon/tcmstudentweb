@@ -9,15 +9,15 @@ module TcmStudentWeb
   end
   module ActiveRecordExtensions
     def find_by_name
-      class_eval do
-        def self.find(*args)
-          if args[0].is_numeric?
-            super(args)
-          else
-            named(args[0])
-          end
-        end
-      end
+#      class_eval do
+#        def self.find(*args)
+#          if args[0].is_numeric?
+#            super(args)
+#          else
+#            named(args[0])
+#          end
+#        end
+#      end
     end
     def simple_association_text(association, options={})
       delim = options[:delim] ||= ','
