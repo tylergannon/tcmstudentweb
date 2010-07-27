@@ -7,6 +7,7 @@ class Formula < ActiveRecord::Base
   autocomplete_format do |f|
     {:label=>"#{f.pinyin} (#{f.english})", :value=>f.pinyin}
   end
+  find_by_name
 
   scope :by_category, lambda {|category_name|
     tagged_with(category_name, :on=>:formula_categories)

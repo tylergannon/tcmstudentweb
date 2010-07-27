@@ -1,11 +1,29 @@
 class Channel < ActiveRecord::Base
-  has_many :acu_points
+  find_by_name
+  has_many :acu_points do
+    def with_tf(tf)
+      select{|ap|
+        ap.acu_point_infos.select{|api|
+          api.therapeutic_functions.include? tf
+        }.size>0
+      }.sort{|x,y| x.ordinal <=> y.ordinal}
+    end
+  end
 
   search_on :name, :abbreviation
   autocomplete_format do |channel|
     {:value=>channel.name}
   end
   acts_as_linkable :name => :name
+
+  def each_tag(&block)
+    tfs = TherapeuticFunction.by_channel(id)
+    tags = tfs.tag_counts_on(:tags)
+    tags.each do |tag|
+      tf = tfs.tagged_with(tag.name).uniq
+      block.call(tag, tf)
+    end
+  end
 
   ABBREVS = {"lu" => 1,
               "lung" => 1,

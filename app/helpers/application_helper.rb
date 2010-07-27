@@ -1,15 +1,5 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
-  def show_box_for(obj, show="Show details", hide="Hide Details")
-    check_active_record obj
-    link_to show, options={}, {
-        :href     =>"#",
-        :class    =>"show-element-link",
-        "data-id" =>id_for_show_box(obj),
-        "data-show-text" => show,
-        "data-hide-text" => hide
-    }
-  end
 
   def menu_link(name, href, parent=false)
     options = {:remote=>true}
@@ -36,15 +26,21 @@ module ApplicationHelper
     action.map{|t| t.to_s}.include?(request.parameters[:action])
   end
 
-#  def hide_box_for(obj, name="Hide details")
-#    check_active_record obj
-#    link_to(name, options={}, html_options={"href"=>"#", "class"=>"hide-element-link", "data-id"=>id_for_show_box(obj)})
-#  end
+  def show_box_for(obj, show="Show details", hide="Hide Details", association=nil)
+    check_active_record obj
+    link_to show, options={}, {
+        :href     =>"#",
+        :class    =>"show-element-link",
+        "data-id" =>obj.element_id("details_#{association}"),
+        "data-show-text" => show,
+        "data-hide-text" => hide
+    }
+  end
 
-  def detail_box_for(obj, &block)
+  def detail_box_for(obj, association=nil, &block)
     check_active_record obj
     raise ArgumentError, 'Missing block in showhide.detail_box_for call' unless block_given?
-    concat content_tag(:div, capture(&block), :id=>id_for_show_box(obj), :class=>'hideable-hidden')
+    concat content_tag(:div, capture(&block), :id=>obj.element_id("details_#{association}"), :class=>'hideable-hidden')
     nil
   end
 

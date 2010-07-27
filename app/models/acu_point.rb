@@ -1,4 +1,5 @@
 class AcuPoint < ActiveRecord::Base
+  find_by_name
   REGEXP_ABBREV = /^(\w{1,2})[-_ ](\d{1,2})$/
   validates_presence_of :pinyin
   validates_uniqueness_of :pinyin

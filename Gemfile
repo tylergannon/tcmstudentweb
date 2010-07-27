@@ -7,7 +7,7 @@ gem "rails", "3.0.0.beta4"
 source 'http://gems.github.com'
 source 'http://rubygems.org'
 
-gem 'devise', '1.1.rc2'  # We're gonna wanna update this.
+gem 'devise', '1.1.rc2'  # Better update again.
 gem 'RedCloth'
 gem 'haml'
 gem 'acts-as-taggable-on'

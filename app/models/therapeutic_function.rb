@@ -5,7 +5,11 @@ class TherapeuticFunction < ActiveRecord::Base
   has_many :formulas, :through => :formula_therapeutic_functions
   has_many :acu_point_therapeutic_functions
   has_many :acu_point_infos, :through => :acu_point_therapeutic_functions
-#  has_many :acu_points, :through => :acu_point_infos
+  has_many :acu_points, :through => :acu_point_infos do
+    def by_channel(channel_id)
+      select{|t| t.channel_id==channel_id}.sort{|x,y| x.ordinal <=> y.ordinal}
+    end
+  end
   acts_as_taggable
 
   scope :join_acu_point, joins([{:acu_point_therapeutic_functions=>{:acu_point_info=>:acu_point}}])

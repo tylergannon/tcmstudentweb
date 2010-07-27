@@ -4,6 +4,7 @@ class Symptom < ActiveRecord::Base
   has_and_belongs_to_many :acu_point_therapeutic_functions, :autosave=>false
   acts_as_linkable :name=>:name
   search_on :name
+  find_by_name
 
   autocomplete_format do |symptom|
     {:value=>symptom.name}

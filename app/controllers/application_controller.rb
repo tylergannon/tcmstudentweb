@@ -51,16 +51,18 @@ class ApplicationController < ActionController::Base
   end
 
   def self.authorized
-    class_eval "
-    def resource
-      authorize! super, params[:action]
+    class_eval do
+      def resource
+        authorize! super, params[:action] unless @authorized
+        @authorized = true
+        super
+      end
     end
-    protected :resource
-    "
   end
 
   def set_container
     @container = params[:container] || 'main_container'
+    @show_title = (@container=='main_container')
     @ajax_function = params[:ajax_function] || 'html'
   end
 

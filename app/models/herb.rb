@@ -4,6 +4,7 @@ class Herb < ActiveRecord::Base
   acts_as_taggable
   acts_as_linkable :name => :pinyin, :title=>:latin
 
+  find_by_name
   search_on :canonical, :pinyin
   scope :search_mod, order("char_length(canonical)")
   scope :state_board, lambda{
