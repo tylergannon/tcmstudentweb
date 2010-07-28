@@ -12,15 +12,18 @@ class FormulasController < ApplicationController
     index! do |format|
       def collection.each_category(&block)
         return unless self
-        cats = self.tag_counts_on(:formula_categories)
-        cats.each {|cat| block.call cat, self.tagged_with(cat, :on=>:formula_categories)}
+        cats = map{|f| f.formula_category_taggings.map_to(:tag)}.flatten.uniq
+        cats.each {|cat|
+          block.call cat, select{|f| f.formula_category_taggings.map_to(:tag).include? cat}
+        }
       end
       format.json {render :json => resource_class.to_autocomplete(collection)}
     end
   end
 
   def collection
-    @formulas ||= end_of_association_chain.order(:canonical )
+    @formulas ||= end_of_association_chain.order(:canonical ).
+      includes([{:formula_category_taggings=>:tag}])
   end
 
   def tag_cloud

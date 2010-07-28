@@ -16,6 +16,8 @@
           - Channel.all.each do |channel|
             %li
               != menu_link(channel.name, channel)
+      %li!= menu_link('Patterns', patterns_path)
+      %li!= menu_link('Herbs', herbs_path)
       %li
         != menu_link('Formulas', formulas_path, true)
         %ul
