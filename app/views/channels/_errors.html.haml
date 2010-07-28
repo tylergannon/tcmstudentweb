@@ -1,0 +1,5 @@
+.errorTitle= "#{pluralize(@channel.errors.count, 'error')} prohibited this channel from being saved:"
+%ul
+- @channel.errors.full_messages.each do |msg|
+  %li= msg
+

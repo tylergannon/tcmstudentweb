@@ -3,6 +3,7 @@ class FormulasController < ApplicationController
   has_scope :tagged_with, :as => :tag
   has_scope :by_category, :as => :category
   inherit_resources
+  eager_loading_resource
 
   def index
     @categories = Formula.tag_counts_on(:formula_categories)

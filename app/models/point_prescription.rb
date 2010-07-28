@@ -2,6 +2,14 @@ class PointPrescription < ActiveRecord::Base
   acts_as_cited
   after_save :copy_citation, :if => Proc.new {|pp| !pp.pattern.nil? && pp.pattern.citation.nil?}
 
+  INCLUDE_ALL = [
+    :acu_points,
+    {:pattern=>[:symptoms, :formulas, {:pattern_symptoms=>:symptom, :citation=>:textbook}],
+    :pp_acu_points => :acu_point
+    }
+  ]
+
+
   belongs_to :pattern
   has_many :acu_points, :through => :pp_acu_points
 

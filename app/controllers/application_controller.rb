@@ -50,14 +50,44 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def self.authorized
+  def self.eager_loading_collection
+    class_eval do
+      def collection
+        unless instance_variable_get("@#{resource_class.name.tableize}")
+          instance_variable_set("@#{resource_class.name.tableize}",
+            end_of_association_chain.includes(resource_class::INCLUDE_ALL)
+          )
+        end
+      end
+    end
+  end
+
+  def self.eager_loading_resource
     class_eval do
       def resource
-        authorize! super, params[:action] unless @authorized
-        @authorized = true
+        unless instance_variable_get("@#{resource_class.name.underscore}")
+          instance_variable_set("@#{resource_class.name.underscore}",
+            resource_class.find(params[:id], :include=>resource_class::INCLUDE_ALL)
+          )
+          authorize_this
+        end
         super
       end
     end
+  end
+
+  def self.authorized
+    class_eval do
+      def resource
+        authorize_this
+        super
+      end
+    end
+  end
+
+  def authorize_this
+    authorize! resource, params[:action] unless @authorized
+    @authorized = true
   end
 
   def set_container
@@ -70,28 +100,5 @@ class ApplicationController < ActionController::Base
     @next = resource_class.where("id > #{params[:id]}").order(:id).limit(1).first if params[:id]
     @next ||= resource_class.first
   end
-
-
-#  require "prawn/measurement_extensions"
-#  prawnto :prawn => {
-#              :left_margin => 8.mm,
-#              :right_margin => 8.mm,
-#              :top_margin => 5.mm,
-#              :bottom_margin => 5.mm}
-#  def page
-#    [[nil, nil, nil],[nil, nil, nil],[nil, nil, nil],[nil, nil, nil]]
-#  end
-
-#  def self.acts_as_taggable(klass)
-#    class_eval "def tag; @#{klass.name.tableize} = #{klass.name}.tagged_with(params[:id], :on => :tags);render :template => \"index\";end;"
-#  end
-#
-#  def self.acts_as_taggable_on(klass, *contexts)
-#    contexts.each do |context|
-#      class_eval "def #{context.to_s.singularize}; @#{klass.name.tableize} = #{klass.name}.tagged_with(params[:id], :on => :#{context.to_s});render :template => \"index\";end;"
-#    end
-#  end
-
-  private
 end
 

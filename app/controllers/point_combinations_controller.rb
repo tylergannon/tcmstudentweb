@@ -4,6 +4,7 @@ class PointCombinationsController < ApplicationController
   has_scope :by_acu_point, :as => :acu_point_id
   has_scope :by_symptom, :as => :symptom_id
   has_instance_variable :acu_point
+  eager_loading_collection
 
   def create
     create!
@@ -14,5 +15,6 @@ class PointCombinationsController < ApplicationController
     update!
     resource.acu_points << @acu_point if @acu_point
   end
+
 end
 

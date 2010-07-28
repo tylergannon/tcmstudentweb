@@ -4,6 +4,24 @@ class Formula < ActiveRecord::Base
   acts_as_linkable :name => :pinyin, :title=>:english
   acts_as_cited
 
+  INCLUDE_ALL = [
+    :master_formula,
+    :tags,
+    :therapeutic_functions,
+    {:source_text_citation=>:textbook,
+    :citation=>:textbook,
+    :formula_category_taggings=>:tag,
+    :taggings=>:tag,
+    :formula_contraindications=>:contraindication,
+    :formula_herbs=>:herb,
+    :formula_therapeutic_functions=>:therapeutic_function,
+    :formula_comparisons=>:formula2,
+    :other_formula_comparisons=>:formula1,
+    :patterns=>[:symptoms, {:pattern_symptoms=>:symptom}],
+    :dui_yaos=>[:herb1, :herb2]
+    }
+  ]
+
   autocomplete_format do |f|
     {:label=>"#{f.pinyin} (#{f.english})", :value=>f.pinyin}
   end
@@ -25,11 +43,11 @@ class Formula < ActiveRecord::Base
       select{|t| roles.include? t.formula_role_id}
     end
     def chief
-      with_role(0) unless with_role.size == size
+      with_role(1) unless with_role(1).size == size
     end
     def non_chief
       self unless chief
-      with_role 1,2,3 if chief
+      with_role 2,3,3 if chief
     end
   end
 	has_many :herbs, :through => :formula_herbs

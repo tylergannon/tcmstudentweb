@@ -16,11 +16,14 @@ class Channel < ActiveRecord::Base
     {:value=>channel.name}
   end
   acts_as_linkable :name => :name
+  INCLUDE_ALL = [{
+            :acu_points=>AcuPoint::INCLUDE_ALL
+          }]
 
   def each_tag(&block)
 
     tfs = acu_points.map{|ap| ap.acu_point_infos.map{|api| api.therapeutic_functions}}.flatten.uniq
-    tags = tfs.map{|tf| tf.tags}.flatten.uniq
+    tags = tfs.map{|tf| tf.tags}.flatten.uniq.sort{|x,y| x.name <=> y.name}
 
     tags.each do |tag|
       tf = tfs.select{|f| f.tags.include?(tag)}.uniq

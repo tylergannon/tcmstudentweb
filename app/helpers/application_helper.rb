@@ -31,7 +31,7 @@ module ApplicationHelper
     link_to show, options={}, {
         :href     =>"#",
         :class    =>"show-element-link",
-        "data-id" =>obj.element_id("details_#{association}"),
+        "data-id" =>obj.element_id(:details, association),
         "data-show-text" => show,
         "data-hide-text" => hide
     }
@@ -40,7 +40,7 @@ module ApplicationHelper
   def detail_box_for(obj, association=nil, &block)
     check_active_record obj
     raise ArgumentError, 'Missing block in showhide.detail_box_for call' unless block_given?
-    concat content_tag(:div, capture(&block), :id=>obj.element_id("details_#{association}"), :class=>'hideable-hidden')
+    concat content_tag(:div, capture(&block), :id=>obj.element_id(:details, association), :class=>'hideable-hidden')
     nil
   end
 

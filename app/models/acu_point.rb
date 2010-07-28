@@ -6,6 +6,18 @@ class AcuPoint < ActiveRecord::Base
   validates_uniqueness_of :ordinal, :scope => :channel_id
   acts_as_taggable
 
+  INCLUDE_ALL = [{
+              :acu_point_infos=>[
+                :symptoms,
+                { :therapeutic_functions => :tags,
+                  :acu_point_therapeutic_functions=>[
+                    {:therapeutic_function=>:tags},
+                    :symptoms
+                    ],
+                  :acu_point_symptoms=>:symptom
+                }
+              ]
+            }]
 
   acts_as_cited
   acts_as_linkable :name => :display_name, :title => :chinese

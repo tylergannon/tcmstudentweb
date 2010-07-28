@@ -10,6 +10,8 @@ class PointCombination < ActiveRecord::Base
     joins(:acu_points).where(:acu_points=>{:id=>acu_point_id})
   }
 
+  INCLUDE_ALL = [:symptoms, :acu_points]
+
   scope :by_symptom, lambda {|symptom_id|
     joins(:symptoms).where(:symptoms=>{:id=>symptom_id})
   }

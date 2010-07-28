@@ -1,17 +1,4 @@
 - title "Listing Acu Points"
 
-%table
-  %tr
-    %th Channel
-    %th Number
-    %th Pinyin
-  - @acu_points.each do |acu_point|
-    %tr
-      %td=h acu_point.channel.name
-      %td=h acu_point.ordinal
-      %td=h acu_point.pinyin
-      %td!= show_link acu_point
-      %td!= edit_link acu_point
-      %td!= destroy_link acu_point
-!= new_link AcuPoint
+= render :partial => "index"
 

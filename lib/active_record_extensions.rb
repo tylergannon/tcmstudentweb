@@ -3,8 +3,9 @@ module TcmStudentWeb
     def html_id
       new_record? ? "new" : id.to_s
     end
-    def element_id(prefix=nil)
-      (prefix ? "#{prefix.to_s}_" : "") + "#{self.class.name.underscore}_#{html_id}"
+    def element_id(*args)
+      class_name = self.class.name.underscore.split('/').last
+      (args.minus(nil) + [class_name, html_id]).join('_')
     end
   end
   module ActiveRecordExtensions
