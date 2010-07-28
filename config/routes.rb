@@ -2,10 +2,11 @@
 TcmStudentWeb::Application.routes.draw do
 
   resource :account
-  resources :acu_point_infos
   resources :acu_point_categories
   resources :acu_point_therapeutic_functions
-  resources :acu_points
+  resources :acu_points do
+    resources :acu_point_infos
+  end
   resources :articles
   resources :authors
   resources :categories

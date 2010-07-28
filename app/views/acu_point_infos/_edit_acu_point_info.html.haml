@@ -1,4 +1,4 @@
-= form_for @acu_point_info, :remote=>true do |f|
+= form_for [@acu_point_info.acu_point, @acu_point_info], :remote=>true do |f|
   = f.hidden_field :acu_point_id
   %h2 AcuPoint Info
   %br/

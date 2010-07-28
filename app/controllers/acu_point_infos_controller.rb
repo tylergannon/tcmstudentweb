@@ -1,7 +1,5 @@
-class AcuPointInfosController < ApplicationController
+class AcuPointInfosController < InheritedResources::Base
   respond_to :js, :html
-  inherit_resources
-  has_instance_variable :acu_point, :only=>:new, :for_resource=>true
-
+  belongs_to :acu_point
 end
 

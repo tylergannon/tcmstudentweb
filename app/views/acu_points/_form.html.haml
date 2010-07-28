@@ -20,7 +20,10 @@
 
 #acu_point_infos
   = render :partial=>'acu_point_infos/acu_point_info', :collection=>@acu_point.acu_point_infos
-!= new_link AcuPointInfo, 'Add an Info Source', {:acu_point_id=>@acu_point.id}, :id=>'new_source_link'
+- if can? :create, AcuPointInfo
+  != link_to 'Add An Info Source', |
+    new_acu_point_acu_point_info_path(:acu_point_id=>@acu_point.id), |
+    :remote => true
 
 .field
   = ajax_association_link("Show point prescriptions", @acu_point, :point_prescriptions)
