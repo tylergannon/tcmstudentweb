@@ -4,6 +4,7 @@ class AcuPoint < ActiveRecord::Base
   validates_presence_of :pinyin
   validates_uniqueness_of :pinyin
   validates_uniqueness_of :ordinal, :scope => :channel_id
+  default_scope order(:ordinal)
   acts_as_taggable
 
   INCLUDE_ALL = [{
