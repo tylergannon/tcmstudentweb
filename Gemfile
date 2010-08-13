@@ -2,7 +2,7 @@
 # This preamble is the current preamble for Rails 3 apps; edit as needed.
 #path "/usr/bin/rails", :glob => "{*/,}*.gemspec"
 #git "git://github.com/rails/rack.git"
-gem "rails", "3.0.0.beta4"
+gem "rails", "3.0.0.rc"
 
 source 'http://gems.github.com'
 source 'http://rubygems.org'

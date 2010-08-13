@@ -7,6 +7,12 @@ class AcuPoint < ActiveRecord::Base
   default_scope order(:ordinal)
   acts_as_taggable
 
+  scope :tf_tagged_with, lambda {|*tags|
+    tf = TherapeuticFunction.tagged_with(tags)
+    joins(:acu_point_infos=>:acu_point_therapeutic_functions).
+      where(:acu_point_infos=>{:acu_point_therapeutic_functions=>{:therapeutic_function_id=>tf.map_to(:id)}})
+  }
+
   INCLUDE_ALL = [{
               :acu_point_infos=>[
                 :symptoms,

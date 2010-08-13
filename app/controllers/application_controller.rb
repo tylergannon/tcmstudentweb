@@ -94,6 +94,14 @@ class ApplicationController < ActionController::Base
     @container = params[:container] || 'main_container'
     @show_title = (@container=='main_container')
     @ajax_function = params[:ajax_function] || 'html'
+    if @container=='main_container'
+      create_breadcrumb
+    end
+  end
+
+  def create_breadcrumb
+
+
   end
 
   def set_next
