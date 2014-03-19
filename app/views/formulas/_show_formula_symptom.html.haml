@@ -1,9 +1,0 @@
-- if fs.key_symptom
-  %i= fs.symptom_name
-- else
-  - if fs.maybe
-    (possibly) #{fs.symptom_name}
-  - else
-    = fs.symptom_name
-- unless fs.commentary.nil? || fs.commentary == ""
-  (#{fs.commentary})

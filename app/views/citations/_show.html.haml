@@ -1,7 +1,0 @@
-- link_to citation.textbook, :remote=>true do
-  = citation.textbook.title
-  - unless citation.textbook.year.nil? && citation.textbook.author.nil?
-    = "(#{[citation.textbook.author.name, citation.textbook.year].delete_if{|v| v.nil?}.join(', ')})"
-- unless citation.where.empty?
-  , #{citation.where}
-

@@ -1,5 +1,0 @@
-$('##{@container}').html(#{raw render_js('form')});
-setUpDocument($('##{@container}'));
-- if @herb.errors.any?
-  = growl('Error', raw(render_js('errors')), :error)
-

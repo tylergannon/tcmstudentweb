@@ -1,9 +1,0 @@
-%h2 Point Combinations
-#flash_point_combinations
-  = flash[:point_combinations]
-
-%ul#point_combinations
-  - @acu_point.point_combinations.each do |point_combination|
-    %li[point_combination]
-      = render :partial => 'point_combinations/point_combination', :locals=>{:point_combination=>point_combination, :acu_point_id=>@acu_point.id}
-

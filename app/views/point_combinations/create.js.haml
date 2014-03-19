@@ -1,7 +1,0 @@
-$('##{resource.class.name.underscore}_new').remove();
-$('##{@container}').#{@ajax_function}(#{raw render_js('show')});
-setUpDocument($('##{@container}'));
-- unless flash[:notice].empty?
-  = growl("Success", flash[:notice])
-  - flash.discard
-

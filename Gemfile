@@ -1,19 +1,40 @@
-# Edit this Gemfile to bundle your application's dependencies.
-# This preamble is the current preamble for Rails 3 apps; edit as needed.
-#path "/usr/bin/rails", :glob => "{*/,}*.gemspec"
-#git "git://github.com/rails/rack.git"
-gem "rails", "3.0.0.rc"
+source 'https://rubygems.org'
 
-source 'http://gems.github.com'
-source 'http://rubygems.org'
 
-gem 'devise', '1.1.rc2'  # Better update again.
-gem 'RedCloth'
-gem 'haml'
-gem 'acts-as-taggable-on'
-gem 'da_huangs_ruby_extensions'
-gem 'cancan'
-gem 'casey_jones'
-gem 'inherited_resources', '1.1.2'
-gem 'has_scope'
+# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+gem 'rails', '4.1.0.rc1'
+# Use sqlite3 as the database for Active Record
+gem 'sqlite3'
+# Use SCSS for stylesheets
+gem 'sass-rails', '~> 4.0.1'
+# Use Uglifier as compressor for JavaScript assets
+gem 'uglifier', '>= 1.3.0'
+# Use CoffeeScript for .js.coffee assets and views
+gem 'coffee-rails', '~> 4.0.0'
+# See https://github.com/sstephenson/execjs#readme for more supported runtimes
+# gem 'therubyracer',  platforms: :ruby
+
+# Use jquery as the JavaScript library
+gem 'jquery-rails'
+# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
+gem 'turbolinks'
+# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
+gem 'jbuilder', '~> 2.0'
+# bundle exec rake doc:rails generates the API under doc/api.
+gem 'sdoc', '~> 0.4.0',          group: :doc
+
+# Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+gem 'spring',        group: :development
+
+# Use ActiveModel has_secure_password
+# gem 'bcrypt-ruby', '~> 3.1.2'
+
+# Use unicorn as the app server
+# gem 'unicorn'
+
+# Use Capistrano for deployment
+# gem 'capistrano-rails', group: :development
+
+# Use debugger
+# gem 'debugger', group: [:development, :test]
 

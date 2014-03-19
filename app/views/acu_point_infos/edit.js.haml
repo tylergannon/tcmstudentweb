@@ -1,7 +1,0 @@
-$el = $('#acu_point_info_#{@acu_point_info.html_id}');
-$el.hide('slide');
-$el.html(#{raw render_js(:partial=>'edit_acu_point_info')});
-setUpDocument($el);
-$.scrollTo('#acu_point_info_#{@acu_point_info.html_id}');
-$el.show('slide', {}, 500, function(){$el.find('input:visible:first').focus();});
-

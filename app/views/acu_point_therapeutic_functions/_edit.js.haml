@@ -1,7 +1,0 @@
-$tag = $('#acu_point_therapeutic_function_#{@acu_point_therapeutic_function.html_id}');
-$tag.hide('scale', {percent: 0});
-$tag.html('#{escape_javascript(render(:partial=>'edit_acu_point_therapeutic_function'))}');
-setUpDocument($tag);
-$.scrollTo('#acu_point_therapeutic_function_#{@acu_point_therapeutic_function.html_id}');
-$tag.show('scale', {percent: 100}, 500, function(){$tag.find('input:visible:first').focus();});
-

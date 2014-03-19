@@ -1,5 +1,0 @@
-$('##{@container}').#{@ajax_function}(#{raw render_js('form')});
-setUpDocument($('##{@container}'));
-- if @symptom.errors.any?
-  = growl('Error', raw(render_js('errors')), :error)
-
