@@ -1,0 +1,21 @@
+p#notice = notice
+
+p
+  strong Author:
+  = @references_textbook.author
+p
+  strong Title:
+  = @references_textbook.title
+p
+  strong Slug:
+  = @references_textbook.slug
+p
+  strong Year:
+  = @references_textbook.year
+p
+  strong Abbreviation:
+  = @references_textbook.abbreviation
+
+= link_to 'Edit', edit_references_textbook_path(@references_textbook)
+'|
+= link_to 'Back', references_textbooks_path

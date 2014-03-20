@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140320062339) do
+ActiveRecord::Schema.define(version: 20140320063409) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,5 +27,31 @@ ActiveRecord::Schema.define(version: 20140320062339) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "references_authors", force: true do |t|
+    t.string   "name"
+    t.string   "slug"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "references_citations", force: true do |t|
+    t.integer  "source_id"
+    t.string   "location"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "references_textbooks", force: true do |t|
+    t.integer  "author_id"
+    t.string   "title"
+    t.string   "slug"
+    t.string   "year"
+    t.string   "abbreviation"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "references_textbooks", ["author_id"], name: "index_references_textbooks_on_author_id", using: :btree
 
 end

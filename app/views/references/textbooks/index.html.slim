@@ -1,0 +1,27 @@
+h1 Listing references_textbooks
+
+table
+  tr
+    th Author
+    th Title
+    th Slug
+    th Year
+    th Abbreviation
+    th
+    th
+    th
+
+  - @references_textbooks.each do |references_textbook|
+    tr
+      td = references_textbook.author
+      td = references_textbook.title
+      td = references_textbook.slug
+      td = references_textbook.year
+      td = references_textbook.abbreviation
+      td = link_to 'Show', references_textbook
+      td = link_to 'Edit', edit_references_textbook_path(references_textbook)
+      td = link_to 'Destroy', references_textbook, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Textbook', new_references_textbook_path

@@ -1,0 +1,21 @@
+h1 Listing references_authors
+
+table
+  tr
+    th Name
+    th Slug
+    th
+    th
+    th
+
+  - @references_authors.each do |references_author|
+    tr
+      td = references_author.name
+      td = references_author.slug
+      td = link_to 'Show', references_author
+      td = link_to 'Edit', edit_references_author_path(references_author)
+      td = link_to 'Destroy', references_author, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Author', new_references_author_path

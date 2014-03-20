@@ -1,0 +1,12 @@
+p#notice = notice
+
+p
+  strong Source:
+  = @references_citation.source_id
+p
+  strong Location:
+  = @references_citation.location
+
+= link_to 'Edit', edit_references_citation_path(@references_citation)
+'|
+= link_to 'Back', references_citations_path

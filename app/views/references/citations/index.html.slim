@@ -1,0 +1,21 @@
+h1 Listing references_citations
+
+table
+  tr
+    th Source
+    th Location
+    th
+    th
+    th
+
+  - @references_citations.each do |references_citation|
+    tr
+      td = references_citation.source_id
+      td = references_citation.location
+      td = link_to 'Show', references_citation
+      td = link_to 'Edit', edit_references_citation_path(references_citation)
+      td = link_to 'Destroy', references_citation, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Citation', new_references_citation_path

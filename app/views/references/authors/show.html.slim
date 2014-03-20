@@ -1,0 +1,12 @@
+p#notice = notice
+
+p
+  strong Name:
+  = @references_author.name
+p
+  strong Slug:
+  = @references_author.slug
+
+= link_to 'Edit', edit_references_author_path(@references_author)
+'|
+= link_to 'Back', references_authors_path

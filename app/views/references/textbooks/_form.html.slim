@@ -1,0 +1,24 @@
+= form_for @references_textbook do |f|
+  - if @references_textbook.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@references_textbook.errors.count, "error")} prohibited this references_textbook from being saved:"
+      ul
+        - @references_textbook.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :author
+    = f.text_field :author
+  .field
+    = f.label :title
+    = f.text_field :title
+  .field
+    = f.label :slug
+    = f.text_field :slug
+  .field
+    = f.label :year
+    = f.text_field :year
+  .field
+    = f.label :abbreviation
+    = f.text_field :abbreviation
+  .actions = f.submit 'Save'

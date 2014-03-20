@@ -1,0 +1,2 @@
+module References::AuthorsHelper
+end
