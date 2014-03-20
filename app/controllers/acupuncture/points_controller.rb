@@ -64,11 +64,11 @@ class Acupuncture::PointsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_acupuncture_point
-      @acupuncture_point = Acupuncture::Point.find(params[:id])
+      @acupuncture_point = Acupuncture::Point.friendly.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def acupuncture_point_params
-      params.require(:acupuncture_point).permit(:channel_id, :orginal, :pinyin, :chinese, :name_discussion, :commentary, :canonical, :slug)
+      params.require(:acupuncture_point).permit(:channel_id, :position, :pinyin, :chinese, :name_discussion, :commentary, :canonical, :slug)
     end
 end

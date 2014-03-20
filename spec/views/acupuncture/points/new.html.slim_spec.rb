@@ -4,7 +4,7 @@ describe "acupuncture/points/new" do
   before(:each) do
     assign(:acupuncture_point, stub_model(Acupuncture::Point,
       :channel => nil,
-      :orginal => 1,
+      :position => 1,
       :pinyin => "MyString",
       :chinese => "MyString",
       :name_discussion => "MyString",
@@ -19,7 +19,7 @@ describe "acupuncture/points/new" do
 
     assert_select "form[action=?][method=?]", acupuncture_points_path, "post" do
       assert_select "input#acupuncture_point_channel[name=?]", "acupuncture_point[channel]"
-      assert_select "input#acupuncture_point_orginal[name=?]", "acupuncture_point[orginal]"
+      assert_select "input#acupuncture_point_position[name=?]", "acupuncture_point[position]"
       assert_select "input#acupuncture_point_pinyin[name=?]", "acupuncture_point[pinyin]"
       assert_select "input#acupuncture_point_chinese[name=?]", "acupuncture_point[chinese]"
       assert_select "input#acupuncture_point_name_discussion[name=?]", "acupuncture_point[name_discussion]"

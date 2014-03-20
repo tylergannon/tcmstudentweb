@@ -5,7 +5,7 @@ describe "acupuncture/points/index" do
     assign(:acupuncture_points, [
       stub_model(Acupuncture::Point,
         :channel => nil,
-        :orginal => 1,
+        :position => 1,
         :pinyin => "Pinyin",
         :chinese => "Chinese",
         :name_discussion => "Name Discussion",
@@ -15,7 +15,7 @@ describe "acupuncture/points/index" do
       ),
       stub_model(Acupuncture::Point,
         :channel => nil,
-        :orginal => 1,
+        :position => 1,
         :pinyin => "Pinyin",
         :chinese => "Chinese",
         :name_discussion => "Name Discussion",

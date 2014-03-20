@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20140320072750) do
 
   create_table "acupuncture_points", force: true do |t|
     t.integer  "channel_id"
-    t.integer  "orginal"
+    t.integer  "position"
     t.string   "pinyin"
     t.string   "chinese"
     t.string   "name_discussion"

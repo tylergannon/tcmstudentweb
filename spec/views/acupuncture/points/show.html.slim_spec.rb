@@ -4,7 +4,7 @@ describe "acupuncture/points/show" do
   before(:each) do
     @acupuncture_point = assign(:acupuncture_point, stub_model(Acupuncture::Point,
       :channel => nil,
-      :orginal => 1,
+      :position => 1,
       :pinyin => "Pinyin",
       :chinese => "Chinese",
       :name_discussion => "Name Discussion",

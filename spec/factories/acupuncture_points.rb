@@ -3,7 +3,7 @@
 FactoryGirl.define do
   factory :acupuncture_point, :class => 'Acupuncture::Point' do
     channel
-    orginal 1
+    position 1
     pinyin "MyString"
     chinese "MyString"
     name_discussion "MyString"
