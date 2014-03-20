@@ -1,0 +1,12 @@
+p#notice = notice
+
+p
+  strong Name:
+  = @diagnosis_symptom.name
+p
+  strong Slug:
+  = @diagnosis_symptom.slug
+
+= link_to 'Edit', edit_diagnosis_symptom_path(@diagnosis_symptom)
+'|
+= link_to 'Back', diagnosis_symptoms_path

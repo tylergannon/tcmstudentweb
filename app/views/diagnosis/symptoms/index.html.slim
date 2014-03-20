@@ -1,0 +1,21 @@
+h1 Listing diagnosis_symptoms
+
+table
+  tr
+    th Name
+    th Slug
+    th
+    th
+    th
+
+  - @diagnosis_symptoms.each do |diagnosis_symptom|
+    tr
+      td = diagnosis_symptom.name
+      td = diagnosis_symptom.slug
+      td = link_to 'Show', diagnosis_symptom
+      td = link_to 'Edit', edit_diagnosis_symptom_path(diagnosis_symptom)
+      td = link_to 'Destroy', diagnosis_symptom, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Symptom', new_diagnosis_symptom_path
