@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
 
 
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.0.rc1'
+gem 'rails', github: 'rails/rails', branch: '4-1-0'
+# gem 'rails', '4.1.0.rc1'
 # Use sqlite3 as the database for Active Record
 gem 'pg'
 # Use SCSS for stylesheets
@@ -16,6 +16,7 @@ gem 'coffee-rails', '~> 4.0.0'
 
 gem 'slim-rails'
 gem 'bootstrap-sass'
+gem 'friendly_id'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
