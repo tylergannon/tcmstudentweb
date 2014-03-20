@@ -1,12 +1,25 @@
 doctype html
 html lang="en"
   head
-  title Crystal Light
+  title Turning Seasons TCM
   meta name="viewport" content="width=device-width, initial-scale=1"
   = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
   = javascript_include_tag 'application', 'data-turbolinks-track' => true
   = csrf_meta_tags
 
   body
+    nav class="navbar navbar-default" role="navigation"
+      .container-fluid
+        .navbar-header
+          button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+            span class="sr-only" Toggle navigation
+            span class="icon-bar"
+            span class="icon-bar"
+            span class="icon-bar"
+          = link_to "Turning Seasons TCM", root_path, class: 'navbar-brand'
+        .collapse.navbar-collapse#bs-example-navbar-collapse-1
+          ul.nav.navbar-nav
+            li= link_to 'Patterns of Disharmony', patterns_path
+          
     .container
       = yield
