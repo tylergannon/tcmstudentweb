@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140320070040) do
+ActiveRecord::Schema.define(version: 20140320071611) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -96,5 +96,18 @@ ActiveRecord::Schema.define(version: 20140320070040) do
   end
 
   add_index "references_textbooks", ["author_id"], name: "index_references_textbooks_on_author_id", using: :btree
+
+  create_table "treatment_point_prescriptions", force: true do |t|
+    t.string   "name"
+    t.string   "slug"
+    t.string   "commentary"
+    t.integer  "citation_id"
+    t.integer  "pattern_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "treatment_point_prescriptions", ["citation_id"], name: "index_treatment_point_prescriptions_on_citation_id", using: :btree
+  add_index "treatment_point_prescriptions", ["pattern_id"], name: "index_treatment_point_prescriptions_on_pattern_id", using: :btree
 
 end

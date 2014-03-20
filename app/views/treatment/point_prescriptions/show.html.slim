@@ -1,0 +1,21 @@
+p#notice = notice
+
+p
+  strong Name:
+  = @treatment_point_prescription.name
+p
+  strong Slug:
+  = @treatment_point_prescription.slug
+p
+  strong Commentary:
+  = @treatment_point_prescription.commentary
+p
+  strong Citation:
+  = @treatment_point_prescription.citation
+p
+  strong Pattern:
+  = @treatment_point_prescription.pattern
+
+= link_to 'Edit', edit_treatment_point_prescription_path(@treatment_point_prescription)
+'|
+= link_to 'Back', treatment_point_prescriptions_path

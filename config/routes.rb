@@ -1,5 +1,9 @@
 Rails.application.routes.draw do  
 
+  namespace :treatment do
+    resources :point_prescriptions
+  end
+
   namespace :acupuncture do
     resources :points
     resources :channels
