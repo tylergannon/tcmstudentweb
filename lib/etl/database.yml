@@ -1,0 +1,18 @@
+source:
+  adapter: postgresql
+  encoding: unicode
+  database: tcmstudentweb_legacy
+  pool: 5
+  
+etl_execution:
+  adapter: postgresql
+  encoding: unicode
+  database: etl_execution
+  pool: 5
+  
+destination:
+  adapter: postgresql
+  encoding: unicode
+  database: tcmstudentweb_development
+  pool: 5
+  

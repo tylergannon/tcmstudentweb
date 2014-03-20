@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+
+$:.unshift(File.dirname(__FILE__) + '/../lib/')
+require 'rubygems'
+require 'etl'
+require 'etl_extension/etl_extension'
+require 'etl/commands/etl'
+require 'tcm_etl'
+

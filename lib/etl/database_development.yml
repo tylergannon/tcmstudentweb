@@ -1,0 +1,35 @@
+source:
+  adapter: postgresql
+  encoding: unicode
+  database: locator
+  # host: localhost
+  pool: 5
+  # username: locatoruser
+  # password: locpass
+  
+etl_execution:
+  adapter: postgresql
+  encoding: unicode
+  database: etl_execution
+  # host: localhost
+  pool: 5
+  # username: locatoruser
+  # password: locpass
+  
+destination:
+  adapter: postgresql
+  encoding: unicode
+  database: dance_card_development
+  # host: localhost
+  pool: 5
+  # username: dbuser
+  # password: sourdough
+  
+# destination:
+#   adapter: sqlite3
+#   database: ../dance_card_server/db/development.sqlite3
+# 
+# etl_execution:
+#   database: etl_execution.sqlite3
+#   adapter: sqlite3
+
