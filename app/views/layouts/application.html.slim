@@ -19,7 +19,25 @@ html lang="en"
           = link_to "Turning Seasons TCM", root_path, class: 'navbar-brand'
         .collapse.navbar-collapse#bs-example-navbar-collapse-1
           ul.nav.navbar-nav
-            li= link_to 'Patterns of Disharmony', diagnosis_patterns_path
+            li.dropdown
+              a href="#" class="dropdown-toggle" data-toggle="dropdown" Acupuncture
+              ul.dropdown-menu
+                li= link_to 'Channels', acupuncture_channels_path
+                li= link_to 'Points', acupuncture_points_path
+            li.dropdown
+              a href="#" class="dropdown-toggle" data-toggle="dropdown" Diagnosis
+              ul.dropdown-menu
+                li= link_to 'Signs and Symptoms', diagnosis_symptoms_path
+                li= link_to 'Patterns of Disharmony', diagnosis_patterns_path
+            li.dropdown
+              a href="#" class="dropdown-toggle" data-toggle="dropdown" Treatment
+              ul.dropdown-menu
+                li= link_to 'Point Prescriptions', treatment_point_prescriptions_path
+            li.dropdown
+              a href="#" class="dropdown-toggle" data-toggle="dropdown" References
+              ul.dropdown-menu
+                li= link_to 'Textbooks', references_textbooks_path
+                li= link_to 'Authors', references_authors_path
           
     .container
       = yield
