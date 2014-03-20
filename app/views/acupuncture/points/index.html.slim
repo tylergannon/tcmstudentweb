@@ -1,0 +1,33 @@
+h1 Listing acupuncture_points
+
+table
+  tr
+    th Channel
+    th Orginal
+    th Pinyin
+    th Chinese
+    th Name discussion
+    th Commentary
+    th Canonical
+    th Slug
+    th
+    th
+    th
+
+  - @acupuncture_points.each do |acupuncture_point|
+    tr
+      td = acupuncture_point.channel
+      td = acupuncture_point.orginal
+      td = acupuncture_point.pinyin
+      td = acupuncture_point.chinese
+      td = acupuncture_point.name_discussion
+      td = acupuncture_point.commentary
+      td = acupuncture_point.canonical
+      td = acupuncture_point.slug
+      td = link_to 'Show', acupuncture_point
+      td = link_to 'Edit', edit_acupuncture_point_path(acupuncture_point)
+      td = link_to 'Destroy', acupuncture_point, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Point', new_acupuncture_point_path

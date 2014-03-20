@@ -1,0 +1,2 @@
+module Acupuncture::PointsHelper
+end

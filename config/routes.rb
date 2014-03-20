@@ -1,6 +1,10 @@
 Rails.application.routes.draw do  
 
   namespace :acupuncture do
+    resources :points
+  end
+
+  namespace :acupuncture do
     resources :channels
   end
 

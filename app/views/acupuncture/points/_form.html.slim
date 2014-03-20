@@ -1,0 +1,33 @@
+= form_for @acupuncture_point do |f|
+  - if @acupuncture_point.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@acupuncture_point.errors.count, "error")} prohibited this acupuncture_point from being saved:"
+      ul
+        - @acupuncture_point.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :channel
+    = f.text_field :channel
+  .field
+    = f.label :orginal
+    = f.number_field :orginal
+  .field
+    = f.label :pinyin
+    = f.text_field :pinyin
+  .field
+    = f.label :chinese
+    = f.text_field :chinese
+  .field
+    = f.label :name_discussion
+    = f.text_field :name_discussion
+  .field
+    = f.label :commentary
+    = f.text_field :commentary
+  .field
+    = f.label :canonical
+    = f.text_field :canonical
+  .field
+    = f.label :slug
+    = f.text_field :slug
+  .actions = f.submit 'Save'

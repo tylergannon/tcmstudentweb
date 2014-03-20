@@ -1,0 +1,30 @@
+p#notice = notice
+
+p
+  strong Channel:
+  = @acupuncture_point.channel
+p
+  strong Orginal:
+  = @acupuncture_point.orginal
+p
+  strong Pinyin:
+  = @acupuncture_point.pinyin
+p
+  strong Chinese:
+  = @acupuncture_point.chinese
+p
+  strong Name discussion:
+  = @acupuncture_point.name_discussion
+p
+  strong Commentary:
+  = @acupuncture_point.commentary
+p
+  strong Canonical:
+  = @acupuncture_point.canonical
+p
+  strong Slug:
+  = @acupuncture_point.slug
+
+= link_to 'Edit', edit_acupuncture_point_path(@acupuncture_point)
+'|
+= link_to 'Back', acupuncture_points_path
