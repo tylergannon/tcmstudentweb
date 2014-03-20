@@ -11,15 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140320063409) do
+ActiveRecord::Schema.define(version: 20140320064703) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "patterns", force: true do |t|
+  create_table "acupuncture_channels", force: true do |t|
     t.string   "name"
-    t.string   "commentary",  limit: 65500
-    t.integer  "citation_id"
+    t.string   "abbreviation"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "diagnosis_patterns", force: true do |t|
+    t.string   "name"
+    t.string   "commentary"
+    t.string   "citation_id"
     t.string   "tongue"
     t.string   "pulse"
     t.string   "slug"

@@ -1,0 +1,27 @@
+p#notice = notice
+
+p
+  strong Name:
+  = @diagnosis_pattern.name
+p
+  strong Commentary:
+  = @diagnosis_pattern.commentary
+p
+  strong Citation:
+  = @diagnosis_pattern.citation_id
+p
+  strong Tongue:
+  = @diagnosis_pattern.tongue
+p
+  strong Pulse:
+  = @diagnosis_pattern.pulse
+p
+  strong Slug:
+  = @diagnosis_pattern.slug
+p
+  strong Canonical:
+  = @diagnosis_pattern.canonical
+
+= link_to 'Edit', edit_diagnosis_pattern_path(@diagnosis_pattern)
+'|
+= link_to 'Back', diagnosis_patterns_path

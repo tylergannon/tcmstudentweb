@@ -1,0 +1,31 @@
+h1 Listing diagnosis_patterns
+
+table
+  tr
+    th Name
+    th Commentary
+    th Citation
+    th Tongue
+    th Pulse
+    th Slug
+    th Canonical
+    th
+    th
+    th
+
+  - @diagnosis_patterns.each do |diagnosis_pattern|
+    tr
+      td = diagnosis_pattern.name
+      td = diagnosis_pattern.commentary
+      td = diagnosis_pattern.citation_id
+      td = diagnosis_pattern.tongue
+      td = diagnosis_pattern.pulse
+      td = diagnosis_pattern.slug
+      td = diagnosis_pattern.canonical
+      td = link_to 'Show', diagnosis_pattern
+      td = link_to 'Edit', edit_diagnosis_pattern_path(diagnosis_pattern)
+      td = link_to 'Destroy', diagnosis_pattern, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Pattern', new_diagnosis_pattern_path

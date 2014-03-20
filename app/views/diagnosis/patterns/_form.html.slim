@@ -1,0 +1,30 @@
+= form_for @diagnosis_pattern do |f|
+  - if @diagnosis_pattern.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@diagnosis_pattern.errors.count, "error")} prohibited this diagnosis_pattern from being saved:"
+      ul
+        - @diagnosis_pattern.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :commentary
+    = f.text_field :commentary
+  .field
+    = f.label :citation_id
+    = f.text_field :citation_id
+  .field
+    = f.label :tongue
+    = f.text_field :tongue
+  .field
+    = f.label :pulse
+    = f.text_field :pulse
+  .field
+    = f.label :slug
+    = f.text_field :slug
+  .field
+    = f.label :canonical
+    = f.text_field :canonical
+  .actions = f.submit 'Save'

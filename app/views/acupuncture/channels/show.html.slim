@@ -1,0 +1,12 @@
+p#notice = notice
+
+p
+  strong Name:
+  = @acupuncture_channel.name
+p
+  strong Abbreviation:
+  = @acupuncture_channel.abbreviation
+
+= link_to 'Edit', edit_acupuncture_channel_path(@acupuncture_channel)
+'|
+= link_to 'Back', acupuncture_channels_path

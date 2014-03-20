@@ -1,11 +1,18 @@
 Rails.application.routes.draw do  
+
+  namespace :acupuncture do
+    resources :channels
+  end
+
+  namespace :diagnosis do
+    resources :patterns
+  end
+
   namespace :references do
     resources :textbooks
     resources :authors
     resources :citations
   end
-
-  resources :patterns
   
-  root 'patterns#index'
+  root 'diagnosis/patterns#index'
 end

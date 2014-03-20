@@ -1,0 +1,21 @@
+h1 Listing acupuncture_channels
+
+table
+  tr
+    th Name
+    th Abbreviation
+    th
+    th
+    th
+
+  - @acupuncture_channels.each do |acupuncture_channel|
+    tr
+      td = acupuncture_channel.name
+      td = acupuncture_channel.abbreviation
+      td = link_to 'Show', acupuncture_channel
+      td = link_to 'Edit', edit_acupuncture_channel_path(acupuncture_channel)
+      td = link_to 'Destroy', acupuncture_channel, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Channel', new_acupuncture_channel_path
