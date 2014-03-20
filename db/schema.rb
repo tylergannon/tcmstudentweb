@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140320071611) do
+ActiveRecord::Schema.define(version: 20140320072750) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 20140320071611) do
     t.string   "pinyin"
     t.string   "chinese"
     t.string   "name_discussion"
-    t.string   "commentary"
+    t.string   "commentary",      limit: 65500
     t.string   "canonical"
     t.string   "slug"
     t.datetime "created_at"
@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 20140320071611) do
   create_table "diagnosis_pattern_symptoms", force: true do |t|
     t.integer  "pattern_id"
     t.integer  "symptom_id"
-    t.string   "commentary"
+    t.string   "commentary",  limit: 65500
     t.boolean  "maybe"
     t.boolean  "key_symptom"
     t.integer  "position"
@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(version: 20140320071611) do
 
   create_table "diagnosis_patterns", force: true do |t|
     t.string   "name"
-    t.string   "commentary"
+    t.string   "commentary",  limit: 65500
     t.integer  "citation_id"
     t.string   "tongue"
     t.string   "pulse"
@@ -97,10 +97,22 @@ ActiveRecord::Schema.define(version: 20140320071611) do
 
   add_index "references_textbooks", ["author_id"], name: "index_references_textbooks_on_author_id", using: :btree
 
+  create_table "treatment_point_prescription_points", force: true do |t|
+    t.integer  "point_prescription_id"
+    t.integer  "point_id"
+    t.string   "reason"
+    t.string   "commentary",            limit: 65500
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "treatment_point_prescription_points", ["point_id"], name: "index_point_prescription_point_id", using: :btree
+  add_index "treatment_point_prescription_points", ["point_prescription_id"], name: "index_point_prescription_pp_id", using: :btree
+
   create_table "treatment_point_prescriptions", force: true do |t|
     t.string   "name"
     t.string   "slug"
-    t.string   "commentary"
+    t.string   "commentary",  limit: 65500
     t.integer  "citation_id"
     t.integer  "pattern_id"
     t.datetime "created_at"

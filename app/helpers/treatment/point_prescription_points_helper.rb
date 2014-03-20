@@ -1,0 +1,2 @@
+module Treatment::PointPrescriptionPointsHelper
+end

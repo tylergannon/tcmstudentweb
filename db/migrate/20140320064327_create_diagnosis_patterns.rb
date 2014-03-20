@@ -2,7 +2,7 @@ class CreateDiagnosisPatterns < ActiveRecord::Migration
   def change
     create_table :diagnosis_patterns do |t|
       t.string :name
-      t.string :commentary
+      t.string :commentary, limit: 65500
       t.integer :citation_id
       t.string :tongue
       t.string :pulse

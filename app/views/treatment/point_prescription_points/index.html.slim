@@ -1,0 +1,25 @@
+h1 Listing treatment_point_prescription_points
+
+table
+  tr
+    th Point prescription
+    th Point
+    th Reason
+    th Commentary
+    th
+    th
+    th
+
+  - @treatment_point_prescription_points.each do |treatment_point_prescription_point|
+    tr
+      td = treatment_point_prescription_point.point_prescription_id
+      td = treatment_point_prescription_point.point_id
+      td = treatment_point_prescription_point.reason
+      td = treatment_point_prescription_point.commentary
+      td = link_to 'Show', treatment_point_prescription_point
+      td = link_to 'Edit', edit_treatment_point_prescription_point_path(treatment_point_prescription_point)
+      td = link_to 'Destroy', treatment_point_prescription_point, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Point prescription point', new_treatment_point_prescription_point_path

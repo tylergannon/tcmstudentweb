@@ -1,9 +1,5 @@
 Rails.application.routes.draw do  
 
-  namespace :treatment do
-    resources :point_prescriptions
-  end
-
   namespace :acupuncture do
     resources :points
     resources :channels
@@ -20,6 +16,11 @@ Rails.application.routes.draw do
     resources :authors
     resources :citations
   end
-  
+
+  namespace :treatment do
+    resources :point_prescription_points
+    resources :point_prescriptions
+  end
+
   root 'diagnosis/patterns#index'
 end

@@ -1,0 +1,18 @@
+p#notice = notice
+
+p
+  strong Point prescription:
+  = @treatment_point_prescription_point.point_prescription
+p
+  strong Point:
+  = @treatment_point_prescription_point.point
+p
+  strong Reason:
+  = @treatment_point_prescription_point.reason
+p
+  strong Commentary:
+  = @treatment_point_prescription_point.commentary
+
+= link_to 'Edit', edit_treatment_point_prescription_point_path(@treatment_point_prescription_point)
+'|
+= link_to 'Back', treatment_point_prescription_points_path

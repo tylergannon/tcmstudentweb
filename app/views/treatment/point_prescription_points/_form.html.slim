@@ -1,0 +1,21 @@
+= form_for @treatment_point_prescription_point do |f|
+  - if @treatment_point_prescription_point.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@treatment_point_prescription_point.errors.count, "error")} prohibited this treatment_point_prescription_point from being saved:"
+      ul
+        - @treatment_point_prescription_point.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :point_prescription
+    = f.text_field :point_prescription
+  .field
+    = f.label :point
+    = f.text_field :point
+  .field
+    = f.label :reason
+    = f.text_field :reason
+  .field
+    = f.label :commentary
+    = f.text_field :commentary
+  .actions = f.submit 'Save'

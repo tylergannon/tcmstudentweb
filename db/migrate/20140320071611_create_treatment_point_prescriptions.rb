@@ -3,7 +3,7 @@ class CreateTreatmentPointPrescriptions < ActiveRecord::Migration
     create_table :treatment_point_prescriptions do |t|
       t.string :name
       t.string :slug, index: true
-      t.string :commentary
+      t.string :commentary, limit: 65500
       t.references :citation, index: true
       t.references :pattern, index: true
 
