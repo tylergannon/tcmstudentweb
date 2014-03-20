@@ -1,19 +1,13 @@
 Rails.application.routes.draw do  
 
-  namespace :diagnosis do
-    resources :symptoms
-  end
-
   namespace :acupuncture do
     resources :points
-  end
-
-  namespace :acupuncture do
     resources :channels
   end
 
   namespace :diagnosis do
     resources :patterns
+    resources :symptoms
   end
 
   namespace :references do
