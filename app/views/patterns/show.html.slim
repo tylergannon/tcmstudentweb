@@ -1,0 +1,27 @@
+p#notice = notice
+
+p
+  strong Name:
+  = @pattern.name
+p
+  strong Commentary:
+  = @pattern.commentary
+p
+  strong Citation:
+  = @pattern.citation_id
+p
+  strong Tongue:
+  = @pattern.tongue
+p
+  strong Pulse:
+  = @pattern.pulse
+p
+  strong Slug:
+  = @pattern.slug
+p
+  strong Canonical:
+  = @pattern.canonical
+
+= link_to 'Edit', edit_pattern_path(@pattern)
+'|
+= link_to 'Back', patterns_path
