@@ -1,0 +1,2 @@
+module Diagnosis::PatternSymptomsHelper
+end

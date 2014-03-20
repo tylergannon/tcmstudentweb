@@ -3,10 +3,10 @@ class CreateDiagnosisPatterns < ActiveRecord::Migration
     create_table :diagnosis_patterns do |t|
       t.string :name
       t.string :commentary
-      t.string :citation_id
+      t.integer :citation_id
       t.string :tongue
       t.string :pulse
-      t.string :slug
+      t.string :slug, index: true
       t.string :canonical
 
       t.timestamps

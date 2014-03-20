@@ -1,0 +1,29 @@
+h1 Listing diagnosis_pattern_symptoms
+
+table
+  tr
+    th Pattern
+    th Symptom
+    th Commentary
+    th Maybe
+    th Key symptom
+    th Position
+    th
+    th
+    th
+
+  - @diagnosis_pattern_symptoms.each do |diagnosis_pattern_symptom|
+    tr
+      td = diagnosis_pattern_symptom.pattern
+      td = diagnosis_pattern_symptom.symptom
+      td = diagnosis_pattern_symptom.commentary
+      td = diagnosis_pattern_symptom.maybe
+      td = diagnosis_pattern_symptom.key_symptom
+      td = diagnosis_pattern_symptom.position
+      td = link_to 'Show', diagnosis_pattern_symptom
+      td = link_to 'Edit', edit_diagnosis_pattern_symptom_path(diagnosis_pattern_symptom)
+      td = link_to 'Destroy', diagnosis_pattern_symptom, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Pattern symptom', new_diagnosis_pattern_symptom_path

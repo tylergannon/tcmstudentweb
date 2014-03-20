@@ -8,7 +8,7 @@ class CreateAcupuncturePoints < ActiveRecord::Migration
       t.string :name_discussion
       t.string :commentary
       t.string :canonical
-      t.string :slug
+      t.string :slug, index: true
 
       t.timestamps
     end

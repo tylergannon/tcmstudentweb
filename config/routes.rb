@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   namespace :diagnosis do
     resources :patterns
     resources :symptoms
+    resources :pattern_symptoms
   end
 
   namespace :references do

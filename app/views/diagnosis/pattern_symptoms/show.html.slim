@@ -1,0 +1,24 @@
+p#notice = notice
+
+p
+  strong Pattern:
+  = @diagnosis_pattern_symptom.pattern
+p
+  strong Symptom:
+  = @diagnosis_pattern_symptom.symptom
+p
+  strong Commentary:
+  = @diagnosis_pattern_symptom.commentary
+p
+  strong Maybe:
+  = @diagnosis_pattern_symptom.maybe
+p
+  strong Key symptom:
+  = @diagnosis_pattern_symptom.key_symptom
+p
+  strong Position:
+  = @diagnosis_pattern_symptom.position
+
+= link_to 'Edit', edit_diagnosis_pattern_symptom_path(@diagnosis_pattern_symptom)
+'|
+= link_to 'Back', diagnosis_pattern_symptoms_path

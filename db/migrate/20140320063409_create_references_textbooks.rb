@@ -3,7 +3,7 @@ class CreateReferencesTextbooks < ActiveRecord::Migration
     create_table :references_textbooks do |t|
       t.references :author, index: true
       t.string :title
-      t.string :slug
+      t.string :slug, index: true
       t.string :year
       t.string :abbreviation
 

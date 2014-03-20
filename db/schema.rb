@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140320065734) do
+ActiveRecord::Schema.define(version: 20140320070040) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,10 +38,24 @@ ActiveRecord::Schema.define(version: 20140320065734) do
 
   add_index "acupuncture_points", ["channel_id"], name: "index_acupuncture_points_on_channel_id", using: :btree
 
+  create_table "diagnosis_pattern_symptoms", force: true do |t|
+    t.integer  "pattern_id"
+    t.integer  "symptom_id"
+    t.string   "commentary"
+    t.boolean  "maybe"
+    t.boolean  "key_symptom"
+    t.integer  "position"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "diagnosis_pattern_symptoms", ["pattern_id"], name: "index_diagnosis_pattern_symptoms_on_pattern_id", using: :btree
+  add_index "diagnosis_pattern_symptoms", ["symptom_id"], name: "index_diagnosis_pattern_symptoms_on_symptom_id", using: :btree
+
   create_table "diagnosis_patterns", force: true do |t|
     t.string   "name"
     t.string   "commentary"
-    t.string   "citation_id"
+    t.integer  "citation_id"
     t.string   "tongue"
     t.string   "pulse"
     t.string   "slug"
