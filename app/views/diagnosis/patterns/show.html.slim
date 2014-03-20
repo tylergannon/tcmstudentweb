@@ -25,3 +25,11 @@ p
 = link_to 'Edit', edit_diagnosis_pattern_path(@diagnosis_pattern)
 '|
 = link_to 'Back', diagnosis_patterns_path
+
+h3 Symptoms
+
+ul
+  - @diagnosis_pattern.pattern_symptoms.each do |pattern_symptom|
+    li
+      h4= link_to pattern_symptom.symptom.name, diagnosis_symptom_path(pattern_symptom.symptom)
+  

@@ -64,7 +64,7 @@ class Diagnosis::PatternsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_diagnosis_pattern
-      @diagnosis_pattern = Diagnosis::Pattern.find(params[:id])
+      @diagnosis_pattern = Diagnosis::Pattern.friendly.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
