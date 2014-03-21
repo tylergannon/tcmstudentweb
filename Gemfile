@@ -16,7 +16,9 @@ gem 'coffee-rails', '~> 4.0.0'
 
 gem 'slim-rails'
 gem 'bootstrap-sass'
+gem 'twitter-typeahead-rails'
 gem 'friendly_id'
+gem 'kaminari'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

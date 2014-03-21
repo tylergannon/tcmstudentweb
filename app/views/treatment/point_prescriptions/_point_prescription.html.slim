@@ -1,0 +1,7 @@
+h3 Point Prescription:
+= render partial: 'references/citations/citation', object: point_prescription.citation if point_prescription.citation
+
+ul
+  - point_prescription.point_prescription_points.each do |ppp|
+    li
+      

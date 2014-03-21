@@ -1,21 +1,13 @@
-h1 Listing diagnosis_symptoms
+h1 Symptoms
 
-table
-  tr
-    th Name
-    th Slug
-    th
-    th
-    th
+p A listing of recognized symptoms and the Patterns of Disharmony that they appear in.
 
-  - @diagnosis_symptoms.each do |diagnosis_symptom|
-    tr
-      td = diagnosis_symptom.name
-      td = diagnosis_symptom.slug
-      td = link_to 'Show', diagnosis_symptom
-      td = link_to 'Edit', edit_diagnosis_symptom_path(diagnosis_symptom)
-      td = link_to 'Destroy', diagnosis_symptom, data: {:confirm => 'Are you sure?'}, :method => :delete
+= paginate @diagnosis_symptoms
 
-br
-
-= link_to 'New Symptom', new_diagnosis_symptom_path
+- @diagnosis_symptoms.each do |symptom|
+  .row
+    .col-md-12
+      h4= link_to symptom.name, symptom
+  .row
+    - symptom.patterns.each do |pattern|
+      .col-md-4= link_to pattern.name, pattern

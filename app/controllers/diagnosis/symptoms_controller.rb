@@ -5,6 +5,14 @@ class Diagnosis::SymptomsController < ApplicationController
   # GET /diagnosis/symptoms.json
   def index
     @diagnosis_symptoms = Diagnosis::Symptom.all
+
+    @diagnosis_symptoms.where!("lower(name) like ?", "%#{params[:search].downcase}%") if params.has_key?(:search)
+
+    respond_with(@diagnosis_symptoms) do |format|
+      format.html {
+        @diagnosis_symptoms = @diagnosis_symptoms.page params[:page]
+      }
+    end
   end
 
   # GET /diagnosis/symptoms/1

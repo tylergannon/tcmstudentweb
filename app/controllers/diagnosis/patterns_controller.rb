@@ -5,6 +5,12 @@ class Diagnosis::PatternsController < ApplicationController
   # GET /diagnosis/patterns.json
   def index
     @diagnosis_patterns = Diagnosis::Pattern.all
+    
+    respond_with @diagnosis_patterns do |format|
+      format.html {
+        @diagnosis_patterns = @diagnosis_patterns.page params[:page]
+      }
+    end
   end
 
   # GET /diagnosis/patterns/1
