@@ -1,0 +1,15 @@
+= form_for @clinic_visit do |f|
+  - if @clinic_visit.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@clinic_visit.errors.count, "error")} prohibited this clinic_visit from being saved:"
+      ul
+        - @clinic_visit.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :patient
+    = f.text_field :patient
+  .field
+    = f.label :appointment_time
+    = f.datetime_select :appointment_time
+  .actions = f.submit 'Save'

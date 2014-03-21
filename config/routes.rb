@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   namespace :clinic do
     resources :patients
+    resources :visits
   end
 
   namespace :acupuncture do

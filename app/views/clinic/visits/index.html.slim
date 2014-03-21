@@ -1,0 +1,21 @@
+h1 Listing clinic_visits
+
+table
+  tr
+    th Patient
+    th Appointment time
+    th
+    th
+    th
+
+  - @clinic_visits.each do |clinic_visit|
+    tr
+      td = clinic_visit.patient
+      td = clinic_visit.appointment_time
+      td = link_to 'Show', clinic_visit
+      td = link_to 'Edit', edit_clinic_visit_path(clinic_visit)
+      td = link_to 'Destroy', clinic_visit, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Visit', new_clinic_visit_path
