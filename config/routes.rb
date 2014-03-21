@@ -27,5 +27,6 @@ Rails.application.routes.draw do
     resources :point_prescriptions
   end
 
+  devise_for :practitioners, class_name: "Clinic::Practitioner"
   root 'diagnosis/patterns#index'
 end

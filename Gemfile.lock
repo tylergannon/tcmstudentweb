@@ -51,6 +51,7 @@ GEM
     addressable (2.3.5)
     arel (5.0.0)
     atomic (1.1.16)
+    bcrypt (3.1.7)
     bootstrap-sass (3.1.1.0)
       sass (~> 3.2)
     builder (3.2.2)
@@ -64,6 +65,12 @@ GEM
     crack (0.4.2)
       safe_yaml (~> 1.0.0)
     database_cleaner (1.2.0)
+    devise (3.2.4)
+      bcrypt (~> 3.0)
+      orm_adapter (~> 0.1)
+      railties (>= 3.2.6, < 5)
+      thread_safe (~> 0.1)
+      warden (~> 1.2.3)
     diff-lcs (1.2.5)
     erubis (2.7.0)
     execjs (2.0.2)
@@ -92,6 +99,7 @@ GEM
     mime-types (1.25.1)
     minitest (5.3.1)
     multi_json (1.9.0)
+    orm_adapter (0.5.0)
     pg (0.17.1)
     polyglot (0.3.4)
     rack (1.5.2)
@@ -173,6 +181,8 @@ GEM
       execjs (>= 0.3.0)
       json (>= 1.8.0)
     vcr (2.8.0)
+    warden (1.2.3)
+      rack (>= 1.0)
     webmock (1.15.2)
       addressable (>= 2.2.7)
       crack (>= 0.3.2)
@@ -184,6 +194,7 @@ DEPENDENCIES
   bootstrap-sass
   coffee-rails (~> 4.0.0)
   database_cleaner
+  devise
   factory_girl_rails
   friendly_id
   jbuilder (~> 2.0)

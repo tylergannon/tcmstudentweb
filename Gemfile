@@ -19,6 +19,7 @@ gem 'bootstrap-sass'
 gem 'twitter-typeahead-rails'
 gem 'friendly_id'
 gem 'kaminari'
+gem 'devise'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
