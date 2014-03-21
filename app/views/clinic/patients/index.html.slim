@@ -1,0 +1,21 @@
+h1 Listing clinic_patients
+
+table
+  tr
+    th Name
+    th Slug
+    th
+    th
+    th
+
+  - @clinic_patients.each do |clinic_patient|
+    tr
+      td = clinic_patient.name
+      td = clinic_patient.slug
+      td = link_to 'Show', clinic_patient
+      td = link_to 'Edit', edit_clinic_patient_path(clinic_patient)
+      td = link_to 'Destroy', clinic_patient, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Patient', new_clinic_patient_path

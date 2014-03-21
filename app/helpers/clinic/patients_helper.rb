@@ -1,0 +1,2 @@
+module Clinic::PatientsHelper
+end
