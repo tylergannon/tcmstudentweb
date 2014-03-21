@@ -1,5 +1,6 @@
 require 'spec_helper'
 
 describe Clinic::Patient do
-  pending "add some examples to (or delete) #{__FILE__}"
+  subject {build :clinic_patient}
+  it {should validate_presence_of(:practitioner)}
 end

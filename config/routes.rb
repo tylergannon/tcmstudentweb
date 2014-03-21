@@ -1,7 +1,9 @@
 Rails.application.routes.draw do  
 
   namespace :clinic do
-    resources :patients
+    resources :patients do
+      resources :visits, only: :index
+    end
     resources :visits
   end
 

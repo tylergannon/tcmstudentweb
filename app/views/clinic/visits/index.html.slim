@@ -1,6 +1,9 @@
-h1 Listing clinic_visits
+- if @patient
+  h1 #{@patient.name} Visits
+- else
+  h1 Patient Visits
 
-table
+table.table
   tr
     th Patient
     th Appointment time
@@ -10,7 +13,7 @@ table
 
   - @clinic_visits.each do |clinic_visit|
     tr
-      td = clinic_visit.patient
+      td = clinic_visit.patient.name
       td = clinic_visit.appointment_time
       td = link_to 'Show', clinic_visit
       td = link_to 'Edit', edit_clinic_visit_path(clinic_visit)

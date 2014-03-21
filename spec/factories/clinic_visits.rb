@@ -2,7 +2,8 @@
 
 FactoryGirl.define do
   factory :clinic_visit, :class => 'Clinic::Visit' do
-    patient nil
+    patient
     appointment_time "2014-03-21 21:21:48"
+    practitioner
   end
 end

@@ -1,10 +1,16 @@
 class Clinic::PatientsController < ApplicationController
+  before_action :authenticate_practitioner!
   before_action :set_clinic_patient, only: [:show, :edit, :update, :destroy]
 
   # GET /clinic/patients
   # GET /clinic/patients.json
   def index
-    @clinic_patients = Clinic::Patient.all
+    @clinic_patients = current_practitioner.patients
+    respond_with @clinic_patients do |format|
+      format.html {
+        @clinic_patients = @clinic_patients.page params[:page]
+      }
+    end
   end
 
   # GET /clinic/patients/1
@@ -14,7 +20,7 @@ class Clinic::PatientsController < ApplicationController
 
   # GET /clinic/patients/new
   def new
-    @clinic_patient = Clinic::Patient.new
+    @clinic_patient = current_practitioner.patients.new
   end
 
   # GET /clinic/patients/1/edit
@@ -24,7 +30,7 @@ class Clinic::PatientsController < ApplicationController
   # POST /clinic/patients
   # POST /clinic/patients.json
   def create
-    @clinic_patient = Clinic::Patient.new(clinic_patient_params)
+    @clinic_patient = current_practitioner.patients.new(clinic_patient_params)
 
     respond_to do |format|
       if @clinic_patient.save
@@ -64,7 +70,7 @@ class Clinic::PatientsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_clinic_patient
-      @clinic_patient = Clinic::Patient.friendly.find(params[:id])
+      @clinic_patient = current_practitioner.patients.friendly.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

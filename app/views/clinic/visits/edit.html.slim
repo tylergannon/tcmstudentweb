@@ -1,6 +1,16 @@
-h1 Editing clinic_visit
+h1 Patient Visit: #{@clinic_visit.patient.name}
+h2= @clinic_visit.appointment_time
 
-== render 'form'
+= form_for @clinic_visit do |f|
+  - if @clinic_visit.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@clinic_visit.errors.count, "error")} prohibited this clinic_visit from being saved:"
+      ul
+        - @clinic_visit.errors.full_messages.each do |message|
+          li = message
+
+
+  .actions = f.submit 'Save'
 
 = link_to 'Show', @clinic_visit
 '|

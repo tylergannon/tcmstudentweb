@@ -1,5 +1,8 @@
 require 'spec_helper'
 
 describe Clinic::Visit do
-  pending "add some examples to (or delete) #{__FILE__}"
+  subject {build :clinic_visit}
+  it {should validate_presence_of(:practitioner)}
+  it {should validate_presence_of(:patient)}
+  it {should validate_presence_of(:appointment_time)}
 end

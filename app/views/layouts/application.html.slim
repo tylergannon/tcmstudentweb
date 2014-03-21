@@ -25,6 +25,12 @@ html lang="en"
                 li= link_to 'Channels', acupuncture_channels_path
                 li= link_to 'Points', acupuncture_points_path
             li.dropdown
+              a href="#" class="dropdown-toggle" data-toggle="dropdown" Clinic
+              ul.dropdown-menu
+                li= link_to 'Patients', clinic_patients_path
+                li= link_to 'Visits', clinic_visits_path
+                li= link_to 'New Visit', new_clinic_visit_path
+            li.dropdown
               a href="#" class="dropdown-toggle" data-toggle="dropdown" Diagnosis
               ul.dropdown-menu
                 li= link_to 'Signs and Symptoms', diagnosis_symptoms_path

@@ -1,5 +1,19 @@
-h1 New clinic_visit
+h1 New Visit
 
-== render 'form'
+= form_for @clinic_visit do |f|
+  - if @clinic_visit.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@clinic_visit.errors.count, "error")} prohibited this clinic_visit from being saved:"
+      ul
+        - @clinic_visit.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :patient_id, "Patient"
+    = f.collection_select :patient_id, current_practitioner.patients, :id, :name
+  .field
+    = f.label :appointment_time
+    = f.datetime_select :appointment_time
+  .actions = f.submit 'Save'
 
 = link_to 'Back', clinic_visits_path

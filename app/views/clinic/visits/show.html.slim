@@ -1,11 +1,7 @@
 p#notice = notice
 
-p
-  strong Patient:
-  = @clinic_visit.patient
-p
-  strong Appointment time:
-  = @clinic_visit.appointment_time
+h1 Patient Visit: #{@clinic_visit.patient.name}
+h2= @clinic_visit.appointment_time
 
 = link_to 'Edit', edit_clinic_visit_path(@clinic_visit)
 '|

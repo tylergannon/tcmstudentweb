@@ -20,6 +20,7 @@ gem 'twitter-typeahead-rails'
 gem 'friendly_id'
 gem 'kaminari'
 gem 'devise'
+# gem 'chosen-rails'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

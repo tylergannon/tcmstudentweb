@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140321155949) do
+ActiveRecord::Schema.define(version: 20140321165409) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(version: 20140321155949) do
   create_table "clinic_patients", force: true do |t|
     t.string   "name"
     t.string   "slug"
+    t.integer  "practitioner_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -78,11 +79,15 @@ ActiveRecord::Schema.define(version: 20140321155949) do
   create_table "clinic_visits", force: true do |t|
     t.integer  "patient_id"
     t.datetime "appointment_time"
+    t.string   "slug"
+    t.integer  "practitioner_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "clinic_visits", ["patient_id"], name: "index_clinic_visits_on_patient_id", using: :btree
+  add_index "clinic_visits", ["practitioner_id"], name: "index_clinic_visits_on_practitioner_id", using: :btree
+  add_index "clinic_visits", ["slug"], name: "index_clinic_visits_on_slug", using: :btree
 
   create_table "diagnosis_pattern_symptoms", force: true do |t|
     t.integer  "pattern_id"
